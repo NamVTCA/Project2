@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Session;
 
 class loginController extends Controller
 {
+    
+    public function showReset(){
+        return view('resetpassword');
+    }
       public function login(Request $request){
     $request->validate([
         'username' => 'required',
