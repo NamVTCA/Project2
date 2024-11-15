@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('weekevaluates', function (Blueprint $table) {
             $table->id();
             $table->string('comment');
-            $table->int('point');
+            $table->integer('point');
             $table->date('date');
             $table->foreignId('child_id')->constrained('children')->onDelete('cascade');
             $table->timestamps();

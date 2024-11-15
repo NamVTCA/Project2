@@ -12,8 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('childclasses', function (Blueprint $table) {
-            $table->unsignedBigInteger('child_id');
-            $table->unsignedBigInteger('classroom_id');
             $table->primary(['child_id', 'classroom_id']);
             $table->foreignId('child_id')->constrained('children')->onDelete('cascade');
             $table->foreignId('classroom_id')->constrained('classrooms')->onDelete('cascade');
