@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,5 +23,6 @@ Route::get('/accountcreation', function () {
     return view('accountcreation');
 });
 Route::get('/resetPassword',[loginController::class,'showReset']);
+Route::post('/reset-password', [ResetPasswordController::class, 'handleReset'])->name('reset-password');
 
 
