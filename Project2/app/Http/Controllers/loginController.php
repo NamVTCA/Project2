@@ -35,7 +35,7 @@ class loginController extends Controller
     else{
         $role = $user->role;
         if ($role == 1) {
-            # code
+            return route('home');
         }
         elseif($role == 2){
             # code
@@ -48,30 +48,36 @@ class loginController extends Controller
 }
  public function sendResetCode(Request $request)
     {
-        $request->validate(['username' => 'required|exists:users']);
-        $identifier = $request->input('username');
-        if (filter_var($identifier, FILTER_VALIDATE_EMAIL)) {
-        $user = User::where('email', $identifier)->first();
-    } else {
-        $user = User::where('phone', $identifier)->first();
-    }
+        $request->validate(['phone' => 'required']);
+        $phone = $request->input('phone');
+        $user = User::where('phone', $request->phone)->first();
+        if (!$user) {
+        return back()->withErrors(['phone' => 'Số điện thoại không tồn tại']);
+        }
+        else{
         $resetCode = Str::random(6);
-            Session::put('reset_code', $resetCode);
+        Session::put('reset_code', $resetCode);
         Mail::raw("Mã xác nhận để đặt lại mật khẩu của bạn là: $resetCode", function ($message) use ($user) {
             $message->to($user->email);
             $message->subject('Mã xác nhận đặt lại mật khẩu');
         });
 
-        return back()->with('status', 'Mã xác nhận đã được gửi qua email của bạn.');
+        return redirect()->route('showReset', ['message' => 'Mã xác nhận']);
+        }
+       
     }
     public function resetPassword(Request $request)
     {
         $request->validate([
-            'reset_code' => 'required|string',
-            'password' => 'required|string|min:8|confirmed',
+            'otp' => 'required|string',
+            'phone' => 'required|string',
+            'new_password' => 'required|string|min:8|same:confirm_password',
         ]);
-        $codeInput = $request->input('resetCode');
-        $user = User::where('email', $request->email)->first();
+        $codeInput = $request->input('otp');
+        $user = User::where('phone', $request->phone)->first();
+        if (!$user) {
+        return back()->withErrors(['phone' => 'Số điện thoại không tồn tại']);
+        }
         if ($codeInput != Session::get('reset_code')) {
             return back()->withErrors(['reset_code' => 'Mã xác nhận không hợp lệ ']);
         }
@@ -79,6 +85,6 @@ class loginController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->route('login')->with('status', 'Mật khẩu của bạn đã được đặt lại thành công.');
+        return redirect()->route('showReset')->with('status', 'Mật khẩu của bạn đã được đặt lại thành công.');
     }
 }
