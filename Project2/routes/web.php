@@ -22,7 +22,11 @@ Route::get('/fogotpassword', function () {
 Route::get('/accountcreation', function () {
     return view('accountcreation');
 });
-Route::get('/resetPassword',[loginController::class,'showReset']);
-Route::post('/reset-password', [ResetPasswordController::class, 'handleReset'])->name('reset-password');
+
+
+Route::get('/showfogot',[loginController::class,'showFogot'] )->name('showfogot');
+Route::get('/otp',[loginController::class,'sendResetCode'])->name('otp');
+Route::get('/forgotpassword',[loginController::class,'resetPassword'])->name('forgotpassword');
+
 
 

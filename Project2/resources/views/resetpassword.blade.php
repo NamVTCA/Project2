@@ -32,21 +32,26 @@
     <!-- Reset Password Form -->
     <main class="reset-password-section">
         <div class="logo">
-            <img src="{{ asset('img/Login.png') }}" alt="Nursery PreSchool">
-            <h1>NURSERY PRRSCHOOL</h1>
+        <img src="{{ asset('img/Login.png') }}" alt="Nursery PreSchool">
+        <h1>NURSERY PRRSCHOOL</h1>
         </div>
-        <form class="reset-password-form">
+
+        <form action="{{ route('otp') }}" method="get" class="send-otp-form">
+        @csrf
+        <label for="phone">Số điện thoại:</label>
+        <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại" required  >
+        <button type="submit" class="btn btn-primary">Gửi mã xác nhận</button>
+        </form>
+
+        <form action="{{route('forgotpassword')}}" method="get" class="reset-password-form">
             <label for="phone">Số điện thoại</label>
-            <input type="text" id="phone" placeholder="Nhập số điện thoại">
-            
+            <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại">
             <label for="otp">Mã xác nhận</label>
-            <input type="text" id="otp" placeholder="Nhập mã xác nhận">
-            
+            <input type="text" id="otp" name="otp" placeholder="Nhập mã xác nhận">
             <label for="new-password">Mật khẩu mới</label>
-            <input type="password" id="new-password" placeholder="Nhập mật khẩu mới">
-            
+            <input type="password" id="new_password" name="new_password" placeholder="Nhập mật khẩu mới">
             <label for="confirm-password">Nhập lại Mật khẩu mới</label>
-            <input type="password" id="confirm-password" placeholder="Nhập lại mật khẩu mới">
+            <input type="password" id="confirm_password"name="confirm_password"  placeholder="Nhập lại mật khẩu mới">
             
             <button type="submit" class="reset-password-btn">Đặt lại mật khẩu</button>
         </form>
