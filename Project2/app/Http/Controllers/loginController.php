@@ -62,7 +62,7 @@ class loginController extends Controller
             $message->subject('Mã xác nhận đặt lại mật khẩu');
         });
 
-        return redirect()->route('showReset', ['message' => 'Mã xác nhận']);
+        return redirect()->route('showfogot', ['message' => 'Mã xác nhận']);
         }
        
     }
@@ -85,6 +85,6 @@ class loginController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->route('showReset')->with('status', 'Mật khẩu của bạn đã được đặt lại thành công.');
+        return redirect()->route('showfogot')->with('status', 'Mật khẩu của bạn đã được đặt lại thành công.');
     }
 }

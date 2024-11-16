@@ -43,7 +43,7 @@
         <button type="submit" class="btn btn-primary">Gửi mã xác nhận</button>
         </form>
 
-        <form action="{{route('resetPassword')}}" method="get" class="reset-password-form">
+        <form action="{{route('forgotpassword')}}" method="get" class="reset-password-form">
             <label for="phone">Số điện thoại</label>
             <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại">
             <label for="otp">Mã xác nhận</label>
