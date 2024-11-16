@@ -22,13 +22,9 @@ Route::get('/fogotpassword', function () {
 Route::get('/accountcreation', function () {
     return view('accountcreation');
 });
-<<<<<<< HEAD
 Route::get('/showReset',[loginController::class,'showReset'] )->name('showReset');
 Route::get('/otp',[loginController::class,'sendResetCode'])->name('otp');
 Route::get('/resetPassword',[loginController::class,'resetPassword'])->name('resetPassword');
-=======
-Route::get('/resetPassword',[loginController::class,'showReset']);
-Route::post('/reset-password', [ResetPasswordController::class, 'handleReset'])->name('reset-password');
->>>>>>> b862c1c4780a94e3f6b76510c84f2d9c756c6488
+
 
 
