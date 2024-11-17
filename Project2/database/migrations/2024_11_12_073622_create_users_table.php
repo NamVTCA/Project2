@@ -9,20 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
             $table->string('password');
-            $table->integer('id_number');
-            $table->integer('phone');
+            $table->string('email')->unique();
+            $table->string('name');  
+            $table->string('id_number'); 
             $table->string('address');
-            $table->string('name');
             $table->integer('role');
+            $table->integer('status');
             $table->string('img')->nullable();
-            $table->integer('gender');
-            $table->integer('status')->nullable();
+            $table->string('gender');
+            $table->string('phone');
             $table->timestamps();
         });
     }

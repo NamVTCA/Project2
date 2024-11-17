@@ -27,3 +27,5 @@ Route::get('/accountcreation', function () {
 Route::get('/showfogot',[loginController::class,'showFogot'] )->name('showfogot');
 Route::get('/otp',[loginController::class,'sendResetCode'])->name('otp');
 Route::get('/forgotpassword',[loginController::class,'resetPassword'])->name('forgotpassword');
+
+Route::resource('users', UserController::class);

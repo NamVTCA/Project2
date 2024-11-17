@@ -10,7 +10,8 @@ class User extends Model
     use HasFactory;
     protected $fillable = [
         'password', 'email', 'name', 'id_number', 'address', 
-        'role', 'status', 'img', 'gender', 'phone'
+        'role', 'status', 'img', 'gender', 'phone', 
+
     ];
     public function children()
     {
