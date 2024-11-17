@@ -10,17 +10,19 @@ use Illuminate\Support\Facades\Session;
 
 class loginController extends Controller
 {
-    
-    public function showFogot(){
+      public function showFogot(){
         return view('resetpassword');
     }
-      public function login(Request $request){
+    function showLogin(){
+        return view('login');
+    }
+  
+    public function login(Request $request){
     $request->validate([
-        'username' => 'required',
-        'password' => 'required|min:6',
+        'phone' => 'required',
+        'password' => 'required',
     ]);
-
-    $identifier = $request->input('username');
+    $identifier = $request->input('phone');
     
     if (filter_var($identifier, FILTER_VALIDATE_EMAIL)) {
         $user = User::where('email', $identifier)->first();
@@ -29,22 +31,19 @@ class loginController extends Controller
     }
 
     if (!$user || !Hash::check($request->password, $user->password)) {
-        return response()->json(['message' => 'Invalid email/phone or password']);
-        
+        return redirect()->route('showlogin')->with('message','invalid phone or email');
     }
-    else{
         $role = $user->role;
-        if ($role == 1) {
-            return route('home');
+        if ($role == 2) {
+            return view('home');
         }
-        elseif($role == 2){
-            # code
+        elseif($role == 1){
+            return view('schedule');
         }
         else{
             #code
         }
-    }
-
+    
 }
  public function sendResetCode(Request $request)
     {
@@ -74,7 +73,12 @@ class loginController extends Controller
             'new_password' => 'required|string|min:8|same:confirm_password',
         ]);
         $codeInput = $request->input('otp');
-        $user = User::where('phone', $request->phone)->first();
+        $identifier = $request->input('phone');
+        if (filter_var($identifier, FILTER_VALIDATE_EMAIL)) {
+        $user = User::where('email', $identifier)->first();
+        } else {
+        $user = User::where('phone', $identifier)->first();
+        }
         if (!$user) {
         return back()->withErrors(['phone' => 'Số điện thoại không tồn tại']);
         }
@@ -82,7 +86,7 @@ class loginController extends Controller
             return back()->withErrors(['reset_code' => 'Mã xác nhận không hợp lệ ']);
         }
 
-        $user->password = Hash::make($request->password);
+        $user->password = Hash::make($request->input('new_password'));
         $user->save();
 
         return redirect()->route('showfogot')->with('message', 'Mật khẩu của bạn đã được đặt lại thành công.');

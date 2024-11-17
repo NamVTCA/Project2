@@ -14,37 +14,19 @@ class roleMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-     public function handle(Request $request, Closure $next, string $role)
-    {
-        $user = Auth::user();
+        public function handle(Request $request, Closure $next, string $role)
+        {
+            $user = Auth::user();
 
-        if (!$user) {
-            return redirect('/login')->with('error', 'Vui lòng đăng nhập.');
-        }
-
-        switch ($role) {
-            case 0:
-                if ($user->role !== 0) {
-                    return redirect('/home')->with('error', 'Bạn không có quyền truy cập.');
-                }
-                break;
-
-            case 1:
-                if ($user->role !== 1) {
-                    return redirect('/home')->with('error', 'Bạn không có quyền truy cập.');
-                }
-                break;
-
-            case 2:
-                if ($user->role !== 2) {
-                    return redirect('/home')->with('error', 'Bạn không có quyền truy cập.');
-                }
-                break;
-
-            default:
-                return redirect('/home')->with('error', 'Quyền truy cập không hợp lệ.');
-        }
-
-        return $next($request);
+    // Kiểm tra nếu người dùng chưa đăng nhập
+    if (!$user) {
+        return redirect('/login')->with('error', 'Vui lòng đăng nhập để truy cập.');
     }
+
+    // Kiểm tra vai trò người dùng
+    if ($user->role != $role) {
+        return abort(403, 'Bạn không có quyền truy cập trang này.');
+    }
+            return $next($request);
+        }
 }

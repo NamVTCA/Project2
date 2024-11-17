@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\scheduleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,9 +25,13 @@ Route::get('/accountcreation', function () {
     return view('accountcreation');
 });
 
-
+Route::middleware(['auth'])->group(function () {
+      Route::get('/schedule', [scheduleController::class, 'index'])->name('schedule');
+});
+Route::get('/showLogin',[loginController::class,'showLogin'])->name('showlogin');
+Route::post('/login',[loginController::class,'login'])->name('login');
 Route::get('/showfogot',[loginController::class,'showFogot'] )->name('showfogot');
 Route::get('/otp',[loginController::class,'sendResetCode'])->name('otp');
-Route::get('/forgotpassword',[loginController::class,'resetPassword'])->name('forgotpassword');
+Route::post('/forgotpassword',[loginController::class,'resetPassword'])->name('forgotpassword');
 
 Route::resource('users', UserController::class);

@@ -43,18 +43,38 @@
         <button type="submit" class="btn btn-primary">Gửi mã xác nhận</button>
         </form>
 
-        <form action="{{route('forgotpassword')}}" method="get" class="reset-password-form">
-            <label for="phone">Số điện thoại</label>
-            <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại">
-            <label for="otp">Mã xác nhận</label>
-            <input type="text" id="otp" name="otp" placeholder="Nhập mã xác nhận">
-            <label for="new-password">Mật khẩu mới</label>
-            <input type="password" id="new_password" name="new_password" placeholder="Nhập mật khẩu mới">
-            <label for="confirm-password">Nhập lại Mật khẩu mới</label>
-            <input type="password" id="confirm_password"name="confirm_password"  placeholder="Nhập lại mật khẩu mới">
-            
-            <button type="submit" class="reset-password-btn">Đặt lại mật khẩu</button>
-        </form>
+        <form action="{{ route('forgotpassword') }}" method="post" class="reset-password-form">
+    @csrf
+    <label for="phone">Số điện thoại</label>
+    <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại" required>
+    @error('phone')
+        <span class="text-danger">{{ $message }}</span>
+    @enderror
+
+    <label for="otp">Mã xác nhận</label>
+    <input type="text" id="otp" name="otp" placeholder="Nhập mã xác nhận" required>
+    @error('otp')
+        <span class="text-danger">{{ $message }}</span>
+    @enderror
+
+    <label for="new-password">Mật khẩu mới</label>
+    <input type="password" id="new_password" name="new_password" placeholder="Nhập mật khẩu mới" required>
+    @error('new_password')
+        <span class="text-danger">{{ $message }}</span>
+    @enderror
+
+    <label for="confirm-password">Nhập lại Mật khẩu mới</label>
+    <input type="password" id="confirm_password" name="confirm_password" placeholder="Nhập lại mật khẩu mới" required>
+    @error('confirm_password')
+        <span class="text-danger">{{ $message }}</span>
+    @enderror
+
+    <button type="submit" class="reset-password-btn">Đặt lại mật khẩu</button>
+    
+    @if (session('message'))
+        <div class="alert alert-success mt-2">{{ session('message') }}</div>
+    @endif
+</form>
     </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
