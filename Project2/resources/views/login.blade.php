@@ -18,11 +18,11 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Trang Chủ</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Sự Kiện</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Giáo Dục</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Liên Hệ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Đăng Nhập</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Đăng Nhập</a></li>
                 </ul>
             </div>
         </nav>

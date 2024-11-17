@@ -14,10 +14,10 @@ Route::get('/', function () {
 // });
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');
 Route::get('/index', function () {
     return view('index');
-});
+})->name('index');
 Route::get('/fogotpassword', function () {
     return view('fogotpassword');
 });
