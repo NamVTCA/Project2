@@ -36,7 +36,7 @@
             <h1>Nursery PreSchool</h1>
         </div>
         <form class="reset-password-form">
-            <label for="phone">Mất Khẩu Cũ</label>
+            <label for="phone">Mật Khẩu Cũ</label>
             <input type="password" id="password" placeholder="Nhập mật khẩu cũ">
             
             <label for="new-password">Mật khẩu mới</label>
