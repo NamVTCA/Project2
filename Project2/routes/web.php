@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\loginController;
-use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\scheduleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,6 +32,11 @@ Route::post('/login',[loginController::class,'login'])->name('login');
 Route::get('/showfogot',[loginController::class,'showFogot'] )->name('showfogot');
 Route::get('/otp',[loginController::class,'sendResetCode'])->name('otp');
 Route::post('/forgotpassword',[loginController::class,'resetPassword'])->name('forgotpassword');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/reset-password', [ResetPasswordController::class, 'showResetForm'])->name('reset.password');
+    Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset.password.update');
+});
 
 Route::resource('users', UserController::class);
 
