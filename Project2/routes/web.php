@@ -9,18 +9,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
-// Route::get('/resetpassword', function () {
-//     return view('resetpassword');
-// });
+Route::get('/resetpassword', function () {
+    return view('resetpassword');
+});
 Route::get('/login', function () {
     return view('login');
 })->name('login');
 Route::get('/index', function () {
     return view('index');
 })->name('index');
-Route::get('/forgotpassword', function () {
-    return view('forgotpassword');
-});
+
 Route::get('/accountcreation', function () {
     return view('accountcreation');
 });
@@ -33,7 +31,7 @@ Route::get('/showLogin',[loginController::class,'showLogin'])->name('showlogin')
 Route::post('/login',[loginController::class,'login'])->name('login');
 Route::get('/showfogot',[loginController::class,'showFogot'] )->name('showfogot');
 Route::get('/otp',[loginController::class,'sendResetCode'])->name('otp');
-Route::post('/resetpassword',[loginController::class,'resetPassword'])->name('resetpassword');
+Route::post('/forgotpassword',[loginController::class,'resetPassword'])->name('forgotpassword');
 
 Route::resource('users', UserController::class);
 
