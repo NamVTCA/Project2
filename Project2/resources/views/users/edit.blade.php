@@ -33,13 +33,29 @@
             </div>
 
             <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" name="name" class="form-control" pattern="[A-Za-z\s]+" title="Please enter only letters and spaces" value="{{ old('name', $user->name ?? '') }}">
+                <label>Name</label>
+                <input type="text" 
+                       name="name" 
+                       class="form-control @error('name') is-invalid @enderror"
+                       value="{{ old('name', $user->name ?? '') }}"
+                       onkeypress="return /[a-zA-Z\s]/i.test(event.key)"
+                       required>
+                @error('name')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form-group">
                 <label>ID Number</label>
-                <input type="number" name="id_number" class="form-control" pattern="[0-9]+" title="Please enter only numbers" value="{{ old('id_number', $user->id_number ?? '') }}">
+                <input type="text" 
+                       name="id_number" 
+                       class="form-control @error('id_number') is-invalid @enderror"
+                       value="{{ old('id_number', $user->id_number ?? '') }}"
+                       onkeypress="return /[0-9]/i.test(event.key)"
+                       required>
+                @error('id_number')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
             </div>
 
             <div class="form-group">
@@ -70,7 +86,17 @@
 
             <div class="form-group">
                 <label>Phone</label>
-                <input type="tel" name="phone" class="form-control" pattern="[0-9]+" title="Please enter only numbers" value="{{ old('phone', $user->phone ?? '') }}">
+                <input type="tel" 
+                       name="phone" 
+                       class="form-control @error('phone') is-invalid @enderror" 
+                       value="{{ old('phone') }}" 
+                       pattern="[0-9]{10,11}"
+                       onkeypress="return /[0-9]/i.test(event.key)"
+                       maxlength="11"
+                       required>
+                @error('phone')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="form-group">
@@ -85,6 +111,22 @@
         </form>
     </div>
     @endsection
-
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const nameInput = document.querySelector('input[name="name"]');
+        if (nameInput) {
+            nameInput.addEventListener('input', function(e) {
+                this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+            });
+        }
+    
+        const idNumberInput = document.querySelector('input[name="id_number"]');
+        if (idNumberInput) {
+            idNumberInput.addEventListener('input', function(e) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        }
+    });
+    </script>    
 </html>
