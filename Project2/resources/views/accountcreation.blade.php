@@ -63,7 +63,21 @@
                 
                 <label for="citizen-id">Số căn cước công dân</label>
                 <input type="text" id="citizen-id" placeholder="Nhập số căn cước công dân">
+
+                <label for="role">Quyền</label>
+                <select id="role" name="role" class="form-control">
+                    <option value=0>Admin</option>
+                    <option value="1">Giáo Viên</option>
+                    <option value="2">Phụ Huynh</option>
+                </select>
                 
+                <label for="gender">Giới tính</label>
+                <select id="gender" name="gender" class="form-control">
+                    <option value="male">Nam</option>
+                    <option value="female">Nữ</option>
+                </select>
+                
+
                 <button type="submit" class="account-creation-btn">Xong</button>
             </div>
         </form>

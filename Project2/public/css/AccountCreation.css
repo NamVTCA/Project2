@@ -207,3 +207,21 @@ footer a:hover {
         padding: 30px;
     }
 }
+
+select.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #6c757d;
+    font-size: 16px;
+    appearance: none; /* Ẩn mũi tên mặc định trên một số trình duyệt */
+}
+
+select.form-control:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
