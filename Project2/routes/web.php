@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 // Route::get('/resetpassword', function () {
 //     return view('resetpassword');

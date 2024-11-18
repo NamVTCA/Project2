@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 class loginController extends Controller
 {
       public function showFogot(){
-        return view('resetpassword');
+        return view('fogotpassword');
     }
     function showLogin(){
         return view('login');

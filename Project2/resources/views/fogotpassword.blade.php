@@ -39,7 +39,7 @@
         <form action="{{ route('otp') }}" method="get" class="send-otp-form">
         @csrf
         <label for="phone">Số điện thoại:</label>
-        <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại" required  >
+        <input type="text" id="phone" name="phone" placeholder="Nhập số điện thoại" required>
         <button type="submit" class="btn btn-primary">Gửi mã xác nhận</button>
         </form>
 

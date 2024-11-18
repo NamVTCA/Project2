@@ -47,7 +47,7 @@
         @enderror
             <button type="submit" class="login-btn">Đăng nhập</button>
             
-            <a href="#" class="forgot-password">Quên Mật Khẩu</a>
+            <a href="{{ (route('showfogot')) }}" class="forgot-password">Quên Mật Khẩu</a>
             <p class="note">Lưu ý: <span>Hãy sử dụng tài khoản nhà trường cung cấp</span></p>
               @if (session('message'))
             <div class="alert alert-danger mt-2">
