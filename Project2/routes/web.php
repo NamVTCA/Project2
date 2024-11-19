@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\paymentController;
 use App\Http\Controllers\scheduleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ResetPasswordController;
@@ -33,12 +34,15 @@ Route::get('/showfogot',[loginController::class,'showFogot'] )->name('showfogot'
 Route::get('/otp',[loginController::class,'sendResetCode'])->name('otp');
 Route::post('/forgotpassword',[loginController::class,'resetPassword'])->name('forgotpassword');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/reset-password', [ResetPasswordController::class, 'showResetForm'])->name('reset.password');
-    Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset.password.update');
-});
+
+Route::get('/reset-password', [ResetPasswordController::class, 'showResetForm'])->name('reset.password');
+Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset.password.update');
+
 
 Route::resource('users', UserController::class);
+
+Route::get('/momo',[paymentController::class,'index'])->name('momo');
+Route::post('/momo_payment',[paymentController::class,'momo_payment'])->name('momo_payment');
 
 
 // Route::middleware(['auth'])->group(function () {
