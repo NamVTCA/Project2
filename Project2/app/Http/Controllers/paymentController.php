@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\child;
 use App\Models\tuition;
 use Illuminate\Http\Request;
-use App\Models\tuition_info;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;

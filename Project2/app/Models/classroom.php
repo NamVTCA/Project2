@@ -23,7 +23,7 @@ class classroom extends Model
     }
     public function children()
 {
-    return $this->belongsToMany(child::class, 'child_class', 'classroom_id', 'child_id');
+    return $this->belongsToMany(child::class, 'childclasses', 'classroom_id', 'child_id');
 }
 
 }
