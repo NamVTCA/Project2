@@ -15,11 +15,17 @@
             <div class="mb-3">
                 <label for="tuition_id" class="form-label">Chọn kỳ học phí</label>
                 <select class="form-select" id="tuition_id" name="tuition_id" required>
-                    @foreach ($tuitions as $tuition)
-                        <option value="{{ $tuition->id }}">
-                            Học phí kỳ {{ $tuition->semester }} - {{ number_format($tuition->tuition_info->sum('price')) }} VNĐ
-                        </option>
-                    @endforeach
+                     @foreach ($tuitions as $tuition)
+            @if ($tuition->status === 0)
+                <option value="{{ $tuition->id }}">
+                    Học phí kỳ {{ $tuition->semester }} - {{ number_format($tuition->tuition_info->sum('price')) }} VNĐ
+                </option>
+            @else
+                <option value="{{ $tuition->id }}" disabled>
+                    Học phí kỳ {{ $tuition->semester }} - {{ number_format($tuition->tuition_info->sum('price')) }} VNĐ (Đã thanh toán)
+                </option>
+            @endif
+        @endforeach
                 </select>
             </div>
             <button type="submit" class="btn btn-primary w-100">Thanh Toán</button>

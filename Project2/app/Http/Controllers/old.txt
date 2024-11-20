@@ -1,48 +1,4 @@
-<?php
-
-namespace App\Http\Controllers;
-
-use App\Models\child;
-use App\Models\tuition;
-use Illuminate\Http\Request;
-use App\Models\tuition_info;
-use App\Models\User;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
-
-class paymentController extends Controller
-{
-    function index(){
-         $tuitions = tuition::with('tuition_info')->get();
-        return view('test/momo', compact('tuitions'));
-    }
-
-    public function execPostRequest($url, $data)
-    {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-            'Content-Length: ' . strlen($data))
-        );
-        curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-
-        $result = curl_exec($ch);
-
-        if(curl_errno($ch)) {
-            Log::error('Lỗi Curl: ' . curl_error($ch));
-        }
-        
-        curl_close($ch);
-        return $result;
-    }
-
-      public function momo_payment(Request $request)
+ public function momo_payment(Request $request)
 {
     try {
         $tuition = tuition::with('tuition_info')->find($request->tuition_id);
@@ -97,16 +53,22 @@ class paymentController extends Controller
         Log::info('Phản hồi thanh toán MoMo:', ['response' => $result]);
 
         $jsonResult = json_decode($result, true);
+
         if (isset($jsonResult['payUrl'])) {
-            $tuition->update(['status' => 1]);
+            $tuition->update(['status' => 0]);
             session(['momo_payment_order_id' => $orderId]);
-            $child = child::with('tuition')->find($tuition->child_id);
-            $user = User::find($child->user_id);
-            $userEmail = $user->email;
-            Mail::raw("tong so tien de thanh toan la:  $amount", function ($message) use ($user) {
-            $message->to($user->email);
-            $message->subject('Hóa đơn thanh toán học phí');
-            });
+            return redirect($jsonResult['payUrl']);
+        }
+        if (isset($jsonResult['payUrl'])) {
+            $tuition->update(['status' => 0]);
+            session(['momo_payment_order_id' => $orderId]);
+            // $child = child::with('tuition')->find($tuition->child_id);
+            // $user = User::find($child->user_id);
+            // $userEmail = $user->email;
+            // Mail::send('emails.receipt', ['tuition' => $tuition, 'amount' => $amount], function ($message) use ($userEmail) {
+            //     $message->to($userEmail)
+            //             ->subject('Hóa đơn thanh toán học phí');
+            // });
             return redirect($jsonResult['payUrl']);
         }
         
@@ -121,5 +83,4 @@ class paymentController extends Controller
         return response()->json(['error' => 'Đã xảy ra lỗi trong quá trình xử lý thanh toán'], 500);
     }
     
-}
 }
