@@ -65,6 +65,64 @@ footer a:hover {
     outline: none;
 }
 
+/* Container chính */
+.container {
+    max-width: auto;
+    margin: 50px auto;
+    padding: 30px;
+    background: #f1d1e1;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+
+/* Header */
+h2 {
+    color: #ec53d0;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    width: 50px;
+    height: 3px;
+    background-color: #efade9;
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 5px;
+}
+
+/* Form Labels */
+.form-label {
+    font-size: 16px;
+    color: #555;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Select Box */
+.form-select {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-select:focus {
+    border-color: #070b07;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    outline: none;
+}
+
+
+
 /* Responsive menu */
 @media (max-width: 991.98px) {
     .navbar-collapse {
