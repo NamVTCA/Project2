@@ -64,53 +64,68 @@ public function logout(Request $request)
 
     return redirect()->route('showlogin')->with('message', 'Bạn đã đăng xuất thành công.');
 }
- public function sendResetCode(Request $request)
-    {
-        $request->validate(['phone' => 'required']);
-        $phone = $request->input('phone');
-        $user = User::where('phone', $request->phone)->first();
-        if (!$user) {
+
+
+public function sendResetCode(Request $request)
+{
+    $request->validate(['phone' => 'required']);
+    $phone = $request->input('phone');
+    $user = User::where('phone', $phone)->first();
+    
+    if (!$user) {
         return back()->withErrors(['phone' => 'Số điện thoại không tồn tại']);
-        }
-        else{
+    } else {
         $resetCode = Str::random(6);
         Session::put('reset_code', $resetCode);
+        
+        // Gửi mã OTP qua email
         Mail::raw("Mã xác nhận để đặt lại mật khẩu của bạn là: $resetCode", function ($message) use ($user) {
             $message->to($user->email);
             $message->subject('Mã xác nhận đặt lại mật khẩu');
         });
 
-        return redirect()->route('showfogot', ['message' => 'Mã xác nhận đã được gửi' ]);
-        }
-       
+        // Thay vì sử dụng redirect()->route, dùng session flash để thông báo
+        session()->flash('message', 'Mã xác nhận đã được gửi');
+        
+        return redirect()->route('showfogot');  // Chỉ chuyển hướng đến trang showfogot
     }
+}
 
-    public function resetPassword(Request $request)
+
+public function resetPassword(Request $request)
     {
         $request->validate([
             'otp' => 'required|string',
             'phone' => 'required|string',
             'new_password' => 'required|string|min:8|same:confirm_password',
         ]);
+
         $codeInput = $request->input('otp');
         $identifier = $request->input('phone');
+
         if (filter_var($identifier, FILTER_VALIDATE_EMAIL)) {
-        $user = User::where('email', $identifier)->first();
+            $user = User::where('email', $identifier)->first();
         } else {
-        $user = User::where('phone', $identifier)->first();
-        }
-        if (!$user) {
-        return back()->withErrors(['phone' => 'Số điện thoại không tồn tại']);
-        }
-        if ($codeInput != Session::get('reset_code')) {
-            return back()->withErrors(['reset_code' => 'Mã xác nhận không hợp lệ ']);
+            $user = User::where('phone', $identifier)->first();
         }
 
+        if (!$user) {
+            return response()->json(['success' => false, 'message' => 'Số điện thoại hoặc email không tồn tại.']);
+        }
+
+        if ($codeInput != Session::get('reset_code')) {
+            return response()->json(['success' => false, 'message' => 'Mã xác nhận không hợp lệ.']);
+        }
+
+        // Cập nhật mật khẩu
         $user->password = Hash::make($request->input('new_password'));
         $user->save();
 
-        return redirect()->route('showfogot')->with('message', 'Mật khẩu của bạn đã được đặt lại thành công.');
+        return response()->json(['success' => true, 'message' => 'Mật khẩu đã được thay đổi thành công!']);
     }
 }
+
+
+
 
 
