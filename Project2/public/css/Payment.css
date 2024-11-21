@@ -1,0 +1,111 @@
+/* Background và Font */
+body {
+    background: linear-gradient(to right, #8e9eab, #eef2f3);
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container chính */
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Header */
+h2 {
+    color: #4caf50;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    width: 50px;
+    height: 3px;
+    background-color: #4caf50;
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 5px;
+}
+
+/* Form Labels */
+.form-label {
+    font-size: 16px;
+    color: #555;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Select Box */
+.form-select {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-select:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    outline: none;
+}
+
+/* Nút Thanh Toán */
+.btn-primary {
+    background: linear-gradient(to right, #43cea2, #185a9d);
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #185a9d, #43cea2);
+    transform: translateY(-3px);
+}
+
+/* Tùy chọn đã thanh toán */
+option:disabled {
+    color: #aaa;
+    font-style: italic;
+}
+
+/* Hiệu ứng chuyển động */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .container {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}

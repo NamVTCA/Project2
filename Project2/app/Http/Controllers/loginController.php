@@ -92,3 +92,5 @@ class loginController extends Controller
         return redirect()->route('showfogot')->with('message', 'Mật khẩu của bạn đã được đặt lại thành công.');
     }
 }
+
+
