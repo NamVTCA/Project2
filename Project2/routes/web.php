@@ -44,6 +44,8 @@ Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword']
 
 Route::resource('users', UserController::class);
 
+Route::get('/api/tuitions/{childId}', [paymentController::class, 'getTuitionsByChild']);
+Route::get('/api/tuition-details/{tuitionId}', [paymentController::class, 'getTuitionDetails']);
 Route::get('/momo',[paymentController::class,'index'])->name('momo');
 Route::post('/momo_payment',[paymentController::class,'momo_payment'])->name('momo_payment');
 
@@ -53,6 +55,7 @@ Route::middleware('auth.check')->group(function () {
     });
 
     Route::middleware('role:1')->group(function () {
+        
         Route::get('/dashboard/teacher', [LoginController::class, 'teacher'])->name('teacher');
     });
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\child;
 use App\Models\tuition;
+use App\Models\tuition_info;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
@@ -11,9 +12,11 @@ use Illuminate\Support\Facades\Mail;
 
 class paymentController extends Controller
 {
+    
     function index(){
-         $tuitions = tuition::with('tuition_info')->get();
-        return view('test/momo', compact('tuitions'));
+        $children = Child::all();
+        $tuitions = tuition::with('tuition_info')->get();
+        return view('test/momo', compact('tuitions','children'));
     }
 
     public function execPostRequest($url, $data)
@@ -121,4 +124,16 @@ class paymentController extends Controller
     }
     
 }
+
+public function getTuitionsByChild($childId)
+{
+    $tuitions = tuition::where('child_id', $childId)->with('tuition_info')->get();
+    return response()->json($tuitions);
+}
+public function getTuitionDetails($tuitionId)
+{
+    $details = tuition_info::where('tuition_id', $tuitionId)->get();
+    return response()->json($details);
+}
+
 }
