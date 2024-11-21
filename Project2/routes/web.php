@@ -60,6 +60,7 @@ Route::middleware('auth.check')->group(function () {
         Route::get('/dashboard/user', [LoginController::class, 'user'])->name('user');
     });
 });
+Route::get('/logout',[loginController::class,'logout'])->name('logout');
 
 // Route::middleware(['auth'])->group(function () {
 //     Route::get('/admin/dashboard', function () {

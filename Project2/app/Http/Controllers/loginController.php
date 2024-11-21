@@ -55,6 +55,15 @@ class loginController extends Controller
     }
     
 }
+public function logout(Request $request)
+{
+ 
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect()->route('showlogin')->with('message', 'Bạn đã đăng xuất thành công.');
+}
  public function sendResetCode(Request $request)
     {
         $request->validate(['phone' => 'required']);
@@ -75,6 +84,7 @@ class loginController extends Controller
         }
        
     }
+
     public function resetPassword(Request $request)
     {
         $request->validate([
