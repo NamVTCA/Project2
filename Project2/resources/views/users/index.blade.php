@@ -11,10 +11,10 @@
 
     @section('content')
     <div class="container">
-        <h2>Users Management</h2>
+        <h2>Quản lý người dùng</h2>
         
         <div class="mb-3">
-            <a href="{{ route('users.create') }}" class="btn btn-primary">Add New User</a>
+            <a href="{{ route('users.create') }}" class="btn btn-primary">Thêm người dùng mới</a>
             
             <div class="btn-group ml-2">
                 <a href="{{ route('users.index', ['role' => 1]) }}" 
