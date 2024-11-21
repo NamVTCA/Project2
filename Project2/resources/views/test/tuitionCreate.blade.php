@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="container">
-    <h1>Create Tuition</h1>
+    <link rel="stylesheet" href="{{ asset('css/TuitionCreate.css') }}">
+    <h1>Tạo Học phí</h1>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -13,9 +14,9 @@
 
         <!-- Chọn lớp -->
         <div class="form-group">
-            <label for="classroom_id">Classroom</label>
+            <label for="classroom_id">Lớp học</label>
             <select name="classroom_id" id="classroom_id" class="form-control" required>
-                <option value="">-- Select Classroom --</option>
+                <option value="">-- Chọn lớp học --</option>
                 @foreach($classrooms as $classroom)
                     <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
                 @endforeach
@@ -23,27 +24,27 @@
         </div>
 
         <div class="form-group">
-            <label for="semester">Semester</label>
+            <label for="semester">Học kỳ</label>
             <input type="text" name="semester" id="semester" class="form-control" required>
         </div>
 
         <div id="tuition-details">
-            <h5>Tuition Details</h5>
+            <h5>Chi tiết học phí</h5>
             <div class="tuition-detail">
                 <div class="form-group">
-                    <label for="tuition_details[0][name]">Name</label>
+                    <label for="tuition_details[0][name]">Tên</label>
                     <input type="text" name="tuition_details[0][name]" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="tuition_details[0][price]">Price</label>
+                    <label for="tuition_details[0][price]">Giá</label>
                     <input type="number" name="tuition_details[0][price]" class="form-control" required>
                 </div>
             </div>
         </div>
 
-        <button type="button" id="add-detail" class="btn btn-secondary">Add Detail</button>
+        <button type="button" id="add-detail" class="btn btn-secondary">Thêm chi tiết</button>
 
-        <button type="submit" class="btn btn-primary">Create Tuition</button>
+        <button type="submit" class="btn btn-primary">Tạo Học phí</button>
     </form>
 </div>
 
