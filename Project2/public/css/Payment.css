@@ -1,18 +1,109 @@
-/* Background và Font */
-body {
-    background: linear-gradient(to right, #8e9eab, #eef2f3);
-    font-family: 'Roboto', sans-serif;
-    color: #333;
-    margin: 0;
-    padding: 0;
+/* Màu sắc cho tên thương hiệu */
+.title {
+    color: #ff69b4;
+    font-weight: bold;
+}
+
+/* Màu sắc cho liên kết trong menu */
+.navbar-nav .nav-link {
+    color: #ff69b4;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    transform: scale(1.10); /* Phóng to nhẹ khi hover */
+    color: #38383a;
+}
+
+/* Màu nền của header */
+.bg-light {
+    background-color: #ffe4e1 !important; /* Hồng nhạt */
+}
+
+/* Màu nền của footer */
+footer {
+    background-color: #ffe4e1;
+    color: #6c757d;
+}
+
+footer a {
+    color: #6c757d;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ff69b4;
+    text-decoration: underline;
+}
+
+/* Màu nền hồng */
+.bg-pink {
+    background-color: #ff69b4;
+}
+
+/* Màu chữ hồng */
+.text-pink {
+    color: #ff69b4;
+}
+
+/* Tùy chỉnh nút hamburger */
+.navbar-toggler {
+    border-color: #ff69b4; /* Màu viền nút */
+    color: #fff;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23ff69b4' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    /* Đổi màu biểu tượng của nút hamburger sang màu hồng (#ff69b4) */
+}
+
+/* Màu nền khi nhấn vào nút hamburger */
+.navbar-toggler:focus {
+    background-color: #ffe4e1; /* Hồng nhạt */
+    outline: none;
+}
+
+/* Responsive menu */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background-color: #ffe4e1; /* Màu nền menu khi mở trên thiết bị di động */
+        max-width: auto;
+
+    }
+
+    .navbar-nav .nav-link {
+        color: #ff69b4; /* Màu chữ hồng */
+        padding: 10px 20px;
+        text-align: center;
+        font-weight: bold;
+        border-radius: 15px;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .navbar-nav .nav-link:hover {
+        transform: scale(1.10);
+        color: #38383a; /* Màu chữ khi hover */
+    }
 }
 
 /* Container chính */
 .container {
-    max-width: 500px;
+    max-width: auto;
     margin: 50px auto;
     padding: 30px;
-    background: #ffffff;
+    background: #f1d1e1;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.container.my-5{
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #f1d1e1;
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.5s ease-in-out;
@@ -20,7 +111,7 @@ body {
 
 /* Header */
 h2 {
-    color: #4caf50;
+    color: #ec53d0;
     font-weight: bold;
     text-align: center;
     margin-bottom: 25px;
@@ -32,7 +123,7 @@ h2::after {
     content: '';
     width: 50px;
     height: 3px;
-    background-color: #4caf50;
+    background-color: #efade9;
     display: block;
     margin: 10px auto 0;
     border-radius: 5px;
@@ -57,14 +148,14 @@ h2::after {
 }
 
 .form-select:focus {
-    border-color: #4caf50;
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    border-color: #070b07;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     outline: none;
 }
 
 /* Nút Thanh Toán */
-.btn-primary {
-    background: linear-gradient(to right, #43cea2, #185a9d);
+.btn.btn-pink.w-100 {
+    background: linear-gradient(to right, #ec53d0, #f7cef8);
     border: none;
     color: white;
     font-size: 18px;
@@ -75,8 +166,8 @@ h2::after {
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.btn-primary:hover {
-    background: linear-gradient(to right, #185a9d, #43cea2);
+.btn.btn-pink.w-100:hover {
+    background: linear-gradient(to right, #ec53d0, #f7cef8);
     transform: translateY(-3px);
 }
 
@@ -95,17 +186,5 @@ option:disabled {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 576px) {
-    .container {
-        padding: 20px;
-        margin: 20px;
-    }
-
-    h2 {
-        font-size: 24px;
     }
 }
