@@ -1,0 +1,96 @@
+/* Tông màu chung */
+:root {
+    --main-pink: #ff69b4;
+    --light-pink: #ffe4e1;
+    --white: #ffffff;
+    --text-dark: #38383a;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+.text-primary{
+    color: #ff69b4;
+}
+
+/* Card chung */
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card .card-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.card .card-text {
+    font-size: 14px;
+    color: var(--white);
+}
+
+/* Container chính */
+.container {
+    max-width: auto;
+    margin: 20px auto;
+    padding: 30px;
+    background: #f1d1e1;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.nav-item{
+    background: #f5c2db;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
+    color: var(--main-pink);
+    border: 1px solid var(--main-pink);
+}
+
+.nav-item:hover{
+    background-color: var(--light-pink);
+    color: var(--text-dark);
+}
+
+/* Background gradient */
+.bg-gradient-pink {
+    background: linear-gradient(135deg, var(--main-pink), var(--light-pink));
+    color: var(--white);
+}
+
+/* Button */
+.btn {
+    border-radius: 30px;
+    font-size: 14px;
+    padding: 8px 20px;
+}
+
+.btn-light {
+    background-color: var(--white);
+    color: var(--main-pink);
+    border: 1px solid var(--main-pink);
+}
+
+.btn-light:hover {
+    background-color: var(--light-pink);
+    color: var(--text-dark);
+}
+
+/* Biểu đồ */
+.card .card-header {
+    font-weight: bold;
+    border-bottom: 2px solid var(--main-pink);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card .card-title {
+        font-size: 16px;
+    }
+    .card .card-text {
+        font-size: 12px;
+    }
+}
