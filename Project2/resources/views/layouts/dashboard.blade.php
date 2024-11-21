@@ -13,7 +13,7 @@
             <h1 class="text-primary">Nursery PreSchool</h1>
             <nav class="navbar navbar-expand-lg navbar-light">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link text-danger">Đăng Xuất</a></li>
+                    {{-- <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link text-danger">Đăng Xuất</a></li> --}}
                 </ul>
             </nav>
         </div>

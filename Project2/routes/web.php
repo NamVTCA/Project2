@@ -47,6 +47,19 @@ Route::resource('users', UserController::class);
 Route::get('/momo',[paymentController::class,'index'])->name('momo');
 Route::post('/momo_payment',[paymentController::class,'momo_payment'])->name('momo_payment');
 
+Route::middleware('auth.check')->group(function () {
+    Route::middleware('role:0')->group(function () {
+        Route::get('/dashboard/admin', [LoginController::class, 'admin'])->name('admin');
+    });
+
+    Route::middleware('role:1')->group(function () {
+        Route::get('/dashboard/teacher', [LoginController::class, 'teacher'])->name('teacher');
+    });
+
+    Route::middleware('role:2')->group(function () {
+        Route::get('/dashboard/user', [LoginController::class, 'user'])->name('user');
+    });
+});
 
 // Route::middleware(['auth'])->group(function () {
 //     Route::get('/admin/dashboard', function () {

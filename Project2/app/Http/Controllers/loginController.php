@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class loginController extends Controller
 {
+    function admin(){ return view('admin/dashboardadmin'); } 
+    function teacher(){ return view('teacher/dashboardteacher'); } 
+    function user(){ return view('user/dashboarduser'); }
+
+
       public function showFogot(){
         return view('forgotpassword');
     }
@@ -33,16 +39,20 @@ class loginController extends Controller
     if (!$user || !Hash::check($request->password, $user->password)) {
         return redirect()->route('showlogin')->with('message','invalid phone or email');
     }
-        $role = $user->role;
-        if ($role == 2) {
-            return view('home');
-        }
-        elseif($role == 1){
-            return view('schedule');
-        }
-        else{
-            #code
-        }
+        Auth::login($user);
+
+    $role = $user->role;
+
+    switch ($role) {
+        case 0:
+            return redirect()->route('admin');
+        case 1:
+            return redirect()->route('teacher');
+        case 2:
+            return redirect()->route('user');
+        default:
+            return redirect()->route('user');
+    }
     
 }
  public function sendResetCode(Request $request)
