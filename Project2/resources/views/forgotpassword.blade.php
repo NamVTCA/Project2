@@ -45,9 +45,9 @@
             <button type="submit" class="btn btn-primary">Gửi mã xác nhận</button>
         </form>
 
-        <!-- Form đặt lại mật khẩu -->
         <form action="{{ route('forgotpassword') }}" method="post" class="reset-password-form">
             @csrf
+            <input type="hidden" name="phone" id="phone" value="{{ session('phone') }}">
             <label for="otp">Mã xác nhận</label>
             <input type="text" id="otp" name="otp" placeholder="Nhập mã xác nhận" required>
             @error('otp')
