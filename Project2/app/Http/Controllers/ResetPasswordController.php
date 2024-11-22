@@ -19,7 +19,8 @@ class ResetPasswordController extends Controller
     {
         $user = User::find(Auth::id());
         
-        if (!Hash::check($request->password, $user->password)) {
+        if (!Hash::check($request->password, $user->password)) 
+        {
             return back()->withErrors(['password' => 'Mật khẩu hiện tại không đúng']);
         }
 

@@ -11,11 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 class scheduleController extends Controller
 {
+
    public function create()
     {
         $subjects = subject::all();
         $classrooms = Classroom::all();
         return view('schedule.index', compact('classrooms','subjects'));
+
     }
 
    function store(Request $request)
