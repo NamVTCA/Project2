@@ -27,14 +27,16 @@ class tuitionContoller extends Controller
 
         $children = Classroom::findOrFail($request->classroom_id)->children;
 
-        foreach ($children as $child) {
+        foreach ($children as $child) 
+        {
             $tuition = tuition::create([
                 'semester' => $request->semester,
                 'child_id' => $child->id,
                 'status' => 0, 
             ]);
 
-            foreach ($request->tuition_details as $detail) {
+            foreach ($request->tuition_details as $detail) 
+            {
                 tuition_info::create([
                     'name' => $detail['name'],
                     'price' => $detail['price'],
@@ -42,7 +44,6 @@ class tuitionContoller extends Controller
                 ]);
             }
         }
-
         return redirect()->route('tuition.create')->with('success', 'Tuition created successfully!');
     }
 }
