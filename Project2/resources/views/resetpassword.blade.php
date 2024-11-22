@@ -36,14 +36,14 @@
             <h1>Nursery PreSchool</h1>
         </div>
         <form class="reset-password-form">
-            <label for="phone">Mật Khẩu Cũ</label>
+            <label for="password">Mật Khẩu Cũ</label>
             <input type="password" id="password" placeholder="Nhập mật khẩu cũ">
             
-            <label for="new-password">Mật khẩu mới</label>
-            <input type="password" id="new-password" placeholder="Nhập mật khẩu mới">
+            <label for="new_password">Mật khẩu mới</label>
+            <input type="password" id="new_password" placeholder="Nhập mật khẩu mới">
             
-            <label for="confirm-password">Nhập lại Mật khẩu mới</label>
-            <input type="password" id="confirm-password" placeholder="Nhập lại mật khẩu mới">
+            <label for="confirm_password">Nhập lại Mật khẩu mới</label>
+            <input type="password" id="confirm_password" placeholder="Nhập lại mật khẩu mới">
             
             <button type="submit" class="reset-password-btn">Xác Nhận</button>
         </form>
