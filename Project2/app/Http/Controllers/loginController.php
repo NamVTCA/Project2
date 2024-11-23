@@ -13,7 +13,7 @@ class loginController extends Controller
 {
     function admin(){ return view('admin/dashboardadmin'); } 
     function teacher(){ return view('teacher/dashboardteacher'); } 
-    function user(){ return view('user/dashboarduser'); }
+    function user(){ return view('users/dashboarduser'); }
 
 
       public function showFogot(){

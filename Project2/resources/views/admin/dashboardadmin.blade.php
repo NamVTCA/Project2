@@ -39,7 +39,7 @@
         <!-- Biểu đồ hoặc bảng -->
         <div class="col-md-12">
             <div class="card shadow-sm">
-                <div class="card-header bg-pink text-white">
+                <div class="card-header bg-pink text-black">
                     <h5>Thống kê tổng quan</h5>
                 </div>
                 <div class="card-body">

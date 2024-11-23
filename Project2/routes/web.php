@@ -5,8 +5,9 @@ use App\Http\Controllers\paymentController;
 use App\Http\Controllers\scheduleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ResetPasswordController;
-use App\Http\Controllers\subjectController;
+use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\tuitionContoller;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,8 +27,14 @@ Route::get('/accountcreation', function () {
     return view('accountcreation');
 });
 
+Route::get('/timetable', function () {
+    return view('timetable');
+});
 
 
+Route::middleware(['auth'])->group(function () {
+      Route::get('/schedule', [scheduleController::class, 'index'])->name('schedule');
+});
 Route::get('/tuition/create', [tuitionContoller::class, 'create'])->name('tuition.create');
 Route::post('/tuition/store', [tuitionContoller::class, 'store'])->name('tuition.store');
 Route::get('/showLogin',[loginController::class,'showLogin'])->name('showlogin');
@@ -36,20 +43,10 @@ Route::get('/showfogot',[loginController::class,'showFogot'] )->name('showfogot'
 Route::get('/otp',[loginController::class,'sendResetCode'])->name('otp');
 Route::post('/forgotpassword',[loginController::class,'resetPassword'])->name('forgotpassword');
 
-
-Route::get('/reset-password', [ResetPasswordController::class, 'showResetForm'])->name('reset.password');
-Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset.password.update');
-
-
-Route::delete('/subjects/{id}', [SubjectController::class, 'destroy'])->name('subjects.destroy');
-Route::get('/subjects', [subjectController::class, 'index'])->name('subjects.index');
-Route::post('/subjects', [subjectController::class, 'store'])->name('subjects.store');
-
-Route::get('/schedule/create', [ScheduleController::class, 'create'])->name('schedule.create');
-Route::post('/schedule/store', [ScheduleController::class, 'store'])->name('schedule.store');
-
-
-
+Route::middleware(['auth'])->group(function () {
+    Route::get('/change-password', [ResetPasswordController::class, 'showChangepasswordForm'])->name('reset.password.form');
+    Route::post('/change-password', [ResetPasswordController::class, 'changePassword'])->name('reset.password');
+});
 
 Route::resource('users', UserController::class);
 
@@ -78,16 +75,8 @@ Route::delete('/schedule/delete', [ScheduleController::class, 'delete']);
 Route::get('/schedule/show',[scheduleController::class,'index'])->name('schedule.show');
 Route::get('/logout',[loginController::class,'logout'])->name('logout');
 
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('/admin/dashboard', function () {
-//         return view('admin.dashboard');
-//     })->name('admin.dashboard');
 
-//     Route::get('/teacher/dashboard', function () {
-//         return view('teacher.dashboard');
-//     })->name('teacher.dashboard');
 
-//     Route::get('/parent/dashboard', function () {
-//         return view('parent.dashboard');
-//     })->name('parent.dashboard');
-// });
+
+Route::get('/timetable', [TimetableController::class, 'index'])->name('timetable.index');
+Route::post('/timetable/save', [TimetableController::class, 'save'])->name('timetable.save');

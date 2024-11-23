@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\classroom;
-use App\Models\schedule;
-use App\Models\schedule_info;
-use App\Models\subject;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class scheduleController extends Controller
 {
+
     public function getDetails(Request $request)
 {
     $classroomId = $request->input('classroom_id');
@@ -96,4 +92,5 @@ class scheduleController extends Controller
 
     return redirect()->route('schedule.create')->with('success', 'Lịch học đã được tạo thành công!');
 }
+
 }
