@@ -10,7 +10,7 @@
 <body>
     <header class="py-3 shadow-sm bg-light">
         <div class="container">
-            <h1 class="text-primary" style="color: #ff69b4;">Nursery PreSchool</h1>
+            <h1 class="text-primary">Nursery PreSchool</h1>
             <nav class="navbar navbar-expand-lg navbar-light">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a href="{{ route('logout') }}" class="nav-link text-danger">Đăng Xuất</a></li>

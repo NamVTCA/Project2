@@ -7,10 +7,6 @@
     --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
-.text-primary{
-    color: #ff69b4;
-}
-
 /* Card chung */
 .card {
     border: none;
@@ -30,7 +26,6 @@
 
 /* Container chính */
 .container {
-    max-width: auto;
     margin: 20px auto;
     padding: 30px;
     background: #f1d1e1;

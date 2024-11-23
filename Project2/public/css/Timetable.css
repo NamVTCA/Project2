@@ -96,16 +96,19 @@ header {
     font-size: 14px;
 }
 
+/* General Styles */
+/* General Styles */
 .timetable {
     margin-top: 20px;
+    overflow-x: auto; /* Cho phép cuộn ngang khi bảng bị tràn */
 }
 
 .timetable table {
     width: 100%;
     border-collapse: collapse;
-    margin: 0 auto;
-    background: #fff; /* Màu nền trắng */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    margin-bottom: 20px;
+    table-layout: fixed; /* Đảm bảo các cột có chiều rộng đều */
 }
 
 .timetable th,
@@ -125,18 +128,74 @@ header {
 
 .timetable input {
     width: 100%;
-    padding: 5px;
+    padding: 8px;
     border: 1px solid #ffd6e7;
     background-color: #fffafc;
-    text-align: center;
     font-size: 14px;
     border-radius: 5px;
+    margin: 5px 0;
 }
 
 .timetable input:focus {
     border-color: #ff69b4;
     box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
 }
+
+/* Responsive Styles */
+
+/* Trên màn hình có kích thước từ 768px trở xuống */
+@media (max-width: 768px) {
+    .timetable table {
+        width: 100%;
+        table-layout: auto; /* Đảm bảo bảng có thể co giãn tự động */
+    }
+
+    .timetable th,
+    .timetable td {
+        font-size: 12px; /* Giảm kích thước chữ trong bảng */
+        padding: 8px;    /* Giảm padding cho các ô trong bảng */
+    }
+
+    .timetable input {
+        font-size: 12px; /* Giảm kích thước chữ trong input */
+        padding: 10px;   /* Tăng padding trong input */
+    }
+
+    .save-btn {
+        width: 100%;      /* Mở rộng nút lưu */
+        padding: 12px;    /* Tăng padding cho nút lưu */
+        font-size: 16px;  /* Tăng font-size cho nút lưu */
+    }
+}
+
+/* Trên màn hình có kích thước từ 480px trở xuống */
+@media (max-width: 480px) {
+    .timetable th,
+    .timetable td {
+        font-size: 10px;  /* Giảm kích thước chữ thêm nữa */
+        padding: 6px;     /* Giảm padding cho các ô bảng nhỏ hơn */
+    }
+
+    .timetable input {
+        font-size: 12px;  /* Giảm kích thước chữ trong input */
+        padding: 10px;    /* Tăng padding để input dễ nhập hơn */
+    }
+
+    .save-btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .timetable-form {
+        padding: 15px;
+    }
+
+    .timetable-form table {
+        margin: 0;         /* Loại bỏ margin nếu cần thiết */
+    }
+}
+
 
 .save-btn {
     background-color: #ff69b4; /* Hồng đậm */

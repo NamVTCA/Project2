@@ -45,36 +45,36 @@
             </select>
         </div>
 
-        <!-- Thời gian biểu -->
-        <div class="timetable">
-            <form id="timetable-form">
-                <table>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Monday</th>
-                            <th>Tuesday</th>
-                            <th>Wednesday</th>
-                            <th>Thursday</th>
-                            <th>Friday</th>
-                            <th>Saturday</th>
-                            <th>Sunday</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for ($i = 1; $i <= 8; $i++)
-                        <tr>
-                            <th>{{ $i }}</th>
-                            @for ($j = 1; $j <= 7; $j++)
-                            <td><input type="text" name="slot[{{ $i }}][{{ $j }}]" placeholder="Label"></td>
-                            @endfor
-                        </tr>
-                        @endfor
-                    </tbody>
-                </table>
-                <button type="submit" class="save-btn">Save Timetable</button>
-            </form>
-        </div>
+<!-- Thời gian biểu -->
+<div class="timetable">
+    <form id="timetable-form">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                    <th>Sunday</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for ($i = 1; $i <= 8; $i++)
+                <tr>
+                    <th>{{ $i }}</th>
+                    @for ($j = 1; $j <= 7; $j++)
+                    <td><input type="text" name="slot[{{ $i }}][{{ $j }}]" placeholder="Label"></td>
+                    @endfor
+                </tr>
+                @endfor
+            </tbody>
+        </table>
+        <button type="submit" class="save-btn">Save Timetable</button>
+    </form>
+</div>
     </main>
 
     <script>
