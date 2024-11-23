@@ -54,7 +54,7 @@
             
             <label for="confirm_password">Nhập lại Mật khẩu mới</label>
             <input type="password" id="confirm_password" name="confirm_password" placeholder="Nhập lại mật khẩu mới">
-            @error('confirm_password')
+@error('confirm_password')
                 <p class="text-danger">{{$message}}</p>
             @enderror
             
