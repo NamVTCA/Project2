@@ -32,6 +32,10 @@ Route::get('/timetable', function () {
     return view('timetable');
 });
 
+Route::get('/feedback', function () {
+    return view('feedback');
+});
+
 
 Route::middleware(['auth'])->group(function () {
       Route::get('/schedule', [scheduleController::class, 'index'])->name('schedule');

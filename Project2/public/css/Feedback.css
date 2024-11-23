@@ -1,0 +1,275 @@
+/* Reset CSS */
+body, h1, h2, p, ul, li, input, textarea, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Cấu trúc chung */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề */
+h1, h2 {
+    margin-bottom: 20px;
+    color: #007BFF;
+}
+
+/* Form Feedback */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    display: inline-block;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff69b4;
+}
+
+/* Danh sách phản hồi */
+.feedback-list {
+    list-style: none;
+    margin-top: 20px;
+    padding: 0;
+}
+
+.feedback-item {
+    background: #f1f1f1;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-item strong {
+    font-size: 18px;
+    color: #2c05f1;
+}
+
+.feedback-item p {
+    margin: 10px 0;
+    font-style: italic;
+}
+
+.feedback-item .timestamp {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    text-align: right;
+}
+
+/* Màu sắc cho tên thương hiệu */
+.title {
+    color: #ff69b4;
+    font-weight: bold;
+}
+
+/* Màu sắc cho liên kết trong menu */
+.navbar-nav .nav-link {
+    color: #ff69b4;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    transform: scale(1.10); /* Phóng to nhẹ khi hover */
+    color: #38383a;
+}
+
+/* Màu nền của header */
+.bg-light {
+    background-color: #ffe4e1 !important; /* Hồng nhạt */
+}
+
+/* Màu nền của footer */
+footer {
+    background-color: #ffe4e1;
+    color: #6c757d;
+}
+
+footer a {
+    color: #6c757d;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ff69b4;
+    text-decoration: underline;
+}
+
+/* Màu nền hồng */
+.bg-pink {
+    background-color: #ff69b4;
+}
+
+/* Màu chữ hồng */
+.text-pink {
+    color: #ff69b4;
+}
+
+/* Tùy chỉnh nút hamburger */
+.navbar-toggler {
+    border-color: #ff69b4; /* Màu viền nút */
+    color: #fff;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23ff69b4' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    /* Đổi màu biểu tượng của nút hamburger sang màu hồng (#ff69b4) */
+}
+
+/* Màu nền khi nhấn vào nút hamburger */
+.navbar-toggler:focus {
+    background-color: #ffe4e1; /* Hồng nhạt */
+    outline: none;
+}
+
+/* Container chính */
+.container {
+    max-width: auto;
+    margin: 50px auto;
+    padding: 30px;
+    background: #f1d1e1;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Header */
+h2 {
+    color: #ec53d0;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    width: 50px;
+    height: 3px;
+    background-color: #efade9;
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 5px;
+}
+
+/* Form Labels */
+.form-label {
+    font-size: 16px;
+    color: #555;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Select Box */
+.form-select {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-select:focus {
+    border-color: #070b07;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    outline: none;
+}
+
+/* Responsive menu */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background-color: #ffe4e1; /* Màu nền menu khi mở trên thiết bị di động */
+    }
+
+    .navbar-nav .nav-link {
+        color: #ff69b4;
+        padding: 10px 20px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .navbar-nav .nav-link:hover {
+        transform: scale(1.10);
+        color: #38383a;
+    }
+}
+
+/* Giới thiệu về trường */
+.hero-section.text-center.py-5 {
+    background: #f387bd;
+}
+
+/* Đội ngũ giảng dạy */
+.card.border-0.shadow-sm {
+    background: #f387bd;
+}
+
+/* Hiệu ứng hover riêng cho .hover-teachers */
+.hover-teachers:hover .card {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+    background-color: #e6e6fa; /* Hồng nhạt khi hover */
+}
+
+/* Hiệu ứng hover riêng cho .hover-goals */
+.hover-goals:hover .card {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+    background-color: #e6e6fa; /* Tím nhạt khi hover */
+}
+
+/* Hiệu ứng cho text khi hover */
+.hover-teachers:hover .card-title,
+.hover-goals:hover .card-title {
+    color: #ff69b4; /* Đổi màu chữ thành hồng đậm */
+}
+
+.hover-teachers:hover .card-text,
+.hover-goals:hover .card-text {
+    color: #6a5acd; /* Đổi màu chữ thành xanh tím */
+}
