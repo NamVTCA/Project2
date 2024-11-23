@@ -73,6 +73,8 @@ Route::middleware('auth.check')->group(function () {
 
 Route::get('/schedule/details', [ScheduleController::class, 'getDetails']);
 Route::delete('/schedule/delete', [ScheduleController::class, 'delete']);
+Route::post('/schedule/store', [ScheduleController::class, 'store'])->name('schedule.store');
+Route::get('/schedule/create', [ScheduleController::class, 'create'])->name('schedule.create');
 Route::get('/schedule/show',[scheduleController::class,'index'])->name('schedule.show');
 Route::get('/logout',[loginController::class,'logout'])->name('logout');
 
