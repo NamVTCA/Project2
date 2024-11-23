@@ -19,12 +19,31 @@ class User extends Authenticatable
     {
         return $this->hasMany(Child::class, 'user_id');
     }
-   public function classroom()
+    public function classroom()
     {
         return $this->hasOne(classroom::class, 'user_id');
     }
      public function feedback()
     {
         return $this->hasMany(feedback::class, 'user_id');
+    }
+    /**
+     * Kiểm tra nếu user là giáo viên.
+     *
+     * @return bool
+     */
+    public function isTeacher()
+    {
+        return $this->role === 1; 
+    }
+
+    /**
+     * Kiểm tra nếu user là phụ huynh.
+     *
+     * @return bool
+     */
+    public function isParent()
+    {
+        return $this->role === 2; 
     }
 }

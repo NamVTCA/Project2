@@ -4,6 +4,7 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\paymentController;
 use App\Http\Controllers\scheduleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ChildController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\tuitionContoller;
 use Illuminate\Support\Facades\Route;
@@ -42,7 +43,23 @@ Route::get('/reset-password', [ResetPasswordController::class, 'showResetForm'])
 Route::post('/reset-password', [ResetPasswordController::class, 'resetPassword'])->name('reset.password.update');
 
 
-Route::resource('users', UserController::class);
+Route::prefix('admin')->group(function () {
+    Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create'); 
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('/children', [ChildController::class, 'index'])->name('admin.children.index');
+    Route::get('/children/create', [ChildController::class, 'create'])->name('children.create');
+    Route::post('/children', [ChildController::class, 'store'])->name('children.store');
+    Route::get('/children/{child}', [ChildController::class, 'show'])->name('children.show');
+    Route::get('/children/{child}/edit', [ChildController::class, 'edit'])->name('children.edit');
+    Route::put('/children/{child}', [ChildController::class, 'update'])->name('children.update');
+});
 
 Route::get('/api/tuitions/{childId}', [paymentController::class, 'getTuitionsByChild']);
 Route::get('/api/tuition-details/{tuitionId}', [paymentController::class, 'getTuitionDetails']);
