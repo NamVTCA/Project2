@@ -45,13 +45,13 @@ class loginController extends Controller
 
     switch ($role) {
         case 0:
-            return redirect()->route('admin');
+            return redirect()->route('admin',compact('user'));
         case 1:
-            return redirect()->route('teacher');
+            return redirect()->route('teacher',compact('user'));
         case 2:
-            return redirect()->route('user');
+            return redirect()->route('user',compact('user'));
         default:
-            return redirect()->route('user');
+            return redirect()->route('user',compact('user'));
     }
     
 }

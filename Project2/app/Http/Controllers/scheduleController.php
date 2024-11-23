@@ -11,6 +11,50 @@ use Illuminate\Support\Facades\DB;
 
 class scheduleController extends Controller
 {
+    public function getDetails(Request $request)
+{
+    $classroomId = $request->input('classroom_id');
+    $date = $request->input('date');
+
+    $schedules = Schedule::where('classroom_id', $classroomId)
+        ->where('date', $date)
+        ->with(['schedule_info.subjects']) 
+        ->get();
+
+    $result = [];
+    foreach ($schedules as $schedule) {
+        foreach ($schedule->schedule_info as $info) {
+            $subjectNames = $info->subjects->pluck('name')->join(', '); 
+            $result[] = [
+                'id' => $info->id,
+                'schedule_id' => $schedule->id,
+                'name' => $info->name,
+                'subject_name' => $subjectNames,
+            ];
+        }
+    }
+
+    return response()->json($result);
+}
+
+    public function delete(Request $request)
+{
+    $scheduleId = $request->input('schedule_id');
+    $infoId = $request->input('id');
+
+    $scheduleInfo = schedule_info::where('schedule_id', $scheduleId)->where('id', $infoId)->first();
+    if ($scheduleInfo) {
+        $scheduleInfo->subjects()->detach(); // Xóa mối quan hệ many-to-many
+        $scheduleInfo->delete(); // Xóa bản ghi trong bảng schedule_info
+        return response()->json(['success' => 'Đã xóa thành công']);
+    }
+
+    return response()->json(['error' => 'Không tìm thấy dữ liệu'], 404);
+}
+    public function index(){
+        $classrooms = classroom::all();
+        return view('schedule/schedule',compact('classrooms'));
+    }
    public function create()
     {
         $subjects = subject::all();
@@ -20,7 +64,6 @@ class scheduleController extends Controller
 
    function store(Request $request)
 {
-    // Validate input data
     $request->validate([
         'classroom_id' => 'required|exists:classrooms,id',
         'subject_id' => 'required|exists:subjects,id',
