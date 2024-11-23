@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\classroom;
+use App\Models\schedule;
+use App\Models\schedule_info;
+use App\Models\subject;
 use Illuminate\Http\Request;
 
 class scheduleController extends Controller
@@ -12,7 +16,7 @@ class scheduleController extends Controller
     $classroomId = $request->input('classroom_id');
     $date = $request->input('date');
 
-    $schedules = Schedule::where('classroom_id', $classroomId)
+    $schedules = schedule::where('classroom_id', $classroomId)
         ->where('date', $date)
         ->with(['schedule_info.subjects']) 
         ->get();
