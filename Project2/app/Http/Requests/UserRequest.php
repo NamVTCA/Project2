@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserRequest extends FormRequest
 {
@@ -13,33 +14,17 @@ class UserRequest extends FormRequest
 
     public function rules()
     {
-        $userId = $this->route('user.id') ?? null;
-        
         return [
-            'email' => 'required|email|unique:users,email,' . $userId,
-            'password' => $this->isMethod('POST') ? 'required|min:6' : 'nullable|min:6',
-            'name' => [
-                'required',
-                'string',
-                'regex:/^[a-zA-Z\s]+$/',
-                'not_regex:/[0-9]/',
-                'min:2',
-                'max:255'
-            ],
-            'id_number' => [
-                'required',
-                'numeric',
-                'digits_between:1,20',
-            ],
+            'name' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'],
+            'email' => ['required', 'email', 'max:255', 
+                Rule::unique('users')->ignore($this->user)],
+            'password' => 'required|min:6',
+            'id_number' => ['required', 'regex:/^[0-9\s]+$/', 'max:255'],
             'address' => 'required|string|max:255',
-            'role' => 'required|in:1,2',
-            'status' => 'required|numeric',
-            'gender' => 'required|in:male,female',
-            'phone' => [
-                'required',
-                'numeric',
-                'digits_between:10,15'
-            ],
+            'role' => 'required|integer|in:1,2',
+            'status' => 'required|integer|in:0,1',
+            'gender' => 'required|string|in:male,female,other',
+            'phone' => ['required', 'regex:/^[0-9\s]+$/', 'max:20'],
             'img' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ];
     }
@@ -47,11 +32,27 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.regex' => 'The name must only contain letters and spaces.',
-            'name.not_regex' => 'The name cannot contain numbers.',
-            'id_number.numeric' => 'The ID number must contain only numbers.',
-            'phone.numeric' => 'The phone number must contain only numbers.',
-            'phone.digits_between' => 'The phone number must be between 10 and 15 digits.',
+            'name.required' => 'Vui lòng nhập họ tên',
+            'name.regex' => 'Họ tên chỉ được chứa chữ cái và khoảng trắng',
+            'email.required' => 'Vui lòng nhập email',
+            'email.email' => 'Email không đúng định dạng',
+            'email.unique' => 'Email này đã được sử dụng',
+            'password.required' => 'Vui lòng nhập mật khẩu',
+            'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự',
+            'id_number.required' => 'Vui lòng nhập số CMND/CCCD',
+            'id_number.regex' => 'CMND/CCCD chỉ được chứa số và khoảng trắng',
+            'address.required' => 'Vui lòng nhập địa chỉ',
+            'role.required' => 'Vui lòng chọn vai trò',
+            'role.in' => 'Vai trò không hợp lệ',
+            'status.required' => 'Vui lòng chọn trạng thái',
+            'status.in' => 'Trạng thái không hợp lệ',
+            'gender.required' => 'Vui lòng chọn giới tính',
+            'gender.in' => 'Giới tính không hợp lệ',
+            'phone.required' => 'Vui lòng nhập số điện thoại',
+            'phone.regex' => 'Số điện thoại chỉ được chứa số và khoảng trắng',
+            'img.image' => 'File phải là hình ảnh',
+            'img.mimes' => 'Hình ảnh phải có định dạng: jpeg, png, jpg',
+            'img.max' => 'Kích thước hình ảnh không được vượt quá 2MB'
         ];
     }
 }
