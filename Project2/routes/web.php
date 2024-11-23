@@ -69,6 +69,10 @@ Route::middleware('auth.check')->group(function () {
         Route::get('/dashboard/user', [LoginController::class, 'user'])->name('user');
     });
 });
+
+Route::get('/schedule/details', [ScheduleController::class, 'getDetails']);
+Route::delete('/schedule/delete', [ScheduleController::class, 'delete']);
+Route::get('/schedule/show',[scheduleController::class,'index'])->name('schedule.show');
 Route::get('/logout',[loginController::class,'logout'])->name('logout');
 
 
