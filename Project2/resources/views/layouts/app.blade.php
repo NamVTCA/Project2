@@ -34,21 +34,25 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <header class="py-3 shadow-sm" style="background-color: #ffe4e1;">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">Hệ thống quản lý trường mẫu giáo</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('users.index') }}">Quản lý người dùng</a>
-                    </li>
-                </ul>
-            </div>
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="title">NURSERY PRRSCHOOL</div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Trang Chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Sự Kiện</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Giáo Dục</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Liên Hệ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Đăng Nhập</a></li>
+                    </ul>
+                </div>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <div class="container">
         @yield('content')

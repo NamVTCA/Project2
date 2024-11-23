@@ -14,7 +14,10 @@
                 @if(Auth::check())
                 <p><strong>Tên:</strong> {{ Auth::user()->name }}</p>
                 <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
-                <p><strong>Vai trò:</strong> {{ Auth::user()->role }}</p>
+                <p><strong>Số Điện Thoại:</strong>{{ Auth::user()->phone }}</p>
+                <p><strong>Địa Chỉ:</strong> {{ Auth::user()->address }}</p>
+                <p><strong>Căn Cước Công Dân:</strong>{{ Auth::user() }}</p>
+                <p><strong>Giới Tính:</strong> {{ Auth::user()->gender }}</p>
             @else
                 <p>Không có thông tin người dùng.</p>
             @endif
