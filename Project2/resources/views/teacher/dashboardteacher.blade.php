@@ -29,6 +29,9 @@
                             <h5>Danh sách Lớp Học</h5>
                         </div>
                         <div class="card-body">
+                            <!-- Thanh tìm kiếm -->
+                            <input type="text" class="form-control mb-3" placeholder="Tìm kiếm lớp học...">
+                            
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -45,8 +48,12 @@
                                         <td>Lớp Mầm Non A</td>
                                         <td>25</td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-primary">Xem</a>
-                                            <a href="#" class="btn btn-sm btn-danger">Xóa</a>
+                                            <a href="#" class="btn btn-sm btn-primary">
+                                                <i class="fa fa-eye"></i> Xem
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-trash"></i> Xóa
+                                            </a>
                                         </td>
                                     </tr>
                                     <tr>
@@ -54,8 +61,12 @@
                                         <td>Lớp Mầm Non B</td>
                                         <td>30</td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-primary">Xem</a>
-                                            <a href="#" class="btn btn-sm btn-danger">Xóa</a>
+                                            <a href="#" class="btn btn-sm btn-primary">
+                                                <i class="fa fa-eye"></i> Xem
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-trash"></i> Xóa
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -74,9 +85,15 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-group">
-                                <li class="list-group-item">Thêm mới học sinh vào lớp Mầm Non A</li>
-                                <li class="list-group-item">Cập nhật sĩ số lớp Mầm Non B</li>
-                                <li class="list-group-item">Thêm bài giảng mới cho lớp Mầm Non A</li>
+                                <li class="list-group-item">
+                                    <a href="#">Thêm mới học sinh vào lớp Mầm Non A</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#">Cập nhật sĩ số lớp Mầm Non B</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="#">Thêm bài giảng mới cho lớp Mầm Non A</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -87,7 +104,9 @@
 </div>
 
 <!-- Thêm các script cần thiết -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script>
     const ctx = document.getElementById('dashboardChart').getContext('2d');
     const dashboardChart = new Chart(ctx, {
@@ -97,8 +116,18 @@
             datasets: [{
                 label: 'Số lượng học sinh mới',
                 data: [12, 19, 3, 5],
-                backgroundColor: 'rgba(255, 105, 180, 0.7)',
-                borderColor: 'rgba(255, 105, 180, 1)',
+                backgroundColor: [
+                    'rgba(255, 105, 180, 0.7)',
+                    'rgba(75, 192, 192, 0.7)',
+                    'rgba(255, 205, 86, 0.7)',
+                    'rgba(54, 162, 235, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(255, 105, 180, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 205, 86, 1)',
+                    'rgba(54, 162, 235, 1)'
+                ],
                 borderWidth: 1
             }]
         },
@@ -119,6 +148,11 @@
                 }
             }
         }
+    });
+
+    // Khởi tạo DataTable cho bảng danh sách lớp học
+    $(document).ready(function() {
+        $('.table').DataTable();
     });
 </script>
 @endsection
