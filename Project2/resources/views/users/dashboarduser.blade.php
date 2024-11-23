@@ -1,8 +1,18 @@
 @extends('layouts.dashboard')
 
+
+@section('title', 'Parent Dashboard')
 @section('title', 'User Dashboard')
 
 @section('content')
+<div class="card">
+    <div class="card-header bg-warning text-dark">
+        Thông Tin Học Sinh
+
+@section('title', 'User Dashboard')
+
+@section('content')
+
 <div class="container mt-3">
     <div class="row">
         <!-- Thông tin cá nhân -->
@@ -36,6 +46,13 @@
             </div>
         </div>
     </div>
+
+    <div class="card-body">
+        <ul>
+            <li><a href="#">Thông tin con em</a></li>
+            <li><a href="#">Lịch học</a></li>
+            <li><a href="#">Thông báo từ nhà trường</a></li>
+        </ul>
 
     <div class="row mt-4">
         <!-- Lịch sử hoạt động -->
