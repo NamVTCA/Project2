@@ -1,18 +1,8 @@
 @extends('layouts.dashboard')
 
-
-@section('title', 'Parent Dashboard')
 @section('title', 'User Dashboard')
 
 @section('content')
-<div class="card">
-    <div class="card-header bg-warning text-dark">
-        Thông Tin Học Sinh
-
-@section('title', 'User Dashboard')
-
-@section('content')
-
 <div class="container mt-3">
     <div class="row">
         <!-- Thông tin cá nhân -->
@@ -21,12 +11,14 @@
                 <div class="card-header bg-info text-white">
                     Thông Tin Cá Nhân
                 </div>
-                <div class="card-body">
-                    <p><strong>Tên:</strong> Nguyễn Văn A</p>
-                    <p><strong>Email:</strong> example@gmail.com</p>
-                    <p><strong>Vai trò:</strong> User</p>
-                    <a href="#" class="btn btn-primary btn-sm">Cập nhật thông tin</a>
-                </div>
+                @if(Auth::check())
+                <p><strong>Tên:</strong> {{ Auth::user()->name }}</p>
+                <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
+                <p><strong>Vai trò:</strong> {{ Auth::user()->role }}</p>
+            @else
+                <p>Không có thông tin người dùng.</p>
+            @endif
+            
             </div>
         </div>
 
@@ -53,6 +45,7 @@
             <li><a href="#">Lịch học</a></li>
             <li><a href="#">Thông báo từ nhà trường</a></li>
         </ul>
+    </div>
 
     <div class="row mt-4">
         <!-- Lịch sử hoạt động -->
