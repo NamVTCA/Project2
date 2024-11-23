@@ -22,10 +22,10 @@ class child extends Model
         return $this->hasMany(tuition::class,'child_id');
     }
     public function classroom()
-{
-    return $this->belongsToMany(classroom::class, 'childclasses', 'child_id', 'classroom_id');
-}
-function weekevaluate(){
-    return $this->hasMany(weekevaluate::class,'child_id');
-}
+    {
+        return $this->belongsToMany(classroom::class, 'childclasses', 'child_id', 'classroom_id');
+    }
+    function weekevaluate(){
+        return $this->hasMany(weekevaluate::class,'child_id');
+    }
 }
