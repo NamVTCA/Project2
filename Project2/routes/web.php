@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\tuitionContoller;
+use App\Http\Controllers\subjectController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -76,7 +77,9 @@ Route::get('/schedule/show',[scheduleController::class,'index'])->name('schedule
 Route::get('/logout',[loginController::class,'logout'])->name('logout');
 
 
-
+Route::get('/subjects', [subjectController::class, 'index'])->name('subjects.index');
+Route::post('/subjects', [subjectController::class, 'store'])->name('subjects.store');
+Route::put('/subjects/{id}', [SubjectController::class, 'update'])->name('subjects.update');
 
 Route::get('/timetable', [TimetableController::class, 'index'])->name('timetable.index');
 Route::post('/timetable/save', [TimetableController::class, 'save'])->name('timetable.save');
