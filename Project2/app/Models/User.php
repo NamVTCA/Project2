@@ -19,7 +19,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Child::class, 'user_id');
     }
-    public function classroom()
+   public function classroom()
     {
         return $this->hasOne(classroom::class, 'user_id');
     }
@@ -46,5 +46,4 @@ class User extends Authenticatable
     {
         return $this->role === 2; 
     }
-    
 }

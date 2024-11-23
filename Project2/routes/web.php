@@ -4,7 +4,6 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\paymentController;
 use App\Http\Controllers\scheduleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ChildController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\tuitionContoller;
 use Illuminate\Support\Facades\Route;
@@ -50,6 +49,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+});
+
+Route::prefix('admin')->group(function () {
     Route::get('/children', [ChildController::class, 'index'])->name('admin.children.index');
     Route::get('/children/create', [ChildController::class, 'create'])->name('children.create');
     Route::post('/children', [ChildController::class, 'store'])->name('children.store');
