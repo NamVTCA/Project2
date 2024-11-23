@@ -5,7 +5,9 @@ use App\Http\Controllers\paymentController;
 use App\Http\Controllers\scheduleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\tuitionContoller;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,6 +25,10 @@ Route::get('/index', function () {
 
 Route::get('/accountcreation', function () {
     return view('accountcreation');
+});
+
+Route::get('/timetable', function () {
+    return view('timetable');
 });
 
 
@@ -65,16 +71,8 @@ Route::middleware('auth.check')->group(function () {
 });
 Route::get('/logout',[loginController::class,'logout'])->name('logout');
 
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('/admin/dashboard', function () {
-//         return view('admin.dashboard');
-//     })->name('admin.dashboard');
 
-//     Route::get('/teacher/dashboard', function () {
-//         return view('teacher.dashboard');
-//     })->name('teacher.dashboard');
 
-//     Route::get('/parent/dashboard', function () {
-//         return view('parent.dashboard');
-//     })->name('parent.dashboard');
-// });
+
+Route::get('/timetable', [TimetableController::class, 'index'])->name('timetable.index');
+Route::post('/timetable/save', [TimetableController::class, 'save'])->name('timetable.save');
