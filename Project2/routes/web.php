@@ -71,6 +71,13 @@ Route::middleware('auth.check')->group(function () {
     });
 });
 
+// Route::middleware('auth')->group(function () {
+//     Route::get('/dashboard/admin', [LoginController::class, 'admin'])->name('admin');
+//     Route::get('/dashboard/teacher', [LoginController::class, 'teacher'])->name('teacher');
+//         Route::get('/dashboard/user', [loginController::class, 'user'])->name('user');
+// });
+
+
 Route::get('/schedule/details', [ScheduleController::class, 'getDetails']);
 Route::delete('/schedule/delete', [ScheduleController::class, 'delete']);
 Route::post('/schedule/store', [ScheduleController::class, 'store'])->name('schedule.store');

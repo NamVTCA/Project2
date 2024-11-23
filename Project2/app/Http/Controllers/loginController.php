@@ -23,38 +23,41 @@ class loginController extends Controller
         return view('login');
     }
   
-    public function login(Request $request){
-    $request->validate([
-        'phone' => 'required',
-        'password' => 'required',
-    ]);
-    $identifier = $request->input('phone');
+    public function login(Request $request)
+    {
+        $request->validate([
+            'phone' => 'required',
+            'password' => 'required',
+        ]);
+        $identifier = $request->input('phone');
+        
+        if (filter_var($identifier, FILTER_VALIDATE_EMAIL)) {
+            $user = User::where('email', $identifier)->first();
+        } else {
+            $user = User::where('phone', $identifier)->first();
+        }
     
-    if (filter_var($identifier, FILTER_VALIDATE_EMAIL)) {
-        $user = User::where('email', $identifier)->first();
-    } else {
-        $user = User::where('phone', $identifier)->first();
-    }
-
-    if (!$user || !Hash::check($request->password, $user->password)) {
-        return redirect()->route('showlogin')->with('message','invalid phone or email');
-    }
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return redirect()->route('showlogin')->with('message','invalid phone or email');
+        }
+    
         Auth::login($user);
-
-    $role = $user->role;
-
-    switch ($role) {
-        case 0:
-            return redirect()->route('admin',compact('user'));
-        case 1:
-            return redirect()->route('teacher',compact('user'));
-        case 2:
-            return redirect()->route('user',compact('user'));
-        default:
-            return redirect()->route('user',compact('user'));
+    
+    
+        $role = $user->role;
+    
+        switch ($role) {
+            case 0:
+                return redirect()->route('admin')->with('user', $user);
+            case 1:
+                return redirect()->route('teacher')->with('user', $user);
+            case 2:
+                return redirect()->route('user')->with('user', $user);
+            default:
+                return redirect()->route('user')->with('user', $user);
+        }
     }
     
-}
 public function logout(Request $request)
 {
  
