@@ -39,9 +39,6 @@
         <div style="margin-bottom: 15px;">
             <label>Parent:</label>
             <select name="user_id" required>
-                @php
-                    $parents = App\Models\User::where('role', 2)->get();
-                @endphp
                 @foreach($parents as $parent)
                     <option value="{{ $parent->id }}" {{ old('user_id') == $parent->id ? 'selected' : '' }}>{{ $parent->name }}</option>
                 @endforeach

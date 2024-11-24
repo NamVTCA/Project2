@@ -5,19 +5,23 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Child;
 use App\Http\Requests\ChildRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 class ChildController extends Controller
 {
     public function index()
     {
+       
         $children = Child::with('user', 'classroom')->get();
         return view('admin.children.index', compact('children'));
     }
 
     public function create()
-    {
-        return view('admin.children.create');
+    { $parents = User::where('role', 2)
+    ->orWhere('role', 1)
+    ->get();
+        return view('admin.children.create',compact('parents'));
     }
 
     public function store(ChildRequest $request)
