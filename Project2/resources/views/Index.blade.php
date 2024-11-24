@@ -21,7 +21,7 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Trang Chủ</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Sự Kiện</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Giáo Dục</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Liên Hệ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('feedback') }}">Liên Hệ</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Đăng Nhập</a></li>
                     </ul>
                 </div>
