@@ -33,9 +33,11 @@ Route::get('/timetable', function () {
     return view('timetable');
 });
 
-Route::get('/tuitionmanagement', function () {
-    return view('tuitionmanagement');
-})->name('tuitionmanagement');
+// Route::get('/tuitionmanagement', function () {
+//     return view('tuitionmanagement');
+// })->name('tuitionmanagement');
+
+Route::get('/tuitionmanagement',[tuitionContoller::class,'index'] )->name('tuitionmanagement');
 
 Route::get('/feedback', function () {
     return view('feedback');
