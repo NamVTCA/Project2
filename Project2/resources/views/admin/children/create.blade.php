@@ -2,59 +2,52 @@
 
 @section('content')
 <div>
-    <h2>Thêm trẻ mới</h2>
+    <h2>Thêm học sinh mới</h2>
 
     @if($errors->any())
-    <div style="color: red; margin: 10px 0;">
-        <ul>
-            @foreach($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+        <div style="color: red; margin: 10px 0;">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
     @endif
 
-    <form action="{{ route('children.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('children.store') }}" method="POST" enctype="multipart/form-data" id="childForm">
         @csrf
-
         <div style="margin-bottom: 15px;">
-            <label>Họ tên:</label>
+            <label>Tên:</label>
             <input type="text" name="name" value="{{ old('name') }}" required>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <label>Phụ huynh:</label>
-            <select name="user_id" required>
-                <option value="">Chọn phụ huynh</option>
-                @foreach($parents as $parent)
-                <option value="{{ $parent->id }}">{{ $parent->name }}</option>
-                @endforeach
-            </select>
+            <span class="error-message"></span>
         </div>
 
         <div style="margin-bottom: 15px;">
             <label>Ngày sinh:</label>
             <input type="date" name="birthDate" value="{{ old('birthDate') }}" required>
+            <span class="error-message"></span>
         </div>
 
         <div style="margin-bottom: 15px;">
             <label>Giới tính:</label>
             <select name="gender" required>
-                <option value="">Chọn giới tính</option>
-                <option value="1">Nam</option>
-                <option value="2">Nữ</option>
+                <option value="1" {{ old('gender') == 1 ? 'selected' : '' }}>Male</option>
+                <option value="2" {{ old('gender') == 2 ? 'selected' : '' }}>Female</option>
             </select>
         </div>
 
         <div style="margin-bottom: 15px;">
-            <label>Ảnh đại diện:</label>
+            <label>Ảnh:</label>
             <input type="file" name="img" accept="image/jpeg,image/png,image/jpg">
         </div>
 
-        <button type="submit">Thêm trẻ</button>
+        <button type="submit">Tạo học sinh</button>
     </form>
 </div>
+@endsection
 
 <style>
 </style>
-@endsection
+
+<script>
+</script>

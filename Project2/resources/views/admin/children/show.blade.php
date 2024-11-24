@@ -1,27 +1,28 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<div class="child-profile">
+<div class="profile-container">
     <div class="profile-header">
         <div class="profile-image">
             @if($child->img)
-            <img src="{{ asset('storage/' . $child->img) }}" alt="Ảnh đại diện">
+                <img src="{{ asset('storage/' . $child->img) }}" alt="Child Image">
             @else
-            <div class="default-avatar">
-                {{ strtoupper(substr($child->name, 0, 1)) }}
-            </div>
+                <div class="default-avatar">
+                    {{ strtoupper(substr($child->name, 0, 1)) }}
+                </div>
             @endif
         </div>
-        <div class="profile-info">
+        <div class="profile-basic-info">
             <h1>{{ $child->name }}</h1>
-            <p class="parent">Phụ huynh: {{ $parent->name }}</p>
-            <p class="classroom">Lớp: {{ $child->classroom->name ?? 'Chưa được phân lớp' }}</p>
-            <p class="birthdate">Ngày sinh: {{ \Carbon\Carbon::parse($child->birthDate)->format('d/m/Y') }}</p>
-            <p class="gender">Giới tính: {{ $child->gender == 1 ? 'Nam' : 'Nữ' }}</p>
+            <p>Ngày sinh: {{ \Carbon\Carbon::parse($child->birthDate)->format('d/m/Y') }}</p>
+            <p>Giới tính: {{ $child->gender == 1 ? 'Male' : 'Female' }}</p>
         </div>
     </div>
 </div>
+@endsection
 
 <style>
 </style>
-@endsection
+
+<script>
+</script>

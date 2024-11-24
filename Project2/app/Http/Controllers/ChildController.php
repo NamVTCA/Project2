@@ -4,87 +4,61 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Child;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\ChildRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ChildController extends Controller
 {
     public function index()
     {
-        $children = Child::with(['user', 'classroom'])->get();
-        $childrenData = $children->map(function ($child) {
-            return [
-                'id' => $child->id,
-                'name' => $child->name,
-                'parent_name' => $child->user->name,
-                'classroom_name' => $child->classroom->name ?? 'Chưa được phân lớp',
-                'birthdate' => \Carbon\Carbon::parse($child->birthDate)->format('d/m/Y'),
-                'gender' => $child->gender == 1 ? 'Nam' : 'Nữ',
-                'img' => $child->img,
-            ];
-        });
-
-        return view('admin.children.index', compact('childrenData'));
+        $children = Child::with('user', 'classroom')->get();
+        return view('admin.children.index', compact('children'));
     }
-
 
     public function create()
     {
-        $parents = User::where('role', 2)->get(); 
-        return view('admin.children.create', compact('parents'));
+        return view('admin.children.create');
     }
 
-    public function store(Request $request)
+    public function store(ChildRequest $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'user_id' => 'required|exists:users,id',
-            'birthDate' => 'required|date',
-            'gender' => 'required|in:1,2',
-            'img' => 'nullable|image|max:2048',
-        ]);
-
-        $child = Child::create($validatedData);
+        $data = $request->validated();
 
         if ($request->hasFile('img')) {
-            $child->img = $request->file('img')->store('children', 'public');
-            $child->save();
+            $data['img'] = $request->file('img')->store('children', 'public');
         }
 
-        return redirect()->route('admin.children.index')->with('success', 'Trẻ em đã được thêm thành công.');
+        Child::create($data);
+
+        return redirect()->route('admin.children.index')
+            ->with('success', 'Tạo thông tin trẻ thành công.');
     }
 
     public function show(Child $child)
     {
-        $parent = $child->user;
-        return view('admin.children.show', compact('child', 'parent'));
+        $child->load('user', 'classroom');
+        return view('admin.children.show', compact('child'));
     }
 
     public function edit(Child $child)
     {
-        $parents = User::where('role', 2)->get();
-        return view('admin.children.edit', compact('child', 'parents'));
+        return view('admin.children.edit', compact('child'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ChildRequest $request, Child $child)
     {
-        $child = Child::findOrFail($id);
-
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'user_id' => 'required|exists:users,id',
-            'birthDate' => 'required|date',
-            'gender' => 'required|in:1,2', // 1: Nam, 2: Nữ
-            'img' => 'nullable|image|max:2048',
-        ]);
-
-        $child->update($validatedData);
+        $data = $request->validated();
 
         if ($request->hasFile('img')) {
-            $child->img = $request->file('img')->store('children', 'public');
-            $child->save();
+            if ($child->img) {
+                Storage::disk('public')->delete($child->img);
+            }
+            $data['img'] = $request->file('img')->store('children', 'public');
         }
 
-        return redirect()->route('children.index')->with('success', 'Thông tin trẻ em đã được cập nhật.');
+        $child->update($data);
+
+        return redirect()->route('admin.children.index')
+            ->with('success', 'Cập nhật thông tin trẻ thành công.');
     }
 }
