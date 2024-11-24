@@ -44,6 +44,9 @@ Route::get('/feedback', function () {
 Route::middleware(['auth'])->group(function () {
       Route::get('/schedule', [scheduleController::class, 'index'])->name('schedule');
 });
+
+
+Route::get('/tuition', [tuitionContoller::class, 'index'])->name('tuition.index');
 Route::get('/tuition/create', [tuitionContoller::class, 'create'])->name('tuition.create');
 Route::post('/tuition/store', [tuitionContoller::class, 'store'])->name('tuition.store');
 Route::get('/showLogin',[loginController::class,'showLogin'])->name('showlogin');
