@@ -9,6 +9,16 @@ use Illuminate\Http\Request;
 
 class tuitionContoller extends Controller
 {
+    public function index()
+    {
+        // Lấy tất cả học phí từ cơ sở dữ liệu, bao gồm cả lớp học
+        $tuitions = Tuition::with('classroom')->get();
+        
+        // Trả về view và truyền dữ liệu $tuitions
+        return view('TuitionManagement', compact('tuitions'));
+    }
+    
+
     public function create()
     {
         $classrooms = classroom::all(); 

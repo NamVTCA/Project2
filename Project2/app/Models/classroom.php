@@ -26,4 +26,9 @@ class classroom extends Model
     return $this->belongsToMany(child::class, 'childclasses', 'classroom_id', 'child_id');
 }
 
+public function tuitions()
+{
+    return $this->hasMany(Tuition::class);
+}
+
 }
