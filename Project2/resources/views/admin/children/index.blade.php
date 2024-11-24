@@ -3,8 +3,8 @@
 @section('content')
 <div class="children-container">
     <div class="header">
-        <h1>Quản lý học sinh</h1>
-        <a href="{{ route('children.create') }}" class="btn-add">Thêm học sinh mới</a>
+        <h1>Children Management</h1>
+        <a href="{{ route('children.create') }}" class="btn-add">Add New Child</a>
     </div>
 
     <div class="children-grid">
@@ -23,6 +23,7 @@
                     <h3>{{ $child->name }}</h3>
                     <p>Birth Date: {{ \Carbon\Carbon::parse($child->birthDate)->format('d/m/Y') }}</p>
                     <p>Gender: {{ $child->gender == 1 ? 'Male' : 'Female' }}</p>
+                    <p>Parent: {{ $child->user ? $child->user->name : 'N/A' }}</p>
                 </div>
                 <div class="child-actions">
                     <a href="{{ route('children.show', $child->id) }}" class="btn-view">View</a>
@@ -33,9 +34,3 @@
     </div>
 </div>
 @endsection
-
-<style>
-</style>
-
-<script>
-</script>

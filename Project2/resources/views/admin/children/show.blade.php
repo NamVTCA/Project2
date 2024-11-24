@@ -14,15 +14,10 @@
         </div>
         <div class="profile-basic-info">
             <h1>{{ $child->name }}</h1>
-            <p>Ngày sinh: {{ \Carbon\Carbon::parse($child->birthDate)->format('d/m/Y') }}</p>
-            <p>Giới tính: {{ $child->gender == 1 ? 'Male' : 'Female' }}</p>
+            <p>Birth Date: {{ \Carbon\Carbon::parse($child->birthDate)->format('d/m/Y') }}</p>
+            <p>Gender: {{ $child->gender == 1 ? 'Male' : 'Female' }}</p>
+            <p>Parent: {{ $child->user ? $child->user->name : 'N/A' }}</p>
         </div>
     </div>
 </div>
 @endsection
-
-<style>
-</style>
-
-<script>
-</script>
