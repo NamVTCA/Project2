@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Quản lý lịch học</h5>
                     <p class="card-text">Tạo và sắp xếp lịch học chi tiết.</p>
-                    <a href="#" class="btn btn-light btn-sm">Đi tới</a>
+                    <a href="{{ route('timetable.index') }}" class="btn btn-light btn-sm">Đi tới</a>
                 </div>
             </div>
         </div>
@@ -39,6 +39,15 @@
                     <h5 class="card-title">Thêm học sinh</h5>
                     <p class="card-text">Xem và chỉnh sửa thông tin học sinh.</p>
                     <a href="{{ route('admin.children.index') }}" class="btn btn-light btn-sm">Đi tới</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm bg-gradient-pink text-white text-center">
+            <div class="card-body">
+                <h5 class="card-title"> Quản lý học phí</h5>
+                <p class="card-text">Xem báo cáo chi tiết học phí.</p>
+                <a href="{{ route('tuitionmanagement') }}" class="btn btn-light btn-sm">Đi tới</a>
             </div>
         </div>
     </div>

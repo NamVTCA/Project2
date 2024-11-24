@@ -33,9 +33,13 @@ Route::get('/timetable', function () {
     return view('timetable');
 });
 
+Route::get('/tuitionmanagement', function () {
+    return view('tuitionmanagement');
+})->name('tuitionmanagement');
+
 Route::get('/feedback', function () {
     return view('feedback');
-});
+})->name('feedback');
 
 
 Route::middleware(['auth'])->group(function () {
