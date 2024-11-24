@@ -11,7 +11,7 @@
         <h1>Quản Lý Học Phí</h1>
 
         <div class="actions">
-            <a href="#" class="btn">Tạo Học Phí</a>
+            <a href="{{ route('tuition.create') }}" class="btn">Tạo Học Phí</a>
         </div>
 
         <table class="tuition-table">

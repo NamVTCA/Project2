@@ -1,0 +1,122 @@
+/* Reset cơ bản */
+body, h1, h2, p, ul, li, input, button, form {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Tổng quan */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #ffe4e1; /* Nền hồng nhạt */
+    color: #333;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Tiêu đề */
+h1 {
+    text-align: center;
+    color: #ff69b4; /* Màu hồng sáng */
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #ec53d0; /* Màu tím sáng */
+    margin-top: 20px;
+    font-size: 28px;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    width: 50px;
+    height: 3px;
+    background-color: #efade9; /* Màu hồng nhạt */
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 5px;
+}
+
+/* Thông báo */
+p {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+p[style*="color: green"] {
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* Danh sách môn học */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+ul li {
+    background: #f1f1f1; /* Nền các mục trong danh sách */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Form thêm mới */
+form {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+form input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    background-color: #ff69b4; /* Màu hồng sáng */
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #ec53d0; /* Màu tím sáng khi hover */
+}
+
+/* Form chỉnh sửa trong danh sách */
+ul li form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+ul li form input[type="text"] {
+    width: 150px;
+    padding: 6px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Hiệu ứng hover cho danh sách */
+ul li:hover {
+    background: #ffe4e1; /* Nền hồng nhạt khi hover */
+}
