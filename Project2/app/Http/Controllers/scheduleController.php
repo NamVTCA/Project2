@@ -2,25 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\classroom;
+use App\Models\schedule;
+use App\Models\schedule_info;
+use App\Models\subject;
 use Illuminate\Http\Request;
 
 class scheduleController extends Controller
 {
 
-    public function getDetails(Request $request)
-{
+   public function getDetails(Request $request) {
     $classroomId = $request->input('classroom_id');
     $date = $request->input('date');
 
-    $schedules = Schedule::where('classroom_id', $classroomId)
-        ->where('date', $date)
-        ->with(['schedule_info.subjects']) 
-        ->get();
-
+  $schedules = schedule::with(['schedule_info.subject']) 
+    ->where('classroom_id', $classroomId)
+    ->where('date', $date)
+    ->get();
     $result = [];
     foreach ($schedules as $schedule) {
         foreach ($schedule->schedule_info as $info) {
-            $subjectNames = $info->subjects->pluck('name')->join(', '); 
+            $subjectNames = $info->subjects->pluck('name')->join(', ');
             $result[] = [
                 'id' => $info->id,
                 'schedule_id' => $schedule->id,
@@ -33,18 +35,16 @@ class scheduleController extends Controller
     return response()->json($result);
 }
 
-    public function delete(Request $request)
-{
+public function delete(Request $request) {
     $scheduleId = $request->input('schedule_id');
     $infoId = $request->input('id');
-
     $scheduleInfo = schedule_info::where('schedule_id', $scheduleId)->where('id', $infoId)->first();
+
     if ($scheduleInfo) {
         $scheduleInfo->subjects()->detach(); // Xóa mối quan hệ many-to-many
         $scheduleInfo->delete(); // Xóa bản ghi trong bảng schedule_info
         return response()->json(['success' => 'Đã xóa thành công']);
     }
-
     return response()->json(['error' => 'Không tìm thấy dữ liệu'], 404);
 }
     public function index(){
