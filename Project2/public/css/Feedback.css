@@ -273,3 +273,28 @@ h2::after {
 .hover-goals:hover .card-text {
     color: #6a5acd; /* Đổi màu chữ thành xanh tím */
 }
+
+
+/* Logo container */
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Logo image */
+.logo img {
+    max-width: 150px; /* Giới hạn chiều rộng */
+    max-height: 150px; /* Giới hạn chiều cao */
+    border-radius: 50%; /* Bo tròn logo */
+    border: 3px solid #ff69b4; /* Viền hồng xung quanh logo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng khi hover */
+}
+
+/* Hiệu ứng khi hover vào logo */
+.logo img:hover {
+    transform: scale(1.1); /* Phóng to logo nhẹ */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Đổ bóng đậm hơn */
+}

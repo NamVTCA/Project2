@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="{{ asset('css/Feedback.css') }}">
 </head>
 <body>
+
     <div class="container">
+        <div class="logo">
+            <img src="{{ asset('img/Login.png') }}" alt="Nursery PreSchool" class="logo-image">
+        </div>        
         <h1>Gửi Phản Hồi</h1>
         <form action="/feedback" method="POST">
             <div class="form-group">
