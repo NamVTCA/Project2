@@ -22,8 +22,7 @@ class classroom extends Model
         return $this->hasMany(schedule::class,'classroom_id');
     }
     public function children()
-{
-    return $this->belongsToMany(child::class, 'childclasses', 'classroom_id', 'child_id');
-}
-
+    {
+        return $this->belongsToMany(child::class, 'childclasses', 'classroom_id', 'child_id');
+    }
 }

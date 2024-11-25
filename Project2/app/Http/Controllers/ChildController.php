@@ -13,7 +13,7 @@ class ChildController extends Controller
     public function index()
     {
        
-        $children = Child::with('user', 'classroom')->get();
+        $children = Child::with('user')->get();
         return view('admin.children.index', compact('children'));
     }
 
@@ -30,6 +30,8 @@ class ChildController extends Controller
 
         if ($request->hasFile('img')) {
             $data['img'] = $request->file('img')->store('children', 'public');
+        } else {
+            $data['img'] = null;
         }
 
         Child::create($data);
@@ -40,7 +42,7 @@ class ChildController extends Controller
 
     public function show(Child $child)
     {
-        $child->load('user', 'classroom');
+        $child->load('user');
         return view('admin.children.show', compact('child'));
     }
 

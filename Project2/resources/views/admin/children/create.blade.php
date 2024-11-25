@@ -39,9 +39,20 @@
         <div style="margin-bottom: 15px;">
             <label>Parent:</label>
             <select name="user_id" required>
+                @php
+                    $parents = App\Models\User::where('role', 2)->get();
+                @endphp
                 @foreach($parents as $parent)
                     <option value="{{ $parent->id }}" {{ old('user_id') == $parent->id ? 'selected' : '' }}>{{ $parent->name }}</option>
                 @endforeach
+            </select>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Status:</label>
+            <select name="status" required>
+                <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Active</option>
+                <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Inactive</option>
             </select>
         </div>
 

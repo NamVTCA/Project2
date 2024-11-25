@@ -51,6 +51,14 @@
         </div>
 
         <div style="margin-bottom: 15px;">
+            <label>Status:</label>
+            <select name="status" required>
+                <option value="1" {{ old('status', $child->status) == 1 ? 'selected' : '' }}>Active</option>
+                <option value="0" {{ old('status', $child->status) == 0 ? 'selected' : '' }}>Inactive</option>
+            </select>
+        </div>
+
+        <div style="margin-bottom: 15px;">
             <label>Image:</label>
             @if($child->img)
                 <div style="margin: 10px 0;">
