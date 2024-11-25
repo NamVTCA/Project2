@@ -18,7 +18,7 @@
         <table class="tuition-table">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>DanhSách</th>
                     <th>Lớp</th>
                     <th>Học Kỳ</th>
                     <th>Trạng Thái</th>
@@ -26,6 +26,30 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Lớp 1A</td>
+                    <td>Học kỳ 1</td>
+                    <td>Chưa Thanh Toán</td>
+                    <td><a href="#" class="btn">Xem Chi Tiết</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Lớp 2B</td>
+                    <td>Học kỳ 2</td>
+                    <td>Đã Thanh Toán</td>
+                    <td><a href="#" class="btn">Xem Chi Tiết</a></td>
+                </tr>
+                <!-- Dữ liệu mẫu -->
+                <tr>
+                    <td>3</td>
+                    <td>Lớp 3C</td>
+                    <td>Học kỳ 1</td>
+                    <td>Chưa Thanh Toán</td>
+                    <td><a href="#" class="btn">Xem Chi Tiết</a></td>
+                </tr>
+            </tbody>
+            {{-- <tbody>
                 <!-- Duyệt qua danh sách học phí -->
                 @foreach ($tuitions as $tuition)
                     <tr>
@@ -38,7 +62,7 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
+    </div> --}}
 
     <!-- Nếu có thông báo thành công -->
     @if(session('success'))
