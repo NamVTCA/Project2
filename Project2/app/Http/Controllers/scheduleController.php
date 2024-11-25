@@ -13,10 +13,10 @@ class scheduleController extends Controller
    public function getDetails(Request $request) {
     $classroomId = $request->input('classroom_id');
     $date = $request->input('date');
-
-  $schedules = schedule::with(['schedule_info.subject']) 
-    ->where('classroom_id', $classroomId)
+    
+    $schedules = Schedule::where('classroom_id', $classroomId)
     ->where('date', $date)
+    ->with('schedule_info.subject') 
     ->get();
     $result = [];
     foreach ($schedules as $schedule) {
