@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\child;
+use App\Models\childclass;
 use App\Models\classroom;
 use App\Models\tuition;
 use App\Models\tuition_info;
@@ -9,6 +11,23 @@ use Illuminate\Http\Request;
 
 class tuitionContoller extends Controller
 {
+public function index(Request $request)
+{
+    $children = Child::all();
+
+    $query = tuition::with('child'); 
+    if ($request->has('children_id') && $request->children_id != '') {
+        $query->where('child_id', $request->children_id);
+    }
+   
+    $tuitions = $query->get();
+
+    return view('TuitionManagement', compact('tuitions', 'children'));
+}
+
+
+    
+
     public function create()
     {
         $classrooms = classroom::all(); 
