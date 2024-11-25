@@ -6,6 +6,7 @@ use App\Http\Controllers\paymentController;
 use App\Http\Controllers\scheduleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChildController;
+use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\tuitionContoller;
@@ -65,7 +66,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::prefix('admin')->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
-    Route::get('/users/create', [UserController::class, 'create'])->name('users.create'); 
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
@@ -76,6 +77,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/children/{child}', [ChildController::class, 'show'])->name('children.show');
     Route::get('/children/{child}/edit', [ChildController::class, 'edit'])->name('children.edit');
     Route::put('/children/{child}', [ChildController::class, 'update'])->name('children.update');
+    Route::get('/classes', [ClassController::class, 'index'])->name('admin.classrooms.index');
+    Route::get('/classes/create', [ClassController::class, 'create'])->name('classrooms.create');
+    Route::post('/classes', [ClassController::class, 'store'])->name('classrooms.store');
+    Route::get('/classes/{class}', [ClassController::class, 'show'])->name('classrooms.show');
+    Route::get('/classes/{class}/edit', [ClassController::class, 'edit'])->name('classrooms.edit');
+    Route::put('/classes/{class}', [ClassController::class, 'update'])->name('classrooms.update');
 });
 
 Route::get('/api/tuitions/{childId}', [paymentController::class, 'getTuitionsByChild']);
