@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\paymentController;
 use App\Http\Controllers\scheduleController;
@@ -9,7 +10,6 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\tuitionContoller;
 use App\Http\Controllers\subjectController;
-
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,7 +27,7 @@ Route::get('/index', function () {
 
 Route::get('/accountcreation', function () {
     return view('accountcreation');
-});
+})->name('accountcreation');
 
 Route::get('/timetable', function () {
     return view('timetable');
@@ -119,3 +119,13 @@ Route::put('/subjects/{id}', [SubjectController::class, 'update'])->name('subjec
 
 Route::get('/timetable', [TimetableController::class, 'index'])->name('timetable.index');
 Route::post('/timetable/save', [TimetableController::class, 'save'])->name('timetable.save');
+
+
+
+
+Route::get('/accounts', [AccountController::class, 'index'])->name('account.index');
+// Route::get('/accounts/create', [AccountController::class, 'create'])->name('account.create');
+Route::post('/accounts/store', [AccountController::class, 'store'])->name('account.store');
+Route::get('/accounts/{id}/edit', [AccountController::class, 'edit'])->name('account.edit');
+Route::put('/accounts/{id}', [AccountController::class, 'update'])->name('account.update');
+Route::delete('/accounts/{id}', [AccountController::class, 'destroy'])->name('account.delete');

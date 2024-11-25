@@ -1,106 +1,221 @@
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
 
-h1 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-}
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
 
-.form-group {
-    margin-bottom: 20px;
-}
+    .form-group {
+        margin-bottom: 20px;
+    }
 
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555;
-}
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #555;
+    }
 
-input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-}
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+    }
 
-input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
-}
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+    }
 
-.tuition-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
+    .tuition-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
 
-.tuition-table th, 
-.tuition-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-}
+    .tuition-table th, 
+    .tuition-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
 
-.tuition-table th {
-    background-color: #007bff;
-    color: white;
-}
+    .tuition-table th {
+        background-color: #007bff;
+        color: white;
+    }
 
-.tuition-table td {
-    background-color: #fff;
-    color: #333;
-}
+    .tuition-table td {
+        background-color: #fff;
+        color: #333;
+    }
 
-.tuition-item {
-    display: flex;
-    gap: 10px;
-}
+    .tuition-item {
+        display: flex;
+        gap: 10px;
+    }
 
-.tuition-item input {
-    flex: 1;
-}
+    .tuition-item input {
+        flex: 1;
+    }
 
-button {
-    display: inline-block;
-    padding: 10px 20px;
-    border: none;
-    background-color: #28a745;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 14px;
-}
+    button {
+        display: inline-block;
+        padding: 10px 20px;
+        border: none;
+        background-color: #28a745;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 14px;
+    }
 
-button:hover {
-    background-color: #218838;
-}
+    button:hover {
+        background-color: #218838;
+    }
 
-.actions {
-    text-align: right;
-    margin-bottom: 20px;
-}
+    .actions {
+        text-align: right;
+        margin-bottom: 20px;
+    }
 
-.actions .btn {
-    text-decoration: none;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border-radius: 4px;
-}
+    .actions .btn {
+        text-decoration: none;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border-radius: 4px;
+    }
 
-.actions .btn:hover {
-    background-color: #0056b3;
-}
+    .actions .btn:hover {
+        background-color: #0056b3;
+    }.container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #fff5f7; /* Màu nền hồng nhạt */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+        text-align: center;
+        color: #ff5c8d; /* Màu chữ chính */
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    input, select, textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: #ff5c8d; /* Màu viền khi focus */
+        box-shadow: 0 0 6px rgba(255, 92, 141, 0.5);
+    }
+    
+    .tuition-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    
+    .tuition-table th, 
+    .tuition-table td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: center;
+    }
+    
+    .tuition-table th {
+        background-color: #ff5c8d; /* Màu nền header bảng */
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+    }
+    
+    .tuition-table td {
+        background-color: #fff; /* Màu nền của ô */
+        color: #555;
+        font-size: 14px;
+    }
+    
+    .tuition-item {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .tuition-item input {
+        flex: 1;
+    }
+    
+    button {
+        display: inline-block;
+        padding: 10px 20px;
+        border: none;
+        background-color: #ff5c8d; /* Màu nút */
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s ease-in-out, transform 0.2s;
+    }
+    
+    button:hover {
+        background-color: #d94472;
+        transform: scale(1.05); /* Hiệu ứng hover */
+    }
+    
+    .actions {
+        text-align: right;
+        margin-bottom: 20px;
+    }
+    
+    .actions .btn {
+        text-decoration: none;
+        padding: 10px 20px;
+        background-color: #ff5c8d; /* Màu nút "Tạo Học Phí" */
+        color: white;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: background-color 0.3s ease-in-out;
+    }
+    
+    .actions .btn:hover {
+        background-color: #d94472;
+    }
+    
