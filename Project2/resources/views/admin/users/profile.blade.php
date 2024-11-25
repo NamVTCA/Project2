@@ -5,13 +5,13 @@
     <div class="profile-header">
         <div class="profile-image">
             @if($user->img)
-                <img src="{{ asset('storage/' . $user->img) }}" alt="Profile Image">
+                <img src="{{ asset('storage/' . $user->img) }}" alt="Profile Image" style="max-width: 200px;">
             @else
                 <div class="default-avatar">
                     {{ strtoupper(substr($user->name, 0, 1)) }}
                 </div>
             @endif
-        </div>
+        </div>        
         <div class="profile-basic-info">
             <h1>{{ $user->name }}</h1>
             <p class="role-badge {{ $user->role == 1 ? 'teacher' : 'parent' }}">
