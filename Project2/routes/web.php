@@ -130,9 +130,4 @@ Route::post('/timetable/save', [TimetableController::class, 'save'])->name('time
 
 
 
-Route::get('/accounts', [AccountController::class, 'index'])->name('account.index');
-// Route::get('/accounts/create', [AccountController::class, 'create'])->name('account.create');
-Route::post('/accounts/store', [AccountController::class, 'store'])->name('account.store');
-Route::get('/accounts/{id}/edit', [AccountController::class, 'edit'])->name('account.edit');
-Route::put('/accounts/{id}', [AccountController::class, 'update'])->name('account.update');
-Route::delete('/accounts/{id}', [AccountController::class, 'destroy'])->name('account.delete');
+

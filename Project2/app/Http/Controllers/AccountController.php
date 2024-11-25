@@ -61,4 +61,5 @@ class AccountController extends Controller
 
         return redirect()->route('account.index')->with('success', 'Tài khoản đã được xóa!');
     }
+    //
 }
