@@ -11,5 +11,8 @@ class subject extends Model
     protected $fillable = [
         'name'
     ];
+    function subject(){
+        return $this->belongsTo(schedule_info::class,'subject_id');
+    }
     
 }

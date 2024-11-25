@@ -5,6 +5,7 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\paymentController;
 use App\Http\Controllers\scheduleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ChildController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\tuitionContoller;
@@ -32,9 +33,11 @@ Route::get('/timetable', function () {
     return view('timetable');
 });
 
-Route::get('/tuitionmanagement', function () {
-    return view('tuitionmanagement');
-})->name('tuitionmanagement');
+// Route::get('/tuitionmanagement', function () {
+//     return view('tuitionmanagement');
+// })->name('tuitionmanagement');
+
+Route::get('/tuitionmanagement',[tuitionContoller::class,'index'] )->name('tuitionmanagement');
 
 Route::get('/feedback', function () {
     return view('feedback');
@@ -60,7 +63,20 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/change-password', [ResetPasswordController::class, 'changePassword'])->name('reset.password');
 });
 
-Route::resource('users', UserController::class);
+Route::prefix('admin')->group(function () {
+    Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create'); 
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
+    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::get('/children', [ChildController::class, 'index'])->name('admin.children.index');
+    Route::get('/children/create', [ChildController::class, 'create'])->name('children.create');
+    Route::post('/children', [ChildController::class, 'store'])->name('children.store');
+    Route::get('/children/{child}', [ChildController::class, 'show'])->name('children.show');
+    Route::get('/children/{child}/edit', [ChildController::class, 'edit'])->name('children.edit');
+    Route::put('/children/{child}', [ChildController::class, 'update'])->name('children.update');
+});
 
 Route::get('/api/tuitions/{childId}', [paymentController::class, 'getTuitionsByChild']);
 Route::get('/api/tuition-details/{tuitionId}', [paymentController::class, 'getTuitionDetails']);

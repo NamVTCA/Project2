@@ -11,7 +11,11 @@
                 <div class="card-body">
                     <h5 class="card-title">Quản lý tài khoản</h5>
                     <p class="card-text">Xem và chỉnh sửa thông tin tài khoản.</p>
+
                     <a href="{{ route('account.index') }}" class="btn btn-light btn-sm">Đi tới</a>
+
+                    <a href="{{ route('admin.users.index') }}" class="btn btn-light btn-sm">Đi tới</a>
+
                 </div>
             </div>
         </div>
@@ -31,6 +35,14 @@
                     <p class="card-text">Xem báo cáo chi tiết hệ thống.</p>
                     <a href="#" class="btn btn-light btn-sm">Đi tới</a>
                 </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm bg-gradient-pink text-white text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Thêm học sinh</h5>
+                    <p class="card-text">Xem và chỉnh sửa thông tin học sinh.</p>
+                    <a href="{{ route('admin.children.index') }}" class="btn btn-light btn-sm">Đi tới</a>
             </div>
         </div>
     </div>

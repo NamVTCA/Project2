@@ -14,15 +14,32 @@
         <div class="actions">
             <a href="{{ route('tuition.create') }}" class="btn">Tạo Học Phí</a>
         </div>
+        <div class="form-group">
+    <label for="children_id">học sinh</label>
+    <form method="GET" action="{{ route('tuition.index') }}">
+        <select name="children_id" id="children_id" class="form-control" onchange="this.form.submit()">
+            <option value="">-- Chọn học sinh --</option>
+            @foreach($children as $child)
+                <option value="{{ $child->id }}" 
+                        {{ request('children_id') == $child->id ? 'selected' : '' }}>
+                    {{ $child->name }}
+                </option>
+            @endforeach
+        </select>
+    </form>
+</div>
 
         <table class="tuition-table">
             <thead>
                 <tr>
+
                     <th>DanhSách</th>
                     <th>Lớp</th>
+
+                    <th>#</th>
+
                     <th>Học Kỳ</th>
                     <th>Trạng Thái</th>
-                    <th>Chi Tiết</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,10 +71,9 @@
                 @foreach ($tuitions as $tuition)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $tuition->classroom->name ?? 'N/A' }}</td>
                         <td>{{ $tuition->semester }}</td>
                         <td>{{ $tuition->status == 1 ? 'Đã Thanh Toán' : 'Chưa Thanh Toán' }}</td>
-                        <td><a href="{{ route('tuition.show', $tuition->id) }}" class="btn">Xem Chi Tiết</a></td>
+                        {{-- <td><a href="{{ route('tuition.show', $tuition->id) }}" class="btn">Xem Chi Tiết</a></td> --}}
                     </tr>
                 @endforeach
             </tbody>
