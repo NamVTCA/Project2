@@ -2,6 +2,7 @@
 
 @section('content')
 <div>
+    <link rel="stylesheet" href="{{ asset('css/UserCreation.css') }}">
     <h2>Tạo người dùng mới</h2>
 
     @if($errors->any())
