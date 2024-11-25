@@ -2,6 +2,7 @@
 
 @section('content')
 <div>
+    <link rel="stylesheet" href="{{ asset('css/ChildrenCreation.css') }}">
     <h2>Create New Child</h2>
 
     @if($errors->any())
