@@ -63,7 +63,7 @@ public function delete(Request $request) {
         'classroom_id' => 'required|exists:classrooms,id',
         'subject_id' => 'required|exists:subjects,id',
         'date' => 'required|date',
-        'lesson' => 'required|integer|between:1,10',
+        'lesson' => 'required',
     ]);
 
     $schedule = Schedule::with('classroom', 'schedule_info')

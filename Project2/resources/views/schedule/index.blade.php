@@ -39,9 +39,16 @@
             <label for="lesson">Tiết học</label>
             <select name="lesson" id="lesson" class="form-control" required>
                 <option value="">-- Chọn tiết học --</option>
-                @for($i = 1; $i <= 10; $i++)
-                    <option value="{{ $i }}">Tiết {{ $i }}</option>
-                @endfor
+                    <option value="Tiết 1 (7h30 - 8h05)">Tiết 1 (7h30 - 8h05)</option>
+                    <option value="Tiết 2 (8h15 - 8h50)">Tiết 2 (8h15 - 8h50)</option>
+                    <option value="Tiết 3 (9h00 - 9h35)">Tiết 3 (9h00 - 9h35)</option>
+                    <option value="Tiết 4 (9h45 - 10h15)">Tiết 4 (9h45 - 10h20)</option>
+                    <option value="Tiết 5 (10h30 - 11h15)">Tiết 5 (10h30 - 11h15)</option>
+                    <option value="Tiết 6 (13h30 - 14h05)">Tiết 6 (13h30 - 14h05)</option>
+                    <option value="Tiết 7 (14h15 - 14h50)">Tiết 7 (14h15 - 14h50)</option>
+                    <option value="Tiết 8 (15h00 - 15h35)">Tiết 8 (15h00 - 15h35)</option>
+                    <option value="Tiết 9 (15h45 - 16h20)">Tiết 9 (15h45 - 16h20)</option>
+                    <option value="Tiết 10 (16h30 - 17h05)">Tiết 10 (16h30 - 17h05)</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Tạo Lịch học</button>
