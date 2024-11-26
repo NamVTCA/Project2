@@ -11,6 +11,7 @@ class weekevaluate extends Model
     protected $fillable = [
         'comment',
         'point',
+        'date',
         'child_id'
     ];
     function child(){

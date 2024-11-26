@@ -41,11 +41,17 @@ function show(){
 public function evaluatecomment(Request $request)
 {
     $request->validate([
-        'comment' => 'required|max:255',
-        'point' => 'required|numeric|min:0|max:10',
-        'date' => 'required|date|before_or_equal:today',
-        'child_id' => 'required|exists:children,id'
-    ]);
+    'comment' => 'required|max:255',
+    'point' => 'required|numeric|min:0|max:10',
+    'date' => 'required|date|before_or_equal:today',
+    'child_id' => 'required|exists:children,id'
+], [
+    'comment.required' => 'Vui lòng nhập nhận xét.',
+    'point.required' => 'Vui lòng chọn điểm.',
+    'date.before_or_equal' => 'Ngày không được vượt quá hôm nay.',
+    'child_id.exists' => 'Học sinh được chọn không tồn tại.'
+]);
+
     weekevaluate::create([
         'comment' => $request->input('comment'),
         'point' => $request->input('point'),
