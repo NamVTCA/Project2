@@ -7,6 +7,7 @@ use App\Models\tuition;
 use App\Models\tuition_info;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
@@ -14,7 +15,8 @@ class paymentController extends Controller
 {
     
     function index(){
-        $children = Child::all();
+        $user = Auth::user();
+        $children = Child::where('user_id', $user->id)->with('user')->get();
         $tuitions = tuition::with('tuition_info')->get();
         return view('test/momo', compact('tuitions','children'));
     }
@@ -102,8 +104,7 @@ class paymentController extends Controller
         if (isset($jsonResult['payUrl'])) {
             $tuition->update(['status' => 1]);
             session(['momo_payment_order_id' => $orderId]);
-            $child = child::with('tuition')->find($tuition->child_id);
-            $user = User::find($child->user_id);
+            $user = Auth::user();
             $userEmail = $user->email;
             Mail::raw("tong so tien de thanh toan la:  $amount", function ($message) use ($user) {
             $message->to($user->email);

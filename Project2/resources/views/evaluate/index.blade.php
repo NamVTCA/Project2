@@ -42,7 +42,6 @@
         </nav>
     </div>
 </header>
-
 <main class="schedule-section py-5">
     <div class="container bg-light">
         <h2 class="text-pink">Đánh Giá Theo Ngày</h2>
@@ -57,6 +56,7 @@
                     @endforeach
                 </select>
             </div>
+
             <div class="col-md-6 mb-3">
                 <label for="date" class="form-label">Ngày Học</label>
                 <input type="date" name="date" id="date" class="form-control" required>
@@ -82,7 +82,8 @@
         </form>
     </div>
 </main>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+

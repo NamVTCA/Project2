@@ -12,7 +12,6 @@ class ChildController extends Controller
 {
     public function index()
     {
-       
         $children = Child::with('user')->get();
         return view('admin.children.index', compact('children'));
     }

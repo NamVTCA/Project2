@@ -11,10 +11,8 @@
                 <div class="card-body">
                     <h5 class="card-title">Quản lý tài khoản</h5>
                     <p class="card-text">Xem và chỉnh sửa thông tin tài khoản.</p>
-<<<<<<< Updated upstream
-                    <a href="{{ route('account.index') }}" class="btn btn-light btn-sm">Đi tới</a>
-=======
->>>>>>> Stashed changes
+
+
                     <a href="{{ route('admin.users.index') }}" class="btn btn-light btn-sm">Đi tới</a>
 
                 </div>

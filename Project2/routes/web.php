@@ -6,6 +6,8 @@ use App\Http\Controllers\paymentController;
 use App\Http\Controllers\scheduleController;
 // use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChildController;
+use App\Http\Controllers\ClassController;
+use App\Http\Controllers\evaluateController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\tuitionContoller;
@@ -37,6 +39,11 @@ Route::get('/timetable', function () {
 // Route::get('/tuitionmanagement', function () {
 //     return view('tuitionmanagement');
 // })->name('tuitionmanagement');
+Route::get('/posment/{idclass}/{date}',[scheduleController::class,'posment'] );
+Route::get('/posment2/{id}',[scheduleController::class,'posment2'] );
+
+Route::get('/childget/{id}',[evaluateController::class,'index'] );
+
 
 Route::get('/tuitionmanagement',[tuitionContoller::class,'index'] )->name('tuitionmanagement');
 
@@ -63,18 +70,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/change-password', [ResetPasswordController::class, 'changePassword'])->name('reset.password');
 });
 
-<<<<<<< Updated upstream
+
 Route::prefix('admin')->group(function () {
-    Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
-    Route::get('/users/create', [UserController::class, 'create'])->name('users.create'); 
-    Route::post('/users', [UserController::class, 'store'])->name('users.store');
-    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-=======
-
-
-
 Route::middleware('auth.check')->group(function () {
     Route::middleware('role:0')->group(function () {
         Route::get('/dashboard/admin', [LoginController::class, 'admin'])->name('admin');
@@ -87,34 +84,35 @@ Route::middleware('auth.check')->group(function () {
             Route::delete('/users/{user}', [UserAccountController::class, 'destroy'])->name('admin.users.delete');
         });        
 
-
-
->>>>>>> Stashed changes
     Route::get('/children', [ChildController::class, 'index'])->name('admin.children.index');
     Route::get('/children/create', [ChildController::class, 'create'])->name('children.create');
     Route::post('/children', [ChildController::class, 'store'])->name('children.store');
     Route::get('/children/{child}', [ChildController::class, 'show'])->name('children.show');
     Route::get('/children/{child}/edit', [ChildController::class, 'edit'])->name('children.edit');
     Route::put('/children/{child}', [ChildController::class, 'update'])->name('children.update');
-});
-
-Route::get('/api/tuitions/{childId}', [paymentController::class, 'getTuitionsByChild']);
-Route::get('/api/tuition-details/{tuitionId}', [paymentController::class, 'getTuitionDetails']);
-Route::get('/momo',[paymentController::class,'index'])->name('momo');
-Route::post('/momo_payment',[paymentController::class,'momo_payment'])->name('momo_payment');
-
-Route::middleware('auth.check')->group(function () {
-    Route::middleware('role:0')->group(function () {
-        Route::get('/dashboard/admin', [LoginController::class, 'admin'])->name('admin');
+    Route::get('/classes', [ClassController::class, 'index'])->name('admin.classrooms.index');
+    Route::get('/classes/create', [ClassController::class, 'create'])->name('classrooms.create');
+    Route::post('/classes', [ClassController::class, 'store'])->name('classrooms.store');
+    Route::get('/classes/{class}', [ClassController::class, 'show'])->name('classrooms.show');
+    Route::get('/classes/{class}/edit', [ClassController::class, 'edit'])->name('classrooms.edit');
+    Route::put('/classes/{class}', [ClassController::class, 'update'])->name('classrooms.update');
     });
-
+    });
     Route::middleware('role:1')->group(function () {
-        
+        Route::post('/evaluate',[evaluateController::class,'evaluatecomment'])->name('evaluate');
+        Route::get('/evaluate',[evaluateController::class,'show']);
         Route::get('/dashboard/teacher', [LoginController::class, 'teacher'])->name('teacher');
+        Route::get('/api/tuitions/{childId}', [paymentController::class, 'getTuitionsByChild']);
+        Route::get('/api/tuition-details/{tuitionId}', [paymentController::class, 'getTuitionDetails']);
+        Route::get('/momo',[paymentController::class,'index'])->name('momo');
+        Route::post('/momo_payment',[paymentController::class,'momo_payment'])->name('momo_payment');
     });
-
-    Route::middleware('role:2')->group(function () {
+        Route::middleware('role:2')->group(function () {
         Route::get('/dashboard/user', [LoginController::class, 'user'])->name('user');
+        Route::get('/api/tuitions/{childId}', [paymentController::class, 'getTuitionsByChild']);
+        Route::get('/api/tuition-details/{tuitionId}', [paymentController::class, 'getTuitionDetails']);
+        Route::get('/momo',[paymentController::class,'index'])->name('momo');
+        Route::post('/momo_payment',[paymentController::class,'momo_payment'])->name('momo_payment');
     });
 
 // Route::middleware('auth')->group(function () {

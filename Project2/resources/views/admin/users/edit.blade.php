@@ -100,14 +100,14 @@
 
         <div style="margin-bottom: 15px;">
             <label>Ảnh đại diện:</label>
-            @if($user->img)
+            @if(isset($user) && $user->img)
                 <div style="margin: 10px 0;">
-                    <img src="{{ asset('storage/' . $user->img) }}" alt="Current Image" style="max-width: 200px;">
+                    <img src="{{ asset('storage/' . $user->img) }}" alt="Profile Image" style="max-width: 200px;">
                 </div>
             @endif
             <input type="file" name="img" accept="image/jpeg,image/png,image/jpg">
             <small style="color: #666;">Để trống nếu không muốn thay đổi ảnh</small>
-        </div>
+        </div>        
 
         <button type="submit">Cập nhật</button>
     </form>

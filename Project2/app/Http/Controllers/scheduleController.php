@@ -9,30 +9,39 @@ use App\Models\subject;
 use Illuminate\Http\Request;
 class scheduleController extends Controller
 {
-
-   public function getDetails(Request $request) {
-    $classroomId = $request->input('classroom_id');
-    $date = $request->input('date');
-
-  $schedules = schedule::with(['schedule_info.subject']) 
-    ->where('classroom_id', $classroomId)
-    ->where('date', $date)
-    ->get();
-    $result = [];
-    foreach ($schedules as $schedule) {
-        foreach ($schedule->schedule_info as $info) {
-            $subjectNames = $info->subjects->pluck('name')->join(', ');
-            $result[] = [
-                'id' => $info->id,
-                'schedule_id' => $schedule->id,
-                'name' => $info->name,
-                'subject_name' => $subjectNames,
-            ];
+    
+public function posment($idclass, $date)
+{
+    $schedules = Schedule::where('classroom_id', $idclass)
+        ->where('date', $date)
+        ->first();
+    if ($schedules) {
+        $scheduleInfos = $schedules->schedule_info;
+        foreach ($scheduleInfos as $info) {
+            $info->subject = Subject::find($info->subject_id); 
         }
     }
 
-    return response()->json($result);
+    return response()->json($scheduleInfos);
 }
+public function posment2($id) {
+   $schedules = schedule_info::where('schedule_id', $id)->get();
+$subjectIds = $schedules->pluck('subject_id');
+$subjects = subject::whereIn('id', $subjectIds)->get(); 
+
+return response()->json($subjects);
+}
+   public function getDetails(Request $request) {
+    $classroomId = $request->input('classroom_id');
+    $date = $request->input('date');
+    $schedules = Schedule::where('classroom_id', $classroomId)
+        ->where('date', $date)
+        ->with('schedule_info.')
+        ->get();
+
+    return view('schedule.schedule', compact('schedules'));
+}
+
 
 public function delete(Request $request) {
     $scheduleId = $request->input('schedule_id');
@@ -46,9 +55,15 @@ public function delete(Request $request) {
     }
     return response()->json(['error' => 'Không tìm thấy dữ liệu'], 404);
 }
-    public function index(){
+    public function index(Request $request){
         $classrooms = classroom::all();
-        return view('schedule/schedule',compact('classrooms'));
+         $classroomId = $request->input('classroom_id');
+        $date = $request->input('date');
+        $schedules = Schedule::where('classroom_id', $classroomId)
+        ->where('date', $date)
+        ->with('schedule_info')
+        ->get();
+        return view('schedule/schedule',compact('classrooms','schedules'));
     }
    public function create()
     {
@@ -63,7 +78,7 @@ public function delete(Request $request) {
         'classroom_id' => 'required|exists:classrooms,id',
         'subject_id' => 'required|exists:subjects,id',
         'date' => 'required|date',
-        'lesson' => 'required|integer|between:1,10',
+        'lesson' => 'required',
     ]);
 
     $schedule = Schedule::with('classroom', 'schedule_info')

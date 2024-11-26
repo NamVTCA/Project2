@@ -95,8 +95,14 @@
 
         <div style="margin-bottom: 15px;">
             <label>Ảnh đại diện:</label>
+            @if(isset($user) && $user->img)
+                <div style="margin: 10px 0;">
+                    <img src="{{ asset('storage/' . $user->img) }}" alt="Profile Image" style="max-width: 200px;">
+                </div>
+            @endif
             <input type="file" name="img" accept="image/jpeg,image/png,image/jpg">
-        </div>
+            <small style="color: #666;">Để trống nếu không muốn thay đổi ảnh</small>
+        </div>        
 
         <button type="submit">Tạo người dùng</button>
 =======
