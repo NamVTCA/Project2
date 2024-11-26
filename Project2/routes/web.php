@@ -1,10 +1,8 @@
 <?php
 
-// use App\Http\Controllers\AccountController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\paymentController;
 use App\Http\Controllers\scheduleController;
-// use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChildController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\evaluateController;
