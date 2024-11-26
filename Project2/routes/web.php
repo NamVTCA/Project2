@@ -7,6 +7,7 @@ use App\Http\Controllers\scheduleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChildController;
 use App\Http\Controllers\ClassController;
+use App\Http\Controllers\evaluateController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\tuitionContoller;
@@ -37,6 +38,11 @@ Route::get('/timetable', function () {
 // Route::get('/tuitionmanagement', function () {
 //     return view('tuitionmanagement');
 // })->name('tuitionmanagement');
+Route::get('/posment/{idclass}/{date}',[scheduleController::class,'posment'] );
+Route::get('/posment2/{id}',[scheduleController::class,'posment2'] );
+
+Route::get('/childget/{id}',[evaluateController::class,'index'] );
+
 
 Route::get('/tuitionmanagement',[tuitionContoller::class,'index'] )->name('tuitionmanagement');
 
@@ -92,7 +98,8 @@ Route::middleware('auth.check')->group(function () {
     });
     });
     Route::middleware('role:1')->group(function () {
-        
+        Route::post('/evaluate',[evaluateController::class,'evaluatecomment'])->name('evaluate');
+        Route::get('/evaluate',[evaluateController::class,'show']);
         Route::get('/dashboard/teacher', [LoginController::class, 'teacher'])->name('teacher');
         Route::get('/api/tuitions/{childId}', [paymentController::class, 'getTuitionsByChild']);
         Route::get('/api/tuition-details/{tuitionId}', [paymentController::class, 'getTuitionDetails']);
