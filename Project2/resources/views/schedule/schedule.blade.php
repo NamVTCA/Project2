@@ -20,10 +20,24 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Trang Chủ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Thành phần</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Giáo dục</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ Route('login') }}">Đăng Nhập</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Sự Kiện</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Giáo Dục</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('feedback')}}">Phản Hồi</a></li>
+                    <li class="nav-item">
+                        @if(Auth::check())
+                            <!-- Hiển thị "Đăng Xuất" nếu người dùng đã đăng nhập -->
+                            <a class="nav-link" href="{{ route('logout') }}" 
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Đăng Xuất
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        @else
+                            <!-- Hiển thị "Đăng Nhập" nếu người dùng chưa đăng nhập -->
+                            <a class="nav-link" href="{{ route('login') }}">Đăng Nhập</a>
+                        @endif
+                    </li>
                 </ul>
             </div>
         </nav>

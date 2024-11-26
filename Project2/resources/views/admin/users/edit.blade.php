@@ -2,6 +2,7 @@
 
 @section('content')
 <div>
+    <link rel="stylesheet" href="{{ asset('css/AccountEdit.css') }}">
     <h2>Chỉnh sửa thông tin người dùng</h2>
 
     @if($errors->any())
@@ -14,7 +15,7 @@
         </div>
     @endif
 
-    <form action="{{ route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data" id="userForm">
+    <form action="{{ route('admin.users.update', $user->id) }}" method="POST" enctype="multipart/form-data" id="userForm">
         @csrf
         @method('PUT')
         

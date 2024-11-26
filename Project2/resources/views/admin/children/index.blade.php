@@ -3,6 +3,7 @@
 @section('content')
 <div class="children-container">
     <div class="header">
+        <link rel="stylesheet" href="{{ asset('css/ChildrenManagement.css') }}">
         <h1>Children Management</h1>
         <a href="{{ route('children.create') }}" class="btn-add">Add New Child</a>
     </div>

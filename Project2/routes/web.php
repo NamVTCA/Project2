@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\AccountController;
+// use App\Http\Controllers\AccountController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\paymentController;
 use App\Http\Controllers\scheduleController;
-use App\Http\Controllers\UserController;
+// use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChildController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\evaluateController;
@@ -12,6 +12,7 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\tuitionContoller;
 use App\Http\Controllers\subjectController;
+use App\Http\Controllers\UserAccountController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -50,7 +51,6 @@ Route::get('/feedback', function () {
     return view('feedback');
 })->name('feedback');
 
-
 Route::middleware(['auth'])->group(function () {
       Route::get('/schedule', [scheduleController::class, 'index'])->name('schedule');
 });
@@ -71,18 +71,19 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-
-
+Route::prefix('admin')->group(function () {
 Route::middleware('auth.check')->group(function () {
     Route::middleware('role:0')->group(function () {
         Route::get('/dashboard/admin', [LoginController::class, 'admin'])->name('admin');
-        Route::prefix('admin')->group(function () {
-    Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
-    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-    Route::post('/users', [UserController::class, 'store'])->name('users.store');
-    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-    Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+        Route::prefix('admin')->middleware('auth')->group(function () {
+            Route::get('/users', [UserAccountController::class, 'index'])->name('admin.users.index');
+            Route::get('/users/create', [UserAccountController::class, 'create'])->name('admin.users.create'); // Sửa thành admin.users.create
+            Route::post('/users', [UserAccountController::class, 'store'])->name('admin.users.store');
+            Route::get('/users/{user}/edit', [UserAccountController::class, 'edit'])->name('admin.users.edit');
+            Route::put('/users/{user}', [UserAccountController::class, 'update'])->name('admin.users.update');
+            Route::delete('/users/{user}', [UserAccountController::class, 'destroy'])->name('admin.users.delete');
+        });        
+
     Route::get('/children', [ChildController::class, 'index'])->name('admin.children.index');
     Route::get('/children/create', [ChildController::class, 'create'])->name('children.create');
     Route::post('/children', [ChildController::class, 'store'])->name('children.store');
@@ -113,7 +114,6 @@ Route::middleware('auth.check')->group(function () {
         Route::get('/momo',[paymentController::class,'index'])->name('momo');
         Route::post('/momo_payment',[paymentController::class,'momo_payment'])->name('momo_payment');
     });
-});
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/dashboard/admin', [LoginController::class, 'admin'])->name('admin');
@@ -127,7 +127,7 @@ Route::delete('/schedule/delete', [ScheduleController::class, 'delete']);
 Route::post('/schedule/store', [ScheduleController::class, 'store'])->name('schedule.store');
 Route::get('/schedule/create', [ScheduleController::class, 'create'])->name('schedule.create');
 Route::get('/schedule/show',[scheduleController::class,'index'])->name('schedule.show');
-Route::get('/logout',[loginController::class,'logout'])->name('logout');
+Route::post('/logout',[loginController::class,'logout'])->name('logout');
 
 
 Route::get('/subjects', [subjectController::class, 'index'])->name('subjects.index');
@@ -139,5 +139,12 @@ Route::post('/timetable/save', [TimetableController::class, 'save'])->name('time
 
 
 
+
+// Route::get('/accounts', [AccountController::class, 'index'])->name('account.index');
+// Route::get('/accounts/create', [AccountController::class, 'create'])->name('account.create');
+// Route::post('/accounts/store', [AccountController::class, 'store'])->name('account.store');
+// Route::get('/accounts/{id}/edit', [AccountController::class, 'edit'])->name('account.edit');
+// Route::put('/accounts/{id}', [AccountController::class, 'update'])->name('account.update');
+// Route::delete('/accounts/{id}', [AccountController::class, 'destroy'])->name('account.delete');
 
 

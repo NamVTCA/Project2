@@ -11,7 +11,8 @@
                 <div class="card-body">
                     <h5 class="card-title">Quản lý tài khoản</h5>
                     <p class="card-text">Xem và chỉnh sửa thông tin tài khoản.</p>
-                    {{-- <a href="{{ route('account.index') }}" class="btn btn-light btn-sm">Đi tới</a> --}}
+
+
                     <a href="{{ route('admin.users.index') }}" class="btn btn-light btn-sm">Đi tới</a>
 
                 </div>
@@ -29,8 +30,8 @@
         <div class="col-md-4">
             <div class="card shadow-sm bg-gradient-pink text-white text-center">
                 <div class="card-body">
-                    <h5 class="card-title">Thống kê và báo cáo</h5>
-                    <p class="card-text">Xem báo cáo chi tiết hệ thống.</p>
+                    <h5 class="card-title">Phản Hồi</h5>
+                    <p class="card-text">Xem chi tiết các phản hồi.</p>
                     <a href="#" class="btn btn-light btn-sm">Đi tới</a>
                 </div>
             </div>

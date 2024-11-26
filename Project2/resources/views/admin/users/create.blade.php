@@ -1,12 +1,13 @@
 @extends('layouts.dashboard')
 
+@section('title', 'Quản lý tài khoản')
+
 @section('content')
-<div>
-    <link rel="stylesheet" href="{{ asset('css/UserCreation.css') }}">
-    <h2>Tạo người dùng mới</h2>
+<div class="container mt-4">
+    <h2>Tạo người dùng mới và cấp tài khoản</h2>
 
     @if($errors->any())
-        <div style="color: red; margin: 10px 0;">
+        <div class="alert alert-danger">
             <ul>
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -15,77 +16,73 @@
         </div>
     @endif
 
-    <form action="{{ route('users.store') }}" method="POST" enctype="multipart/form-data" id="userForm">
+    <form action="{{ route('admin.users.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div style="margin-bottom: 15px;">
-            <label>Họ tên:</label>
-            <input type="text" name="name" value="{{ old('name') }}" 
-                   pattern="^[\pL\s]+$"
-                   oninvalid="this.setCustomValidity('Họ tên chỉ được chứa chữ cái và khoảng trắng')"
-                   oninput="this.setCustomValidity('')"
-                   required>
-            <span class="error-message"></span>
+
+        <!-- Phần tải lên ảnh đại diện -->
+        <div class="form-group mb-3">
+            <label for="profileImage">Ảnh đại diện 3x4</label>
+            <input type="file" id="profileImage" name="img" accept="image/*" class="form-control">
         </div>
 
-        <div style="margin-bottom: 15px;">
-            <label>Email:</label>
-            <input type="email" name="email" value="{{ old('email') }}" 
-                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                   oninvalid="this.setCustomValidity('Vui lòng nhập email hợp lệ (ví dụ: example@domain.com)')"
-                   oninput="this.setCustomValidity('')"
-                   required>
-            <span class="error-message"></span>
+        <!-- Các trường nhập liệu -->
+        <div class="form-group mb-3">
+            <label for="name">Họ tên:</label>
+            <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required>
         </div>
 
-        <div style="margin-bottom: 15px;">
-            <label>Mật khẩu:</label>
-            <input type="text" name="password" minlength="6"
-                   oninvalid="this.setCustomValidity('Mật khẩu phải có ít nhất 6 ký tự')"
-                   oninput="this.setCustomValidity('')"
-                   required>
-            <span class="error-message"></span>
+        <div class="form-group mb-3">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" required>
         </div>
 
-        <div style="margin-bottom: 15px;">
-            <label>CMND/CCCD:</label>
-            <input type="text" name="id_number" value="{{ old('id_number') }}"
-                   pattern="^[0-9\s]+$"
-                   oninvalid="this.setCustomValidity('CMND/CCCD chỉ được chứa số và khoảng trắng')"
-                   oninput="this.setCustomValidity('')"
-                   required>
-            <span class="error-message"></span>
+        <div class="form-group mb-3">
+            <label for="password">Mật khẩu:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
         </div>
 
-        <div style="margin-bottom: 15px;">
-            <label>Địa chỉ:</label>
-            <input type="text" name="address" value="{{ old('address') }}" required>
+        <div class="form-group mb-3">
+            <label for="id_number">Số căn cước công dân:</label>
+            <input type="text" id="id_number" name="id_number" class="form-control" value="{{ old('id_number') }}" required>
         </div>
 
-        <div style="margin-bottom: 15px;">
-            <label>Vai trò:</label>
-            <select name="role" required>
-                <option value="1" {{ old('role') == 1 ? 'selected' : '' }}>Giáo viên</option>
-                <option value="2" {{ old('role') == 2 ? 'selected' : '' }}>Phụ huynh</option>
+        <div class="form-group mb-3">
+            <label for="address">Địa chỉ:</label>
+            <input type="text" id="address" name="address" class="form-control" value="{{ old('address') }}" required>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="phone">Số điện thoại:</label>
+            <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phone') }}" required>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="role">Vai trò:</label>
+            <select id="role" name="role" class="form-control" required>
+                <option value="0">Admin</option>
+                <option value="1">Giáo Viên</option>
+                <option value="2">Phụ Huynh</option>
             </select>
         </div>
 
-        <div style="margin-bottom: 15px;">
-            <label>Trạng thái:</label>
-            <select name="status" required>
-                <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Hoạt động</option>
-                <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Không hoạt động</option>
+        <div class="form-group mb-3">
+            <label for="gender">Giới tính:</label>
+            <select id="gender" name="gender" class="form-control" required>
+                <option value="male">Nam</option>
+                <option value="female">Nữ</option>
+                <option value="other">Khác</option>
             </select>
         </div>
 
-        <div style="margin-bottom: 15px;">
-            <label>Giới tính:</label>
-            <select name="gender" required>
-                <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Nam</option>
-                <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Nữ</option>
-                <option value="other" {{ old('gender') == 'other' ? 'selected' : '' }}>Khác</option>
+        <div class="form-group mb-3">
+            <label for="status">Trạng thái:</label>
+            <select id="status" name="status" class="form-control" required>
+                <option value="1">Hoạt động</option>
+                <option value="0">Không hoạt động</option>
             </select>
         </div>
 
+<<<<<<< Updated upstream
         <div style="margin-bottom: 15px;">
             <label>Số điện thoại:</label>
             <input type="text" name="phone" value="{{ old('phone') }}"
@@ -108,50 +105,9 @@
         </div>        
 
         <button type="submit">Tạo người dùng</button>
+=======
+        <button type="submit" class="btn btn-primary">Tạo tài khoản</button>
+>>>>>>> Stashed changes
     </form>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('userForm');
-    const inputs = form.querySelectorAll('input');
-
-    inputs.forEach(input => {
-        input.addEventListener('input', function() {
-            const errorSpan = this.nextElementSibling;
-            
-            if (this.validity.valid) {
-                errorSpan.textContent = '';
-            } else {
-                switch(this.name) {
-                    case 'name':
-                        errorSpan.textContent = 'Họ tên chỉ được chứa chữ cái và khoảng trắng';
-                        break;
-                    case 'email':
-                        errorSpan.textContent = 'Vui lòng nhập email hợp lệ';
-                        break;
-                    case 'password':
-                        errorSpan.textContent = 'Mật khẩu phải có ít nhất 6 ký tự';
-                        break;
-                    case 'id_number':
-                        errorSpan.textContent = 'CMND/CCCD chỉ được chứa số và khoảng trắng';
-                        break;
-                    case 'phone':
-                        errorSpan.textContent = 'Số điện thoại chỉ được chứa số và khoảng trắng';
-                        break;
-                }
-            }
-        });
-    });
-});
-</script>
-
-<style>
-.error-message {
-    color: red;
-    font-size: 0.8em;
-    display: block;
-    margin-top: 5px;
-}
-</style>
 @endsection

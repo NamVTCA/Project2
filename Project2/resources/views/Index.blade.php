@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NURSERY PRESCHOOL</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/Home.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <!-- Header Section -->
@@ -21,8 +21,22 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Trang Chủ</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Sự Kiện</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Giáo Dục</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('feedback') }}">Liên Hệ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Đăng Nhập</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('feedback')}}">Phản Hồi</a></li>
+                        <li class="nav-item">
+                            @if(Auth::check())
+                                <!-- Hiển thị "Đăng Xuất" nếu người dùng đã đăng nhập -->
+                                <a class="nav-link" href="{{ route('logout') }}" 
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Đăng Xuất
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            @else
+                                <!-- Hiển thị "Đăng Nhập" nếu người dùng chưa đăng nhập -->
+                                <a class="nav-link" href="{{ route('login') }}">Đăng Nhập</a>
+                            @endif
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -88,15 +102,6 @@
                     <h6 class="text-uppercase fw-bold mb-4">NURSERY PRESCHOOL</h6>
                     <p>Môi trường an toàn và thân thiện cho sự phát triển của trẻ.</p>
                 </div>
-                <!-- Quick Links -->
-                {{-- <div class="col-md-4">
-                    <h6 class="text-uppercase fw-bold mb-4">Liên Kết Nhanh</h6>
-                    <p><a href="#" class="text-reset">Home</a></p>
-                    <p><a href="#" class="text-reset">News</a></p>
-                    <p><a href="#" class="text-reset">Education</a></p>
-                    <p><a href="#" class="text-reset">Contact</a></p>
-                </div> --}}
-                <!-- Contact Info -->
                 <div class="col-md-4">
                     <h6 class="text-uppercase fw-bold mb-4">Liên Hệ</h6>
                     <p>Địa chỉ: 123 Đường ABC, Quận XYZ, TP HCM</p>
