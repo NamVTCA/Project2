@@ -44,6 +44,7 @@ h1 {
 .account-table {
     width: 100%;
     border-collapse: collapse;
+    overflow-x: auto; /* Thêm cuộn ngang */
 }
 
 .account-table th, 
@@ -96,4 +97,70 @@ h1 {
 
 .inline-form {
     display: inline-block;
+}
+
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        margin: 20px auto;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .actions {
+        text-align: center; /* Đưa nút về giữa trên màn hình nhỏ */
+    }
+
+    .actions .btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+
+    .account-table th, 
+    .account-table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    .account-table {
+        font-size: 12px;
+        overflow-x: auto; /* Thêm cuộn ngang */
+    }
+
+    .account-table th, 
+    .account-table td {
+        padding: 6px;
+    }
+
+    .actions .btn {
+        width: 100%; /* Nút rộng 100% màn hình */
+        padding: 10px;
+        margin-bottom: 10px; /* Thêm khoảng cách giữa các nút */
+    }
+
+    .inline-form {
+        display: block; /* Đưa các form trong dòng xuống thành hàng dọc */
+        text-align: center;
+    }
 }

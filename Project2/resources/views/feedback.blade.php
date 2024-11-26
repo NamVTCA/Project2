@@ -28,22 +28,6 @@
             </div>
             <button type="submit" class="btn">Gửi Phản Hồi</button>
         </form>
-
-        <hr>
-
-        <h2>Danh Sách Phản Hồi</h2>
-        <ul class="feedback-list">
-            <!-- Ví dụ phản hồi -->
-            <li class="feedback-item">
-                @if(Auth::check())
-                <p><strong>Tên:</strong> {{ Auth::user()->name }}</p>
-                <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
-                @endif
-                <p>"Dịch vụ rất tốt, tôi rất hài lòng!"</p>
-                <span class="timestamp">Gửi lúc: 2024-11-23 14:00</span>
-            </li>
-            <!-- Thêm phản hồi tại đây -->
-        </ul>
     </div>
 </body>
 </html>
