@@ -71,20 +71,19 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::prefix('admin')->group(function () {
+
 Route::middleware('auth.check')->group(function () {
     Route::middleware('role:0')->group(function () {
         Route::get('/dashboard/admin', [LoginController::class, 'admin'])->name('admin');
         Route::prefix('admin')->middleware('auth')->group(function () {
             Route::get('/users', [UserAccountController::class, 'index'])->name('admin.users.index');
-            Route::get('/users/create', [UserAccountController::class, 'create'])->name('admin.users.create'); // Sửa thành admin.users.create
+            Route::get('/users/create', [UserAccountController::class, 'create'])->name('admin.users.create'); 
             Route::post('/users', [UserAccountController::class, 'store'])->name('admin.users.store');
             Route::get('/users/{user}/edit', [UserAccountController::class, 'edit'])->name('admin.users.edit');
             Route::put('/users/{user}', [UserAccountController::class, 'update'])->name('admin.users.update');
             Route::delete('/users/{user}', [UserAccountController::class, 'destroy'])->name('admin.users.delete');
         });        
-
-    Route::get('/children', [ChildController::class, 'index'])->name('admin.children.index');
+        Route::get('/children', [ChildController::class, 'index'])->name('admin.children.index');
     Route::get('/children/create', [ChildController::class, 'create'])->name('children.create');
     Route::post('/children', [ChildController::class, 'store'])->name('children.store');
     Route::get('/children/{child}', [ChildController::class, 'show'])->name('children.show');
@@ -97,6 +96,7 @@ Route::middleware('auth.check')->group(function () {
     Route::get('/classes/{class}/edit', [ClassController::class, 'edit'])->name('classrooms.edit');
     Route::put('/classes/{class}', [ClassController::class, 'update'])->name('classrooms.update');
     });
+    
     });
     Route::middleware('role:1')->group(function () {
         Route::post('/evaluate',[evaluateController::class,'evaluatecomment'])->name('evaluate');
@@ -146,5 +146,3 @@ Route::post('/timetable/save', [TimetableController::class, 'save'])->name('time
 // Route::get('/accounts/{id}/edit', [AccountController::class, 'edit'])->name('account.edit');
 // Route::put('/accounts/{id}', [AccountController::class, 'update'])->name('account.update');
 // Route::delete('/accounts/{id}', [AccountController::class, 'destroy'])->name('account.delete');
-
-

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\child;
 use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -42,19 +44,28 @@ class loginController extends Controller
         }
     
         Auth::login($user);
-    
-    
+        $id = $user->id;
+        $children = child::where('user_id',$id)->get();
         $role = $user->role;
     
         switch ($role) {
             case 0:
                 return redirect()->route('admin')->with('user', $user);
             case 1:
-                return redirect()->route('teacher')->with('user', $user);
+                return redirect()->route('teacher')->with([
+                                                            'user' => $user,
+                                                            'children' => $children,
+                                                        ]);
             case 2:
-                return redirect()->route('user')->with('user', $user);
+                return redirect()->route('user')->with([
+                                                            'user' => $user,
+                                                            'children' => $children,
+                                                        ]);
             default:
-                return redirect()->route('user')->with('user', $user);
+                return redirect()->route('user')->with([
+                                                            'user' => $user,
+                                                            'children' => $children,
+                                                        ]);
         }
     }
     
