@@ -7,12 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/NurserySchedule.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <header class="py-3 shadow-sm" style="background-color:#ffe4e1;">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="title">LỊCH SINH HOẠT Ở TRẺ EM</div>
+            <div class="navbar-brand fw-bold fs-4" style="color: #d6336c;">LỊCH SINH HOẠT TRẺ EM</div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -31,31 +32,39 @@
 <main class="schedule-section py-5">
     <div class="container">
         <h2 class="text-center mb-4" style="color:#d6336c;">Lịch học Nhà trẻ</h2>
-        <div class="form-group mb-3">
-            <label for="classroom_id">Lớp học</label>
-            <select name="classroom_id" id="classroom_id" class="form-control" required>
-                <option value="">-- Chọn lớp học --</option>
-                @foreach($classrooms as $classroom)
-                    <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="form-group mb-4">
-            <label for="date">Ngày học</label>
-            <input type="date" name="date" id="date" class="form-control" required>
-        </div>
-        <div class="schedule-details mt-5">
-            <h3 class="text-center mb-3" style="color: #6c757d;">Chi Tiết Lịch Học</h3>
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>Tiết Học</th>
-                    <th>Môn Học</th>
-                    <th>Hành Động</th>
-                </tr>
-                </thead>
-                <tbody id="schedule-details-body"></tbody>
-            </table>
+        <form class="row mb-4">
+            <div class="col-md-6">
+                <label for="classroom_id" class="form-label">Lớp học</label>
+                <select name="classroom_id" id="classroom_id" class="form-select" required>
+                    <option value="">-- Chọn lớp học --</option>
+                    @foreach($classrooms as $classroom)
+                        <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="date" class="form-label">Ngày học</label>
+                <input type="date" name="date" id="date" class="form-control" required>
+            </div>
+        </form>
+        <div class="schedule-details mt-4">
+            <h3 class="text-center mb-3 text-secondary">Chi Tiết Lịch Học</h3>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                    <tr>
+                        <th>Tiết Học</th>
+                        <th>Môn Học</th>
+                        <th class="text-center">Hành Động</th>
+                    </tr>
+                    </thead>
+                    <tbody id="schedule-details-body">
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">Chọn lớp và ngày học để hiển thị lịch.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </main>
@@ -63,7 +72,6 @@
 <script>
     document.getElementById('classroom_id').addEventListener('change', loadSchedule);
     document.getElementById('date').addEventListener('change', loadSchedule);
-
     function loadSchedule() {
         const classroomId = document.getElementById('classroom_id').value;
         const date = document.getElementById('date').value;
@@ -80,13 +88,15 @@
                                 <tr>
                                     <td>${item.name}</td>
                                     <td>${item.subject_name}</td>
-                                    <td>
-                                        <button class="btn btn-danger btn-sm" onclick="deleteSchedule(${item.schedule_id}, ${item.id})">Xóa</button>
+                                    <td class="text-center">
+                                        <button class="btn btn-danger btn-sm" onclick="deleteSchedule(${item.schedule_id}, ${item.id})">
+                                            <i class="fas fa-trash-alt"></i> Xóa
+                                        </button>
                                     </td>
                                 </tr>`;
                         });
                     } else {
-                        tableBody.innerHTML = '<tr><td colspan="3" class="text-center">Không có dữ liệu</td></tr>';
+                        tableBody.innerHTML = '<tr><td colspan="3" class="text-center text-muted">Không có dữ liệu.</td></tr>';
                     }
                 })
                 .catch(error => {
