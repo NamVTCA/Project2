@@ -28,9 +28,35 @@ class loginController extends Controller
     function showLogin(){
         return view('login');
     }
-  
+  public function getStudentDetails(Request $request)
+{
+    $childId = $request->query('child_id');
+    $date = $request->query('date');
+
+    $child = Child::with(['classroom'])->find($childId);
+
+    if (!$child) {
+        return response()->json(['success' => false, 'message' => 'Không tìm thấy học sinh']);
+    }
+
+    $evaluation = WeekEvaluate::where('child_id', $childId)->where('date', $date)->first();
+
+    $classroom = $child->classroom->pluck('name')->first();
+
+    return response()->json([
+        'success' => true,
+        'student' => [
+            'name' => $child->name,
+            'birthDate' => $child->birthDate,
+            'gender' => $child->gender,
+            'className' => $classroom,
+        ],
+        'evaluation' => $evaluation,
+    ]);
+}
     public function login(Request $request)
     {
+        
         $request->validate([
             'phone' => 'required',
             'password' => 'required',
@@ -46,21 +72,19 @@ class loginController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             return redirect()->route('showlogin')->with('message','invalid phone or email');
         }
+        
        Auth::login($user);
-    $id = $user->id;
-    $children = Child::where('user_id', $id)->get();
-    $role = $user->role;
-    // $data = childclass::where('child_Id', $request->input('student'))->get();
-    $evaluate = weekevaluate::where('child_id',$request->input('child_id'))->where('date', $request->input('date'))->get();
-    $data = $request->input('child_id');
-    // $classroom = classroom::where('classroom_Id', $class->id)->get();
+        $id = $user->id;
+        $children = Child::where('user_id', $id)->get();
+        $role = $user->role;
+
     switch ($role) {
         case 0:
-            return view('admin/dashboardadmin')->with('user', $user);
+            return view('admin/dashboardadmin');
         case 1:
             return view('teacher.dashboardteacher',compact('children'));
         case 2:
-            return view('users.dashboarduser',compact('children','evaluate'));
+            return view('users.dashboarduser',compact('children'));
         default:
             return view('users.dashboarduser',compact('children'));
     }

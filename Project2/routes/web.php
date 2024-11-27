@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
       Route::get('/schedule', [scheduleController::class, 'index'])->name('schedule');
 });
 
+Route::get('/api/student/details', [loginController::class, 'getStudentDetails']);
 
 Route::get('/tuition', [tuitionContoller::class, 'index'])->name('tuition.index');
 Route::get('/tuition/create', [tuitionContoller::class, 'create'])->name('tuition.create');
