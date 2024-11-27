@@ -9,6 +9,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
 <header class="py-3 shadow-sm bg-light">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -80,6 +83,11 @@
                 <button type="submit" class="btn btn-pink">Gửi Đánh Giá</button>
             </div>
         </form>
+        @if($errors->any())
+    <div class="alert alert-danger">
+        {{ $errors->first() }}
+    </div>
+@endif
     </div>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

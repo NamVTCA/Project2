@@ -51,7 +51,13 @@ public function evaluatecomment(Request $request)
     'date.before_or_equal' => 'Ngày không được vượt quá hôm nay.',
     'child_id.exists' => 'Học sinh được chọn không tồn tại.'
 ]);
-
+    $evaluate = weekevaluate::with('child')
+                        ->where('child_id', $request->input('child_id'))
+                        ->where('date', $request->input('date'))
+                        ->first();
+    if ($evaluate) {
+         return redirect()->back()->withErrors(['error' => 'Lịch bị trùng!']);
+     }
     weekevaluate::create([
         'comment' => $request->input('comment'),
         'point' => $request->input('point'),
