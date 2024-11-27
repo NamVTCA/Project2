@@ -35,9 +35,7 @@
 
                     <th>DanhSách</th>
                     <th>Lớp</th>
-
                     <th>#</th>
-
                     <th>Học Kỳ</th>
                     <th>Trạng Thái</th>
                 </tr>
@@ -75,10 +73,10 @@
                         <td>{{ $tuition->status == 1 ? 'Đã Thanh Toán' : 'Chưa Thanh Toán' }}</td>
                         {{-- <td><a href="{{ route('tuition.show', $tuition->id) }}" class="btn">Xem Chi Tiết</a></td> --}}
                     </tr>
-                @endforeach
+                {{-- @endforeach --}}
             </tbody>
         </table>
-    </div> --}}
+    </div> 
 
     <!-- Nếu có thông báo thành công -->
     @if(session('success'))
