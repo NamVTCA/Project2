@@ -37,8 +37,6 @@ Route::get('/timetable', function () {
 // Route::get('/tuitionmanagement', function () {
 //     return view('tuitionmanagement');
 // })->name('tuitionmanagement');
-Route::get('/posment/{idclass}/{date}',[scheduleController::class,'posment'] );
-Route::get('/posment2/{id}',[scheduleController::class,'posment2'] );
 
 Route::get('/childget/{id}',[evaluateController::class,'index'] );
 
@@ -52,8 +50,10 @@ Route::get('/feedback', function () {
 Route::middleware(['auth'])->group(function () {
       Route::get('/schedule', [scheduleController::class, 'index'])->name('schedule');
 });
-
+Route::get('/api/schedule/details', [ScheduleController::class, 'getScheduleDetails']);
+Route::delete('/api/schedule/delete/{id}', [ScheduleController::class, 'deleteSchedule']);
 Route::get('/api/student/details', [loginController::class, 'getStudentDetails']);
+Route::get('/schedule/user',[scheduleController::class,'user'])->name('schedule.user');
 
 Route::get('/tuition', [tuitionContoller::class, 'index'])->name('tuition.index');
 Route::get('/tuition/create', [tuitionContoller::class, 'create'])->name('tuition.create');
@@ -73,6 +73,8 @@ Route::middleware(['auth'])->group(function () {
 Route::prefix('admin')->group(function () {
     Route::middleware('auth.check')->group(function () {
         Route::middleware('role:0')->group(function () {
+            Route::get('/schedule/show',[scheduleController::class,'index'])->name('schedule.show');
+
             Route::get('/dashboard/admin', [LoginController::class, 'admin'])->name('admin');
             Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/users', [UserAccountController::class, 'index'])->name('admin.users.index');
@@ -82,7 +84,6 @@ Route::prefix('admin')->group(function () {
                 Route::put('/users/{user}', [UserAccountController::class, 'update'])->name('admin.users.update');
                 Route::delete('/users/{user}', [UserAccountController::class, 'destroy'])->name('admin.users.delete');
             });
-
             Route::get('/children', [ChildController::class, 'index'])->name('admin.children.index');
             Route::get('/children/create', [ChildController::class, 'create'])->name('children.create');
             Route::post('/children', [ChildController::class, 'store'])->name('children.store');
@@ -126,7 +127,6 @@ Route::get('/schedule/details', [ScheduleController::class, 'getDetails']);
 Route::delete('/schedule/delete', [ScheduleController::class, 'delete']);
 Route::post('/schedule/store', [ScheduleController::class, 'store'])->name('schedule.store');
 Route::get('/schedule/create', [ScheduleController::class, 'create'])->name('schedule.create');
-Route::get('/schedule/show',[scheduleController::class,'index'])->name('schedule.show');
 Route::post('/logout',[loginController::class,'logout'])->name('logout');
 
 
