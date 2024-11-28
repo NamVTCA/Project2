@@ -31,31 +31,8 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row mt-4">
-        <!-- Phần thông báo -->
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header bg-warning text-dark">
-                    Chọn Ngày và Học Lực
-                </div>
-                <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="date">Ngày:</label>
-                            <input type="date" id="date" class="form-control">
-                        </div>
-                        <div class="form-group mt-3">
-                            <label for="hocLuc">Học Lực:</label>
-                            <textarea id="hocLuc" class="form-control" rows="3" placeholder="Nhập học lực và nhận xét hôm nay"></textarea>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Chọn học sinh và hiển thị thông tin -->
-
+        <!-- Phần chọn học sinh và chi tiết học sinh (bên phải) -->
         <div class="col-md-6">
             <!-- Chọn học sinh -->
             <div class="card mb-3">
@@ -64,35 +41,16 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="student">Học Sinh:</label>
-                        <select id="student" class="form-control">
-                            <option value="1">Nguyễn Văn A</option>
-                            <option value="2">Trần Thị B</option>
-                            <option value="3">Lê Văn C</option>
+                        <label for="child_id">Học Sinh:</label>
+                        <select name="child_id" id="child_id" class="form-select" required>
+                            <option value="" disabled selected>-- Chọn học sinh --</option>
+                            @foreach($children as $child)
+                                <option value="{{ $child->id }}">{{ $child->name }}</option>
+                            @endforeach
                         </select>
-                    </div>
-                    <div class="mt-4 text-center">
-                        <!-- Hiển thị ảnh học sinh -->
-                        <img src="{{ asset('img/Login.png') }}" 
-                             id="studentImage" 
-                             alt="Ảnh Học Sinh" 
-                             class="rounded mb-3" 
-                             style="width: 120px; height: 120px; object-fit: cover;">
-                             
-                        <h5>Thông Tin Học Sinh:</h5>
-                        <p><strong>Tên:</strong> Nguyễn Văn A</p>
-                        <p><strong>Lớp:</strong> 10A1</p>
-                        <p><strong>Giáo Viên Chủ Nhiệm:</strong> Cô Nguyễn Thị D</p>
-                        <p><strong>Điểm Trung Bình:</strong> 8.5</p>
                     </div>
                 </div>
             </div>
-
-        </div>
-    </div>
-</div>
-
-
             <!-- Chi tiết học sinh -->
             <div class="card">
                 <div class="card-header bg-info text-white">
@@ -152,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const date = dateInput.value;
 
         if (childId && date) {
-            fetch(`/api/student/details?child_id=${childId}&date=${date}`)
+            fetch(/api/student/details?child_id=${childId}&date=${date})
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -192,6 +150,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-
 </script>
 @endsection
