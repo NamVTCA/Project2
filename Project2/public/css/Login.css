@@ -1,160 +1,50 @@
 /* Reset CSS */
-* {
+body, h1, h2, h3, h4, h5, h6, p, ul, li, a, button {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: Arial, sans-serif;
+    box-sizing: border-box;
 }
 
-/* Màu sắc cho tên thương hiệu */
-.title {
-    color: #ff69b4;
-    font-weight: bold;
-}
-
-
-/* Màu sắc cho liên kết trong menu */
-.navbar-nav .nav-link {
-    color: #ff69b4;
-    font-weight: bold;
-    padding: 8px 12px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.navbar-nav .nav-link:hover {
-    transform: scale(1.10); /* Phóng to nhẹ khi hover */
-    color: #38383a;
-}
-
-/* Body Styles */
+/* General Styles */
 body {
     background-color: #f9f9f9;
     color: #6c757d;
+    line-height: 1.6;
 }
 
-/* Header Styles */
+/* Navbar */
 .navbar {
     background-color: #f1d1e1;
-    padding: 15px 0;
+    padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-} */
-
-/* Navbar Brand */
 .navbar-brand {
     font-size: 24px;
     color: #ff69b4;
     font-weight: bold;
 }
 
-/* Navbar Toggler */
-.navbar-toggler {
-    display: none;
+.navbar-nav .nav-link {
+    color: #ff69b4;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    transform: scale(1.1);
+    color: #38383a;
+}
+
+.navbar.navbar-expand-lg.navbar-light{
     background-color: #ffe4e1;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    font-weight: bold;
-    cursor: pointer;
 }
 
-.navbar-toggler:focus {
-    background-color: #ffe4e1; /* Hồng nhạt */
-    outline: none;
-}
-
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23ff69b4' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
-
-/* Nút Quay Về */
-.nav-link.btn.btn-outline-primary.btn-sm.me-3 {
-    display: inline-block;
-    color: #fff; /* Màu chữ trắng */
-    background-color: #f27eec; /* Màu xanh Bootstrap */
-    padding: 8px 16px; /* Khoảng cách bên trong */
-    font-size: 14px; /* Kích thước chữ */
-    font-weight: 500; /* Đậm hơn một chút */
-    border-radius: 5px; /* Bo góc */
-    text-decoration: none; /* Xóa gạch chân */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Hiệu ứng hover */
-}
-
-.nav-link.btn.btn-outline-primary.btn-sm.me-3:hover {
-    background-color: #fa03d5; /* Màu xanh đậm hơn khi hover */
-    transform: scale(1.05); /* Phóng to nhẹ khi hover */
-}
-
-.nav-link.btn.btn-outline-primary.btn-sm.me-3:active {
-    background-color: #f90bd9; /* Màu khi bấm giữ */
-    transform: scale(0.95); /* Thu nhỏ nhẹ khi nhấn */
-}
-
-
-/* Container chính */
-.container {
-    max-width: auto;
-    margin: 50px auto;
-    padding: 30px;
-    background: #f1d1e1;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-
-/* Header */
-h2 {
-    color: #ec53d0;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 28px;
-    position: relative;
-}
-
-h2::after {
-    content: '';
-    width: 50px;
-    height: 3px;
-    background-color: #efade9;
-    display: block;
-    margin: 10px auto 0;
-    border-radius: 5px;
-}
-
-/* Form Labels */
-.form-label {
-    font-size: 16px;
-    color: #555;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-/* Select Box */
-.form-select {
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 16px;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.form-select:focus {
-    border-color: #070b07;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    outline: none;
-}
-
-/* Login Form Section */
+/* Login Section */
 .login-section {
     max-width: 400px;
     margin: 50px auto;
@@ -165,14 +55,14 @@ h2::after {
     text-align: center;
 }
 
-.logo img {
+.login-section .logo img {
     width: 80px;
 }
 
-.logo h1 {
+.login-section .logo h1 {
     font-size: 24px;
     color: #ff69b4;
-    margin-top: 10px;
+    margin: 10px 0 20px;
 }
 
 .login-form {
@@ -180,11 +70,11 @@ h2::after {
 }
 
 .login-form label {
-    font-size: 16px;
-    color: #6c757d;
     display: block;
-    margin-bottom: 5px;
+    font-size: 14px;
+    color: #6c757d;
     text-align: left;
+    margin-bottom: 5px;
 }
 
 .login-form input {
@@ -193,6 +83,12 @@ h2::after {
     margin-bottom: 15px;
     border: 1px solid #ced4da;
     border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.login-form input:focus {
+    border-color: #ff69b4;
+    outline: none;
 }
 
 .login-btn {
@@ -213,7 +109,7 @@ h2::after {
 
 .forgot-password,
 .note {
-    font-size: 15px;
+    font-size: 14px;
     color: #6c757d;
     margin-top: 10px;
 }
@@ -231,9 +127,11 @@ h2::after {
     color: #ff69b4;
 }
 
-/* Footer Styles */
+/* Footer */
 footer {
     background-color: #ffe4e1;
+    padding: 10px 0;
+    text-align: center;
     color: #6c757d;
 }
 
@@ -247,14 +145,22 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Media Queries */
+/* Responsive Adjustments */
 @media (max-width: 991.98px) {
     .navbar-toggler {
-        display: block; /* Hiển thị nút menu khi màn hình nhỏ */
+        display: block;
+        background-color: #ffe4e1;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
     }
-    
+
+    .navbar-toggler:focus {
+        outline: none;
+    }
+
     .navbar-collapse {
-        background-color: #ffe4e1; /* Màu nền menu khi mở trên thiết bị di động */
+        background-color: #ffe4e1;
     }
 
     .navbar-nav .nav-link {

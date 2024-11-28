@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 @section('content')
 <div class="container">
-    <link rel="stylesheet" href="{{ asset('css/TuitionCreate.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/ScheduleIndex.css') }}">
     <h1>Tạo Lịch học</h1>
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>

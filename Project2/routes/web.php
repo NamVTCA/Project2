@@ -15,7 +15,7 @@ use App\Http\Controllers\UserAccountController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index');
+    return view('users.edit');
 });
 Route::get('/resetpassword', function () {
     return view('resetpassword');
@@ -39,6 +39,10 @@ Route::get('/feedbackList', function () {
     return view('feedbackList');
 });
 
+
+// Route::get('/teacher2', function(){
+//     return view('teacher.dashboardteacher');
+// });
 // Route::get('/tuitionmanagement', function () {
 //     return view('tuitionmanagement');
 // })->name('tuitionmanagement');

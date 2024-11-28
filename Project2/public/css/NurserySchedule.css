@@ -1,31 +1,31 @@
-/* Reset CSS */
-* {
+/* Đặt CSS bên trong lớp cha để không ảnh hưởng tới Dashboard */
+.schedule-section * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
-.navbar-nav .nav-link {
+
+.schedule-section .navbar-nav .nav-link {
     color: #ff69b4;
     font-weight: bold;
     padding: 10px 16px;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.navbar-nav .nav-link:hover {
+.schedule-section .navbar-nav .nav-link:hover {
     transform: scale(1.10);
     color: #38383a;
 }
 
 /* Title Styles */
-.title {
+.schedule-section .title {
     color: #ff69b4;
     font-weight: bold;
 }
 
-
 /* Container chính */
-.container {
+.schedule-section .container {
     max-width: auto;
     margin: 50px auto;
     padding: 30px;
@@ -35,9 +35,8 @@
     animation: fadeIn 0.5s ease-in-out;
 }
 
-
 /* Header */
-h2 {
+.schedule-section h2 {
     color: #ec53d0;
     font-weight: bold;
     text-align: center;
@@ -46,7 +45,7 @@ h2 {
     position: relative;
 }
 
-h2::after {
+.schedule-section h2::after {
     content: '';
     width: 50px;
     height: 3px;
@@ -57,7 +56,7 @@ h2::after {
 }
 
 /* Form Labels */
-.form-label {
+.schedule-section .form-label {
     font-size: 16px;
     color: #555;
     font-weight: bold;
@@ -65,7 +64,7 @@ h2::after {
 }
 
 /* Select Box */
-.form-select {
+.schedule-section .form-select {
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 8px;
@@ -74,36 +73,36 @@ h2::after {
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.form-select:focus {
+.schedule-section .form-select:focus {
     border-color: #070b07;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     outline: none;
 }
 
 /* Header Styles */
-.header {
+.schedule-section .header {
     background-color: #ffe4e1;
 }
 
-.schedule-section h2 {
+.schedule-section .schedule-section h2 {
     color: #d6336c;
     font-size: 26px;
     margin-bottom: 25px;
 }
 
 /* Table Styles */
-.table-pink {
+.schedule-section .table-pink {
     background-color: #ffebf0;
 }
 
-.table th,
-.table td {
+.schedule-section .table th,
+.schedule-section .table td {
     text-align: center;
     vertical-align: middle;
 }
 
 /* Button Styles */
-.btn-pink {
+.schedule-section .btn-pink {
     background-color: #ff69b4;
     color: white;
     padding: 10px 20px;
@@ -113,29 +112,22 @@ h2::after {
     transition: background-color 0.3s;
 }
 
-.btn-pink:hover {
+.schedule-section .btn-pink:hover {
     background-color: #d6336c;
 }
-
-/* Nút Quay Về */
-.nav-link.btn.btn-outline-primary.btn-sm.me-3 {
-    display: inline-block;
-    color: #fff; /* Màu chữ trắng */
-    background-color: #f27eec; /* Màu xanh Bootstrap */
-    padding: 8px 16px; /* Khoảng cách bên trong */
-    font-size: 14px; /* Kích thước chữ */
-    font-weight: 500; /* Đậm hơn một chút */
-    border-radius: 5px; /* Bo góc */
-    text-decoration: none; /* Xóa gạch chân */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Hiệu ứng hover */
+/* Date Input - Ngày học */
+.schedule-section .form-control[type="date"] {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    height: auto; /* Đảm bảo chiều cao đồng nhất */
 }
 
-.nav-link.btn.btn-outline-primary.btn-sm.me-3:hover {
-    background-color: #fa03d5; /* Màu xanh đậm hơn khi hover */
-    transform: scale(1.05); /* Phóng to nhẹ khi hover */
-}
-
-.nav-link.btn.btn-outline-primary.btn-sm.me-3:active {
-    background-color: #f90bd9; /* Màu khi bấm giữ */
-    transform: scale(0.95); /* Thu nhỏ nhẹ khi nhấn */
+.schedule-section .form-control[type="date"]:focus {
+    border-color: #070b07;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    outline: none;
 }

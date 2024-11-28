@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -49,10 +50,16 @@
             </nav>
         </div>
     </header>
+=======
+@extends('layouts.dashboard') 
+
+@section('content')
+<link rel="stylesheet" href="{{ asset('css/EvaluateIndex.css') }}">
+>>>>>>> Stashed changes
 <main class="schedule-section py-5">
-    <div class="container bg-light">
+    <div class="evaluate-page">
         <h2 class="text-pink">Đánh Giá Theo Ngày</h2>
-        <form action="{{route('evaluate')}}" method="post" class="row">
+        <form action="{{ route('evaluate') }}" method="post" class="row">
             @csrf
             <div class="col-md-6 mb-3">
                 <label for="child_id" class="form-label">Học Sinh</label>
@@ -87,10 +94,16 @@
                 <button type="submit" class="btn btn-pink">Gửi Đánh Giá</button>
             </div>
         </form>
+        
+        @if(session('success'))
+            <div class="alert alert-success mt-3">{{ session('success') }}</div>
+        @endif
+
+        @if($errors->any())
+            <div class="alert alert-danger mt-3">
+                {{ $errors->first() }}
+            </div>
+        @endif
     </div>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-
-
+@endsection

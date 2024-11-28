@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    @extends('layouts.app')
+    @extends('layouts.dashboard')
 
     @section('content')
     <div class="container">

@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('content')
-<div class="container">
+<div class="tuition-create">
     <link rel="stylesheet" href="{{ asset('css/TuitionCreate.css') }}">
     <h1>Tạo Học phí</h1>
 
@@ -55,11 +55,11 @@
         const newDetail = `
             <div class="tuition-detail">
                 <div class="form-group">
-                    <label for="tuition_details[${index}][name]">Name</label>
+                    <label for="tuition_details[${index}][name]">Tên</label>
                     <input type="text" name="tuition_details[${index}][name]" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="tuition_details[${index}][price]">Price</label>
+                    <label for="tuition_details[${index}][price]">Giá</label>
                     <input type="number" name="tuition_details[${index}][price]" class="form-control" required>
                 </div>
             </div>

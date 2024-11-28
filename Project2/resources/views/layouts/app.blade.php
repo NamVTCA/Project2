@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -67,10 +67,6 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <!-- Nút Quay Về -->
-                            <a class="nav-link btn btn-outline-primary btn-sm me-3" href="javascript:history.back();">
-                                <i class="bi bi-arrow-left"></i> Quay Về
-                            </a>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Trang Chủ</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Sự Kiện</a></li>
@@ -135,4 +131,4 @@
         });
     </script>
 </body>
-</html>
+</html> --}}

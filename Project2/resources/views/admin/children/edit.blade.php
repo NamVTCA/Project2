@@ -1,36 +1,29 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<div>
-    <h2>Chỉnh sửa thông tin học sinh</h2>
+<link rel="stylesheet" href="{{ asset('css/ChildrenEdit.css') }}">
 
-    @if($errors->any())
-        <div style="color: red; margin: 10px 0;">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <form action="{{ route('children.update', $child->id) }}" method="POST" enctype="multipart/form-data" id="childForm">
+<div class="edit-student-wrapper">
+    <form action="{{ route('children.update', $child->id) }}" method="PUT" enctype="multipart/form-data" id="childForm">
+        <h2>Chỉnh sửa thông tin học sinh</h2>
         @csrf
         @method('PUT')
 
-        <div style="margin-bottom: 15px;">
+        <div>
             <label>Tên:</label>
-            <input type="text" name="name" value="{{ old('name') }}" required pattern="^[\p{L}\s]+$" title="Tên chỉ được chứa chữ cái và khoảng trắng" oninput="validateName(this)">
-            <span class="error-message" style="color: red; display: none;">Vui lòng nhập tên hợp lệ (chỉ chứa chữ cái và khoảng trắng).</span>
+            <input type="text" name="name" value="{{ old('name') }}" required 
+                pattern="^[\p{L}\s]+$" 
+                title="Tên chỉ được chứa chữ cái và khoảng trắng" 
+                oninput="validateName(this)">
+            <span class="error-message" style="display: none;">Vui lòng nhập tên hợp lệ (chỉ chứa chữ cái và khoảng trắng).</span>
         </div>
 
-        <div style="margin-bottom: 15px;">
+        <div>
             <label>Ngày sinh:</label>
             <input type="date" name="birthDate" value="{{ old('birthDate') }}" max="{{ date('Y-m-d') }}" required>
-            <span class="error-message"></span>
         </div>
 
-        <div style="margin-bottom: 15px;">
+        <div>
             <label>Giới tính:</label>
             <select name="gender" required>
                 <option value="1" {{ old('gender', $child->gender) == 1 ? 'selected' : '' }}>Nam</option>
@@ -38,7 +31,7 @@
             </select>
         </div>
 
-        <div style="margin-bottom: 15px;">
+        <div>
             <label>Phụ huynh:</label>
             <select name="user_id" required>
                 @php
@@ -50,7 +43,7 @@
             </select>
         </div>
 
-        <div style="margin-bottom: 15px;">
+        <div>
             <label>Trạng thái:</label>
             <select name="status" required>
                 <option value="1" {{ old('status', $child->status) == 1 ? 'selected' : '' }}>Hoạt động</option>
@@ -58,31 +51,39 @@
             </select>
         </div>
 
-        <div style="margin-bottom: 15px;">
+        <div>
             <label>Ảnh đại diện:</label>
             @if(isset($user) && $user->img)
-                <div style="margin: 10px 0;">
-                    <img src="{{ asset('storage/' . $user->img) }}" alt="Profile Image" style="max-width: 200px;">
-                </div>
+                <img src="{{ asset('storage/' . $user->img) }}" alt="Profile Image">
             @endif
-            <input type="file" name="img" accept="image/jpeg,image/png,image/jpg">
-            <small style="color: #666;">Để trống nếu không muốn thay đổi ảnh</small>
-        </div>        
+            <input type="file" name="img" accept="image/*">
+        </div>
 
         <button type="submit">Cập nhật thông tin học sinh</button>
     </form>
 </div>
+
 <script>
+    // Validate tên
     function validateName(input) {
-        const pattern = /^[\p{L}\s]+$/u; // Updated pattern to support Unicode letters properly, including accented characters
-        const errorMessage = input.nextElementSibling;
+        const pattern = /^[\p{L}\s]+$/u; // Hỗ trợ ký tự Unicode
+        const errorMessage = input.nextElementSibling; // Tìm span.error-message đi kèm
         if (!pattern.test(input.value)) {
-            errorMessage.style.display = 'block'; // Show error message if input is invalid
+            errorMessage.style.display = 'block'; // Hiển thị lỗi
             input.setCustomValidity('Tên chỉ được chứa chữ cái và khoảng trắng');
         } else {
-            errorMessage.style.display = 'none'; // Hide error message if input is valid
-            input.setCustomValidity(''); // Reset custom validity
+            errorMessage.style.display = 'none'; // Ẩn lỗi
+            input.setCustomValidity(''); // Xóa lỗi
         }
     }
+
+    // Thêm sự kiện submit cho form để kiểm tra trước khi gửi
+    document.getElementById('childForm').addEventListener('submit', function (e) {
+        const nameInput = this.querySelector('input[name="name"]');
+        validateName(nameInput);
+        if (!nameInput.checkValidity()) {
+            e.preventDefault(); // Ngăn gửi form nếu có lỗi
+        }
+    });
 </script>
 @endsection

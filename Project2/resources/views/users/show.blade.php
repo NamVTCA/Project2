@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    @extends('layouts.app')
+    @extends('layouts.dashboard')
 
     @section('content')
     <div class="container">
@@ -28,16 +28,16 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                <p><strong>Full Name:</strong> {{ $user->name }}</p>
+                                <p><strong>Họ Và Tên:</strong> {{ $user->name }}</p>
                                 <p><strong>Email:</strong> {{ $user->email }}</p>
-                                <p><strong>ID Number:</strong> {{ $user->id_number }}</p>
-                                <p><strong>Phone:</strong> {{ $user->phone }}</p>
+                                <p><strong>Căn Cước Công Dân:</strong> {{ $user->id_number }}</p>
+                                <p><strong>Số Điện Thoại:</strong> {{ $user->phone }}</p>
                             </div>
                             <div class="col-md-6">
-                                <p><strong>Gender:</strong> {{ ucfirst($user->gender) }}</p>
-                                <p><strong>Role:</strong> {{ $user->role == 1 ? 'Teacher' : 'Parent' }}</p>
-                                <p><strong>Status:</strong> {{ $user->status }}</p>
-                                <p><strong>Address:</strong> {{ $user->address }}</p>
+                                <p><strong>Giới Tính:</strong> {{ ucfirst($user->gender) }}</p>
+                                <p><strong>Vai Trò:</strong> {{ $user->role == 1 ? 'Teacher' : 'Parent' }}</p>
+                                <p><strong>Trạng Thái:</strong> {{ $user->status }}</p>
+                                <p><strong>Địa Chỉ:</strong> {{ $user->address }}</p>
                             </div>
                         </div>
                     </div>

@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản lý môn học</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+@extends('layouts.dashboard')
+
+@section('content')
+<div class="subjects-page">
     <link rel="stylesheet" href="{{ asset('css/Subjects.css') }}">
-</head>
-<body>
     <h1>Danh sách Môn học</h1>
+
     <!-- Hiển thị thông báo -->
     @if (session('success'))
         <p style="color: green;">{{ session('success') }}</p>
     @endif
+
     <!-- Form thêm mới -->
     <form action="{{ route('subjects.store') }}" method="POST">
         @csrf
         <input type="text" name="name" placeholder="Tên môn học" required>
         <button type="submit">Thêm</button>
     </form>
+
     <h2>Danh sách:</h2>
     <ul>
         @foreach ($subjects as $subject)
@@ -34,5 +32,5 @@
             </li>
         @endforeach
     </ul>
-</body>
-</html>
+</div>
+@endsection

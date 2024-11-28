@@ -1,73 +1,182 @@
-/* Card chung */
+/* Toàn bộ giao diện */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container chính */
+.container {
+    padding: 20px;
+}
+
+/* Bố cục chính */
+.row {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px; /* Khoảng cách giữa các cột */
+    justify-content: space-between;
+}
+
+.col-md-6 {
+    flex: 0 0 48%; /* Mỗi cột chiếm 48% chiều rộng */
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+    .row {
+        flex-wrap: wrap; /* Xếp chồng lên nhau trên màn hình nhỏ */
+    }
+
+    .col-md-6 {
+        flex: 0 0 100%; /* Chiếm toàn bộ chiều rộng */
+    }
+}
+
+/* Card */
 .card {
-    border-radius: 12px; /* Bo góc nhẹ hơn */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Bóng mềm hơn */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Hiệu ứng khi hover */
-    background-color: #fff; /* Nền trắng tinh */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
-.card:hover {
-    transform: translateY(-5px); /* Hiệu ứng nổi lên */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Tăng bóng khi hover */
-}
-
-/* Phần tiêu đề card */
+/* Card Header */
 .card-header {
+    font-size: 1.25rem;
     font-weight: bold;
-    font-size: 18px; /* Tăng kích thước chữ */
-    color: #fff; /* Màu chữ trắng */
-    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient xanh tím */
-    padding: 10px 15px; /* Thêm khoảng cách bên trong */
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2); /* Đường viền mờ phía dưới */
+    text-align: left; /* Canh trái header */
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px 10px 0 0;
 }
 
-/* Nội dung trong card */
+/* Màu sắc card header */
+.card-header.bg-info {
+    background-color: #17a2b8 !important;
+    color: white;
+}
+
+.card-header.bg-warning {
+    background-color: #ffc107 !important;
+    color: #212529;
+}
+
+.card-header.bg-primary {
+    background-color: #007bff !important;
+    color: white;
+}
+
+/* Card body */
 .card-body {
-    font-size: 15px; /* Tăng nhẹ kích thước chữ */
-    padding: 20px; /* Khoảng cách rộng hơn */
-    line-height: 1.6; /* Giãn dòng cho dễ đọc */
-    color: #333; /* Màu chữ tối */
+    padding: 20px;
 }
 
-/* Textarea */
-textarea {
-    resize: none; /* Tắt resize */
-    border-radius: 6px; /* Bo góc */
-    border: 1px solid #ddd; /* Đường viền mờ */
-    padding: 10px; /* Khoảng cách bên trong */
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05); /* Hiệu ứng bên trong */
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+/* Ảnh người dùng */
+.card-body img {
+    border: 3px solid #17a2b8;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
-textarea:focus {
-    border-color: #2575fc; /* Đổi màu viền khi focus */
-    box-shadow: 0 0 5px rgba(37, 117, 252, 0.4); /* Ánh sáng xanh khi focus */
-    outline: none;
+.card-body img:hover {
+    transform: scale(1.1);
 }
 
 /* Form group */
-form .form-group {
-    margin-bottom: 20px; /* Tăng khoảng cách giữa các nhóm */
-}
-
-/* Tiêu đề */
-h5 {
+.form-group label {
     font-weight: bold;
-    margin-bottom: 15px;
-    color: #444; /* Màu chữ đậm */
+    margin-bottom: 8px;
+    display: block;
 }
 
-/* Nút chọn */
-select {
-    border-radius: 6px;
-    border: 1px solid #ddd;
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    border-radius: 5px;
     padding: 10px;
-    font-size: 14px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: border-color 0.2s ease;
+    border: 1px solid #ddd;
+    font-size: 1rem;
 }
 
-select:focus {
-    border-color: #6a11cb;
-    outline: none;
+/* Nút */
+button {
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 1rem;
+}
+
+button.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+button.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+/* Bảng */
+.table {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.table th,
+.table td {
+    text-align: left;
+    padding: 10px;
+}
+
+.table th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Modal */
+.modal-header {
+    background-color: #007bff;
+    color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-body p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.modal-body img {
+    border: 3px solid #007bff;
+}
+
+/* Responsive cho modal */
+@media (max-width: 768px) {
+    .form-group input,
+    .form-group select {
+        font-size: 0.9rem;
+    }
+
+    .modal-body img {
+        width: 80px;
+        height: 80px;
+    }
 }
