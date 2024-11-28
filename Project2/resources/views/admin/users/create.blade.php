@@ -65,7 +65,6 @@
 
         <div class="form-group mb-3">
             <label for="phone">Số điện thoại:</label>
-            <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phone') }}" required>
             <input type="text" 
                        name="phone"
                        id="phone" 
@@ -107,6 +106,7 @@
                 <option value="0">Không hoạt động</option>
             </select>
         </div>
+        <button type="submit" class="btn btn-primary">Tạo tài khoản</button>
     </form>
 </div>
 <script>
