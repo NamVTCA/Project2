@@ -31,7 +31,6 @@
                 </div>
             </div>
         </div>
-<<<<<<< Updated upstream
     </div>
 
     <div class="row mt-4">
@@ -55,11 +54,8 @@
                 </div>
             </div>
         </div>
-
         <!-- Chọn học sinh và hiển thị thông tin -->
-=======
 
->>>>>>> Stashed changes
         <div class="col-md-6">
             <!-- Chọn học sinh -->
             <div class="card mb-3">
@@ -91,11 +87,11 @@
                     </div>
                 </div>
             </div>
-<<<<<<< Updated upstream
+
         </div>
     </div>
 </div>
-=======
+
 
             <!-- Chi tiết học sinh -->
             <div class="card">
@@ -198,5 +194,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
->>>>>>> Stashed changes
 @endsection
