@@ -1,243 +1,119 @@
-    .container {
-        max-width: 800px;
-        margin: 20px auto;
-        padding: 20px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        background-color: #f9f9f9;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
+.hoc-phi-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff5f7; /* Màu nền hồng nhạt */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
-    h1 {
-        text-align: center;
-        color: #333;
-        margin-bottom: 20px;
-    }
+.hoc-phi-container h1 {
+    text-align: center;
+    color: #ff5c8d; /* Màu chữ chính */
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
 
-    .form-group {
-        margin-bottom: 20px;
-    }
+.hoc-phi-container .form-group {
+    margin-bottom: 20px;
+}
 
-    label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: bold;
-        color: #555;
-    }
+.hoc-phi-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
 
-    input, select, textarea {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 14px;
-    }
+.hoc-phi-container input, 
+.hoc-phi-container select, 
+.hoc-phi-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
 
-    input:focus, select:focus, textarea:focus {
-        outline: none;
-        border-color: #007bff;
-        box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
-    }
+.hoc-phi-container input:focus, 
+.hoc-phi-container select:focus, 
+.hoc-phi-container textarea:focus {
+    outline: none;
+    border-color: #ff5c8d;
+    box-shadow: 0 0 6px rgba(255, 92, 141, 0.5);
+}
 
-    .tuition-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
+.hoc-phi-container .tuition-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
 
-    .tuition-table th, 
-    .tuition-table td {
-        border: 1px solid #ddd;
-        padding: 10px;
-        text-align: center;
-    }
+.hoc-phi-container .tuition-table th, 
+.hoc-phi-container .tuition-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
 
-    .tuition-table th {
-        background-color: #007bff;
-        color: white;
-    }
+.hoc-phi-container .tuition-table th {
+    background-color: #ff5c8d; /* Màu nền header bảng */
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
 
-    .tuition-table td {
-        background-color: #fff;
-        color: #333;
-    }
+.hoc-phi-container .tuition-table td {
+    background-color: #fff;
+    color: #555;
+    font-size: 14px;
+}
 
-    .tuition-item {
-        display: flex;
-        gap: 10px;
-    }
-
-    .tuition-item input {
-        flex: 1;
-    }
-
-    button {
-        display: inline-block;
-        padding: 10px 20px;
-        border: none;
-        background-color: #28a745;
-        color: white;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        font-size: 14px;
-    }
-
-    button:hover {
-        background-color: #218838;
-    }
-
-    .actions {
-        text-align: right;
-        margin-bottom: 20px;
-    }
-
-    .actions .btn {
-        text-decoration: none;
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        border-radius: 4px;
-    }
-
-    .actions .btn:hover {
-        background-color: #0056b3;
-    }.container {
-        max-width: 800px;
-        margin: 20px auto;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        background-color: #fff5f7; /* Màu nền hồng nhạt */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    
-    h1 {
-        text-align: center;
-        color: #ff5c8d; /* Màu chữ chính */
-        margin-bottom: 20px;
-        font-size: 24px;
-        font-weight: bold;
-    }
-    
-    .form-group {
-        margin-bottom: 20px;
-    }
-    
-    label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: bold;
-        color: #333;
-    }
-    
-    input, select, textarea {
-        width: 100%;
-        padding: 12px;
-        margin-bottom: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 14px;
-        transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    
-    input:focus, select:focus, textarea:focus {
-        outline: none;
-        border-color: #ff5c8d; /* Màu viền khi focus */
-        box-shadow: 0 0 6px rgba(255, 92, 141, 0.5);
-    }
-    
-    .tuition-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-    
-    .tuition-table th, 
-    .tuition-table td {
-        border: 1px solid #ddd;
-        padding: 12px;
-        text-align: center;
-    }
-    
-    .tuition-table th {
-        background-color: #ff5c8d; /* Màu nền header bảng */
-        color: white;
-        font-size: 14px;
-        font-weight: bold;
-    }
-    
-    .tuition-table td {
-        background-color: #fff; /* Màu nền của ô */
-        color: #555;
-        font-size: 14px;
-    }
-    
-    .tuition-item {
-        display: flex;
-        gap: 10px;
-    }
-    
-    .tuition-item input {
-        flex: 1;
-    }
-    
-    button {
-        display: inline-block;
-        padding: 10px 20px;
-        border: none;
-        background-color: #ff5c8d; /* Màu nút */
-        color: white;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 14px;
-        transition: background-color 0.3s ease-in-out, transform 0.2s;
-    }
-    
-    button:hover {
-        background-color: #d94472;
-        transform: scale(1.05); /* Hiệu ứng hover */
-    }
-    
-    .actions {
-        text-align: right;
-        margin-bottom: 20px;
-    }
-    
-    .actions .btn {
-        text-decoration: none;
-        padding: 10px 20px;
-        background-color: #ff5c8d; /* Màu nút "Tạo Học Phí" */
-        color: white;
-        border-radius: 4px;
-        font-size: 14px;
-        transition: background-color 0.3s ease-in-out;
-    }
-    
-    .actions .btn:hover {
-        background-color: #d94472;
-    }
-    
-    /* Nút Quay Về */
-.nav-link.btn.btn-outline-primary.btn-sm.me-3 {
+.hoc-phi-container button {
     display: inline-block;
-    color: #fff; /* Màu chữ trắng */
-    background-color: #f27eec; /* Màu xanh Bootstrap */
-    padding: 8px 16px; /* Khoảng cách bên trong */
-    font-size: 14px; /* Kích thước chữ */
-    font-weight: 500; /* Đậm hơn một chút */
-    border-radius: 5px; /* Bo góc */
-    text-decoration: none; /* Xóa gạch chân */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Hiệu ứng hover */
+    padding: 10px 20px;
+    border: none;
+    background-color: #ff5c8d;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
 }
 
-.nav-link.btn.btn-outline-primary.btn-sm.me-3:hover {
-    background-color: #fa03d5; /* Màu xanh đậm hơn khi hover */
-    transform: scale(1.05); /* Phóng to nhẹ khi hover */
+.hoc-phi-container button:hover {
+    background-color: #d94472;
+    transform: scale(1.05);
 }
 
-.nav-link.btn.btn-outline-primary.btn-sm.me-3:active {
-    background-color: #f90bd9; /* Màu khi bấm giữ */
-    transform: scale(0.95); /* Thu nhỏ nhẹ khi nhấn */
+.actions {
+    text-align:right; /* Căn nút về bên trái */
+    margin-bottom: 20px;
+}
+
+.actions .btn {
+    display: inline-block;
+    padding: 12px 24px; /* Kích thước nút lớn hơn */
+    background-color: #ff69b4; /* Màu nền nổi bật */
+    color: white; /* Màu chữ */
+    font-size: 16px; /* Tăng kích thước chữ */
+    font-weight: bold;
+    border: 2px solid #ff69b4; /* Tạo viền đậm */
+    border-radius: 8px; /* Góc bo tròn */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Hiệu ứng chuyển đổi */
+    box-shadow: 0 4px 8px rgba(255, 105, 180, 0.5); /* Hiệu ứng đổ bóng */
+}
+
+.actions .btn:hover {
+    background-color: white; /* Đổi màu nền khi hover */
+    color: #ff69b4; /* Màu chữ nổi bật khi hover */
+    border-color: #ff69b4; /* Giữ màu viền */
+    transform: scale(1.1); /* Phóng to nhẹ */
+    box-shadow: 0 6px 12px rgba(255, 105, 180, 0.7); /* Tăng hiệu ứng đổ bóng */
 }

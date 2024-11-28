@@ -6,15 +6,14 @@
 <div class="container mt-4">
     <link rel="stylesheet" href="{{ asset('css/UserDashboard.css') }}">
     <div class="row">
-        <!-- Phần thông tin cá nhân căn giữa -->
-        <div class="col-md-6 mx-auto">
+        <!-- Phần thông tin cá nhân (bên trái) -->
+        <div class="col-md-6">
             <div class="card">
-                <div class="card-header bg-info text-white text-center">
+                <div class="card-header bg-info text-white">
                     Thông Tin Cá Nhân
                 </div>
-                <div class="card-body text-center">
+                <div class="card-body">
                     @if(Auth::check())
-                        <!-- Hiển thị ảnh người dùng -->
                         <img src="{{ asset('img/backtoschool.png' . Auth::user()->profile_image) }}" 
                              alt="Ảnh Đại Diện" 
                              class="rounded-circle mb-3" 
@@ -32,10 +31,11 @@
                 </div>
             </div>
         </div>
-    </div>
-<!-- Phần thông tin học sinh -->
+
+        <!-- Phần chọn học sinh và chi tiết học sinh (bên phải) -->
         <div class="col-md-6">
-            <div class="card">
+            <!-- Chọn học sinh -->
+            <div class="card mb-3">
                 <div class="card-header bg-primary text-white">
                     Chọn Học Sinh
                 </div>
@@ -51,9 +51,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Phần thông tin chi tiết -->
-        <div class="col-md-6">
+            <!-- Chi tiết học sinh -->
             <div class="card">
                 <div class="card-header bg-info text-white">
                     Chi Tiết Học Sinh
@@ -67,6 +65,7 @@
             </div>
         </div>
     </div>
+</div>
     <div class="row mt-4">
         <!-- Phần học lực -->
         <div class="col-md-12">
@@ -111,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const date = dateInput.value;
 
         if (childId && date) {
-            fetch(`/api/student/details?child_id=${childId}&date=${date}`)
+            fetch(/api/student/details?child_id=${childId}&date=${date})
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
@@ -151,6 +150,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-
 </script>
 @endsection

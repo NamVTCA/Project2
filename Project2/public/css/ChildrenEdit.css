@@ -1,0 +1,103 @@
+/* Bao bọc toàn bộ nội dung để phân biệt */
+.edit-student-wrapper {
+    display: flex;
+    justify-content: center; /* Canh giữa theo chiều ngang */
+    align-items: center; /* Canh giữa theo chiều dọc */
+    min-height: 100vh; /* Chiều cao tối thiểu toàn màn hình */
+    background-color: #ffe4e1; /* Màu nền hồng nhạt */
+    padding: 20px;
+}
+
+/* Container của form */
+.edit-student-wrapper form#childForm {
+    background-color: #ff69b4; /* Màu nền form */
+    color: #fff; /* Màu chữ trắng */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 100%;
+}
+
+/* Tiêu đề */
+.edit-student-wrapper form#childForm h2 {
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Styling cho label */
+.edit-student-wrapper form#childForm label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #fefefe;
+}
+
+/* Styling cho input và select */
+.edit-student-wrapper form#childForm input,
+.edit-student-wrapper form#childForm select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ffadd6;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #38383a;
+}
+
+.edit-student-wrapper form#childForm input:focus,
+.edit-student-wrapper form#childForm select:focus {
+    outline: none;
+    border-color: #fff;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+/* Styling cho lỗi */
+.edit-student-wrapper form#childForm .error-message {
+    font-size: 12px;
+    color: #ffe4e1;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+/* Nút */
+.edit-student-wrapper form#childForm button {
+    width: 100%;
+    background-color: #fff;
+    color: #ff69b4;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.edit-student-wrapper form#childForm button:hover {
+    background-color: #ffadd6;
+    transform: scale(1.05);
+}
+
+/* Hình ảnh */
+.edit-student-wrapper form#childForm img {
+    max-width: 200px;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .edit-student-wrapper form#childForm {
+        padding: 20px;
+    }
+
+    .edit-student-wrapper form#childForm button {
+        width: 100%;
+    }
+}

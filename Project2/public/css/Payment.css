@@ -1,116 +1,16 @@
-/* Màu sắc cho tên thương hiệu */
-.title {
-    color: #ff69b4;
-    font-weight: bold;
-}
-
-/* Màu sắc cho liên kết trong menu */
-.navbar-nav .nav-link {
-    color: #ff69b4;
-    font-weight: bold;
-    padding: 8px 12px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.navbar-nav .nav-link:hover {
-    transform: scale(1.10); /* Phóng to nhẹ khi hover */
-    color: #38383a;
-}
-
-/* Màu nền của header */
-.bg-light {
-    background-color: #ffe4e1 !important; /* Hồng nhạt */
-}
-
-/* Màu nền của footer */
-footer {
-    background-color: #ffe4e1;
-    color: #6c757d;
-}
-
-footer a {
-    color: #6c757d;
-    text-decoration: none;
-}
-
-footer a:hover {
-    color: #ff69b4;
-    text-decoration: underline;
-}
-
-/* Màu nền hồng */
-.bg-pink {
-    background-color: #ff69b4;
-}
-
-/* Màu chữ hồng */
-.text-pink {
-    color: #ff69b4;
-}
-
-/* Tùy chỉnh nút hamburger */
-.navbar-toggler {
-    border-color: #ff69b4; /* Màu viền nút */
-    color: #fff;
-}
-
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23ff69b4' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-    /* Đổi màu biểu tượng của nút hamburger sang màu hồng (#ff69b4) */
-}
-
-/* Màu nền khi nhấn vào nút hamburger */
-.navbar-toggler:focus {
-    background-color: #ffe4e1; /* Hồng nhạt */
-    outline: none;
-}
-
-/* Responsive menu */
-@media (max-width: 991.98px) {
-    .navbar-collapse {
-        background-color: #ffe4e1; /* Màu nền menu khi mở trên thiết bị di động */
-        max-width: auto;
-
-    }
-
-    .navbar-nav .nav-link {
-        color: #ff69b4; /* Màu chữ hồng */
-        padding: 10px 20px;
-        text-align: center;
-        font-weight: bold;
-        border-radius: 15px;
-        animation: fadeIn 0.5s ease-in-out;
-    }
-
-    .navbar-nav .nav-link:hover {
-        transform: scale(1.10);
-        color: #38383a; /* Màu chữ khi hover */
-    }
-}
-
-/* Container chính */
-.container {
-    max-width: auto;
-    margin: 50px auto;
-    padding: 30px;
-    background: #f1d1e1;
+/* Phạm vi CSS dành riêng cho trang thanh toán */
+.payment-page {
+    background-color: #f1d1e1;
     border-radius: 15px;
+    padding: 30px;
+    margin: 50px auto;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-.container.my-5{
     max-width: 700px;
-    margin: 50px auto;
-    padding: 30px;
-    background: #f1d1e1;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Header */
-h2 {
+/* Tiêu đề chính */
+.payment-page h2 {
     color: #ec53d0;
     font-weight: bold;
     text-align: center;
@@ -119,7 +19,7 @@ h2 {
     position: relative;
 }
 
-h2::after {
+.payment-page h2::after {
     content: '';
     width: 50px;
     height: 3px;
@@ -129,16 +29,16 @@ h2::after {
     border-radius: 5px;
 }
 
-/* Form Labels */
-.form-label {
+/* Nhãn form */
+.payment-page .form-label {
     font-size: 16px;
     color: #555;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-/* Select Box */
-.form-select {
+/* Hộp chọn */
+.payment-page .form-select {
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 8px;
@@ -147,14 +47,24 @@ h2::after {
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.form-select:focus {
+.payment-page .form-select:focus {
     border-color: #070b07;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     outline: none;
 }
 
+/* Danh sách chi tiết */
+.payment-page #tuition_detail_list .list-group-item {
+    border-radius: 8px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #383838;
+}
+
 /* Nút Thanh Toán */
-.btn.btn-pink.w-100 {
+.payment-page .btn-pink {
     background: linear-gradient(to right, #ec53d0, #f7cef8);
     border: none;
     color: white;
@@ -166,13 +76,13 @@ h2::after {
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
-.btn.btn-pink.w-100:hover {
-    background: linear-gradient(to right, #ec53d0, #f7cef8);
+.payment-page .btn-pink:hover {
+    background: linear-gradient(to right, #d748c1, #e6b1e2);
     transform: translateY(-3px);
 }
 
 /* Tùy chọn đã thanh toán */
-option:disabled {
+.payment-page option:disabled {
     color: #aaa;
     font-style: italic;
 }
@@ -189,25 +99,21 @@ option:disabled {
     }
 }
 
-/* Nút Quay Về */
-.nav-link.btn.btn-outline-primary.btn-sm.me-3 {
-    display: inline-block;
-    color: #fff; /* Màu chữ trắng */
-    background-color: #f27eec; /* Màu xanh Bootstrap */
-    padding: 8px 16px; /* Khoảng cách bên trong */
-    font-size: 14px; /* Kích thước chữ */
-    font-weight: 500; /* Đậm hơn một chút */
-    border-radius: 5px; /* Bo góc */
-    text-decoration: none; /* Xóa gạch chân */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Hiệu ứng hover */
-}
+/* Điều chỉnh trên thiết bị di động */
+@media (max-width: 767.98px) {
+    .payment-page {
+        padding: 20px;
+    }
 
-.nav-link.btn.btn-outline-primary.btn-sm.me-3:hover {
-    background-color: #fa03d5; /* Màu xanh đậm hơn khi hover */
-    transform: scale(1.05); /* Phóng to nhẹ khi hover */
-}
+    .payment-page h2 {
+        font-size: 24px;
+    }
 
-.nav-link.btn.btn-outline-primary.btn-sm.me-3:active {
-    background-color: #f90bd9; /* Màu khi bấm giữ */
-    transform: scale(0.95); /* Thu nhỏ nhẹ khi nhấn */
+    .payment-page .form-label {
+        font-size: 14px;
+    }
+
+    .payment-page .btn-pink {
+        font-size: 16px;
+    }
 }
