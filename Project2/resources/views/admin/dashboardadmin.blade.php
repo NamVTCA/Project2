@@ -32,7 +32,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Phản Hồi</h5>
                     <p class="card-text">Xem chi tiết các phản hồi.</p>
-                    <a href="#" class="btn btn-light btn-sm">Đi tới</a>
+                    <a href="{{ route('feedback.index') }}" class="btn btn-light btn-sm">Đi tới</a>
                 </div>
             </div>
         </div>

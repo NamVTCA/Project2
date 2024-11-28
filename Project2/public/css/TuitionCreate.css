@@ -164,3 +164,26 @@ h2::after {
 .hover-goals:hover .card-text {
     color: #6a5acd;
 }
+
+/* Nút Quay Về */
+.nav-link.btn.btn-outline-primary.btn-sm.me-3 {
+    display: inline-block;
+    color: #fff; /* Màu chữ trắng */
+    background-color: #f27eec; /* Màu xanh Bootstrap */
+    padding: 8px 16px; /* Khoảng cách bên trong */
+    font-size: 14px; /* Kích thước chữ */
+    font-weight: 500; /* Đậm hơn một chút */
+    border-radius: 5px; /* Bo góc */
+    text-decoration: none; /* Xóa gạch chân */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Hiệu ứng hover */
+}
+
+.nav-link.btn.btn-outline-primary.btn-sm.me-3:hover {
+    background-color: #fa03d5; /* Màu xanh đậm hơn khi hover */
+    transform: scale(1.05); /* Phóng to nhẹ khi hover */
+}
+
+.nav-link.btn.btn-outline-primary.btn-sm.me-3:active {
+    background-color: #f90bd9; /* Màu khi bấm giữ */
+    transform: scale(0.95); /* Thu nhỏ nhẹ khi nhấn */
+}

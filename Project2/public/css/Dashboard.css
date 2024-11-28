@@ -12,57 +12,62 @@
     border: none;
     border-radius: 15px;
     overflow: hidden;
+    background: var(--light-pink);
+    box-shadow: 0 8px 16px var(--shadow-color);
 }
 
 .card .card-title {
     font-size: 18px;
     font-weight: 600;
+    color: var(--text-dark);
 }
 
 .card .card-text {
     font-size: 14px;
-    color: var(--white);
+    color: var(--text-dark);
 }
 
 /* Container chính */
 .container {
     margin: 20px auto;
     padding: 30px;
-    background: #f1d1e1;
+    background: var(--light-pink);
     border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px var(--shadow-color);
     animation: fadeIn 0.5s ease-in-out;
 }
 
-.navbar.navbar-expand-lg.navbar-light{
-    color: #ff69b4;
+/* Navbar */
+.navbar {
+    background-color: var(--light-pink);
 }
 
 .navbar-toggler:focus {
-    background-color: #ffe4e1; /* Hồng nhạt */
+    background-color: var(--light-pink);
     outline: none;
+    box-shadow: 0 0 5px var(--main-pink);
 }
 
-.nav-item{
-    background: #f5c2db;
-    margin: 10px auto;
+.nav-item {
+    background: var(--light-pink);
+    margin: 10px 0;
     padding: 10px;
     border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 0.5s ease-in-out;
+    box-shadow: 0 8px 16px var(--shadow-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
     color: var(--main-pink);
     border: 1px solid var(--main-pink);
 }
 
-.nav-item:hover{
-    background-color: var(--light-pink);
-    color: var(--text-dark);
+.nav-item:hover {
+    background-color: var(--main-pink);
+    color: var(--light-pink);
 }
 
 /* Background gradient */
 .bg-gradient-pink {
     background: linear-gradient(135deg, var(--main-pink), var(--light-pink));
-    color: var(--white);
+    color: var(--light-pink);
 }
 
 /* Button */
@@ -70,10 +75,11 @@
     border-radius: 30px;
     font-size: 14px;
     padding: 8px 20px;
+    transition: all 0.3s ease;
 }
 
 .btn-light {
-    background-color: var(--white);
+    background-color: var(--light-pink);
     color: var(--main-pink);
     border: 1px solid var(--main-pink);
 }
@@ -81,6 +87,34 @@
 .btn-light:hover {
     background-color: var(--light-pink);
     color: var(--text-dark);
+}
+
+/* Nút Quay Về */
+.btn-back {
+    display: inline-block;
+    color: black;
+    margin: 10px 0;
+    background-color: var(--light-pink);
+    padding: 16px;
+    border-radius: 15px;
+    border: 1px solid var(--main-pink);
+    text-decoration: none;
+    box-shadow: 0 8px 16px var(--shadow-color);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar.navbar-expand-lg.navbar-light{
+    color: #ff69b4;
+}
+
+.btn-back:hover {
+    background-color: var(--main-pink);
+    transform: scale(1.05);
+}
+
+.btn-back:active {
+    background-color: var(--main-pink);
+    transform: scale(0.95);
 }
 
 /* Biểu đồ */
