@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- Header Section -->
-    <header class="py-3 shadow-sm" style="background-color: #ffe4e1;">
+    <header class="bg-light py-3 shadow-sm">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="title">NURSERY PRESCHOOL</div>
@@ -18,6 +18,12 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <!-- Nút Quay Về -->
+                            <a class="nav-link btn btn-outline-primary btn-sm me-3" href="javascript:history.back();">
+                                <i class="bi bi-arrow-left"></i> Quay Về
+                            </a>
+                        </li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Trang Chủ</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Sự Kiện</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Giáo Dục</a></li>

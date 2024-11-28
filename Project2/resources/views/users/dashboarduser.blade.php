@@ -14,6 +14,12 @@
                 </div>
                 <div class="card-body text-center">
                     @if(Auth::check())
+                        <!-- Hiển thị ảnh người dùng -->
+                        <img src="{{ asset('img/backtoschool.png' . Auth::user()->profile_image) }}" 
+                             alt="Ảnh Đại Diện" 
+                             class="rounded-circle mb-3" 
+                             style="width: 120px; height: 120px; object-fit: cover;">
+
                         <p><strong>Tên:</strong> {{ Auth::user()->name }}</p>
                         <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
                         <p><strong>Số Điện Thoại:</strong> {{ Auth::user()->phone }}</p>
@@ -65,7 +71,14 @@
                             <option value="3">Lê Văn C</option>
                         </select>
                     </div>
-                    <div class="mt-4">
+                    <div class="mt-4 text-center">
+                        <!-- Hiển thị ảnh học sinh -->
+                        <img src="{{ asset('img/Login.png') }}" 
+                             id="studentImage" 
+                             alt="Ảnh Học Sinh" 
+                             class="rounded mb-3" 
+                             style="width: 120px; height: 120px; object-fit: cover;">
+                             
                         <h5>Thông Tin Học Sinh:</h5>
                         <p><strong>Tên:</strong> Nguyễn Văn A</p>
                         <p><strong>Lớp:</strong> 10A1</p>

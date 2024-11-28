@@ -6,6 +6,7 @@ use App\Http\Controllers\scheduleController;
 use App\Http\Controllers\ChildController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\evaluateController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\tuitionContoller;
@@ -32,6 +33,10 @@ Route::get('/accountcreation', function () {
 
 Route::get('/timetable', function () {
     return view('timetable');
+});
+
+Route::get('/feedbackList', function () {
+    return view('feedbackList');
 });
 
 // Route::get('/tuitionmanagement', function () {
@@ -80,6 +85,9 @@ Route::prefix('admin')->group(function () {
                 Route::get('/users/{user}/edit', [UserAccountController::class, 'edit'])->name('admin.users.edit');
                 Route::put('/users/{user}', [UserAccountController::class, 'update'])->name('admin.users.update');
                 Route::delete('/users/{user}', [UserAccountController::class, 'destroy'])->name('admin.users.delete');
+
+                Route::get('/feedbackList', [FeedbackController::class, 'index'])->name('feedback.index');
+                Route::delete('/feedbackList/{id}', [FeedbackController::class, 'destroy'])->name('feedback.destroy');
             });
 
             Route::get('/children', [ChildController::class, 'index'])->name('admin.children.index');

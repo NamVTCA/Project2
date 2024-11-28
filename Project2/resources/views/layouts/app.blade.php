@@ -31,18 +31,47 @@
         input[type="number"] {
             -moz-appearance: textfield;
         }
+        /* Nút Quay Về */
+.nav-link.btn.btn-outline-primary.btn-sm.me-3 {
+    display: inline-block;
+    color: #fff; /* Màu chữ trắng */
+    background-color: #f27eec; /* Màu xanh Bootstrap */
+    padding: 8px 16px; /* Khoảng cách bên trong */
+    font-size: 14px; /* Kích thước chữ */
+    font-weight: 500; /* Đậm hơn một chút */
+    border-radius: 5px; /* Bo góc */
+    text-decoration: none; /* Xóa gạch chân */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Hiệu ứng hover */
+}
+
+.nav-link.btn.btn-outline-primary.btn-sm.me-3:hover {
+    background-color: #fa03d5; /* Màu xanh đậm hơn khi hover */
+    transform: scale(1.05); /* Phóng to nhẹ khi hover */
+}
+
+.nav-link.btn.btn-outline-primary.btn-sm.me-3:active {
+    background-color: #f90bd9; /* Màu khi bấm giữ */
+    transform: scale(0.95); /* Thu nhỏ nhẹ khi nhấn */
+}
     </style>
 </head>
 <body>
-    <header class="py-3 shadow-sm" style="background-color: #ffe4e1;">
+    <!-- Header Section -->
+    <header class="bg-light py-3 shadow-sm">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="title">NURSERY PRRSCHOOL</div>
+                <div class="title">NURSERY PRESCHOOL</div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <!-- Nút Quay Về -->
+                            <a class="nav-link btn btn-outline-primary btn-sm me-3" href="javascript:history.back();">
+                                <i class="bi bi-arrow-left"></i> Quay Về
+                            </a>
+                        </li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Trang Chủ</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Sự Kiện</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Giáo Dục</a></li>
