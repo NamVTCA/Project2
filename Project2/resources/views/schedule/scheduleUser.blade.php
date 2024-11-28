@@ -69,7 +69,6 @@
                         <tr>
                             <th>Tiết Học</th>
                             <th>Môn Học</th>
-                            <th class="text-center">Hành Động</th>
                         </tr>
                         </thead>
                         <tbody id="schedule-details-body">
@@ -103,11 +102,6 @@
         <tr>
             <td>${item.name}</td>
             <td>${item.subject_name}</td>
-            <td class="text-center">
-                <button class="btn btn-danger btn-sm" onclick="deleteSchedule(${item.schedule_id})">
-                    <i class="fas fa-trash-alt"></i> Xóa
-                </button>
-            </td>
         </tr>`;
 });
                         } else {
@@ -120,29 +114,8 @@
             }
         }
 
-        function deleteSchedule(scheduleId) {
-            if (confirm('Bạn có chắc chắn muốn xóa?')) {
-                fetch(`/api/schedule/delete/${scheduleId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Xóa thành công!');
-                        loadSchedule();
-                    } else {
-                        alert('Có lỗi xảy ra!');
-                    }
-                })
-                .catch(error => {
-                    console.error('Có lỗi xảy ra:', error);
-                });
-            }
-        }
+       
+       
     </script>
     </body>
     </html>

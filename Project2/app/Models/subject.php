@@ -12,7 +12,7 @@ class subject extends Model
         'name'
     ];
     function subject(){
-        return $this->belongsTo(schedule_info::class,'subject_id');
+        return $this->hasMany(schedule_info::class,'subject_id');
     }
     
 }

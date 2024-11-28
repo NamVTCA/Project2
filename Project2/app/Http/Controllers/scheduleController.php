@@ -9,61 +9,63 @@ use App\Models\subject;
 use Illuminate\Http\Request;
 class scheduleController extends Controller
 {
-    
-public function posment($idclass, $date)
+public function getScheduleDetails(Request $request)
 {
-    $schedules = Schedule::where('classroom_id', $idclass)
-        ->where('date', $date)
-        ->first();
-    if ($schedules) {
-        $scheduleInfos = $schedules->schedule_info;
-        foreach ($scheduleInfos as $info) {
-            $info->subject = Subject::find($info->subject_id); 
-        }
+    $classroomId = $request->query('classroom_id');
+    $date = $request->query('date');
+
+    if (!$classroomId || !$date) {
+        return response()->json([], 400);
     }
 
-    return response()->json($scheduleInfos);
-}
-public function posment2($id) {
-   $schedules = schedule_info::where('schedule_id', $id)->get();
-$subjectIds = $schedules->pluck('subject_id');
-$subjects = subject::whereIn('id', $subjectIds)->get(); 
-
-return response()->json($subjects);
-}
-   public function getDetails(Request $request) {
-    $classroomId = $request->input('classroom_id');
-    $date = $request->input('date');
+    // Lấy tất cả các lịch học theo classroom_id và date
     $schedules = Schedule::where('classroom_id', $classroomId)
-        ->where('date', $date)
-        ->with('schedule_info.')
-        ->get();
+                         ->where('date', $date)
+                         ->with(['schedule_info.subject'])
+                         ->get();
 
-    return view('schedule.schedule', compact('schedules'));
-}
+    // Nếu có lịch học, map tất cả thông tin cần thiết
+    if ($schedules->isNotEmpty()) {
+        $details = $schedules->flatMap(function ($schedule) {
+            return $schedule->schedule_info->map(function ($info) {
+                return [
+                    'schedule_id' => $info->schedule_id,
+                    'name' => $info->name,
+                    'subject_name' => $info->subject->name ?? 'Không rõ'
+                ];
+            });
+        });
 
-
-public function delete(Request $request) {
-    $scheduleId = $request->input('schedule_id');
-    $infoId = $request->input('id');
-    $scheduleInfo = schedule_info::where('schedule_id', $scheduleId)->where('id', $infoId)->first();
-
-    if ($scheduleInfo) {
-        $scheduleInfo->subjects()->detach(); // Xóa mối quan hệ many-to-many
-        $scheduleInfo->delete(); // Xóa bản ghi trong bảng schedule_info
-        return response()->json(['success' => 'Đã xóa thành công']);
+        return response()->json($details, 200);
     }
-    return response()->json(['error' => 'Không tìm thấy dữ liệu'], 404);
+
+    return response()->json([], 200);
 }
+    public function deleteSchedule($id)
+    {
+        $schedule = Schedule::find($id);
+
+        if ($schedule) {
+            $schedule->schedule_info()->delete(); // Xóa chi tiết lịch học
+            $schedule->delete(); // Xóa lịch học chính
+            return response()->json(['success' => true], 200);
+        }
+
+        return response()->json(['success' => false], 404);
+    }
     public function index(Request $request){
         $classrooms = classroom::all();
          $classroomId = $request->input('classroom_id');
         $date = $request->input('date');
-        $schedules = Schedule::where('classroom_id', $classroomId)
-        ->where('date', $date)
-        ->with('schedule_info')
-        ->get();
-        return view('schedule/schedule',compact('classrooms','schedules'));
+        
+        return view('schedule/schedule',compact('classrooms'));
+    }
+      public function user(Request $request){
+        $classrooms = classroom::all();
+         $classroomId = $request->input('classroom_id');
+        $date = $request->input('date');
+        
+        return view('schedule/scheduleUser',compact('classrooms'));
     }
    public function create()
     {
