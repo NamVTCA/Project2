@@ -13,22 +13,28 @@ class tuitionContoller extends Controller
 {
 public function index(Request $request)
 {
-    $children = Child::all();
+    $classrooms = Classroom::all();
+    $children = collect(); // Danh sách học sinh sẽ trống mặc định
+    $selectedChild = null;
 
-    $query = tuition::with('child'); 
-    if ($request->has('children_id') && $request->children_id != '') {
-        $query->where('child_id', $request->children_id);
+    if ($request->classroom_id) {
+        $children = Child::whereHas('classroom', function($query) use ($request) {
+            $query->where('id', $request->classroom_id);
+        })->get();
     }
-   
-    $tuitions = $query->get();
 
-    return view('TuitionManagement', compact('tuitions', 'children'));
+    if ($request->children_id) {
+        $selectedChild = Child::with(['user', 'tuition'])->find($request->children_id);
+    }
+
+    return view('tuitionmanagement', [
+        'classrooms' => $classrooms,
+        'children' => $children,
+        'selectedChild' => $selectedChild,
+    ]);
 }
 
-
-    
-
-    public function create()
+       public function create()
     {
         $classrooms = classroom::all(); 
         return view('test/tuitionCreate', compact('classrooms'));
