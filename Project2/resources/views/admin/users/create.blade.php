@@ -33,7 +33,11 @@
         <!-- Các trường nhập liệu -->
         <div class="form-group mb-3">
             <label for="name">Họ tên:</label>
-            <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" required>
+
+            <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror"value="{{ old('name', $user->name ?? '') }}"onkeypress="return /[a-zA-Z\s]/i.test(event.key)"required>
+                @error('name')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
         </div>
 
         <div class="form-group mb-3">
@@ -48,7 +52,10 @@
 
         <div class="form-group mb-3">
             <label for="id_number">Số căn cước công dân:</label>
-            <input type="text" id="id_number" name="id_number" class="form-control" value="{{ old('id_number') }}" required>
+            <input type="text" id="id_number" name="id_number" class="form-control @error('id_number') is-invalid @enderror"value="{{ old('id_number', $user->id_number ?? '') }}"onkeypress="return /[0-9]/i.test(event.key)"maxlength="12"required>
+                @error('id_number')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
         </div>
 
         <div class="form-group mb-3">
@@ -59,6 +66,21 @@
         <div class="form-group mb-3">
             <label for="phone">Số điện thoại:</label>
             <input type="text" id="phone" name="phone" class="form-control" value="{{ old('phone') }}" required>
+            <input type="text" 
+                       name="phone"
+                       id="phone" 
+                       class="form-control @error('phone') is-invalid @enderror" 
+                       value="{{ old('phone') }}" 
+                       pattern="[0-9]{10,11}"
+                       onkeypress="return /[0-9]/i.test(event.key)"
+                       maxlength="11"
+                       required>
+                @error('phone')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+                @error('phone')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
         </div>
 
         <div class="form-group mb-3">
@@ -85,33 +107,30 @@
                 <option value="0">Không hoạt động</option>
             </select>
         </div>
-
-<<<<<<< Updated upstream
-        <div style="margin-bottom: 15px;">
-            <label>Số điện thoại:</label>
-            <input type="text" name="phone" value="{{ old('phone') }}"
-                   pattern="^[0-9\s]+$"
-                   oninvalid="this.setCustomValidity('Số điện thoại chỉ được chứa số và khoảng trắng')"
-                   oninput="this.setCustomValidity('')"
-                   required>
-            <span class="error-message"></span>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <label>Ảnh đại diện:</label>
-            @if(isset($user) && $user->img)
-                <div style="margin: 10px 0;">
-                    <img src="{{ asset('storage/' . $user->img) }}" alt="Profile Image" style="max-width: 200px;">
-                </div>
-            @endif
-            <input type="file" name="img" accept="image/jpeg,image/png,image/jpg">
-            <small style="color: #666;">Để trống nếu không muốn thay đổi ảnh</small>
-        </div>        
-
-        <button type="submit">Tạo người dùng</button>
-=======
-        <button type="submit" class="btn btn-primary">Tạo tài khoản</button>
->>>>>>> Stashed changes
     </form>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const nameInput = document.querySelector('input[name="name"]');
+        if (nameInput) {
+            nameInput.addEventListener('input', function(e) {
+                this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+            });
+        }
+    
+        const idNumberInput = document.querySelector('input[name="id_number"]');
+        if (idNumberInput) {
+            idNumberInput.addEventListener('input', function(e) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        }
+
+        const phoneInput = document.querySelector('input[name="phone"]');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function(e) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+        }
+    });
+    </script>   
 @endsection
