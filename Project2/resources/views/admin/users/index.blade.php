@@ -28,21 +28,23 @@
             </thead>
             <tbody>
                 @foreach ($accounts as $account)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $account->name }}</td>
-                        <td>{{ $account->email }}</td>
-                        <td>{{ $account->id_number ?? '-' }}</td>
-                        <td>{{ $account->active ? 'Hoạt Động' : 'Không Hoạt Động' }}</td>
-                        <td>
-                            <a href="{{ route('admin.users.edit', $account->id) }}" class="btn btn-edit">Chi Tiết</a>
-                            <form action="{{ route('admin.users.delete', $account->id) }}" method="POST" class="inline-form">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-delete">Xóa</button>
-                            </form>
-                        </td>
-                    </tr>
+                    @if ($account->role != 0)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $account->name }}</td>
+                            <td>{{ $account->email }}</td>
+                            <td>{{ $account->id_number ?? '-' }}</td>
+                            <td>{{ $account->active ? 'Hoạt động' : 'Không Hoạt động' }}</td>
+                            <td>
+                                <a href="{{ route('admin.users.edit', $account->id) }}" class="btn btn-edit">Chi Tiết</a>
+                                <form action="{{ route('admin.users.delete', $account->id) }}" method="POST" class="inline-form">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-delete">Xóa</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endif
                 @endforeach
             </tbody>            
         </table>

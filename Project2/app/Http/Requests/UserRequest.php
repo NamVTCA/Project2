@@ -15,13 +15,13 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'],
+            'name' => [ 'string', 'max:255', 'regex:/^[\pL\s]+$/u'],
             'email' => ['required', 'email', 'max:255', 
                 Rule::unique('users')->ignore($this->user)],
-            'password' => 'required|min:6',
+            'password' => $this->isMethod('post') ? 'required|min:6' : 'nullable|min:6',
             'id_number' => ['required', 'regex:/^[0-9\s]+$/', 'max:255'],
             'address' => 'required|string|max:255',
-            'role' => 'required|integer|in:1,2',
+            'role' => 'required|integer|in:0,1,2',
             'status' => 'required|integer|in:0,1',
             'gender' => 'required|string|in:male,female,other',
             'phone' => ['required', 'regex:/^[0-9\s]+$/', 'max:20'],

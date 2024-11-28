@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 class UserAccountController extends Controller
 {
-    
-    
     public function index()
     {
         // Lấy toàn bộ danh sách tài khoản từ bảng users
@@ -19,7 +17,6 @@ class UserAccountController extends Controller
         // Trả dữ liệu về view
         return view('admin.users.index', compact('accounts'));
     }
-    
     
     public function create()
     {
@@ -49,15 +46,11 @@ class UserAccountController extends Controller
     
         User::create($data);
     
-        // Flash message success
         session()->flash('success', 'Tài khoản đã được tạo thành công!');
     
         return redirect()->route('admin.users.index');
     }
     
-    
-    
-
     public function edit(User $user)
     {
         return view('admin.users.edit', compact('user'));
@@ -66,10 +59,10 @@ class UserAccountController extends Controller
     public function update(Request $request, User $user)
     {
         $data = $request->validate([
-            'fullname' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'role' => 'required|string',
-            'active' => 'required|boolean',
+            'status' => 'required|boolean',
             'password' => 'nullable|min:6',
             'img' => 'nullable|image',
         ]);
