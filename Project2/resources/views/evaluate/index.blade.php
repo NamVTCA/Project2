@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
+   
     <!-- Header Section -->
     <header class="bg-light py-3 shadow-sm">
         <div class="container">
@@ -86,6 +87,14 @@
             <div class="col-md-12 text-center">
                 <button type="submit" class="btn btn-pink">Gửi Đánh Giá</button>
             </div>
+                @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+     @if($errors->any())
+    <div class="alert alert-danger">
+        {{ $errors->first() }}
+    </div>
+@endif
         </form>
     </div>
 </main>

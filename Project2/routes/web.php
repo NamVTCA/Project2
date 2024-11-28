@@ -60,7 +60,6 @@ Route::get('/api/schedule/details', [ScheduleController::class, 'getScheduleDeta
 Route::delete('/api/schedule/delete/{id}', [ScheduleController::class, 'deleteSchedule']);
 Route::get('/api/student/details', [loginController::class, 'getStudentDetails']);
 Route::get('/schedule/user',[scheduleController::class,'user'])->name('schedule.user');
-
 Route::get('/tuition', [tuitionContoller::class, 'index'])->name('tuition.index');
 Route::get('/tuition/create', [tuitionContoller::class, 'create'])->name('tuition.create');
 Route::post('/tuition/store', [tuitionContoller::class, 'store'])->name('tuition.store');
@@ -69,18 +68,14 @@ Route::post('/login',[loginController::class,'login'])->name('login');
 Route::get('/showfogot',[loginController::class,'showFogot'] )->name('showfogot');
 Route::get('/otp',[loginController::class,'sendResetCode'])->name('otp');
 Route::post('/forgotpassword',[loginController::class,'resetPassword'])->name('forgotpassword');
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/change-password', [ResetPasswordController::class, 'showChangepasswordForm'])->name('reset.password.form');
     Route::post('/change-password', [ResetPasswordController::class, 'changePassword'])->name('reset.password');
 });
-
-
 Route::prefix('admin')->group(function () {
     Route::middleware('auth.check')->group(function () {
         Route::middleware('role:0')->group(function () {
             Route::get('/schedule/show',[scheduleController::class,'index'])->name('schedule.show');
-
             Route::get('/dashboard/admin', [LoginController::class, 'admin'])->name('admin');
             Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/users', [UserAccountController::class, 'index'])->name('admin.users.index');
@@ -89,7 +84,6 @@ Route::prefix('admin')->group(function () {
                 Route::get('/users/{user}/edit', [UserAccountController::class, 'edit'])->name('admin.users.edit');
                 Route::put('/users/{user}', [UserAccountController::class, 'update'])->name('admin.users.update');
                 Route::delete('/users/{user}', [UserAccountController::class, 'destroy'])->name('admin.users.delete');
-
                 Route::get('/feedbackList', [FeedbackController::class, 'index'])->name('feedback.index');
                 Route::delete('/feedbackList/{id}', [FeedbackController::class, 'destroy'])->name('feedback.destroy');
             });
@@ -109,6 +103,7 @@ Route::prefix('admin')->group(function () {
     });
 });
     Route::middleware('role:1')->group(function () {
+        Route::get('/teacher',[loginController::class,'showDashboard'])->name('showDashboard');
         Route::post('/evaluate',[evaluateController::class,'evaluatecomment'])->name('evaluate');
         Route::get('/evaluate',[evaluateController::class,'show']);
         Route::get('/dashboard/teacher', [LoginController::class, 'teacher'])->name('teacher');
@@ -137,12 +132,9 @@ Route::delete('/schedule/delete', [ScheduleController::class, 'delete']);
 Route::post('/schedule/store', [ScheduleController::class, 'store'])->name('schedule.store');
 Route::get('/schedule/create', [ScheduleController::class, 'create'])->name('schedule.create');
 Route::post('/logout',[loginController::class,'logout'])->name('logout');
-
-
 Route::get('/subjects', [subjectController::class, 'index'])->name('subjects.index');
 Route::post('/subjects', [subjectController::class, 'store'])->name('subjects.store');
 Route::put('/subjects/{id}', [SubjectController::class, 'update'])->name('subjects.update');
-
 Route::get('/timetable', [TimetableController::class, 'index'])->name('timetable.index');
 Route::post('/timetable/save', [TimetableController::class, 'save'])->name('timetable.save');
 

@@ -54,6 +54,7 @@ class loginController extends Controller
         'evaluation' => $evaluation,
     ]);
 }
+
     public function login(Request $request)
     {
         
@@ -82,7 +83,7 @@ class loginController extends Controller
         case 0:
             return view('admin/dashboardadmin');
         case 1:
-            return view('teacher.dashboardteacher',compact('children'));
+            return route('showDashboard');
         case 2:
             return view('users.dashboarduser',compact('children'));
         default:
@@ -149,6 +150,31 @@ public function resetPassword(Request $request)
 
     return redirect()->route('showfogot');
 }
+
+public function showDashboard()
+{
+    $user = Auth::user(); 
+    
+    // Lấy lớp học của giáo viên
+    $classrooms = $user->classroom;
+    
+    $students = [];
+    $parents = [];
+    
+    if ($classrooms) {
+        $students = $classrooms->children;
+        $parents = $students->map(function ($student) {
+            return $student->user; 
+        })->filter(); 
+    }
+
+    return view('teacher.dashboardteacher', [
+        'classrooms' => $classrooms,
+        'students' => $students,
+        'parents' => $parents, 
+    ]);
+}
+
 }
 
 
