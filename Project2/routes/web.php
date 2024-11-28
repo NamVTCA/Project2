@@ -105,9 +105,6 @@ Route::prefix('admin')->group(function () {
             Route::get('/classes/{class}', [ClassController::class, 'show'])->name('classrooms.show');
             Route::get('/classes/{class}/edit', [ClassController::class, 'edit'])->name('classrooms.edit');
             Route::put('/classes/{class}', [ClassController::class, 'update'])->name('classrooms.update');
-            Route::get('/classes/{class}/facilities', [FacilityController::class, 'index'])->name('facilities.index');
-            Route::get('/classes/{class}/facilities/create', [FacilityController::class, 'create'])->name('facilities.create');
-            Route::post('/classes/{class}/facilities', [FacilityController::class, 'store'])->name('facilities.store');
         });
     });
 });
