@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class childclass extends Model
 {
     use HasFactory;
-    protected $fillable = ['childId', 'classId'];
+    protected $fillable = ['child_Id', 'classroom_Id'];
 }

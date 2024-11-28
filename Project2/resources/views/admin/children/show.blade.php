@@ -4,19 +4,23 @@
 <div class="profile-container">
     <div class="profile-header">
         <div class="profile-image">
-            @if($user->img)
-                <img src="{{ asset('storage/' . $user->img) }}" alt="Profile Image" style="max-width: 200px;">
+            @if($child->user && $child->user->img)
+                @php
+                    $imagePath = 'storage/' . $child->user->img;
+                @endphp
+                <img src="{{ asset($imagePath) }}" alt="Profile Image" style="max-width: 200px;">
+                <p>Đường dẫn ảnh: {{ asset($imagePath) }}</p> <!-- Hiển thị đường dẫn để kiểm tra -->
             @else
                 <div class="default-avatar">
-                    {{ strtoupper(substr($user->name, 0, 1)) }}
+                    {{ strtoupper(substr($child->user ? $child->user->name : 'N/A', 0, 1)) }}
                 </div>
             @endif
-        </div>        
+        </div>                 
         <div class="profile-basic-info">
             <h1>{{ $child->name }}</h1>
-            <p>Birth Date: {{ \Carbon\Carbon::parse($child->birthDate)->format('d/m/Y') }}</p>
-            <p>Gender: {{ $child->gender == 1 ? 'Male' : 'Female' }}</p>
-            <p>Parent: {{ $child->user ? $child->user->name : 'N/A' }}</p>
+            <p>Ngày sinh: {{ \Carbon\Carbon::parse($child->birthDate)->format('d/m/Y') }}</p>
+            <p>Giới tính: {{ $child->gender == 1 ? 'Nam' : 'Nữ' }}</p>
+            <p>Phụ huynh: {{ $child->user ? $child->user->name : 'N/A' }}</p>
         </div>
     </div>
 </div>

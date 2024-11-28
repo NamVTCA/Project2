@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\child;
+use App\Models\childclass;
+use App\Models\classroom;
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Models\weekevaluate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Symfony\Component\Console\Input\Input;
 
 class loginController extends Controller
 {
@@ -18,15 +22,41 @@ class loginController extends Controller
     function user(){ return view('users/dashboarduser'); }
 
 
-      public function showFogot(){
+    public function showFogot(){
         return view('forgotpassword');
     }
     function showLogin(){
         return view('login');
     }
-  
+  public function getStudentDetails(Request $request)
+{
+    $childId = $request->query('child_id');
+    $date = $request->query('date');
+
+    $child = Child::with(['classroom'])->find($childId);
+
+    if (!$child) {
+        return response()->json(['success' => false, 'message' => 'Không tìm thấy học sinh']);
+    }
+
+    $evaluation = WeekEvaluate::where('child_id', $childId)->where('date', $date)->first();
+
+    $classroom = $child->classroom->pluck('name')->first();
+
+    return response()->json([
+        'success' => true,
+        'student' => [
+            'name' => $child->name,
+            'birthDate' => $child->birthDate,
+            'gender' => $child->gender,
+            'className' => $classroom,
+        ],
+        'evaluation' => $evaluation,
+    ]);
+}
     public function login(Request $request)
     {
+        
         $request->validate([
             'phone' => 'required',
             'password' => 'required',
@@ -42,43 +72,32 @@ class loginController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             return redirect()->route('showlogin')->with('message','invalid phone or email');
         }
-    
-        Auth::login($user);
+        
+       Auth::login($user);
         $id = $user->id;
-        $children = child::where('user_id',$id)->get();
+        $children = Child::where('user_id', $id)->get();
         $role = $user->role;
-    
-        switch ($role) {
-            case 0:
-                return redirect()->route('admin')->with('user', $user);
-            case 1:
-                return redirect()->route('teacher')->with([
-                                                            'user' => $user,
-                                                            'children' => $children,
-                                                        ]);
-            case 2:
-                return redirect()->route('user')->with([
-                                                            'user' => $user,
-                                                            'children' => $children,
-                                                        ]);
-            default:
-                return redirect()->route('user')->with([
-                                                            'user' => $user,
-                                                            'children' => $children,
-                                                        ]);
-        }
+
+    switch ($role) {
+        case 0:
+            return view('admin/dashboardadmin');
+        case 1:
+            return view('teacher.dashboardteacher',compact('children'));
+        case 2:
+            return view('users.dashboarduser',compact('children'));
+        default:
+            return view('users.dashboarduser',compact('children'));
+    }
     }
     
 public function logout(Request $request)
 {
- 
     Auth::logout();
     $request->session()->invalidate();
     $request->session()->regenerateToken();
 
     return redirect()->route('showlogin')->with('message', 'Bạn đã đăng xuất thành công.');
 }
-
 
 public function sendResetCode(Request $request)
 {

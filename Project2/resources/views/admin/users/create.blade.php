@@ -22,6 +22,11 @@
         <!-- Phần tải lên ảnh đại diện -->
         <div class="form-group mb-3">
             <label for="profileImage">Ảnh đại diện 3x4</label>
+            @if(isset($user) && $user->img)
+                <div style="margin: 10px 0;">
+                    <img src="{{ asset('storage/' . $user->img) }}" alt="Profile Image" style="max-width: 200px;">
+                </div>
+            @endif
             <input type="file" id="profileImage" name="img" accept="image/*" class="form-control">
         </div>
 
@@ -59,7 +64,6 @@
         <div class="form-group mb-3">
             <label for="role">Vai trò:</label>
             <select id="role" name="role" class="form-control" required>
-                <option value="0">Admin</option>
                 <option value="1">Giáo Viên</option>
                 <option value="2">Phụ Huynh</option>
             </select>

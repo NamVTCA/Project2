@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Child;
-use App\Http\Requests\ChildRequest;
 use App\Models\User;
+use App\Http\Requests\ChildRequest;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class ChildController extends Controller
@@ -53,6 +54,8 @@ class ChildController extends Controller
     public function update(ChildRequest $request, Child $child)
     {
         $data = $request->validated();
+
+        
 
         if ($request->hasFile('img')) {
             if ($child->img) {

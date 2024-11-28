@@ -17,7 +17,7 @@ class schedule_info extends Model
         return $this->belongsTo(schedule::class,'schedule_id');
     }
     function subject(){
-        return $this->hasMany(subject::class,'subject_id');
+        return $this->belongsTo(subject::class,'subject_id');
     }
 
 }

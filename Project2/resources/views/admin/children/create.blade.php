@@ -3,7 +3,7 @@
 @section('content')
 <div>
     <link rel="stylesheet" href="{{ asset('css/ChildrenCreation.css') }}">
-    <h2>Create New Child</h2>
+    <h2>Tạo học sinh mới</h2>
 
     @if($errors->any())
         <div style="color: red; margin: 10px 0;">
@@ -18,27 +18,27 @@
     <form action="{{ route('children.store') }}" method="POST" enctype="multipart/form-data" id="childForm">
         @csrf
         <div style="margin-bottom: 15px;">
-            <label>Name:</label>
-            <input type="text" name="name" value="{{ old('name') }}" required>
+            <label>Tên:</label>
+            <input type="text" name="name" value="{{ old('name') }}" required pattern="^[\p{L}\s]+$" title="Tên chỉ được chứa chữ cái và khoảng trắng" oninput="validateName(this)">
+            <span class="error-message" style="color: red; display: none;">Vui lòng nhập tên hợp lệ (chỉ chứa chữ cái và khoảng trắng).</span>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Ngày sinh:</label>
+            <input type="date" name="birthDate" value="{{ old('birthDate') }}" max="{{ date('Y-m-d') }}" required>
             <span class="error-message"></span>
         </div>
 
         <div style="margin-bottom: 15px;">
-            <label>Birth Date:</label>
-            <input type="date" name="birthDate" value="{{ old('birthDate') }}" required>
-            <span class="error-message"></span>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <label>Gender:</label>
+            <label>Giới tính:</label>
             <select name="gender" required>
-                <option value="1" {{ old('gender') == 1 ? 'selected' : '' }}>Male</option>
-                <option value="2" {{ old('gender') == 2 ? 'selected' : '' }}>Female</option>
+                <option value="1" {{ old('gender') == 1 ? 'selected' : '' }}>Nam</option>
+                <option value="2" {{ old('gender') == 2 ? 'selected' : '' }}>Nữ</option>
             </select>
         </div>
 
         <div style="margin-bottom: 15px;">
-            <label>Parent:</label>
+            <label>Phụ huynh:</label>
             <select name="user_id" required>
                 @php
                     $parents = App\Models\User::where('role', 2)->get();
@@ -50,10 +50,10 @@
         </div>
 
         <div style="margin-bottom: 15px;">
-            <label>Status:</label>
+            <label>Trạng thái:</label>
             <select name="status" required>
-                <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Active</option>
-                <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Inactive</option>
+                <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Hoạt động</option>
+                <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Không hoạt động</option>
             </select>
         </div>
 
@@ -65,10 +65,23 @@
                 </div>
             @endif
             <input type="file" name="img" accept="image/jpeg,image/png,image/jpg">
-            <small style="color: #666;">Để trống nếu không muốn thay đổi ảnh</small>
         </div>        
 
-        <button type="submit">Create Child</button>
+        <button type="submit">Tạo học sinh</button>
     </form>
 </div>
+
+<script>
+    function validateName(input) {
+        const pattern = /^[\p{L}\s]+$/u; // Updated pattern to support Unicode letters properly, including accented characters
+        const errorMessage = input.nextElementSibling;
+        if (!pattern.test(input.value)) {
+            errorMessage.style.display = 'block'; // Show error message if input is invalid
+            input.setCustomValidity('Tên chỉ được chứa chữ cái và khoảng trắng');
+        } else {
+            errorMessage.style.display = 'none'; // Hide error message if input is valid
+            input.setCustomValidity(''); // Reset custom validity
+        }
+    }
+</script>
 @endsection
