@@ -48,7 +48,6 @@
                 <tr>
                     <th>Kỳ Học</th>
                     <th>Trạng Thái</th>
-                    <th>Hành Động</th>
                 </tr>
             </thead>
             <tbody>
@@ -56,9 +55,7 @@
                     <tr>
                         <td>{{ $tuition->semester }}</td>
                         <td>{{ $tuition->status ? 'Đã Đóng' : 'Chưa Đóng' }}</td>
-                        <td>
-                            <a href="{{ route('tuition.edit', $tuition->id) }}" class="btn btn-primary">Cập Nhật</a>
-                        </td>
+                       
                     </tr>
                 @endforeach
             </tbody>
