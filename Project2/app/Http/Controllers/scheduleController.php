@@ -17,14 +17,11 @@ public function getScheduleDetails(Request $request)
     if (!$classroomId || !$date) {
         return response()->json([], 400);
     }
-
-    // Lấy tất cả các lịch học theo classroom_id và date
     $schedules = Schedule::where('classroom_id', $classroomId)
                          ->where('date', $date)
                          ->with(['schedule_info.subject'])
                          ->get();
 
-    // Nếu có lịch học, map tất cả thông tin cần thiết
     if ($schedules->isNotEmpty()) {
         $details = $schedules->flatMap(function ($schedule) {
             return $schedule->schedule_info->map(function ($info) {
@@ -44,10 +41,9 @@ public function getScheduleDetails(Request $request)
     public function deleteSchedule($id)
     {
         $schedule = Schedule::find($id);
-
         if ($schedule) {
-            $schedule->schedule_info()->delete(); // Xóa chi tiết lịch học
-            $schedule->delete(); // Xóa lịch học chính
+            $schedule->schedule_info()->delete(); 
+            $schedule->delete(); 
             return response()->json(['success' => true], 200);
         }
 
@@ -58,14 +54,21 @@ public function getScheduleDetails(Request $request)
          $classroomId = $request->input('classroom_id');
         $date = $request->input('date');
         
-        return view('schedule/schedule',compact('classrooms'));
+    return view('schedule/schedule',compact('classrooms'));
     }
       public function user(Request $request){
         $classrooms = classroom::all();
          $classroomId = $request->input('classroom_id');
         $date = $request->input('date');
         
-        return view('schedule/scheduleUser',compact('classrooms'));
+    return view('schedule/scheduleUser',compact('classrooms'));
+    }
+       public function test(Request $request){
+        $classrooms = classroom::all();
+         $classroomId = $request->input('classroom_id');
+        $date = $request->input('date');
+        
+    return view('schedule.test',compact('classrooms'));
     }
    public function create()
     {

@@ -45,6 +45,8 @@ Route::get('/feedbackList', function () {
 Route::get('/profile', function(){
     return view('admin.users.profile');
 });
+Route::get('/schedule/test',[scheduleController::class,'test'])->name('schedule.user');
+
 // Route::get('/tuitionmanagement', function () {
 //     return view('tuitionmanagement');
 // })->name('tuitionmanagement');
@@ -62,7 +64,7 @@ Route::middleware(['auth'])->group(function () {
       Route::get('/schedule', [scheduleController::class, 'index'])->name('schedule');
 });
 Route::get('/api/schedule/details', [ScheduleController::class, 'getScheduleDetails']);
-Route::delete('/api/schedule/delete/{id}', [ScheduleController::class, 'deleteSchedule']);
+Route::delete('/schedule/delete/{id}', [ScheduleController::class, 'deleteSchedule']);
 Route::get('/api/student/details', [loginController::class, 'getStudentDetails']);
 Route::get('/schedule/user',[scheduleController::class,'user'])->name('schedule.user');
 Route::get('/tuition', [tuitionContoller::class, 'index'])->name('tuition.index');
@@ -132,8 +134,6 @@ Route::prefix('admin')->group(function () {
 // });
 
 
-Route::get('/schedule/details', [ScheduleController::class, 'getDetails']);
-Route::delete('/schedule/delete', [ScheduleController::class, 'delete']);
 Route::post('/schedule/store', [ScheduleController::class, 'store'])->name('schedule.store');
 Route::get('/schedule/create', [ScheduleController::class, 'create'])->name('schedule.create');
 Route::post('/logout',[loginController::class,'logout'])->name('logout');
