@@ -19,7 +19,7 @@
                 <th>Tên Đầy Đủ</th>
                 <th>Email</th>
                 <th>CCCD</th>
-                <th>Trạng Thái</th>
+                <th>Số điện thoại</th>
                 <th>Hành Động</th>
             </tr>
         </thead>
@@ -31,7 +31,7 @@
                         <td>{{ $account->name }}</td>
                         <td>{{ $account->email }}</td>
                         <td>{{ $account->id_number ?? '-' }}</td>
-                        <td>{{ $account->status ? 'Hoạt động' : 'Không Hoạt động' }}</td>
+                        <td>{{$account->phone}}</td>
                         <td>
                             <a href="{{ route('admin.users.edit', $account->id) }}" class="btn btn-sm btn-info">Chi Tiết</a>
                             <form action="{{ route('admin.users.delete', $account->id) }}" method="POST" class="d-inline">

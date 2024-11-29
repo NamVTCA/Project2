@@ -73,14 +73,14 @@
 
 <script>
     function validateName(input) {
-        const pattern = /^[\p{L}\s]+$/u; // Updated pattern to support Unicode letters properly, including accented characters
+        const pattern = /^[\p{L}\s]+$/u; 
         const errorMessage = input.nextElementSibling;
         if (!pattern.test(input.value)) {
-            errorMessage.style.display = 'block'; // Show error message if input is invalid
+            errorMessage.style.display = 'block'; 
             input.setCustomValidity('Tên chỉ được chứa chữ cái và khoảng trắng');
         } else {
-            errorMessage.style.display = 'none'; // Hide error message if input is valid
-            input.setCustomValidity(''); // Reset custom validity
+            errorMessage.style.display = 'none'; 
+            input.setCustomValidity(''); 
         }
     }
 </script>

@@ -11,11 +11,11 @@
 
         <div>
             <label>Tên:</label>
-            <input type="text" name="name" value="{{ old('name') }}" required 
-                pattern="^[\p{L}\s]+$" 
-                title="Tên chỉ được chứa chữ cái và khoảng trắng" 
-                oninput="validateName(this)">
-            <span class="error-message" style="display: none;">Vui lòng nhập tên hợp lệ (chỉ chứa chữ cái và khoảng trắng).</span>
+            <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $user->name ?? '') }}" required>
+            <span class="invalid-feedback" id="name-error"></span>
+            @error('name')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
         </div>
 
         <div>
@@ -64,26 +64,21 @@
 </div>
 
 <script>
-    // Validate tên
-    function validateName(input) {
-        const pattern = /^[\p{L}\s]+$/u; // Hỗ trợ ký tự Unicode
-        const errorMessage = input.nextElementSibling; // Tìm span.error-message đi kèm
-        if (!pattern.test(input.value)) {
-            errorMessage.style.display = 'block'; // Hiển thị lỗi
-            input.setCustomValidity('Tên chỉ được chứa chữ cái và khoảng trắng');
-        } else {
-            errorMessage.style.display = 'none'; // Ẩn lỗi
-            input.setCustomValidity(''); // Xóa lỗi
-        }
-    }
+    document.addEventListener('DOMContentLoaded', function() 
+    {
+        const nameInput = document.getElementById('name');
+        const nameError = document.getElementById('name-error');
 
-    // Thêm sự kiện submit cho form để kiểm tra trước khi gửi
-    document.getElementById('childForm').addEventListener('submit', function (e) {
-        const nameInput = this.querySelector('input[name="name"]');
-        validateName(nameInput);
-        if (!nameInput.checkValidity()) {
-            e.preventDefault(); // Ngăn gửi form nếu có lỗi
-        }
-    });
+        nameInput.addEventListener('input', function() {
+            const namePattern = /^[\p{L}\s]+$/u;
+            if (!namePattern.test(this.value)) {
+                nameError.textContent = 'Vui lòng nhập tên hợp lệ (chỉ chứa chữ cái và khoảng trắng)';
+                this.classList.add('is-invalid');
+            } else {
+                nameError.textContent = '';
+                this.classList.remove('is-invalid');
+            }
+        });
+    })
 </script>
 @endsection

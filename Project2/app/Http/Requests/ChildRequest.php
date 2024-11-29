@@ -14,8 +14,7 @@ class ChildRequest extends FormRequest
             'gender' => 'required|in:1,2',
             'user_id' => 'required|exists:users,id',
             'img' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'note' => 'nullable|string',
-            'status' => 'required|boolean',
+            'status' => 'nullable|in:0,1',
         ];
     }
     public function messages()
