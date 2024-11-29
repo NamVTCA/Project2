@@ -120,29 +120,23 @@ document.addEventListener('DOMContentLoaded', () => {
                         studentGender.textContent = data.student.gender === 1 ? 'Nam' : 'Nữ';
                         studentClass.textContent = data.student.className || 'Chưa xác định';
                         hocLuc.value = data.evaluation.comment || 'Chưa có dữ liệu học lực';
-                        let rate = '';
-                        const point = Number(data.evaluation.comment); 
-                        switch (true) {
-                            case point >= 9:
-                                rate = 'Xuất Sắc';
-                                break;
-                            case point >= 8:
-                                rate = 'Giỏi';
-                                break;
-                            case point >= 6:
-                                rate = 'Khá';
-                                break;
-                            case point >= 4:
-                                rate = 'Trung Bình';
-                                break;
-                            case point >= 2:
-                                rate = 'Yếu';
-                                break;
-                            default:
-                                rate = 'Yếu';
-                                break;
-                        }
-                        pointInput.value = rate || 'Chưa có dữ liệu điểm';
+                        const point = data.evaluation.point;
+let rate;
+
+if (point == 10) {
+    rate = 'Xuất Sắc';
+} else if (point == 8) {
+    rate = 'Giỏi';
+} else if (point == 6) {
+    rate = 'Khá';
+} else if (point == 4) {
+    rate = 'Trung Bình';
+} else if (point == 2) {
+    rate = 'Yếu';
+} else {
+    rate = 'Chưa có dữ liệu điểm';
+}
+                        pointInput.value = rate;
                     } else {
                         alert(data.message);
                     }
