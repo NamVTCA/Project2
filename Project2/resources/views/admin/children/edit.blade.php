@@ -11,11 +11,8 @@
 
         <div>
             <label>Tên:</label>
-            <input type="text" name="name" value="{{ old('name') }}" required 
-                pattern="^[\p{L}\s]+$" 
-                title="Tên chỉ được chứa chữ cái và khoảng trắng" 
-                oninput="validateName(this)">
-            <span class="error-message" style="display: none;">Vui lòng nhập tên hợp lệ (chỉ chứa chữ cái và khoảng trắng).</span>
+            <input type="text" name="name" value="{{ old('name') }}" required pattern="^[\p{L}\s]+$" title="Tên chỉ được chứa chữ cái và khoảng trắng" oninput="validateName(this)">
+            <span class="error-message" style="color: red; display: none;">Vui lòng nhập tên hợp lệ (chỉ chứa chữ cái và khoảng trắng).</span>
         </div>
 
         <div>
@@ -64,25 +61,23 @@
 </div>
 
 <script>
-    // Validate tên
     function validateName(input) {
-        const pattern = /^[\p{L}\s]+$/u; // Hỗ trợ ký tự Unicode
-        const errorMessage = input.nextElementSibling; // Tìm span.error-message đi kèm
+        const pattern = /^[\p{L}\s]+$/u; 
+        const errorMessage = input.nextElementSibling;
         if (!pattern.test(input.value)) {
-            errorMessage.style.display = 'block'; // Hiển thị lỗi
+            errorMessage.style.display = 'block'; 
             input.setCustomValidity('Tên chỉ được chứa chữ cái và khoảng trắng');
         } else {
-            errorMessage.style.display = 'none'; // Ẩn lỗi
-            input.setCustomValidity(''); // Xóa lỗi
+            errorMessage.style.display = 'none'; 
+            input.setCustomValidity(''); 
         }
     }
 
-    // Thêm sự kiện submit cho form để kiểm tra trước khi gửi
     document.getElementById('childForm').addEventListener('submit', function (e) {
         const nameInput = this.querySelector('input[name="name"]');
         validateName(nameInput);
         if (!nameInput.checkValidity()) {
-            e.preventDefault(); // Ngăn gửi form nếu có lỗi
+            e.preventDefault();
         }
     });
 </script>
