@@ -115,19 +115,15 @@ Route::prefix('admin')->group(function () {
         Route::post('/evaluate',[evaluateController::class,'evaluatecomment'])->name('evaluate');
         Route::get('/evaluate',[evaluateController::class,'show']);
         Route::get('/dashboard/teacher', [LoginController::class, 'teacher'])->name('teacher');
-        Route::get('/api/tuitions/{childId}', [paymentController::class, 'getTuitionsByChild']);
-        Route::get('/api/tuition-details/{tuitionId}', [paymentController::class, 'getTuitionDetails']);
-        Route::get('/momo',[paymentController::class,'index'])->name('momo');
-        Route::post('/momo_payment',[paymentController::class,'momo_payment'])->name('momo_payment');
     });
         Route::middleware('role:2')->group(function () {
         Route::get('/dashboard/user', [LoginController::class, 'user'])->name('user');
-        Route::get('/api/tuitions/{childId}', [paymentController::class, 'getTuitionsByChild']);
-        Route::get('/api/tuition-details/{tuitionId}', [paymentController::class, 'getTuitionDetails']);
+
+    });
+        Route::get('/tuitions/{childId}', [paymentController::class, 'getTuitionsByChild']);
+        Route::get('/tuition-details/{tuitionId}', [paymentController::class, 'getTuitionDetails']);
         Route::get('/momo',[paymentController::class,'index'])->name('momo');
         Route::post('/momo_payment',[paymentController::class,'momo_payment'])->name('momo_payment');
-    });
-
 // Route::middleware('auth')->group(function () {
 //     Route::get('/dashboard/admin', [LoginController::class, 'admin'])->name('admin');
 //     Route::get('/dashboard/teacher', [LoginController::class, 'teacher'])->name('teacher');

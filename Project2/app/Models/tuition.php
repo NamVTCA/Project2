@@ -19,7 +19,6 @@ class tuition extends Model
     function tuition_info(){
         return $this->hasMany(tuition_info::class,'tuition_id');
     }
-    // App\Models\Tuition.php
 public function classroom()
 {
     return $this->belongsTo(Classroom::class);
