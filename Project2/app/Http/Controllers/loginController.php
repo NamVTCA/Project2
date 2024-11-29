@@ -73,26 +73,22 @@ class loginController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             return redirect()->route('showlogin')->with('message','invalid phone or email');
         }
-        $user = Auth::user(); 
-    
+    Auth::login($user);
+    $user = Auth::user(); 
+    $role = $user->role;
+    if ($role == 1) {
     $classrooms = $user->classroom;
-    
     $students = [];
     $parents = [];
-    
     if ($classrooms) {
         $students = $classrooms->children;
         $parents = $students->map(function ($student) {
             return $student->user; 
         })->filter(); 
     }
-
-  
-       Auth::login($user);
-        $id = $user->id;
-        $children = Child::where('user_id', $id)->get();
-        $role = $user->role;
-
+    }
+    $id = $user->id;
+    $children = Child::where('user_id', $id)->get();
     switch ($role) {
         case 0:
             return view('admin/dashboardadmin');
@@ -169,10 +165,7 @@ public function resetPassword(Request $request)
     return redirect()->route('showfogot');
 }
 
-public function showDashboard()
-{
-    
-}
+
 
 }
 
