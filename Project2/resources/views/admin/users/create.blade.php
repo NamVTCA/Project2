@@ -3,7 +3,8 @@
 @section('title', 'Quản lý tài khoản')
 
 @section('content')
-<div class="container mt-4">
+<link rel="stylesheet" href="{{ asset('css/AccountCreation.css') }}">
+<div class="user-creation-section">
     <h2>Tạo người dùng mới và cấp tài khoản</h2>
 
     @if($errors->any())

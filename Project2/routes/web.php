@@ -16,7 +16,7 @@ use App\Http\Controllers\FacilityController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('users.edit');
+    return view('index');
 });
 Route::get('/resetpassword', function () {
     return view('resetpassword');
@@ -41,9 +41,9 @@ Route::get('/feedbackList', function () {
 });
 
 
-// Route::get('/teacher2', function(){
-//     return view('teacher.dashboardteacher');
-// });
+Route::get('/profile', function(){
+    return view('admin.users.profile');
+});
 // Route::get('/tuitionmanagement', function () {
 //     return view('tuitionmanagement');
 // })->name('tuitionmanagement');

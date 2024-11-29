@@ -1,11 +1,11 @@
-body {
+.account-management body {
     font-family: Arial, sans-serif;
-    background-color: #fff5f7; /* Màu nền hồng nhạt */
+    background-color: #fff5f7;
     margin: 0;
     padding: 0;
 }
 
-.container {
+.account-management .container {
     max-width: 1000px;
     margin: 30px auto;
     padding: 20px;
@@ -15,19 +15,19 @@ body {
     border: 1px solid #ddd;
 }
 
-h1 {
+.account-management h1 {
     text-align: center;
     font-size: 26px;
     color: #ff5c8d;
     margin-bottom: 20px;
 }
 
-.actions {
+.account-management .actions {
     text-align: right;
     margin-bottom: 20px;
 }
 
-.actions .btn {
+.account-management .actions .btn {
     text-decoration: none;
     background-color: #ff5c8d;
     color: white;
@@ -37,36 +37,36 @@ h1 {
     transition: background-color 0.3s;
 }
 
-.actions .btn:hover {
+.account-management .actions .btn:hover {
     background-color: #d94472;
 }
 
-.account-table {
+.account-management .account-table {
     width: 100%;
     border-collapse: collapse;
-    overflow-x: auto; /* Thêm cuộn ngang */
+    overflow-x: auto;
 }
 
-.account-table th, 
-.account-table td {
+.account-management .account-table th, 
+.account-management .account-table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
     font-size: 14px;
 }
 
-.account-table th {
+.account-management .account-table th {
     background-color: #ff5c8d;
     color: white;
     font-weight: bold;
 }
 
-.account-table td {
+.account-management .account-table td {
     background-color: white;
     color: #333;
 }
 
-.btn {
+.account-management .btn {
     text-decoration: none;
     padding: 6px 12px;
     border-radius: 5px;
@@ -74,16 +74,16 @@ h1 {
     transition: background-color 0.3s ease-in-out;
 }
 
-.btn-edit {
+.account-management .btn-edit {
     background-color: #007bff;
     color: white;
 }
 
-.btn-edit:hover {
+.account-management .btn-edit:hover {
     background-color: #0056b3;
 }
 
-.btn-delete {
+.account-management .btn-delete {
     background-color: #dc3545;
     color: white;
     border: none;
@@ -91,21 +91,21 @@ h1 {
     cursor: pointer;
 }
 
-.btn-delete:hover {
+.account-management .btn-delete:hover {
     background-color: #a71d2a;
 }
 
-.inline-form {
+.account-management .inline-form {
     display: inline-block;
 }
 
-.alert {
+.account-management .alert {
     padding: 10px;
     border-radius: 5px;
     margin: 10px 0;
 }
 
-.alert-success {
+.account-management .alert-success {
     background-color: #d4edda;
     color: #155724;
     border: 1px solid #c3e6cb;
@@ -113,54 +113,54 @@ h1 {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    .container {
+    .account-management .container {
         padding: 15px;
         margin: 20px auto;
     }
 
-    h1 {
+    .account-management h1 {
         font-size: 22px;
     }
 
-    .actions {
-        text-align: center; /* Đưa nút về giữa trên màn hình nhỏ */
+    .account-management .actions {
+        text-align: center;
     }
 
-    .actions .btn {
+    .account-management .actions .btn {
         padding: 8px 16px;
         font-size: 12px;
     }
 
-    .account-table th, 
-    .account-table td {
+    .account-management .account-table th, 
+    .account-management .account-table td {
         font-size: 12px;
         padding: 8px;
     }
 }
 
 @media (max-width: 480px) {
-    h1 {
+    .account-management h1 {
         font-size: 20px;
     }
 
-    .account-table {
+    .account-management .account-table {
         font-size: 12px;
-        overflow-x: auto; /* Thêm cuộn ngang */
+        overflow-x: auto;
     }
 
-    .account-table th, 
-    .account-table td {
+    .account-management .account-table th, 
+    .account-management .account-table td {
         padding: 6px;
     }
 
-    .actions .btn {
-        width: 100%; /* Nút rộng 100% màn hình */
+    .account-management .actions .btn {
+        width: 100%;
         padding: 10px;
-        margin-bottom: 10px; /* Thêm khoảng cách giữa các nút */
+        margin-bottom: 10px;
     }
 
-    .inline-form {
-        display: block; /* Đưa các form trong dòng xuống thành hàng dọc */
+    .account-management .inline-form {
+        display: block;
         text-align: center;
     }
 }

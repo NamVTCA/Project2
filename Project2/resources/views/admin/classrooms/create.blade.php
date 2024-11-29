@@ -1,11 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<div>
+<link rel="stylesheet" href="{{ asset('css/ClassroomsCreation.css') }}">
+<div class="classroom-create-page">
     <h2>Tạo lớp học mới</h2>
-
     @if($errors->any())
-        <div style="color: red; margin: 10px 0;">
+        <div class="error-list">
             <ul>
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -16,24 +16,25 @@
 
     <form action="{{ route('classrooms.store') }}" method="POST">
         @csrf
-        <div style="margin-bottom: 15px;">
-            <label>Tên lớp học:</label>
-            <input type="text" name="name" value="{{ old('name') }}" required>
-            <span class="error-message"></span>
+        <div class="form-group">
+            <label for="name">Tên lớp học:</label>
+            <input type="text" id="name" name="name" value="{{ old('name') }}" required>
         </div>
 
-        <div style="margin-bottom: 15px;">
-            <label>Giáo viên:</label>
-            <select name="user_id" required>
+        <div class="form-group">
+            <label for="user_id">Giáo viên:</label>
+            <select id="user_id" name="user_id" required>
                 @foreach($teachers as $teacher)
-                    <option value="{{ $teacher->id }}" {{ old('user_id') == $teacher->id ? 'selected' : '' }}>{{ $teacher->name }}</option>
+                    <option value="{{ $teacher->id }}" {{ old('user_id') == $teacher->id ? 'selected' : '' }}>
+                        {{ $teacher->name }}
+                    </option>
                 @endforeach
             </select>
         </div>
 
-        <div style="margin-bottom: 15px;">
-            <label>Trạng thái:</label>
-            <select name="status" required>
+        <div class="form-group">
+            <label for="status">Trạng thái:</label>
+            <select id="status" name="status" required>
                 <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Hoạt động</option>
                 <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Không hoạt động</option>
             </select>
@@ -58,10 +59,10 @@
         </div>
 
         <button type="button" id="add-facility" class="btn btn-secondary">Thêm cơ sở vật chất</button>
-
-        <button type="submit">Tạo lớp</button>
+        <button type="submit" class="btn btn-primary">Tạo lớp</button>
     </form>
 </div>
+
 <script>
     document.getElementById('add-facility').addEventListener('click', function () {
         const facilityDetails = document.getElementById('facility-details');

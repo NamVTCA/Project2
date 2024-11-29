@@ -1,7 +1,8 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<div class="profile-container">
+<link rel="stylesheet" href="{{ asset('css/AccountProfile.css') }}">
+<div class="profile-page">
     <div class="profile-header">
         <div class="profile-image">
             @if($user->img)
@@ -129,80 +130,4 @@
         @endif
     </div>
 </div>
-
-<style>
-
-.classes-grid, .children-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.class-card, .child-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.child-image {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 15px;
-}
-
-.child-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.child-info {
-    text-align: center;
-}
-
-.child-info h3 {
-    margin: 0 0 15px 0;
-    color: #333;
-}
-
-.class-stats {
-    margin: 15px 0;
-}
-
-.btn-view {
-    display: block;
-    text-align: center;
-    padding: 8px 15px;
-    background: #007bff;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-top: 15px;
-    transition: background 0.3s;
-}
-
-.btn-view:hover {
-    background: #0056b3;
-    color: white;
-    text-decoration: none;
-}
-
-@media (max-width: 768px) {
-    .classes-grid, .children-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .profile-header {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .profile-image {
-        margin: 0 0 20px 0;
-    }
-}
-</style>
 @endsection
