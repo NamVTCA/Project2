@@ -34,11 +34,13 @@
         <!-- Các trường nhập liệu -->
         <div class="form-group mb-3">
             <label for="name">Họ tên:</label>
+
             <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $user->name ?? '') }}" required>
             <span class="invalid-feedback" id="name-error"></span>
             @error('name')
                 <span class="invalid-feedback">{{ $message }}</span>
             @enderror
+
         </div>
 
         <div class="form-group mb-3">
