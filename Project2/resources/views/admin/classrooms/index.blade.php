@@ -28,8 +28,8 @@
                         @endif
                     </div>
                     <div class="class-actions">
-                        <a href="{{ route('classrooms.show', $class->id) }}" class="btn-view">View</a>
-                        <a href="{{ route('classrooms.edit', $class->id) }}" class="btn-edit">Edit</a>
+                        <a href="{{ route('classrooms.show', $class->id) }}" class="btn-view">Chi Tiết</a>
+                        <a href="{{ route('classrooms.edit', $class->id) }}" class="btn-edit">Chỉnh Sửa</a>
                     </div>
                 </div>
             @endforeach
