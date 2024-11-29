@@ -35,9 +35,9 @@ class ClassController extends Controller
             foreach ($request->input('facility_details') as $facilityDetail) {
                 facilities::create([
                     'name' => $facilityDetail['name'],
-                    'status' => $facilityDetail['status'],
+                    'status' => isset($facilityDetail['status']) ? $facilityDetail['status'] : 1,
                     'quantity' => $facilityDetail['quantity'],
-                    'classroom_id' => $classroom->id, // Sử dụng 'classroom_id' thay vì 'class_id'
+                    'classroom_id' => $classroom->id,
                 ]);
             }
         }
