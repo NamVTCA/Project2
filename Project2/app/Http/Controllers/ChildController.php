@@ -53,18 +53,20 @@ class ChildController extends Controller
 
     public function update(ChildRequest $request, Child $child)
     {
-        $data = $request->validated();
-
-        
+        $data = $request->validated();   
+        dd($data);   
 
         if ($request->hasFile('img')) {
             if ($child->img) {
                 Storage::disk('public')->delete($child->img);
             }
             $data['img'] = $request->file('img')->store('children', 'public');
+        } else {
+            unset($data['img']); 
         }
 
-        $child->update($data);
+        $child->fill($data);
+        $child->save();
 
         return redirect()->route('admin.children.index')
             ->with('success', 'Cập nhật thông tin trẻ thành công.');

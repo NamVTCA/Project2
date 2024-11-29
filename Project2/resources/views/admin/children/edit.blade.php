@@ -11,8 +11,11 @@
 
         <div>
             <label>Tên:</label>
-            <input type="text" name="name" value="{{ old('name') }}" required pattern="^[\p{L}\s]+$" title="Tên chỉ được chứa chữ cái và khoảng trắng" oninput="validateName(this)">
-            <span class="error-message" style="color: red; display: none;">Vui lòng nhập tên hợp lệ (chỉ chứa chữ cái và khoảng trắng).</span>
+            <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $user->name ?? '') }}" required>
+            <span class="invalid-feedback" id="name-error"></span>
+            @error('name')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
         </div>
 
         <div>
@@ -61,24 +64,21 @@
 </div>
 
 <script>
-    function validateName(input) {
-        const pattern = /^[\p{L}\s]+$/u; 
-        const errorMessage = input.nextElementSibling;
-        if (!pattern.test(input.value)) {
-            errorMessage.style.display = 'block'; 
-            input.setCustomValidity('Tên chỉ được chứa chữ cái và khoảng trắng');
-        } else {
-            errorMessage.style.display = 'none'; 
-            input.setCustomValidity(''); 
-        }
-    }
+    document.addEventListener('DOMContentLoaded', function() 
+    {
+        const nameInput = document.getElementById('name');
+        const nameError = document.getElementById('name-error');
 
-    document.getElementById('childForm').addEventListener('submit', function (e) {
-        const nameInput = this.querySelector('input[name="name"]');
-        validateName(nameInput);
-        if (!nameInput.checkValidity()) {
-            e.preventDefault();
-        }
-    });
+        nameInput.addEventListener('input', function() {
+            const namePattern = /^[\p{L}\s]+$/u;
+            if (!namePattern.test(this.value)) {
+                nameError.textContent = 'Vui lòng nhập tên hợp lệ (chỉ chứa chữ cái và khoảng trắng)';
+                this.classList.add('is-invalid');
+            } else {
+                nameError.textContent = '';
+                this.classList.remove('is-invalid');
+            }
+        });
+    })
 </script>
 @endsection
