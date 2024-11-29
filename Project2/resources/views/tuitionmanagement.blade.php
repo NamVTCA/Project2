@@ -40,7 +40,7 @@
             <h3>Thông Tin Trẻ</h3>
             <p><strong>Tên Phụ Huynh:</strong> {{ $selectedChild->user->name }}</p>
             <p><strong>Ngày Sinh:</strong> {{ $selectedChild->birthDate }}</p>
-            <p><strong>Giới Tính:</strong> {{ $selectedChild->gender == 'male' ? 'Nam' : 'Nữ' }}</p>
+            <p><strong>Giới Tính:</strong> {{ $selectedChild->gender == 1 ? 'Nam' : 'Nữ' }}</p>
         </div>
 
         <table class="tuition-table">
