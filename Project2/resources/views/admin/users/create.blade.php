@@ -34,7 +34,6 @@
         <!-- Các trường nhập liệu -->
         <div class="form-group mb-3">
             <label for="name">Họ tên:</label>
-
             <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror"value="{{ old('name', $user->name ?? '') }}"onkeypress="return /[a-zA-Z\s]/i.test(event.key)"required>
                 @error('name')
                     <span class="invalid-feedback">{{ $message }}</span>

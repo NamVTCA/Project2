@@ -57,7 +57,7 @@
         {{ $errors->first() }}
     </div>
 @endif
-        </form>
+        {{-- </form>
         @if(session('success'))
             <div class="alert alert-success mt-3">{{ session('success') }}</div>
         @endif
@@ -68,5 +68,5 @@
             </div>
         @endif
     </div>
-</main>
+</main> trùng thông báo --}}
 @endsection
