@@ -1,48 +1,13 @@
-/* Reset CSS */
-* {
+/* Reset CSS cho phần Tạo người dùng mới */
+.user-creation-section * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
 
-/* Màu sắc cho tên thương hiệu */
-.title {
-    color: #ff69b4;
-    font-weight: bold;
-}
-
-/* Màu sắc cho liên kết trong menu */
-.navbar-nav .nav-link {
-    color: #ff69b4;
-    font-weight: bold;
-    padding: 10px 16px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.navbar-nav .nav-link:hover {
-    transform: scale(1.10);
-    color: #38383a;
-}
-
-/* Body Styles */
-body {
-    background-color: #f9f9f9;
-    color: #6c757d;
-}
-
-/* Header Styles */
-.navbar {
-    background-color: #f1d1e1;
-    padding: 20px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
 /* Container chính */
-.container {
+.user-creation-section .container {
     max-width: auto;
     margin: 50px auto;
     padding: 30px;
@@ -52,9 +17,8 @@ body {
     animation: fadeIn 0.5s ease-in-out;
 }
 
-
 /* Header */
-h2 {
+.user-creation-section h2 {
     color: #ec53d0;
     font-weight: bold;
     text-align: center;
@@ -63,7 +27,7 @@ h2 {
     position: relative;
 }
 
-h2::after {
+.user-creation-section h2::after {
     content: '';
     width: 50px;
     height: 3px;
@@ -73,60 +37,8 @@ h2::after {
     border-radius: 5px;
 }
 
-/* Form Labels */
-.form-label {
-    font-size: 16px;
-    color: #555;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-/* Select Box */
-.form-select {
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 16px;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.form-select:focus {
-    border-color: #070b07;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    outline: none;
-}
-
-/* Account Creation Form Section */
-.account-creation-section {
-    max-width: 700px;
-    margin: 60px auto;
-    padding: 40px;
-    background-color: #ffe4e1;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.account-creation-section h2 {
-    color: #d6336c;
-    font-size: 26px;
-    margin-bottom: 25px;
-}
-
-.account-creation-form {
-    display: flex;
-    align-items: flex-start;
-    gap: 30px; /* Khoảng cách rộng hơn giữa phần tải ảnh và phần nhập liệu */
-}
-
-/* Phần thêm ảnh với nút xác nhận và hủy */
-.image-upload {
-    flex: 1;
-    text-align: center;
-}
-
-.upload-area {
+/* Phần tải ảnh */
+.user-creation-section .upload-area {
     width: 140px;
     height: 186.67px; /* Chiều cao để giữ tỷ lệ 3:4 */
     border: 2px dashed #d6336c;
@@ -138,16 +50,17 @@ h2::after {
     font-size: 16px;
     cursor: pointer;
     margin-bottom: 10px;
-    position: relative;
 }
 
-.upload-buttons {
+.user-creation-section .upload-buttons {
     display: flex;
     gap: 10px;
     margin-top: 10px;
 }
 
-.upload-buttons button {
+.user-creation-section .upload-buttons .confirm-btn {
+    background-color: #ff69b4;
+    color: white;
     padding: 8px;
     font-size: 14px;
     border: none;
@@ -155,54 +68,25 @@ h2::after {
     cursor: pointer;
 }
 
-.upload-buttons .confirm-btn {
-    background-color: #ff69b4;
-    color: white;
-}
-
-.upload-buttons .cancel-btn {
+.user-creation-section .upload-buttons .cancel-btn {
     background-color: #ced4da;
     color: black;
-}
-
-/* Image upload box with fixed aspect ratio */
-.image-4x3 {
-    width: 140px; /* Chiều rộng của khung */
-    height: 186.67px; /* Chiều cao để giữ tỷ lệ 3:4 */
-    position: relative;
-    overflow: hidden;
-    border: 2px dashed #d6336c;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #d6336c;
-    font-size: 16px;
+    padding: 8px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    border-radius: 10px;
 }
 
-.image-4x3 img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Đảm bảo ảnh lấp đầy khung mà không bị méo */
-    border-radius: 10px;
-}
-
-.form-fields {
-    flex: 3;
-    text-align: left;
-}
-
-.form-fields label {
+/* Phần nhập liệu */
+.user-creation-section .form-fields label {
     font-size: 20px;
     color: #6c757d;
     margin-bottom: 8px;
+    display: block;
 }
 
-.form-fields input {
+.user-creation-section .form-fields input {
     width: 100%;
     padding: 12px;
     margin-bottom: 20px;
@@ -210,8 +94,8 @@ h2::after {
     border-radius: 6px;
 }
 
-/* Button with more spacing */
-.account-creation-btn {
+/* Button tạo tài khoản */
+.user-creation-section .account-creation-btn {
     width: 100%;
     padding: 12px;
     background-color: #ff69b4;
@@ -224,61 +108,23 @@ h2::after {
     margin-top: 10px;
 }
 
-.account-creation-btn:hover {
+.user-creation-section .account-creation-btn:hover {
     background-color: #d6336c;
 }
 
-/* Footer Styles */
-footer {
-    background-color: #ffe4e1;
-    color: #6c757d;
-    padding: 15px 0;
-}
-
-footer a {
-    color: #6c757d;
-    text-decoration: none;
-}
-
-footer a:hover {
-    color: #ff69b4;
-    text-decoration: underline;
-}
-
-/* Media Queries */
-@media (max-width: 991.98px) {
-    .navbar-toggler {
-        display: block;
-    }
-    
-    .navbar-collapse {
-        background-color: #ffe4e1;
-    }
-
-    .navbar-nav .nav-link {
-        padding: 12px 24px;
-        text-align: center;
-    }
-
-    .account-creation-section {
-        padding: 30px;
-    }
-}
-
-select.form-control {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    background-color: #fff;
-    color: #6c757d;
+.user-creation-section .btn-primary {
+    width: 100%; /* Đảm bảo nút đầy chiều ngang nếu cần */
+    padding: 12px;
     font-size: 16px;
-    appearance: none; /* Ẩn mũi tên mặc định trên một số trình duyệt */
+    font-weight: bold;
+    background-color: #ff69b4;
+    border: none;
+    border-radius: 6px; /* Tăng độ bo góc */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease;
 }
 
-select.form-control:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+.user-creation-section .btn-primary:hover {
+    background-color: #d6336c; /* Màu hover */
+    transform: scale(1.05); /* Hiệu ứng hover mở rộng */
 }

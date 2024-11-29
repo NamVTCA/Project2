@@ -1,0 +1,66 @@
+/* Đặt CSS trong tệp custom.css hoặc section styles */
+.classroom-create-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.classroom-create-page h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+.classroom-create-page .form-group {
+    margin-bottom: 15px;
+}
+
+.classroom-create-page label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #6c757d;
+}
+
+.classroom-create-page input,
+.classroom-create-page select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+}
+
+.classroom-create-page button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.classroom-create-page .btn-secondary {
+    background-color: #e2e6ea;
+    color: #000;
+}
+
+.classroom-create-page .btn-secondary:hover {
+    background-color: #d6d8db;
+    transform: scale(1.05);
+}
+
+.classroom-create-page .btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.classroom-create-page .btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.classroom-create-page .error-list {
+    color: red;
+    margin: 10px 0;
+}
