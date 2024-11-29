@@ -1,3 +1,4 @@
+
 @extends('layouts.dashboard')
 
 @section('title', 'Lịch Học Nhà Trẻ')
@@ -42,6 +43,8 @@
                     </tr>
                     </tbody>
                 </table>
+
+    
             </div>
         </div>
     </div>
@@ -77,6 +80,8 @@
                     console.error('Có lỗi xảy ra:', error);
                 });
         }
+
     }
 </script>
 @endsection
+

@@ -55,7 +55,7 @@
         const date = document.getElementById('date').value;
 
         if (classroomId && date) {
-            fetch(`/schedule/details?classroom_id=${classroomId}&date=${date}`)
+            fetch(`/api/schedule/details?classroom_id=${classroomId}&date=${date}`)
                 .then(response => response.json())
                 .then(data => {
                     const tableBody = document.getElementById('schedule-details-body');
