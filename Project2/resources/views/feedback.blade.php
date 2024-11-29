@@ -9,8 +9,16 @@
         <img src="{{ asset('img/Login.png') }}" alt="Nursery PreSchool" class="logo-image">
     </div>        
     <h1>Gửi Phản Hồi</h1>
-    <form action="/feedback" method="POST">
-        @csrf <!-- Thêm bảo vệ CSRF -->
+      @if($errors->any())
+    <div class="alert alert-danger">
+        {{ $errors->first() }}
+    </div>
+@endif
+  @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+    <form action="{{route('feedbackSend')}}" method="POST">
+        @csrf 
         <div class="form-group">
             <label for="name">Tên của bạn</label>
             <input type="text" id="name" name="name" placeholder="Nhập tên của bạn" required>
