@@ -52,7 +52,7 @@
 
         <div class="form-group mb-3">
             <label for="password">Mật khẩu:</label>
-            <input type="text" id="password" name="password" class="form-control" value="{{ old('text') }}" required>
+            <input type="text" id="password" name="password" class="form-control" required>
             @error('password')
                 <span class="invalid-feedback">{{ $message }}</span>
             @enderror
