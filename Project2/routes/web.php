@@ -141,8 +141,8 @@ Route::post('/logout',[loginController::class,'logout'])->name('logout');
 Route::get('/subjects', [subjectController::class, 'index'])->name('subjects.index');
 Route::post('/subjects', [subjectController::class, 'store'])->name('subjects.store');
 Route::put('/subjects/{id}', [SubjectController::class, 'update'])->name('subjects.update');
-Route::get('/timetable', [TimetableController::class, 'index'])->name('timetable.index');
-Route::post('/timetable/save', [TimetableController::class, 'save'])->name('timetable.save');
+// Route::get('/timetable', [TimetableController::class, 'index'])->name('timetable.index');
+// Route::post('/timetable/save', [TimetableController::class, 'save'])->name('timetable.save');
 
 
 

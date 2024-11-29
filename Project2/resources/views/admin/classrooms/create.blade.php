@@ -52,7 +52,7 @@
                     <input type="text" name="facility_details[0][status]" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="facility_details[0][quantity]">Chất lượng</label>
+                    <label for="facility_details[0][quantity]">Số Lượng</label>
                     <input type="number" name="facility_details[0][quantity]" class="form-control" required>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                     <input type="text" name="facility_details[${index}][status]" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="facility_details[${index}][quantity]">Chất lượng</label>
+                    <label for="facility_details[${index}][quantity]">Số lượng</label>
                     <input type="number" name="facility_details[${index}][quantity]" class="form-control" required>
                 </div>
             </div>

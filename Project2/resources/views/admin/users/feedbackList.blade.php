@@ -17,7 +17,7 @@
         <table class="table table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>#</th>
+                    <th>Số Thứ Tự</th>
                     <th>Tên người gửi</th>
                     <th>Email</th>
                     <th>Nội dung</th>

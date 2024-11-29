@@ -71,6 +71,67 @@
     </div>
 </div>
 
+<div class="container mt-4">
+    <div class="row">
+        <!-- Bên trái: Chọn ngày và học lực -->
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-header bg-warning text-dark">
+                    Chọn Ngày và Học Lực
+                </div>
+                <div class="card-body">
+                    <form id="evaluation-form">
+                        <div class="form-group">
+                            <label for="date">Ngày:</label>
+                            <input type="date" id="date" name="date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="point">Học Lực:</label>
+                            <input type="text" id="point" name="point" class="form-control" disabled>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="hocLuc">Đánh Giá</label>
+                            <textarea disabled id="hocLuc" class="form-control" rows="3" placeholder="Nhận xét học lực"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bên phải: Chọn học sinh và chi tiết học sinh -->
+        <div class="col-md-6">
+            <!-- Chọn học sinh -->
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white">
+                    Chọn Học Sinh
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="child_id">Học Sinh:</label>
+                        <select name="child_id" id="child_id" class="form-select" required>
+                            <option value="" disabled selected>-- Chọn học sinh --</option>
+                            @foreach($students as $student)
+                                <option value="{{ $student->id }}">{{ $student->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- Chi tiết học sinh -->
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    Chi Tiết Học Sinh
+                </div>
+                <div class="card-body">
+                    <p><strong>Tên:</strong> <span id="student-name"></span></p>
+                    <p><strong>Ngày Sinh:</strong> <span id="student-birth"></span></p>
+                    <p><strong>Giới Tính:</strong> <span id="student-gender"></span></p>
+                    <p><strong>Lớp:</strong> <span id="student-class"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -78,5 +139,58 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const studentSelect = document.getElementById('child_id');
+        const dateInput = document.getElementById('date');
+        const pointInput = document.getElementById('point');
+        const studentName = document.getElementById('student-name');
+        const studentBirth = document.getElementById('student-birth');
+        const studentGender = document.getElementById('student-gender');
+        const studentClass = document.getElementById('student-class');
+        const hocLuc = document.getElementById('hocLuc');
+        studentSelect.addEventListener('change', fetchStudentDetails);
+        dateInput.addEventListener('change', fetchStudentDetails);
+    
+        function fetchStudentDetails() {
+            const childId = studentSelect.value;
+            const date = dateInput.value;
+    
+            if (childId && date) {
+               fetch(`/api/student/details?child_id=${childId}&date=${date}`)
+    
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            studentName.textContent = data.student.name;
+                            studentBirth.textContent = data.student.birthDate;
+                            studentGender.textContent = data.student.gender === 1 ? 'Nam' : 'Nữ';
+                            studentClass.textContent = data.student.className || 'Chưa xác định';
+                            hocLuc.value = data.evaluation.comment || 'Chưa có dữ liệu học lực';
+                            const point = data.evaluation.point;
+    let rate;
+    
+    if (point == 10) {
+        rate = 'Xuất Sắc';
+    } else if (point == 8) {
+        rate = 'Giỏi';
+    } else if (point == 6) {
+        rate = 'Khá';
+    } else if (point == 4) {
+        rate = 'Trung Bình';
+    } else if (point == 2) {
+        rate = 'Yếu';
+    } else {
+        rate = 'Chưa có dữ liệu điểm';
+    }
+                            pointInput.value = rate;
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+    });
+    </script>
 @endsection
