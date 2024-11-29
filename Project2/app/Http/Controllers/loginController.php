@@ -97,6 +97,7 @@ class loginController extends Controller
         'classrooms' => $classrooms,
         'students' => $students,
         'parents' => $parents, 
+        'children'=> $children,
     ]);
         case 2:
             return view('users.dashboarduser',compact('children'));

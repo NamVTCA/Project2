@@ -39,7 +39,7 @@
         <div class="col-md-4">
             <div class="card shadow-sm bg-gradient-pink text-white text-center">
                 <div class="card-body">
-                    <h5 class="card-title">Thêm học sinh</h5>
+                    <h5 class="card-title">Quản lý học sinh</h5>
                     <p class="card-text">Xem và chỉnh sửa thông tin học sinh.</p>
                     <a href="{{ route('admin.children.index') }}" class="btn btn-light btn-sm">Đi tới</a>
             </div>
@@ -49,8 +49,17 @@
         <div class="card shadow-sm bg-gradient-pink text-white text-center">
             <div class="card-body">
                 <h5 class="card-title"> Quản lý học phí</h5>
-                <p class="card-text">Xem báo cáo chi tiết học phí.</p>
+                <p class="card-text">Xem và chỉnh sửa học phí.</p>
                 <a href="{{ route('tuitionmanagement') }}" class="btn btn-light btn-sm">Đi tới</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm bg-gradient-pink text-white text-center">
+            <div class="card-body">
+                <h5 class="card-title"> Quản lý Lớp Học</h5>
+                <p class="card-text">Xem và chỉnh sửa lớp học.</p>
+                <a href="{{ route('admin.classrooms.index') }}" class="btn btn-light btn-sm">Đi tới</a>
             </div>
         </div>
     </div>

@@ -24,6 +24,7 @@
                         <p><strong>Địa Chỉ:</strong> {{ Auth::user()->address }}</p>
                         <p><strong>Căn Cước Công Dân:</strong> {{ Auth::user()->id_number }}</p>
                         <p><strong>Giới Tính:</strong> {{ Auth::user()->gender }}</p>
+                        <p><strong>Lớp Dạy</strong> {{ Auth::user()->classroom->name }}</p>
                     @else
                         <p>Không có thông tin người dùng.</p>
                     @endif
@@ -110,8 +111,8 @@
                         <label for="child_id">Học Sinh:</label>
                         <select name="child_id" id="child_id" class="form-select" required>
                             <option value="" disabled selected>-- Chọn học sinh --</option>
-                            @foreach($students as $student)
-                                <option value="{{ $student->id }}">{{ $student->name }}</option>
+                            @foreach($children as $child)
+                                <option value="{{ $child->id }}">{{ $child->name }}</option>
                             @endforeach
                         </select>
                     </div>

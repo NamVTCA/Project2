@@ -95,3 +95,19 @@
         padding: 12px;
     }
 }
+
+.btn-glow {
+    background-color: #ec53d0; /* Màu tím nổi bật */
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 10px 15px;
+    box-shadow: 0 0 10px rgba(103, 58, 183, 0.6);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-glow:hover {
+    box-shadow: 0 0 20px rgba(103, 58, 183, 0.8), 0 0 40px rgba(103, 58, 183, 0.5);
+    transform: scale(1.05); /* Tăng kích thước nhẹ khi hover */
+    text-decoration: none;
+}

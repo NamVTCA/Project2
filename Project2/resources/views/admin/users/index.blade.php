@@ -18,6 +18,7 @@
                 <th>STT</th>
                 <th>Tên Đầy Đủ</th>
                 <th>Email</th>
+                <th>Chức Vụ</th>
                 <th>CCCD</th>
                 <th>Số điện thoại</th>
                 <th>Hành Động</th>
@@ -30,6 +31,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $account->name }}</td>
                         <td>{{ $account->email }}</td>
+                        <td>{{ ($account->role)== 1?"Giáo Viên": "Phụ Huynh" }}</td>
                         <td>{{ $account->id_number ?? '-' }}</td>
                         <td>{{$account->phone}}</td>
                         <td>

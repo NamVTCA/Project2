@@ -97,9 +97,9 @@
         <div class="form-group mb-3">
             <label for="gender">Giới tính:</label>
             <select id="gender" name="gender" class="form-control" required>
-                <option value="male">Nam</option>
-                <option value="female">Nữ</option>
-                <option value="other">Khác</option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
             </select>
         </div>
 
