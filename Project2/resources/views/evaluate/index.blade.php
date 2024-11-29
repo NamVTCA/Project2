@@ -10,6 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
+<<<<<<< Updated upstream
    
     <!-- Header Section -->
     <header class="bg-light py-3 shadow-sm">
@@ -52,6 +53,8 @@
         </div>
     </header>
 =======
+=======
+>>>>>>> Stashed changes
 @extends('layouts.dashboard') 
 
 @section('content')
