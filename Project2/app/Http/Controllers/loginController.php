@@ -73,7 +73,21 @@ class loginController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             return redirect()->route('showlogin')->with('message','invalid phone or email');
         }
-        
+        $user = Auth::user(); 
+    
+    $classrooms = $user->classroom;
+    
+    $students = [];
+    $parents = [];
+    
+    if ($classrooms) {
+        $students = $classrooms->children;
+        $parents = $students->map(function ($student) {
+            return $student->user; 
+        })->filter(); 
+    }
+
+  
        Auth::login($user);
         $id = $user->id;
         $children = Child::where('user_id', $id)->get();
@@ -83,7 +97,11 @@ class loginController extends Controller
         case 0:
             return view('admin/dashboardadmin');
         case 1:
-            return route('showDashboard');
+             return view('teacher.dashboardteacher', [
+        'classrooms' => $classrooms,
+        'students' => $students,
+        'parents' => $parents, 
+    ]);
         case 2:
             return view('users.dashboarduser',compact('children'));
         default:
@@ -153,26 +171,7 @@ public function resetPassword(Request $request)
 
 public function showDashboard()
 {
-    $user = Auth::user(); 
     
-    // Lấy lớp học của giáo viên
-    $classrooms = $user->classroom;
-    
-    $students = [];
-    $parents = [];
-    
-    if ($classrooms) {
-        $students = $classrooms->children;
-        $parents = $students->map(function ($student) {
-            return $student->user; 
-        })->filter(); 
-    }
-
-    return view('teacher.dashboardteacher', [
-        'classrooms' => $classrooms,
-        'students' => $students,
-        'parents' => $parents, 
-    ]);
 }
 
 }

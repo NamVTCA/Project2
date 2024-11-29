@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -51,12 +50,10 @@
             </nav>
         </div>
     </header>
-=======
 @extends('layouts.dashboard') 
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/EvaluateIndex.css') }}">
->>>>>>> Stashed changes
 <main class="schedule-section py-5">
     <div class="evaluate-page">
         <h2 class="text-pink">Đánh Giá Theo Ngày</h2>
