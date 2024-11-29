@@ -59,6 +59,7 @@ Route::get('/tuitionmanagement',[tuitionContoller::class,'index'] )->name('tuiti
 Route::get('/feedback', function () {
     return view('feedback');
 })->name('feedback');
+Route::post('/feedback',[FeedbackController::class,'feedback'])->name('feedbackSend');
 
 Route::middleware(['auth'])->group(function () {
       Route::get('/schedule', [scheduleController::class, 'index'])->name('schedule');
