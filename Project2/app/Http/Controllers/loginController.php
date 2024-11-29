@@ -73,17 +73,31 @@ class loginController extends Controller
         if (!$user || !Hash::check($request->password, $user->password)) {
             return redirect()->route('showlogin')->with('message','invalid phone or email');
         }
-        
-       Auth::login($user);
-        $id = $user->id;
-        $children = Child::where('user_id', $id)->get();
-        $role = $user->role;
-
+    Auth::login($user);
+    $user = Auth::user(); 
+    $role = $user->role;
+    if ($role == 1) {
+    $classrooms = $user->classroom;
+    $students = [];
+    $parents = [];
+    if ($classrooms) {
+        $students = $classrooms->children;
+        $parents = $students->map(function ($student) {
+            return $student->user; 
+        })->filter(); 
+    }
+    }
+    $id = $user->id;
+    $children = Child::where('user_id', $id)->get();
     switch ($role) {
         case 0:
             return view('admin/dashboardadmin');
         case 1:
-            return route('showDashboard');
+             return view('teacher.dashboardteacher', [
+        'classrooms' => $classrooms,
+        'students' => $students,
+        'parents' => $parents, 
+    ]);
         case 2:
             return view('users.dashboarduser',compact('children'));
         default:
@@ -151,29 +165,7 @@ public function resetPassword(Request $request)
     return redirect()->route('showfogot');
 }
 
-public function showDashboard()
-{
-    $user = Auth::user(); 
-    
-    // Lấy lớp học của giáo viên
-    $classrooms = $user->classroom;
-    
-    $students = [];
-    $parents = [];
-    
-    if ($classrooms) {
-        $students = $classrooms->children;
-        $parents = $students->map(function ($student) {
-            return $student->user; 
-        })->filter(); 
-    }
 
-    return view('teacher.dashboardteacher', [
-        'classrooms' => $classrooms,
-        'students' => $students,
-        'parents' => $parents, 
-    ]);
-}
 
 }
 

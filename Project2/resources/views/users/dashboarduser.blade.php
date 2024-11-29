@@ -14,7 +14,7 @@
                 </div>
                 <div class="card-body">
                     @if(Auth::check())
-                        <img src="{{ asset('img/backtoschool.png' . Auth::user()->profile_image) }}" 
+                        <img src="{{ asset(Auth::user()->profile_image) }}" 
                              alt="Ảnh Đại Diện" 
                              class="rounded-circle mb-3" 
                              style="width: 120px; height: 120px; object-fit: cover;">
@@ -110,7 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const date = dateInput.value;
 
         if (childId && date) {
-            fetch(/api/student/details?child_id=${childId}&date=${date})
+           fetch(`/api/student/details?child_id=${childId}&date=${date}`)
+
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
