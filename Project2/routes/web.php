@@ -13,6 +13,7 @@ use App\Http\Controllers\tuitionContoller;
 use App\Http\Controllers\subjectController;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\FacilityController;
+use App\Http\Controllers\ChildClassController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -151,4 +152,14 @@ Route::post('/timetable/save', [TimetableController::class, 'save'])->name('time
 // Route::get('/accounts/{id}/edit', [AccountController::class, 'edit'])->name('account.edit');
 // Route::put('/accounts/{id}', [AccountController::class, 'update'])->name('account.update');
 // Route::delete('/accounts/{id}', [AccountController::class, 'destroy'])->name('account.delete');
+
+
+Route::prefix('childclass')->group(function () {
+    Route::get('create', [ChildClassController::class, 'create'])->name('childclass.create');
+    Route::post('store', [ChildClassController::class, 'store'])->name('childclass.store');
+    Route::get('index', [ChildClassController::class, 'index'])->name('childclass.index');
+    Route::get('{child_id}/{classroom_id}/edit', [ChildClassController::class, 'edit'])->name('childclass.edit');
+    Route::post('{child_id}/{classroom_id}/update', [ChildClassController::class, 'update'])->name('childclass.update');
+});
+
 

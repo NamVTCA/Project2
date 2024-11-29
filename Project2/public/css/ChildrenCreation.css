@@ -73,7 +73,7 @@ button[type="submit"] {
     display: inline-block;
     padding: 10px 20px;
     border: none;
-    background-color: #28a745;
+    background-color: #2e06f8;
     color: #fff;
     font-size: 14px;
     border-radius: 4px;
@@ -83,7 +83,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #882188;
+    background-color: #f609de;
 }
 
 span.error-message {
