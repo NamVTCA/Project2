@@ -52,6 +52,7 @@
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Tạo Lịch học</button>
+        <a href="{{ route('subjects.index') }}" class="btn btn-glow">Thêm Môn Học</a>  
     </form>
    @if($errors->any())
     <div class="alert alert-danger">
