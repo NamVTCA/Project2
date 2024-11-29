@@ -60,7 +60,7 @@
                 </div>
                 <div class="form-group">
                     <label for="tuition_details[${index}][price]">Giá</label>
-                    <input type="number" name="tuition_details[${index}][price]" class="form-control" required>
+                    <input type="number" name="tuition_details[${index}][price]" class="form-control" required max="2000000">
                 </div>
             </div>
         `;
