@@ -1,14 +1,12 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Quản lý tài khoản')
-
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/AccountCreation.css') }}">
-<div class="user-creation-section">
-    <h2>Tạo người dùng mới và cấp tài khoản</h2>
+<div>
+    <link rel="stylesheet" href="{{ asset('css/AccountEdit.css') }}">
+    <h2>Chỉnh sửa thông tin người dùng</h2>
 
     @if($errors->any())
-        <div class="alert alert-danger">
+        <div style="color: red; margin: 10px 0;">
             <ul>
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -17,22 +15,14 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.users.store') }}" method="POST" enctype="multipart/form-data">
+    @if($user->role == 0)
+        <div style="color: red;">403 | Bạn không có quyền truy cập trang này.</div>
+    @else
+    <form action="{{ route('admin.users.update', $user->id) }}" method="POST" enctype="multipart/form-data" id="userForm">
         @csrf
+        @method('PUT')
 
-        <!-- Phần tải lên ảnh đại diện -->
-        <div class="form-group mb-3">
-            <label for="profileImage">Ảnh đại diện 3x4</label>
-            @if(isset($user) && $user->img)
-                <div style="margin: 10px 0;">
-                    <img src="{{ asset('storage/' . $user->img) }}" alt="Profile Image" style="max-width: 200px;">
-                </div>
-            @endif
-            <input type="file" id="profileImage" name="img" accept="image/*" class="form-control">
-        </div>
-
-        <!-- Các trường nhập liệu -->
-        <div class="form-group mb-3">
+        <div style="margin-bottom: 15px;">
             <label for="name">Họ tên:</label>
             <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $user->name ?? '') }}" required>
             <span class="invalid-feedback" id="name-error"></span>
@@ -41,7 +31,7 @@
             @enderror
         </div>
 
-        <div class="form-group mb-3">
+        <div style="margin-bottom: 15px;">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" required>
             <span class="invalid-feedback" id="email-error"></span>
@@ -50,15 +40,15 @@
             @enderror
         </div>
 
-        <div class="form-group mb-3">
+        <div style="margin-bottom: 15px;">
             <label for="password">Mật khẩu:</label>
-            <input type="text" id="password" name="password" class="form-control" required>
+            <input type="text" id="password" name="password" class="form-control" value="{{ old('text') }}" required>
             @error('password')
                 <span class="invalid-feedback">{{ $message }}</span>
             @enderror
         </div>
 
-        <div class="form-group mb-3">
+        <div style="margin-bottom: 15px;">
             <label for="id_number">Số căn cước công dân:</label>
             <input type="text" id="id_number" name="id_number" class="form-control @error('id_number') is-invalid @enderror" value="{{ old('id_number', $user->id_number ?? '') }}" maxlength="12" required>
             <span class="invalid-feedback" id="id-number-error"></span>
@@ -67,7 +57,7 @@
             @enderror
         </div>
 
-        <div class="form-group mb-3">
+        <div style="margin-bottom: 15px;">
             <label for="address">Địa chỉ:</label>
             <input type="text" id="address" name="address" class="form-control" value="{{ old('address') }}" required>
             @error('address')
@@ -75,7 +65,7 @@
             @enderror
         </div>
 
-        <div class="form-group mb-3">
+        <div style="margin-bottom: 15px;">
             <label for="phone">Số điện thoại:</label>
             <input type="text" name="phone" id="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" maxlength="11" required>
             <span class="invalid-feedback" id="phone-error"></span>
@@ -84,7 +74,7 @@
             @enderror
         </div>       
 
-        <div class="form-group mb-3">
+        <div style="margin-bottom: 15px;">
             <label for="role">Vai trò:</label>
             <select id="role" name="role" class="form-control" required>
                 <option value="1">Giáo Viên</option>
@@ -92,7 +82,7 @@
             </select>
         </div>
 
-        <div class="form-group mb-3">
+        <div style="margin-bottom: 15px;">
             <label for="gender">Giới tính:</label>
             <select id="gender" name="gender" class="form-control" required>
                 <option value="male">Nam</option>
@@ -101,15 +91,27 @@
             </select>
         </div>
 
-        <div class="form-group mb-3">
+        <div style="margin-bottom: 15px;">
             <label for="status">Trạng thái:</label>
             <select id="status" name="status" class="form-control" required>
                 <option value="1">Hoạt động</option>
                 <option value="0">Không hoạt động</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Tạo tài khoản</button>
+
+        <div style="margin-bottom: 15px;">
+            <label>Ảnh đại diện:</label>
+            @if(isset($user) && $user->img)
+                <div style="margin: 10px 0;">
+                    <img src="{{ asset('storage/' . $user->img) }}" alt="Profile Image" style="max-width: 200px;">
+                </div>
+            @endif
+            <input type="file" name="img" accept="image/jpeg,image/png,image/jpg">
+            <small style="color: #666;">Để trống nếu không muốn thay đổi ảnh</small>
+        </div>      
+        <button type="submit" class="btn btn-primary">Cập nhật</button>
     </form>
+    @endif
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
