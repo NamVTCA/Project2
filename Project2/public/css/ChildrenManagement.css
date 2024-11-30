@@ -155,3 +155,41 @@
         margin-top: 10px;
     }
 }
+
+/* Nút thêm học sinh mới */
+.children-container .btn-add:first-of-type {
+    background: #007bff; /* Xanh dương */
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+
+.children-container .btn-add:first-of-type:hover {
+    background: #fe05d9; /* Xanh dương đậm */
+    transform: scale(1.05); /* Phóng to nhẹ */
+}
+
+/* Nút thêm học sinh vào lớp */
+.children-container .btn-add:last-of-type {
+    background: #007bff; /* Xanh lá */
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+
+.children-container .btn-add:last-of-type:hover {
+    background: #fe05d9; /* Xanh lá đậm */
+    transform: scale(1.05); /* Phóng to nhẹ */
+}
+
+/* Tùy chỉnh chung cho cả hai nút */
+.children-container .btn-add {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Thêm chút bóng mờ */
+}
+
+.children-container .btn-add:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Tăng bóng mờ khi hover */
+}

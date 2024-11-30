@@ -1,23 +1,56 @@
+/* Container chính */
+.container {
+    margin-top: 30px;
+}
 
+/* Tiêu đề */
+h2 {
+    color: #d6336c;
+}
 
+/* Dropdown form */
+.form-select {
+    width: 100%;
+}
 
-    .container {
-        margin-top: 30px;
-    }
+/* Bảng */
+.table th, .table td {
+    text-align: center;
+}
 
-    h2 {
-        color: #d6336c;
-    }
+/* Thông báo */
+.alert {
+    margin-top: 15px;
+}
 
-    .form-select {
-        width: 100%;
-    }
+/* Container chính cho nút */
+.button-group {
+    display: flex;
+    gap: 15px; /* Khoảng cách giữa các nút */
+    justify-content: center; /* Căn giữa nhóm nút */
+    margin-top: 20px; /* Khoảng cách phía trên */
+}
 
-    .table th, .table td {
-        text-align: center;
-    }
+/* Kiểu chung cho cả nút */
+.btn-custom {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    color: #fff;
+    background: #ff69b4;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-    .alert {
-        margin-top: 15px;
-    }
+/* Hover hiệu ứng */
+.btn-custom:hover {
+    background: #ec53d0; /* Màu hồng đậm hơn */
+    transform: scale(1.05); /* Phóng to nhẹ */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
 
