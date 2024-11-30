@@ -117,3 +117,66 @@ textarea:focus, select:focus, input:focus {
     box-shadow: 0 0 5px rgba(37, 117, 252, 0.4);
     outline: none;
 }
+
+/* Thanh Toán Và Quản Lý Học Phí */
+.payment-management .card-header {
+    background: linear-gradient(135deg, #ff7eb3, #ff758c); /* Gradient hồng đậm */
+}
+.payment-management .card-body {
+    background-color: #fff3f8; /* Nền sáng nhẹ */
+    color: #ff758c;
+}
+
+/* Đánh Giá */
+.evaluation .card-header {
+    background: linear-gradient(135deg, #6a11cb, #b721ff); /* Gradient tím đậm */
+}
+.evaluation .card-body {
+    background-color: #f3e8ff; /* Nền sáng tím */
+    color: #6a11cb;
+}
+
+/* Quản Lý Lịch Học */
+.schedule-management .card-header {
+    background: linear-gradient(135deg, #28a745, #72d472); /* Gradient xanh lá */
+}
+.schedule-management .card-body {
+    background-color: #eaffea; /* Nền sáng xanh */
+    color: #28a745;
+}
+
+.payment-management .card:hover {
+    box-shadow: 0 10px 20px rgba(255, 117, 140, 0.3); /* Hồng nhạt */
+}
+
+.evaluation .card:hover {
+    box-shadow: 0 10px 20px rgba(186, 86, 255, 0.3); /* Tím nhạt */
+}
+
+.schedule-management .card:hover {
+    box-shadow: 0 10px 20px rgba(40, 167, 69, 0.3); /* Xanh lá nhạt */
+}
+
+.card-header {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase; /* Chữ in hoa */
+    letter-spacing: 1px; /* Khoảng cách chữ */
+}
+
+.card-body p {
+    font-size: 14px; /* Kích thước nhỏ gọn */
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 20px;
+    }
+    .card-header {
+        font-size: 16px;
+    }
+    .card-body {
+        font-size: 14px;
+    }
+}
