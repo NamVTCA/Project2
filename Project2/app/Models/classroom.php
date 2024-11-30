@@ -11,6 +11,7 @@ class classroom extends Model
     protected $fillable=[
         'name',
         'user_id',
+        'status',
     ];
     function user(){
         return $this->belongsTo(User::class,'user_id');

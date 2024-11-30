@@ -29,6 +29,13 @@
                         {{ $teacher->name }}
                     </option>
                 @endforeach
+                @foreach($allTeachers as $teacher)
+                @if($teacher->classroom)
+                    <option value="{{ $teacher->id }}" disabled style="color: gray;">
+                        {{ $teacher->name }} (đã phân lớp)
+                    </option>
+                @endif
+            @endforeach
             </select>
         </div>
 

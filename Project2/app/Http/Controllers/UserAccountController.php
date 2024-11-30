@@ -23,7 +23,7 @@ class UserAccountController extends Controller
 
     public function store(UserRequest $request)
     {
-        $data = $request->validate();
+        $data = $request->validated();
     
         if ($request->hasFile('img')) {
             $data['img'] = $request->file('img')->store('users', 'public');
@@ -45,7 +45,7 @@ class UserAccountController extends Controller
 
     public function update(UserRequest $request, User $user)
     {
-        $data = $request->validate();
+        $data = $request->validated();
 
         if ($request->hasFile('img')) {
             if ($user->img) {

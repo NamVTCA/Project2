@@ -16,7 +16,7 @@ class ClassRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'user_id' => 'required|exists:users,id',
-            'status' => 'required|integer|in:0,1',
+            'status' => 'required|integer|in:1,0',
         ];
     }
 }
