@@ -18,10 +18,9 @@ class ChildController extends Controller
     }
 
     public function create()
-    { $parents = User::where('role', 2)
-    ->orWhere('role', 1)
-    ->get();
-        return view('admin.children.create',compact('parents'));
+    { 
+        $users = User::where('role', '!=', 0)->get();
+        return view('admin.children.create',compact('users'));
     }
 
     public function store(ChildRequest $request)
@@ -40,21 +39,15 @@ class ChildController extends Controller
             ->with('success', 'Tạo thông tin trẻ thành công.');
     }
 
-    public function show(Child $child)
-    {
-        $child->load('user');
-        return view('admin.children.show', compact('child'));
-    }
-
     public function edit(Child $child)
     {
-        return view('admin.children.edit', compact('child'));
+        $users = User::where('role', '!=', 0)->get();
+        return view('admin.children.edit', compact('child', 'users'));
     }
 
     public function update(ChildRequest $request, Child $child)
     {
         $data = $request->validated();   
-        dd($data);   
 
         if ($request->hasFile('img')) {
             if ($child->img) {
@@ -65,9 +58,13 @@ class ChildController extends Controller
             unset($data['img']); 
         }
 
+        dd('Before Save', $data);   
+
         $child->fill($data);
         $child->save();
 
+        dd('After Save');
+        
         return redirect()->route('admin.children.index')
             ->with('success', 'Cập nhật thông tin trẻ thành công.');
     }

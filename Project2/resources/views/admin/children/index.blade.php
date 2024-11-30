@@ -27,7 +27,6 @@
                     <p>Phụ huynh: {{ $child->user ? $child->user->name : 'N/A' }}</p>
                 </div>
                 <div class="child-actions">
-                    <a href="{{ route('children.show', $child->id) }}" class="btn-view">Xem</a>
                     <a href="{{ route('children.edit', $child->id) }}" class="btn-edit">Sửa</a>
                 </div>
             </div>

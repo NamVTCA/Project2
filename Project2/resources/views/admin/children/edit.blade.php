@@ -4,14 +4,14 @@
 <link rel="stylesheet" href="{{ asset('css/ChildrenEdit.css') }}">
 
 <div class="edit-student-wrapper">
-    <form action="{{ route('children.update', $child->id) }}" method="PUT" enctype="multipart/form-data" id="childForm">
+    <form action="{{ route('children.update', $child->id) }}" method="POST" enctype="multipart/form-data" id="childForm">
         <h2>Chỉnh sửa thông tin học sinh</h2>
         @csrf
         @method('PUT')
 
         <div>
             <label>Tên:</label>
-            <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $user->name ?? '') }}" required>
+            <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $child->name ?? '') }}" required>
             <span class="invalid-feedback" id="name-error"></span>
             @error('name')
                 <span class="invalid-feedback">{{ $message }}</span>
@@ -34,13 +34,10 @@
         <div>
             <label>Phụ huynh:</label>
             <select name="user_id" required>
-                @php
-                    $parents = App\Models\User::where('role', 2)->get();
-                @endphp
-                @foreach($parents as $parent)
-                    <option value="{{ $parent->id }}" {{ old('user_id', $child->user_id) == $parent->id ? 'selected' : '' }}>{{ $parent->name }}</option>
+                @foreach($users as $user)
+                    <option value="{{ $user->id }}" {{ old('user_id', $child->user_id ?? '') == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                 @endforeach
-            </select>
+            </select>                      
         </div>
 
         <div>
@@ -54,7 +51,7 @@
         <div>
             <label>Ảnh đại diện:</label>
             @if(isset($user) && $user->img)
-                <img src="{{ asset('storage/' . $user->img) }}" alt="Profile Image">
+                <img src="{{ asset('storage/' . $child->img) }}" alt="Profile Image">
             @endif
             <input type="file" name="img" accept="image/*">
         </div>

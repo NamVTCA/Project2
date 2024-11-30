@@ -40,13 +40,10 @@
         <div style="margin-bottom: 15px;">
             <label>Phụ huynh:</label>
             <select name="user_id" required>
-                @php
-                    $parents = App\Models\User::where('role', 2)->get();
-                @endphp
-                @foreach($parents as $parent)
-                    <option value="{{ $parent->id }}" {{ old('user_id') == $parent->id ? 'selected' : '' }}>{{ $parent->name }}</option>
+                @foreach($users as $user)
+                    <option value="{{ $user->id }}" {{ old('user_id', $child->user_id ?? '') == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                 @endforeach
-            </select>
+            </select>                    
         </div>
 
         <div style="margin-bottom: 15px;">
