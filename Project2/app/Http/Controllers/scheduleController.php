@@ -39,6 +39,7 @@ public function getScheduleDetails(Request $request)
     return response()->json([], 200);
 }
     public function deleteSchedule(Request $request)
+    
 {
     $scheduleId = $request->query('schedule_id');
     if ($scheduleId) {
