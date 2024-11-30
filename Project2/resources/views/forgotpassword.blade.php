@@ -5,12 +5,24 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/Fogotpassword.css') }}">
 <main class="reset-password-page">
+      @if($errors->any())
+    <div class="alert alert-danger">
+        {{ $errors->first() }}
+    </div>
+@endif
+@if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif 
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
     <div class="logo">
         <img src="{{ asset('img/Login.png') }}" alt="Nursery PreSchool">
         <h1>NURSERY PRESCHOOL</h1>
     </div>
 
-    <!-- Form gửi OTP -->
     <form action="{{ route('otp') }}" method="get" class="send-otp-form">
         @csrf
         <label for="phone">Số điện thoại:</label>

@@ -117,7 +117,7 @@ public function logout(Request $request)
 
 public function sendResetCode(Request $request)
 {
-    $request->validate(['phone' => 'required']);
+    $request->validate(['phone' => 'required|exists:users,phone']);
     $phone = $request->input('phone');
     $user = User::where('phone', $phone)->first();
     
@@ -127,13 +127,11 @@ public function sendResetCode(Request $request)
         $resetCode = Str::random(6);
         Session::put('reset_code', $resetCode);
          Session::put('phone', $phone);
-        // Gửi mã OTP qua email
         Mail::raw("Mã xác nhận để đặt lại mật khẩu của bạn là: $resetCode", function ($message) use ($user) {
             $message->to($user->email);
             $message->subject('Mã xác nhận đặt lại mật khẩu');
         });
 
-        // Thay vì sử dụng redirect()->route, dùng session flash để thông báo
         session()->flash('message', 'Mã xác nhận đã được gửi');
         
          return redirect()->route('showfogot')->withInput(['phone' => $phone]);
@@ -163,7 +161,7 @@ public function resetPassword(Request $request)
     $user->password = Hash::make($request->input('new_password'));
     $user->save();
 
-    return redirect()->route('showfogot');
+return view('forgotpassword')->with('success', 'Đổi mật khẩu thành công');
 }
 
 
