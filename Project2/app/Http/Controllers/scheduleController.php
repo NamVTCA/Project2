@@ -38,17 +38,21 @@ public function getScheduleDetails(Request $request)
 
     return response()->json([], 200);
 }
-    public function deleteSchedule($id)
-    {
-        $schedule = Schedule::find($id);
+    public function deleteSchedule(Request $request)
+{
+    $scheduleId = $request->query('schedule_id');
+    if ($scheduleId) {
+        $schedule = Schedule::find($scheduleId);
         if ($schedule) {
             $schedule->schedule_info()->delete(); 
             $schedule->delete(); 
             return response()->json(['success' => true], 200);
         }
-
-        return response()->json(['success' => false], 404);
     }
+
+    return response()->json(['success' => false], 404);
+}
+
     public function index(Request $request){
         $classrooms = classroom::all();
          $classroomId = $request->input('classroom_id');

@@ -1,10 +1,14 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Lịch học mẫu giáo')
+@section('title', 'Lịch Học Nhà Trẻ')
 
 @section('content')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/NurserySchedule.css') }}">
-<main class="schedule-section">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<main class="schedule-section py-5">
     <div class="container">
         <h2 class="text-center mb-4" style="color:#d6336c;">Lịch học Nhà trẻ</h2>
         <form class="row mb-4">
@@ -30,7 +34,7 @@
                     <tr>
                         <th>Tiết Học</th>
                         <th>Môn Học</th>
-                        <th class="text-center">Hành Động</th>
+                         <th class="text-center">Hành Động</th>
                     </tr>
                     </thead>
                     <tbody id="schedule-details-body">
@@ -43,9 +47,6 @@
         </div>
     </div>
 </main>
-@endsection
-
-@push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     document.getElementById('classroom_id').addEventListener('change', loadSchedule);
@@ -64,7 +65,7 @@
                     if (data.length > 0) {
                         data.forEach(item => {
                             tableBody.innerHTML += `
-                                <tr>
+                               <tr>
                                     <td>${item.name}</td>
                                     <td>${item.subject_name}</td>
                                     <td class="text-center">
@@ -72,7 +73,7 @@
                                             <i class="fas fa-trash-alt"></i> Xóa
                                         </button>
                                     </td>
-                                </tr>`
+                                </tr>`;
                         });
                     } else {
                         tableBody.innerHTML = '<tr><td colspan="3" class="text-center text-muted">Không có dữ liệu.</td></tr>';
@@ -83,8 +84,7 @@
                 });
         }
     }
-
-    function deleteSchedule(scheduleId, infoId) {
+   function deleteSchedule(scheduleId, infoId) {
         if (confirm('Bạn có chắc chắn muốn xóa?')) {
             fetch(`/schedule/delete?schedule_id=${scheduleId}&id=${infoId}`, {
                 method: 'DELETE',
@@ -108,4 +108,4 @@
         }
     }
 </script>
-@endpush
+@endsection
