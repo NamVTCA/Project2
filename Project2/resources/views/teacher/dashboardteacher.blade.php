@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/TeacherDashboard.css') }}">
     <div class="row">
         <!-- Phần thông tin cá nhân -->
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header bg-info text-white text-center">
                     Thông Tin Cá Nhân
@@ -24,16 +24,52 @@
                         <p><strong>Địa Chỉ:</strong> {{ Auth::user()->address }}</p>
                         <p><strong>Căn Cước Công Dân:</strong> {{ Auth::user()->id_number }}</p>
                         <p><strong>Giới Tính:</strong> {{ Auth::user()->gender }}</p>
-                        <p><strong>Lớp Dạy</strong> {{ Auth::user()->classroom->name }}</p>
+                        <p><strong>Lớp Dạy:</strong> {{ Auth::user()->classroom->name }}</p>
                     @else
                         <p>Không có thông tin người dùng.</p>
                     @endif
                 </div>
             </div>
         </div>
-    </div>
 
+        <!-- Phần form gộp 3 phần -->
+        <div class="col-md-6">
+            <form class="card">
+                <div class="card-header bg-primary text-white text-center">
+                    Quản Lý Hoạt Động
+                </div>
+                <div class="card-body">
+                    <!-- Thanh Toán Và Quản Lý Học Phí -->
+                    <div class="form-group">
+                        <label for="tuitionManagement">Quản Lý Học Phí:</label>
+                        <div>
+                            <a href="{{ route('tuitionmanagement') }}" class="btn btn-light btn-sm">Chi Tiết</a>
+                            <a href="{{ route('momo') }}" class="btn btn-light btn-sm">Thanh Toán</a>
+                        </div>
+                    </div>
+
+                    <!-- Đánh Giá -->
+                    <div class="form-group">
+                        <label for="evaluation">Đánh Giá:</label>
+                        <div>
+                            <a href="{{ route('evaluate') }}" class="btn btn-light btn-sm">Đánh Giá</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Quản Lý Lịch Học -->
+                    <div class="form-group">
+                        <label for="scheduleManagement">Quản Lý Lịch Học:</label>
+                        <div>
+                            <a href="{{ route('schedule.create') }}" class="btn btn-light btn-sm">Tạo</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
+
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-12">
