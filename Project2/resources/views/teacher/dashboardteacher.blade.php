@@ -43,7 +43,6 @@
                     <div class="form-group">
                         <label for="tuitionManagement">Quản Lý Học Phí:</label>
                         <div>
-                            <a href="{{ route('tuitionmanagement') }}" class="btn btn-light btn-sm">Chi Tiết</a>
                             <a href="{{ route('momo') }}" class="btn btn-light btn-sm">Thanh Toán</a>
                         </div>
                     </div>
