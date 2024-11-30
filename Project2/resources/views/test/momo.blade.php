@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="mb-3">
+     <form action="{{ route('momo_payment') }}" method="POST">  
+            @csrf
         <link rel="stylesheet" href="{{ asset('css/Payment.css') }}">
 
             <label for="child_id" class="form-label text-pink">Chọn Trẻ</label>
@@ -22,8 +24,7 @@
             <h5>Chi Tiết Học Phí</h5>
             <ul id="tuition_detail_list" class="list-group"></ul>
         </div>
-        <form action="{{ route('momo_payment') }}" method="POST">  
-            @csrf 
+        
             <input type="hidden" name="tuition_id" id="selected_tuition_id">
             <button type="submit" class="btn btn-pink w-100" disabled id="payment_button">Thanh Toán</button>
         </form>

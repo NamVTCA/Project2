@@ -53,6 +53,7 @@ class paymentController extends Controller
         if (!$tuition) {
             return response()->json(['error' => 'Không tìm thấy thông tin học phí'], 404);
         }
+        $details = tuition_info::where('tuition_id', $request->tuition_id)->get();
 
         $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
         $partnerCode = 'MOMOBKUN20180529';
@@ -98,17 +99,29 @@ class paymentController extends Controller
 
         $result = $this->execPostRequest($endpoint, json_encode($data));
         Log::info('Phản hồi thanh toán MoMo:', ['response' => $result]);
-
         $jsonResult = json_decode($result, true);
-        if (isset($jsonResult['payUrl'])) {
+       isset($jsonResult['payUrl']);
+         
+        if (isset($jsonResult['resultCode']) && $jsonResult['resultCode'] == 0) {
             $tuition->update(['status' => 1]);
             session(['momo_payment_order_id' => $orderId]);
             $user = Auth::user();
             $userEmail = $user->email;
-            Mail::raw("tong so tien de thanh toan la:  $amount", function ($message) use ($user) {
-            $message->to($user->email);
-            $message->subject('Hóa đơn thanh toán học phí');
-            });
+            $detailsString = "";
+     foreach ($details as $key) {
+                $detailsString .= "Mục: " . $key->name . "\n" .
+                                  "Giá: " . number_format($key->price, 0, ',', '.') . " VNĐ\n\n";
+            }
+
+    $emailContent = "Hóa đơn của bé: "  . "\n" .
+                    "Tổng số tiền để thanh toán là: ". number_format($amount, 0, ',', '.') . " VNĐ\n\n".
+                    "Học kỳ: " . $tuition->semester . "\n" .
+                    $detailsString;
+
+    Mail::raw($emailContent, function ($message) use ($userEmail) {
+        $message->to($userEmail);
+        $message->subject('Hóa đơn thanh toán học phí');
+    });
             return redirect($jsonResult['payUrl']);
         }
         
