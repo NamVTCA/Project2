@@ -1,12 +1,16 @@
 @extends('layouts.dashboard')
-
+<link rel="stylesheet" href="{{ asset('css/ChildrenManagement.css') }}">
 @section('content')
 <div class="children-container">
     <div class="header">
-        <link rel="stylesheet" href="{{ asset('css/ChildrenManagement.css') }}">
         <h1>Quản lý học sinh</h1>
-        <a href="{{ route('children.create') }}" class="btn-add">Thêm học sinh mới</a>
+        <div>
+            <a href="{{ route('children.create') }}" class="btn-add">Thêm học sinh mới</a>
+            <a href="{{ route('childclass.create') }}" class="btn-add">Thêm học sinh vào lớp</a>
+        </div>
     </div>
+</div>
+
 
     <div class="children-grid">
         @foreach($children as $child)

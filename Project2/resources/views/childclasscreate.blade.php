@@ -30,9 +30,11 @@
                         <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
                     @endforeach
                 </select>
-            </div>
-        
-            <button type="submit" class="btn btn-primary mt-3">Thêm vào lớp</button>
+            </div>       
+            <div class="button-group">
+                <button type="submit" class="btn-custom">Thêm vào lớp</button>
+                <a href="{{ route('childclass.index') }}" class="btn-custom">Xem Danh Sách</a>
+            </div>  
         </form>
     </div>
 @endsection
