@@ -117,3 +117,115 @@
         font-size: 16px;
     }
 }
+
+/* Nút Thanh Toán */
+.payment-page .btn-pink {
+    background: linear-gradient(to right, #ec53d0, #f7cef8);
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hiệu ứng hover */
+.payment-page .btn-pink:hover {
+    background: linear-gradient(to right, #d748c1, #e6b1e2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Hiệu ứng click */
+.payment-page .btn-pink:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Khi nút bị vô hiệu hóa */
+.payment-page .btn-pink:disabled {
+    background: #ddd;
+    color: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Hiệu ứng ánh sáng khi kích hoạt */
+.payment-page .btn-pink::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75px;
+    width: 50px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: rotate(25deg);
+    transition: all 0.3s ease;
+}
+
+.payment-page .btn-pink:hover::after {
+    left: 150%;
+    transition: all 0.5s ease;
+}
+
+/* Nút Thanh Toán */
+.btn-pink {
+    background: linear-gradient(to right, #ec53d0, #f7cef8);
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Hiệu ứng hover */
+.btn-pink:hover {
+    background: linear-gradient(to right, #d748c1, #e6b1e2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Hiệu ứng click */
+.btn-pink:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Khi nút bị vô hiệu hóa */
+.btn-pink:disabled {
+    background: #ddd;
+    color: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Hiệu ứng ánh sáng khi kích hoạt */
+.btn-pink::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75px;
+    width: 50px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: rotate(25deg);
+    transition: all 0.3s ease;
+}
+
+.btn-pink:hover::after {
+    left: 150%;
+    transition: all 0.5s ease;
+}
