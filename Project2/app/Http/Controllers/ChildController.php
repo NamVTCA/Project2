@@ -27,7 +27,8 @@ class ChildController extends Controller
     {
         $data = $request->validated();
 
-        if ($request->hasFile('img')) {
+        if ($request->hasFile('img')) 
+        {
             $data['img'] = $request->file('img')->store('children', 'public');
         } else {
             $data['img'] = null;
@@ -49,21 +50,20 @@ class ChildController extends Controller
     {
         $data = $request->validated();   
 
-        if ($request->hasFile('img')) {
-            if ($child->img) {
+        if ($request->hasFile('img')) 
+        {
+            if ($child->img) 
+            {
                 Storage::disk('public')->delete($child->img);
             }
             $data['img'] = $request->file('img')->store('children', 'public');
-        } else {
+        } 
+        else 
+        {
             unset($data['img']); 
-        }
+        }   
 
-        dd('Before Save', $data);   
-
-        $child->fill($data);
-        $child->save();
-
-        dd('After Save');
+        $child->update($data);
         
         return redirect()->route('admin.children.index')
             ->with('success', 'Cập nhật thông tin trẻ thành công.');

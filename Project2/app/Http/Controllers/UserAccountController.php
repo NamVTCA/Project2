@@ -65,4 +65,15 @@ class UserAccountController extends Controller
         session()->flash('success', 'Tài khoản đã được cập nhật!');
         return redirect()->route('admin.users.index');
     }
+    public function destroy(User $user)
+    {
+        if ($user->img) {
+            Storage::disk('public')->delete($user->img);
+        }
+
+        $user->delete();
+
+        session()->flash('success', 'Tài khoản đã được xóa!');
+        return redirect()->route('admin.users.index');
+    }
 }
