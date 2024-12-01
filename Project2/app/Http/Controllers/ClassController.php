@@ -75,7 +75,9 @@ class ClassController extends Controller
         $classroom->update($data);
 
         if ($request->has('facility_details')) {
-            foreach ($request->input('facility_details') as $index => $facilityDetail) {
+            $existingFacilityIds = [];
+
+            foreach ($request->input('facility_details') as $facilityDetail) {
                 if (isset($facilityDetail['id'])) {
                     $facility = facilities::find($facilityDetail['id']);
                     if ($facility) {
@@ -84,15 +86,22 @@ class ClassController extends Controller
                             'status' => $facilityDetail['status'],
                             'quantity' => $facilityDetail['quantity'],
                         ]);
+                        $existingFacilityIds[] = $facility->id;
                     }
                 } else {
-                    $classroom->facilities()->create([
+                    $newFacility = $classroom->facilities()->create([
                         'name' => $facilityDetail['name'],
                         'status' => $facilityDetail['status'],
                         'quantity' => $facilityDetail['quantity'],
                     ]);
+                    $existingFacilityIds[] = $newFacility->id;
                 }
             }
+
+            // Delete facilities that are no longer in the request
+            facilities::where('classroom_id', $classroom->id)
+                ->whereNotIn('id', $existingFacilityIds)
+                ->delete();
         }
 
         return redirect()->route('admin.classrooms.index')

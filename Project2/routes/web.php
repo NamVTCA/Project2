@@ -105,7 +105,7 @@ Route::prefix('admin')->group(function () {
             Route::post('/classes', [ClassController::class, 'store'])->name('classrooms.store');
             Route::get('/classes/{class}', [ClassController::class, 'show'])->name('classrooms.show');
             Route::get('/classes/{classroom}/edit', [ClassController::class, 'edit'])->name('classrooms.edit');
-            Route::put('/classes/{class}', [ClassController::class, 'update'])->name('classrooms.update');
+            Route::put('/classes/{classroom}', [ClassController::class, 'update'])->name('classrooms.update');
         });
     });
 });
