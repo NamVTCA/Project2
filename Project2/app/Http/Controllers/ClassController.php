@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\User;
-use App\Models\facilities;
+use App\Models\Facility;
 use App\Http\Requests\ClassRequest;
+use App\Models\facilities;
 use Illuminate\Http\Request;
 
 class ClassController extends Controller
@@ -64,21 +65,25 @@ class ClassController extends Controller
             ->get();
 
         $allTeachers = User::where('role', 1)->get();
+        $facilities = $classroom->facilities;
 
-        return view('admin.classrooms.edit', compact('classroom', 'teachers', 'allTeachers'));
+        return view('admin.classrooms.edit', compact('classroom', 'teachers', 'allTeachers', 'facilities'));
     }
 
     public function update(ClassRequest $request, Classroom $classroom)
     {
         $data = $request->validated();
-        
+
+        // Cập nhật thông tin lớp học
         $classroom->update($data);
 
-        if ($request->has('facility_details')) {
-            $existingFacilityIds = [];
+        // Cập nhật hoặc xóa cơ sở vật chất
+        $existingFacilityIds = [];
 
+        if ($request->has('facility_details')) {
             foreach ($request->input('facility_details') as $facilityDetail) {
                 if (isset($facilityDetail['id'])) {
+                    // Tìm và cập nhật cơ sở vật chất đã tồn tại
                     $facility = facilities::find($facilityDetail['id']);
                     if ($facility) {
                         $facility->update([
@@ -89,6 +94,7 @@ class ClassController extends Controller
                         $existingFacilityIds[] = $facility->id;
                     }
                 } else {
+                    // Thêm mới cơ sở vật chất
                     $newFacility = $classroom->facilities()->create([
                         'name' => $facilityDetail['name'],
                         'status' => $facilityDetail['status'],
@@ -97,15 +103,28 @@ class ClassController extends Controller
                     $existingFacilityIds[] = $newFacility->id;
                 }
             }
-
-            // Delete facilities that are no longer in the request
-            facilities::where('classroom_id', $classroom->id)
-                ->whereNotIn('id', $existingFacilityIds)
-                ->delete();
         }
+
+        if ($request->has('deleted_facilities')) {
+            $deletedFacilityIds = explode(',', $request->input('deleted_facilities'));
+            facilities::whereIn('id', $deletedFacilityIds)->delete();
+        }
+        // Xóa cơ sở vật chất không còn trong yêu cầu
+        facilities::where('classroom_id', $classroom->id)
+            ->whereNotIn('id', $existingFacilityIds)
+            ->delete();
 
         return redirect()->route('admin.classrooms.index')
             ->with('success', 'Thông tin lớp học đã được cập nhật thành công.');
+    }
+
+
+    public function destroyFacility($id)
+    {
+        $facility = facilities::findOrFail($id);
+        $facility->delete();
+
+        return response()->json(['success' => 'Cơ sở vật chất đã được xóa thành công.']);
     }
 }
 
