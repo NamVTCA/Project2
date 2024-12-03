@@ -30,7 +30,9 @@ class ChildController extends Controller
         if ($request->hasFile('img')) 
         {
             $data['img'] = $request->file('img')->store('children', 'public');
-        } else {
+        } 
+        else 
+        {
             $data['img'] = null;
         }
 
