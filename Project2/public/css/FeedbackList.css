@@ -1,3 +1,11 @@
+/* Container chính */
+.container {
+    overflow-x: auto; /* Hiển thị cuộn ngang nếu cần */
+    padding: 0 15px; /* Giữ khoảng cách nội dung bên trong */
+    box-sizing: border-box;
+}
+
+/* Bảng */
 .table {
     width: 100%;
     border-collapse: collapse;
@@ -5,12 +13,17 @@
     background-color: white;
     border-radius: 10px;
     overflow: hidden;
+    table-layout: fixed; /* Đảm bảo các cột có độ rộng cố định */
 }
 
-.table th, .table td {
+.table th, 
+.table td {
     text-align: left;
     padding: 12px;
     border: 1px solid #ddd;
+    word-wrap: break-word; /* Ngắt dòng nếu nội dung quá dài */
+    word-break: break-word; /* Ngắt dòng ngay cả ở giữa từ */
+    white-space: normal; /* Cho phép nội dung xuống dòng */
 }
 
 .table th {
@@ -22,30 +35,21 @@
     background-color: #f5f5f5;
 }
 
-.btn-sm {
-    padding: 5px 10px;
-    font-size: 12px;
-}
-
-/* Nút Quay Về */
-.nav-link.btn.btn-outline-primary.btn-sm.me-3 {
-    display: inline-block;
-    color: #fff; /* Màu chữ trắng */
-    background-color: #f27eec; /* Màu xanh Bootstrap */
-    padding: 8px 16px; /* Khoảng cách bên trong */
-    font-size: 14px; /* Kích thước chữ */
-    font-weight: 500; /* Đậm hơn một chút */
-    border-radius: 5px; /* Bo góc */
-    text-decoration: none; /* Xóa gạch chân */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Hiệu ứng hover */
-}
-
-.nav-link.btn.btn-outline-primary.btn-sm.me-3:hover {
-    background-color: #fa03d5; /* Màu xanh đậm hơn khi hover */
-    transform: scale(1.05); /* Phóng to nhẹ khi hover */
-}
-
-.nav-link.btn.btn-outline-primary.btn-sm.me-3:active {
-    background-color: #f90bd9; /* Màu khi bấm giữ */
-    transform: scale(0.95); /* Thu nhỏ nhẹ khi nhấn */
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .table th,
+    .table td {
+        font-size: 12px; /* Thu nhỏ font chữ trên màn hình nhỏ */
+        padding: 8px;
+    }
+    
+    .table {
+        display: block; /* Hiển thị bảng dưới dạng block */
+        overflow-x: auto; /* Cho phép cuộn ngang nếu cần */
+    }
+    
+    .table th,
+    .table td {
+        min-width: 100px; /* Giới hạn độ rộng tối thiểu của cột */
+    }
 }

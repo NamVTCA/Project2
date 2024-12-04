@@ -3,7 +3,7 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/Timetable.css') }}">
 <main class="timetable-container">
-    <h1 class="page-title">Chỉnh Sửa Thời Khóa Biểu</h1>
+    <h1 class="page-title">Thời Khóa Biểu</h1>
     <div class="timetable">
         <form id="timetable-form" action="{{ route('timetable.save') }}" method="POST">
             @csrf
@@ -53,6 +53,7 @@
                 </tbody>
             </table>
             <button type="submit" class="save-btn">Lưu Thời Khóa Biểu</button>
+            <a href="{{ route('timetable.view') }}" class="btn btn-light btn-sm">Xem Lịch Học</a>
         </form>
     </div>
 </main>
