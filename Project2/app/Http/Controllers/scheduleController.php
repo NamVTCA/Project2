@@ -117,4 +117,25 @@ public function getScheduleDetails(Request $request)
     return redirect()->route('schedule.create')->with('success', 'Lịch học đã được tạo thành công!');
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+ public function saveTimetable(Request $request)
+    {
+        $semester = $request->input('semester');
+        $schedule = $request->input('schedule');
+
+        // Lưu dữ liệu vào session (không dùng DB)
+        session(["timetable.$semester" => $schedule]);
+
+        return redirect()->route('timetable', ['semester' => $semester]);
+    }
+
+    public function viewTimetable(Request $request)
+    {
+        $semesters = array_keys(session('timetable', [])); // Lấy danh sách học kỳ
+        $selectedSemester = $request->get('semester', $semesters[0] ?? null);
+        $schedule = session("timetable.$selectedSemester", []);
+
+        return view('timebladeT', compact('semesters', 'selectedSemester', 'schedule'));
+    }
 }

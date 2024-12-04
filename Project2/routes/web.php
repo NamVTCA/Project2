@@ -37,6 +37,11 @@ Route::get('/timetable', function () {
     return view('timetable');
 });
 
+
+Route::post('/timetable/save', [scheduleController::class, 'saveTimetable'])->name('timetable.save');
+Route::get('/timetable/view', [scheduleController::class, 'viewTimetable'])->name('timetable.view');
+
+
 Route::get('/feedbackList', function () {
     return view('feedbackList');
 });
