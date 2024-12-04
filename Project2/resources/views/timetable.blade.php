@@ -1,4 +1,4 @@
-{{-- @extends('layouts.dashboard')
+@extends('layouts.dashboard')
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/Timetable.css') }}">
@@ -48,4 +48,4 @@
         </form>
     </div>
 </main>
-@endsection --}}
+@endsection
