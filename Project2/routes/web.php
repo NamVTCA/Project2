@@ -35,7 +35,7 @@ Route::get('/accountcreation', function () {
 
 Route::get('/timetable', function () {
     return view('timetable');
-});
+})->name('timetable');
 
 
 Route::post('/timetable/save', [scheduleController::class, 'saveTimetable'])->name('timetable.save');
