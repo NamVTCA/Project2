@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/Timetable.css') }}">
+<link rel="stylesheet" href="{{ asset('css/TimetableT.css') }}">
 <main class="timetable-container">
     <h1 class="page-title">Xem Thời Khóa Biểu</h1>
     <div class="form-group">
