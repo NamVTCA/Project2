@@ -9,7 +9,7 @@
             @csrf
             <div class="form-group">
                 <label for="semester">Học kỳ:</label>
-                <input type="text" id="semester" name="semester" placeholder="Nhập học kỳ">
+                <input type="text" id="semester" name="semester" placeholder="Nhập học kỳ (ví dụ học kỳ 1 (20-01-2025 :: 20-04-2025)">
             </div>
             <table>
                 <thead>
