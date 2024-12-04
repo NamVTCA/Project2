@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class total_fatilities extends Model
 {
     use HasFactory;
+      protected $fillable = [
+        'name'
+    ];
     function dentail(){
         return $this->hasMany(dentail_fatilities::class,'total_id');
     }

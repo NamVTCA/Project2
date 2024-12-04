@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('total_fatilities', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+
             $table->timestamps();
         });
     }
