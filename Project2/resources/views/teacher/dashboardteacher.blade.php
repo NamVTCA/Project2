@@ -14,10 +14,7 @@
                 </div>
                 <div class="card-body text-center">
                     @if(Auth::check())
-                        <img src="{{ asset('img/backtoschool.png/' . Auth::user()->profile_image) }}" 
-                             alt="Ảnh Đại Diện" 
-                             class="rounded-circle mb-3" 
-                             style="width: 120px; height: 120px; object-fit: cover;">
+                        <img src="{{ Auth::user()->img ? asset('storage/' . Auth::user()->img) : asset('img/default_avatar.png') }}" alt="Ảnh Đại Diện" class="rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover;">
                         <p><strong>Tên:</strong> {{ Auth::user()->name }}</p>
                         <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
                         <p><strong>Số Điện Thoại:</strong> {{ Auth::user()->phone }}</p>

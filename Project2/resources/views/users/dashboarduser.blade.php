@@ -14,10 +14,17 @@
                 </div>
                 <div class="card-body">
                     @if(Auth::check())
-                        <img src="{{ asset(Auth::user()->profile_image) }}" 
-                             alt="Ảnh Đại Diện" 
-                             class="rounded-circle mb-3" 
-                             style="width: 120px; height: 120px; object-fit: cover;">
+                        @if(Auth::user()->img)
+                            <img src="{{ url('storage/' . Auth::user()->img) }}" 
+                                 alt="Ảnh Đại Diện" 
+                                 class="rounded-circle mb-3" 
+                                 style="width: 120px; height: 120px; object-fit: cover;">
+                        @else
+                            <img src="{{ asset('img/default_avatar.png') }}" 
+                                 alt="Ảnh Mặc Định" 
+                                 class="rounded-circle mb-3" 
+                                 style="width: 120px; height: 120px; object-fit: cover;">
+                        @endif
                         <p><strong>Tên:</strong> {{ Auth::user()->name }}</p>
                         <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
                         <p><strong>Số Điện Thoại:</strong> {{ Auth::user()->phone }}</p>
