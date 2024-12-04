@@ -138,4 +138,21 @@ public function getScheduleDetails(Request $request)
 
         return view('timebladeT', compact('semesters', 'selectedSemester', 'schedule'));
     }
+    public function manageSemesters()
+{
+    $semesters = array_keys(session('timetable', []));
+    return view('manage', compact('semesters'));
+}
+
+public function deleteSemester(Request $request, $semester)
+{
+    $timetable = session('timetable', []);
+    unset($timetable[$semester]);
+    session(['timetable' => $timetable]);
+
+    return redirect()->route('timetable.manage')->with('success', "Đã xóa học kỳ '$semester'.");
+}
+
+
+
 }

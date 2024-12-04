@@ -58,6 +58,8 @@ Route::get('/schedule/test',[scheduleController::class,'test'])->name('schedule.
 
 Route::get('/childget/{id}',[evaluateController::class,'index'] );
 
+Route::get('/timetable/manage', [scheduleController::class, 'manageSemesters'])->name('timetable.manage');
+Route::delete('/timetable/manage/{semester}', [scheduleController::class, 'deleteSemester'])->name('timetable.deleteSemester');
 
 Route::get('/tuitionmanagement',[tuitionContoller::class,'index'] )->name('tuitionmanagement');
 
