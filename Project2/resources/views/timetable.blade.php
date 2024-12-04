@@ -3,13 +3,13 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/Timetable.css') }}">
 <main class="timetable-container">
-    <h1 class="page-title">Thời Khóa Biểu</h1>
+    <h1 class="page-title">Chỉnh Sửa Thời Khóa Biểu</h1>
     <div class="timetable">
-        <form id="timetable-form" action="{{ route('timetable.save') }}" method="POST">
+        <form id="timetable-form" action="{{ route('timetable.save') }}" method="POST" onsubmit="return validateForm()">
             @csrf
             <div class="form-group">
                 <label for="semester">Học kỳ:</label>
-                <input type="text" id="semester" name="semester" placeholder="Nhập học kỳ (ví dụ học kỳ 1 (20-01-2025 :: 20-04-2025)">
+                <input type="text" id="semester" name="semester" placeholder="Nhập học kỳ" required>
             </div>
             <table>
                 <thead>
@@ -45,7 +45,7 @@
                             <td>{{ $time }}</td>
                             @for($day = 2; $day <= 7; $day++)
                                 <td>
-                                    <input type="text" class="t{{ $day }} p{{ $period }}" name="schedule[t{{ $day }}][p{{ $period }}]" placeholder="Label">
+                                    <input type="text" class="t{{ $day }} p{{ $period }}" name="schedule[t{{ $day }}][p{{ $period }}]" placeholder="Label" required>
                                 </td>
                             @endfor
                         </tr>
@@ -53,8 +53,21 @@
                 </tbody>
             </table>
             <button type="submit" class="save-btn">Lưu Thời Khóa Biểu</button>
-            <a href="{{ route('timetable.view') }}" class="btn btn-light btn-sm">Xem Lịch Học</a>
         </form>
     </div>
 </main>
+
+<script>
+    function validateForm() {
+        const inputs = document.querySelectorAll('#timetable-form input[type="text"]');
+        for (let input of inputs) {
+            if (!input.value.trim()) {
+                alert('Vui lòng điền đầy đủ tất cả các trường.');
+                input.focus();
+                return false;
+            }
+        }
+        return true;
+    }
+</script>
 @endsection
