@@ -38,7 +38,7 @@
                 <div class="card-body">
                     <!-- Thanh Toán Và Quản Lý Học Phí -->
                     <div class="form-group">
-                        <label for="tuitionManagement">Quản Lý Học Phí:</label>
+                        <label for="tuitionManagement">Thanh Toán Học Phí:</label>
                         <div>
                             <a href="{{ route('momo') }}" class="btn btn-light btn-sm">Thanh Toán</a>
                         </div>
@@ -56,7 +56,7 @@
                     <div class="form-group">
                         <label for="scheduleManagement">Quản Lý Lịch Học:</label>
                         <div>
-                            <a href="{{ route('schedule.create') }}" class="btn btn-light btn-sm">Tạo</a>
+                            <a href="{{ route('timetable') }}" class="btn btn-light btn-sm">Tạo Lịch Học</a>
                         </div>
                     </div>
                 </div>
@@ -143,8 +143,8 @@
                         <label for="child_id">Học Sinh:</label>
                         <select name="child_id" id="child_id" class="form-select" required>
                             <option value="" disabled selected>-- Chọn học sinh --</option>
-                            @foreach($children as $child)
-                                <option value="{{ $child->id }}">{{ $child->name }}</option>
+                            @foreach($students as $student)
+                                <option value="{{ $student->id }}">{{ $student->name }}</option>
                             @endforeach
                         </select>
                     </div>
