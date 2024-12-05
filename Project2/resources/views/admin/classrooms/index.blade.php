@@ -6,7 +6,7 @@
     <div class="header">
         <h1>Quản lý lớp học</h1>
         <a href="{{ route('classrooms.create') }}" class="btn-add">Thêm lớp học mới</a>
-        
+        <a href="{{ route('facility_management.index') }}" class="btn btn-primary">Quản Lý Cơ Sở Vật Chất</a>
     </div>
     <div class="class-card highlight">
         <div class="classes-grid">
@@ -22,7 +22,11 @@
                         @else
                             <ul>
                                 @foreach($class->facilities as $facility)
-                                    <li>{{ $facility->name }} - Trạng thái: {{ $facility->status }} - Số lượng: {{ $facility->quantity }}</li>
+                                    <li>
+                                        Cơ sở vật chất: {{ $facility->name ?? 'N/A' }} - 
+                                        Trạng thái: {{ $facility->status }} - 
+                                        Số lượng: {{ $facility->quantity }}
+                                    </li>
                                 @endforeach
                             </ul>
                         @endif

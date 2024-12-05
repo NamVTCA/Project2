@@ -30,12 +30,12 @@
                     </option>
                 @endforeach
                 @foreach($allTeachers as $teacher)
-                @if($teacher->classroom)
-                    <option value="{{ $teacher->id }}" disabled style="color: gray;">
-                        {{ $teacher->name }} (đã phân lớp)
-                    </option>
-                @endif
-            @endforeach
+                    @if($teacher->classroom)
+                        <option value="{{ $teacher->id }}" disabled style="color: gray;">
+                            {{ $teacher->name }} (đã phân lớp)
+                        </option>
+                    @endif
+                @endforeach
             </select>
         </div>
 
@@ -49,23 +49,9 @@
 
         <div id="facility-details">
             <h5>Cơ sở vật chất</h5>
-            <div class="facility-detail">
-                <div class="form-group">
-                    <label for="facility_details[0][name]">Tên</label>
-                    <input type="text" name="facility_details[0][name]" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="facility_details[0][status]">Trạng thái</label>
-                    <input type="text" name="facility_details[0][status]" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="facility_details[0][quantity]">Số Lượng</label>
-                    <input type="number" name="facility_details[0][quantity]" class="form-control" required>
-                </div>
-            </div>
+            <button type="button" id="add-facility" class="btn btn-secondary">Thêm cơ sở vật chất</button>
         </div>
 
-        <button type="button" id="add-facility" class="btn btn-secondary">Thêm cơ sở vật chất</button>
         <button type="submit" class="btn btn-primary">Tạo lớp</button>
     </form>
 </div>
@@ -77,20 +63,52 @@
         const newDetail = `
             <div class="facility-detail">
                 <div class="form-group">
-                    <label for="facility_details[${index}][name]">Tên</label>
-                    <input type="text" name="facility_details[${index}][name]" class="form-control" required>
+                    <label for="facility_details[${index}][total_id]">Cơ sở vật chất chung</label>
+                    <select name="facility_details[${index}][total_id]" class="form-control total-select" data-index="${index}" required>
+                        <option value="">Chọn cơ sở vật chất</option>
+                        @foreach($totalFacilities as $total)
+                            <option value="{{ $total->id }}">{{ $total->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="facility_details[${index}][status]">Trạng thái</label>
-                    <input type="text" name="facility_details[${index}][status]" class="form-control" required>
+                    <label for="facility_details[${index}][dentail_id]">Chi tiết cơ sở vật chất</label>
+                    <select name="facility_details[${index}][dentail_id]" class="form-control dentail-select" id="dentail-select-${index}" required>
+                        <option value="">Chọn chi tiết cơ sở vật chất</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="facility_details[${index}][quantity]">Số lượng</label>
                     <input type="number" name="facility_details[${index}][quantity]" class="form-control" required>
                 </div>
+                <button type="button" class="btn btn-danger remove-facility">Xóa</button>
             </div>
         `;
         facilityDetails.insertAdjacentHTML('beforeend', newDetail);
+    });
+
+    document.addEventListener('change', function (e) {
+        if (e.target && e.target.classList.contains('total-select')) {
+            const index = e.target.getAttribute('data-index');
+            const totalId = e.target.value;
+
+            // Fetch the related dentail_facilities
+            fetch(`/api/get-dentails/${totalId}`)
+                .then(response => response.json())
+                .then(data => {
+                    let options = '<option value="">Chọn chi tiết cơ sở vật chất</option>';
+                    data.forEach(dentail => {
+                        options += `<option value="${dentail.id}">${dentail.name} (Còn lại: ${dentail.quantity})</option>`;
+                    });
+                    document.getElementById(`dentail-select-${index}`).innerHTML = options;
+                });
+        }
+    });
+
+    document.addEventListener('click', function (e) {
+        if (e.target && e.target.classList.contains('remove-facility')) {
+            e.target.parentElement.remove();
+        }
     });
 </script>
 @endsection

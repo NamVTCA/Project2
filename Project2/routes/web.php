@@ -12,7 +12,7 @@ use App\Http\Controllers\TimetableController;
 use App\Http\Controllers\tuitionContoller;
 use App\Http\Controllers\subjectController;
 use App\Http\Controllers\UserAccountController;
-use App\Http\Controllers\FacilityController;
+use App\Http\Controllers\FacilityManagementController;
 use App\Http\Controllers\ChildClassController;
 use Illuminate\Support\Facades\Route;
 
@@ -117,9 +117,17 @@ Route::prefix('admin')->group(function () {
             Route::get('/classes/{class}', [ClassController::class, 'show'])->name('classrooms.show');
             Route::get('/classes/{classroom}/edit', [ClassController::class, 'edit'])->name('classrooms.edit');
             Route::put('/classes/{classroom}', [ClassController::class, 'update'])->name('classrooms.update');
+            Route::get('/facilities', [FacilityManagementController::class, 'index'])->name('facility_management.index');
+            Route::get('/facilities/create', [FacilityManagementController::class, 'create'])->name('facility_management.create');
+            Route::post('/facilities', [FacilityManagementController::class, 'store'])->name('facility_management.store');
+            Route::get('/facilities/{total}/edit', [FacilityManagementController::class, 'edit'])->name('facility_management.edit');
+            Route::put('/facilities/{total}', [FacilityManagementController::class, 'update'])->name('facility_management.update');
+            Route::delete('/facilities/{total}', [FacilityManagementController::class, 'destroy'])->name('facility_management.destroy');
         });
     });
 });
+Route::get('/api/get-dentails/{total_id}', [FacilityManagementController::class, 'getDentailFacilities']);
+
     Route::middleware('role:1')->group(function () {
         Route::get('/teacher',[loginController::class,'showDashboard'])->name('showDashboard');
         Route::post('/evaluate',[evaluateController::class,'evaluatecomment'])->name('evaluate');

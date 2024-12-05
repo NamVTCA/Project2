@@ -17,10 +17,6 @@ class ClassRequest extends FormRequest
             'name' => 'required|string|max:255',
             'user_id' => 'required|exists:users,id',
             'status' => 'required|integer|in:1,0',
-            'facility_details' => 'nullable|array',
-            'facility_details.*.name' => 'required|string|max:255',
-            'facility_details.*.quantity' => 'required|integer|min:1',
-            'facility_details.*.status' => 'required|integer|in:1,0',
         ];
     }
 }
