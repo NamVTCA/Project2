@@ -41,6 +41,10 @@ Route::get('/feedbackList', function () {
     return view('feedbackList');
 });
 
+Route::get('/education', function () {
+    return view('education');
+});
+
 
 Route::get('/profile', function(){
     return view('admin.users.profile');

@@ -1,0 +1,48 @@
+/* Education Section */
+.education-section {
+    background-color: #ffe4e1;
+    padding: 50px 0;
+  }
+  
+  .education-section h2 {
+    color: #ff69b4;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .education-section p,
+  .education-section li {
+    color: #333;
+  }
+  
+  .education-section .btn-primary {
+    background-color: #007bff; /* Thay đổi màu nền nút thành xanh */
+    border-color: #007bff;
+    color: #fff; /* Thay đổi màu chữ nút thành trắng */
+  }
+  
+  /* Facilities Section */
+  .facilities-section {
+    background-color: #f8f9fa;
+    padding: 50px 0;
+  }
+  
+  .facilities-section h2 {
+    color: #ff69b4;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+  
+  .facilities-section .card {
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+  
+  .facilities-section .card-title {
+    color: #d6336c;
+    font-weight: bold;
+  }
+  
+  .facilities-section .card-text {
+    color: #333;
+  }
