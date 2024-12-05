@@ -35,7 +35,12 @@ Route::get('/accountcreation', function () {
 
 Route::get('/timetable', function () {
     return view('timetable');
-});
+})->name('timetable');
+
+
+Route::post('/timetable/save', [scheduleController::class, 'saveTimetable'])->name('timetable.save');
+Route::get('/timetable/view', [scheduleController::class, 'viewTimetable'])->name('timetable.view');
+
 
 Route::get('/feedbackList', function () {
     return view('feedbackList');
@@ -57,6 +62,8 @@ Route::get('/schedule/test',[scheduleController::class,'test'])->name('schedule.
 
 Route::get('/childget/{id}',[evaluateController::class,'index'] );
 
+Route::get('/timetable/manage', [scheduleController::class, 'manageSemesters'])->name('timetable.manage');
+Route::delete('/timetable/manage/{semester}', [scheduleController::class, 'deleteSemester'])->name('timetable.deleteSemester');
 
 Route::get('/tuitionmanagement',[tuitionContoller::class,'index'] )->name('tuitionmanagement');
 

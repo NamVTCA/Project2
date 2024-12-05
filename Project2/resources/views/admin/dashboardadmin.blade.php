@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Quản lý lịch học</h5>
                     <p class="card-text">Tạo và sắp xếp lịch học chi tiết.</p>
-                    <a href="{{ route('schedule.create') }}" class="btn btn-light btn-sm">Đi tới</a>
+                    <a href="{{ route('timetable') }}" class="btn btn-light btn-sm">Đi tới</a>
                 </div>
             </div>
         </div>

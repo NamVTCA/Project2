@@ -1,0 +1,136 @@
+/* Tổng quan */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.timetable-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form chọn học kỳ */
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 16px;
+    margin-right: 10px;
+    color: #555;
+}
+
+select {
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+select:focus {
+    border-color: #2575fc;
+    box-shadow: 0 0 5px rgba(37, 117, 252, 0.4);
+}
+
+/* Bảng thời khóa biểu */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead th {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+tbody th {
+    background: #f0f8ff;
+    color: #333;
+    font-weight: bold;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+tbody td {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #ddd;
+    color: #555;
+    background: #fff;
+}
+
+tbody tr:nth-child(even) td {
+    background: #f9f9f9;
+}
+
+tbody td:hover {
+    background: rgba(37, 117, 252, 0.1);
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+    .timetable-container {
+        padding: 15px;
+    }
+
+    .page-title {
+        font-size: 20px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    select {
+        font-size: 14px;
+    }
+
+    thead th, tbody th, tbody td {
+        font-size: 14px;
+        padding: 6px;
+    }
+}
+
+/* Responsive cho màn hình rất nhỏ */
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 18px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    select {
+        font-size: 12px;
+        padding: 5px;
+    }
+}

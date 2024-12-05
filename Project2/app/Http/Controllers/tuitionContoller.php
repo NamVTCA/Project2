@@ -68,6 +68,6 @@ public function index(Request $request)
             }
         }
 
-        return redirect()->route('tuition.create')->with('success', 'Tuition created successfully!');
+        return redirect()->route('tuition.create')->with('success', 'Đã tạo học phí thành công');
     }
 }
