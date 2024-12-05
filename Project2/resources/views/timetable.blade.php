@@ -53,6 +53,8 @@
                 </tbody>
             </table>
             <button type="submit" class="save-btn">Lưu Thời Khóa Biểu</button>
+            <a href="{{ route('timetable.view') }}" class="btn btn-light btn-sm">Xem Lịch Học</a>
+            <a href="{{ route('timetable.manage') }}" class="btn btn-light btn-sm">Xem Học Kỳ</a>
         </form>
     </div>
 </main>

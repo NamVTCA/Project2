@@ -38,7 +38,7 @@
                         <a href="{{ route('momo') }}" class="btn btn-light btn-sm">Thanh Toán Học Phí</a>
                     </div>
                     <div>
-                        <a href="{{ route('schedule.user') }}" class="btn btn-light btn-sm">Xem Lịch Học</a>
+                        <a href="{{ route('timetable.view') }}" class="btn btn-light btn-sm">Xem Lịch Học</a>
                     </div>
                 </div>
             </div>
