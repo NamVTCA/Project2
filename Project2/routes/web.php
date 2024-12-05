@@ -48,7 +48,7 @@ Route::get('/feedbackList', function () {
 
 Route::get('/education', function () {
     return view('education');
-});
+})->name('education');
 
 
 Route::get('/profile', function(){
