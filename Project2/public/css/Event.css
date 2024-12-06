@@ -1,0 +1,26 @@
+/* Event Section */
+.event-section {
+    background-color: #f8f9fa;
+    padding: 50px 0;
+  }
+  
+  .event-section h2 {
+    color: #ff69b4;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+  
+  .event-section .card {
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+  
+  .event-section .card-title {
+    color: #d6336c;
+    font-weight: bold;
+  }
+  
+  .event-section .card-text {
+    color: #333;
+  }
+  

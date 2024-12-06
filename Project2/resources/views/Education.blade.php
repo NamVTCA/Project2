@@ -3,7 +3,6 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/Education.css') }}">
 <div class="content-section">
-    <!-- Education Section -->
     <section class="education-section py-5">
         <div class="container">
             <div class="row align-items-center">

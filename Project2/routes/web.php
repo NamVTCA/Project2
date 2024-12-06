@@ -50,6 +50,10 @@ Route::get('/education', function () {
     return view('education');
 })->name('education');
 
+Route::get('/event', function () {
+    return view('event');
+})->name('event');
+
 
 Route::get('/profile', function(){
     return view('admin.users.profile');
