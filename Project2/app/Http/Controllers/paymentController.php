@@ -113,15 +113,19 @@ class paymentController extends Controller
                                   "Giá: " . number_format($key->price, 0, ',', '.') . " VNĐ\n\n";
             }
 
-    $emailContent = "Hóa đơn của bé: "  . "\n" .
-                    "Tổng số tiền để thanh toán là: ". number_format($amount, 0, ',', '.') . " VNĐ\n\n".
-                    "Học kỳ: " . $tuition->semester . "\n" .
-                    $detailsString;
+  $emailContent = "Hóa đơn thanh toán học phí:\n\n" .
+                "Mã giao dịch: " . $orderId . "\n" .
+                "Tổng số tiền: " . number_format($amount, 0, ',', '.') . " VNĐ\n" .
+                "Học kỳ: " . $tuition->semester . "\n" .
+                "Chi tiết các mục thanh toán:\n" .
+                $detailsString . "\n" .
+                "Thời gian giao dịch: " . now()->format('d-m-Y H:i:s') . "\n" .
+                "Trạng thái: " . ($jsonResult['resultCode'] == 0 ? "Thành công" : "Thất bại") . "\n";
 
-    Mail::raw($emailContent, function ($message) use ($userEmail) {
-        $message->to($userEmail);
-        $message->subject('Hóa đơn thanh toán học phí');
-    });
+Mail::raw($emailContent, function ($message) use ($userEmail) {
+    $message->to($userEmail);
+    $message->subject('Hóa đơn thanh toán học phí từ MoMo');
+});
             return redirect($jsonResult['payUrl']);
         }
         

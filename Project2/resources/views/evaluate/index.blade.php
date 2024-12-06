@@ -17,15 +17,23 @@
         <h2 class="text-pink">Đánh Giá Theo Ngày</h2>
         <form action="{{ route('evaluate') }}" method="post" class="row">
             @csrf
-            <div class="col-md-6 mb-3">
-                <label for="child_id" class="form-label">Học Sinh</label>
-                <select name="child_id" id="child_id" class="form-select" required>
-                    <option value="" disabled selected>-- Chọn học sinh --</option>
-                    @foreach($children as $child)
-                        <option value="{{ $child->id }}">{{ $child->name }}</option>
-                    @endforeach
-                </select>
-            </div>
+           <div class="col-md-6 mb-3">
+    <label for="child_id" class="form-label">Học Sinh</label>
+    <select name="child_id" id="child_id" class="form-select" required>
+        <option value="" disabled selected>-- Chọn học sinh --</option>
+        @foreach($children as $child)
+            <option value="{{ $child->id }}" data-img="{{ $child->img ? asset('storage/' . $child->img) : '' }}">
+                {{ $child->name }}
+            </option>
+        @endforeach
+    </select>
+</div>
+<div class="col-md-6 mb-3 text-center">
+    <img id="child_image" src="" alt="Child Image" class="img-fluid" style="max-width: 100px; display: none;">
+    <div id="default_avatar" class="default-avatar" style="display: none;">
+        <!-- Placeholder cho avatar nếu không có ảnh -->
+    </div>
+</div>
 
             <div class="col-md-6 mb-3">
                 <label for="date" class="form-label">Ngày Học</label>
@@ -69,4 +77,28 @@
         @endif
     </div>
 </main> trùng thông báo --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const childSelect = document.getElementById('child_id');
+        const childImage = document.getElementById('child_image');
+        const defaultAvatar = document.getElementById('default_avatar');
+
+        childSelect.addEventListener('change', function () {
+            const selectedOption = this.options[this.selectedIndex];
+            const imgSrc = selectedOption.getAttribute('data-img');
+            const nameInitial = selectedOption.textContent.trim().charAt(0).toUpperCase();
+
+            if (imgSrc) {
+                childImage.src = imgSrc;
+                childImage.style.display = 'block';
+                defaultAvatar.style.display = 'none';
+            } else {
+                childImage.style.display = 'none';
+                defaultAvatar.textContent = nameInitial;
+                defaultAvatar.style.display = 'flex';
+            }
+        });
+    });
+</script>
+
 @endsection

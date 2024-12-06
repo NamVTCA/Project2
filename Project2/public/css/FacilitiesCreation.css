@@ -1,0 +1,121 @@
+/* Trang chính */
+.facility-create-page {
+    max-width: 800px; /* Giới hạn chiều rộng trang */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.facility-create-page h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #f505d1; /* Hồng */
+    margin-bottom: 20px;
+}
+
+/* Form nhóm */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    color: #333;
+}
+
+.form-group input:focus {
+    border-color: #4a90e2;
+    outline: none;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.4);
+}
+
+/* Chi tiết cơ sở vật chất */
+#dentail-details {
+    margin-top: 20px;
+}
+
+#dentail-details h5 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.dentail-detail {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+}
+
+.dentail-detail .form-group {
+    margin-bottom: 10px;
+}
+
+/* Nút */
+.btn {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #357ab8;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #e2e2e2;
+    color: #555;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #c9c9c9;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .facility-create-page {
+        padding: 15px;
+    }
+
+    .form-group input {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .dentail-detail {
+        padding: 10px;
+    }
+}
