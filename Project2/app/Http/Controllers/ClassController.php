@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\User;
@@ -42,12 +43,16 @@ class ClassController extends Controller
                 $dentailFacility = dentail_fatilities::find($facilityDetail['dentail_id']);
                 
                 if ($dentailFacility && $dentailFacility->quantity >= $facilityDetail['quantity']) {
-                    // Cập nhật số lượng còn lại trong dentail_fatilities
+                    // Giảm số lượng từ bảng dentail_fatilities
                     $dentailFacility->decrement('quantity', $facilityDetail['quantity']);
+                    
+                    // Tạo bản ghi mới trong bảng facilities
                     $classroom->facilities()->create([
-                        'total_id' => $facilityDetail['total_id'],
-                        'dentail_id' => $facilityDetail['dentail_id'],
+                        'name' => $dentailFacility->name, // Ghi tên cơ sở vật chất từ dentail
                         'quantity' => $facilityDetail['quantity'],
+                        'classroom_id' => $classroom->id,
+                        'dentail_id' => $facilityDetail['dentail_id'],
+                        'status' => $dentailFacility->status,
                     ]);
                 } else {
                     return redirect()->back()->withErrors(['facility' => 'Số lượng không đủ để thêm cơ sở vật chất này']);
@@ -90,70 +95,85 @@ class ClassController extends Controller
     public function update(ClassRequest $request, Classroom $classroom)
     {
         $data = $request->validated();
+        
+        // Bắt đầu transaction để đảm bảo tính toàn vẹn dữ liệu
+        DB::beginTransaction();
+        try {
+            // Cập nhật thông tin cơ bản của lớp học
+            $classroom->update($data);
 
-        // Cập nhật thông tin lớp học
-        $classroom->update($data);
+            // Lấy danh sách facility cũ trong lớp
+            $currentFacilities = $classroom->facilities()->get();
+            $currentFacilityIds = $currentFacilities->pluck('id')->toArray();
 
-        // Cập nhật hoặc xóa cơ sở vật chất
-        $existingFacilityIds = [];
+            // Danh sách facility gửi lên
+            $facilityDetails = $request->input('facility_details', []);
 
-        if ($request->has('facility_details')) {
-            foreach ($request->input('facility_details') as $facilityDetail) {
-                if (isset($facilityDetail['id'])) {
-                    // Tìm và cập nhật cơ sở vật chất đã tồn tại
-                    $facility = facilities::find($facilityDetail['id']);
-                    if ($facility) {
-                        $dentailFacility = dentail_fatilities::find($facility->dentail_id);
-                        if ($dentailFacility) {
-                            // Cập nhật số lượng cơ sở vật chất
-                            $quantityDiff = $facilityDetail['quantity'] - $facility->quantity;
-                            if ($dentailFacility->quantity >= $quantityDiff) {
-                                $dentailFacility->decrement('quantity', $quantityDiff);
-                                $facility->update([
-                                    'total_id' => $facilityDetail['total_id'],
-                                    'quantity' => $facilityDetail['quantity'],
-                                ]);
-                            } else {
-                                return redirect()->back()->withErrors(['facility' => 'Số lượng không đủ để cập nhật cơ sở vật chất này']);
-                            }
-                        }
-                        $existingFacilityIds[] = $facility->id;
-                    }
+            // Mảng lưu facility ID sau khi xử lý (giữ nguyên hoặc thêm mới)
+            $existingFacilityIds = [];
+
+            // Xử lý facility cũ: 
+            // Facility cũ sẽ xuất hiện trong request với 'id'
+            foreach ($facilityDetails as $detail) {
+                if (isset($detail['id'])) {
+                    // Facility này là facility cũ, user giữ nguyên
+                    $existingFacilityIds[] = $detail['id'];
+                    // Không được phép thay đổi số lượng, status
+                    // Không làm gì ở đây, chỉ đánh dấu là còn tồn tại
                 } else {
-                    // Thêm mới cơ sở vật chất
-                    $dentailFacility = dentail_fatilities::find($facilityDetail['dentail_id']);
-                    if ($dentailFacility && $dentailFacility->quantity >= $facilityDetail['quantity']) {
-                        $dentailFacility->decrement('quantity', $facilityDetail['quantity']);
-                        $newFacility = $classroom->facilities()->create([
-                            'total_id' => $facilityDetail['total_id'],
-                            'dentail_id' => $facilityDetail['dentail_id'],
-                            'quantity' => $facilityDetail['quantity'],
-                        ]);
-                        $existingFacilityIds[] = $newFacility->id;
-                    } else {
-                        return redirect()->back()->withErrors(['facility' => 'Số lượng không đủ để thêm cơ sở vật chất này']);
+                    // Đây là facility mới thêm
+                    $dentailId = $detail['dentail_id'] ?? null;
+                    $addQuantity = $detail['quantity'] ?? 0;
+
+                    $dentailFacility = dentail_fatilities::find($dentailId);
+                    if (!$dentailFacility) {
+                        DB::rollBack();
+                        return redirect()->back()->withErrors(['error' => 'Cơ sở vật chất không tồn tại.']);
                     }
+
+                    if ($dentailFacility->quantity < $addQuantity) {
+                        DB::rollBack();
+                        return redirect()->back()->withErrors(['error' => 'Số lượng không đủ để thêm.']);
+                    }
+
+                    // Trừ đi số lượng từ dentail_facilities
+                    $dentailFacility->decrement('quantity', $addQuantity);
+
+                    // Tạo mới facility trong lớp
+                    $newFacility = $classroom->facilities()->create([
+                        'name' => $dentailFacility->name,
+                        'quantity' => $addQuantity,
+                        'classroom_id' => $classroom->id,
+                        'dentail_id' => $dentailFacility->id,
+                        'status' => $dentailFacility->status,
+                    ]);
+
+                    $existingFacilityIds[] = $newFacility->id;
                 }
             }
-        }
 
-        if ($request->has('deleted_facilities')) {
-            $deletedFacilityIds = explode(',', $request->input('deleted_facilities'));
-            foreach ($deletedFacilityIds as $facilityId) {
-                $facility = facilities::find($facilityId);
-                if ($facility) {
-                    $dentailFacility = dentail_fatilities::find($facility->dentail_id);
-                    if ($dentailFacility) {
-                        // Hoàn trả số lượng về dentail_fatilities khi xóa
-                        $dentailFacility->increment('quantity', $facility->quantity);
-                    }
-                    $facility->delete();
+            // Xóa những facility cũ mà không còn trong request => người dùng xóa chúng
+            $facilitiesToDelete = $classroom->facilities()
+                ->whereNotIn('id', $existingFacilityIds)
+                ->get();
+            
+            foreach ($facilitiesToDelete as $facility) {
+                $dentailFacility = dentail_fatilities::find($facility->dentail_id);
+                if ($dentailFacility) {
+                    // Cộng lại số lượng vào dentail_facilities
+                    $dentailFacility->increment('quantity', $facility->quantity);
                 }
+                // Xóa facility khỏi lớp
+                $facility->delete();
             }
-        }
 
-        return redirect()->route('admin.classrooms.index')
-            ->with('success', 'Thông tin lớp học đã được cập nhật thành công.');
+            DB::commit();
+            return redirect()->route('admin.classrooms.index')
+                ->with('success', 'Cập nhật thành công.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
     public function destroyFacility($id)
@@ -161,7 +181,6 @@ class ClassController extends Controller
         $facility = facilities::findOrFail($id);
         $dentailFacility = dentail_fatilities::find($facility->dentail_id);
         if ($dentailFacility) {
-            // Trả lại số lượng cho dentail facility khi xóa
             $dentailFacility->increment('quantity', $facility->quantity);
         }
         $facility->delete();
