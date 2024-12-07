@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\cameraController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\paymentController;
 use App\Http\Controllers\scheduleController;
@@ -15,6 +16,12 @@ use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\FacilityManagementController;
 use App\Http\Controllers\ChildClassController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
+
+
+Route::get('/cameras', [cameraController::class, 'index'])->name('cameras.index');
+Route::get('/cameras/create', [CameraController::class, 'create'])->name('cameras.create'); 
+Route::post('/cameras/store', [CameraController::class, 'store'])->name('cameras.store'); 
 
 Route::get('/', function () {
     return view('index');
