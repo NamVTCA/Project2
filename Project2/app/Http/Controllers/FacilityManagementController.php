@@ -1,15 +1,15 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\total_fatilities;
-use App\Models\dentail_fatilities;
+use App\Models\total_facilities;
+use App\Models\dentail_facilities;
 use Illuminate\Http\Request;
 
 class FacilityManagementController extends Controller
 {
     public function index()
     {
-        $totals = total_fatilities::with('dentail')->get();
+        $totals = total_facilities::with('dentail')->get();
         return view('admin.facilities.index', compact('totals'));
     }
 
@@ -27,7 +27,7 @@ class FacilityManagementController extends Controller
             'dentail.*.quantity' => 'required|integer',
         ]);
 
-        $total = total_fatilities::create(['name' => $data['name']]);
+        $total = total_facilities::create(['name' => $data['name']]);
         
         if (isset($data['dentail'])) {
             foreach ($data['dentail'] as $dentail) {
@@ -39,12 +39,12 @@ class FacilityManagementController extends Controller
             ->with('success', 'Cơ sở vật chất đã được tạo thành công.');
     }
 
-    public function edit(total_fatilities $total)
+    public function edit(total_facilities $total)
     {
         return view('admin.facilities.edit', compact('total'));
     }
 
-    public function update(Request $request, total_fatilities $total)
+    public function update(Request $request, total_facilities $total)
     {
         $data = $request->validate([
             'name' => 'required|string|max:255',
@@ -61,7 +61,7 @@ class FacilityManagementController extends Controller
         if (isset($data['dentail'])) {
             foreach ($data['dentail'] as $dentail) {
                 if (isset($dentail['id'])) {
-                    $existingDentail = dentail_fatilities::find($dentail['id']);
+                    $existingDentail = dentail_facilities::find($dentail['id']);
                     if ($existingDentail) {
                         // Cập nhật thông tin của dentail
                         $existingDentail->update($dentail);
@@ -76,7 +76,7 @@ class FacilityManagementController extends Controller
         }
 
         // Xóa các dentail không còn tồn tại trong request
-        dentail_fatilities::where('total_id', $total->id)
+        dentail_facilities::where('total_id', $total->id)
             ->whereNotIn('id', $existingDentailIds)
             ->delete();
 
@@ -84,7 +84,7 @@ class FacilityManagementController extends Controller
             ->with('success', 'Cơ sở vật chất đã được cập nhật thành công.');
     }
 
-    public function destroy(total_fatilities $total)
+    public function destroy(total_facilities $total)
     {
         $total->delete();
 
@@ -93,9 +93,51 @@ class FacilityManagementController extends Controller
     }
     public function getDentailFacilities($totalId)
     {
-        $dentails = dentail_fatilities::where('total_id', $totalId)->get();
+        $dentails = dentail_facilities::where('total_id', $totalId)->get();
         return response()->json($dentails);
     }
+    public function increment(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required|string', // Hoặc 'id' tùy theo cách bạn xác định dentail_facility
+            'quantity' => 'required|integer|min:1'
+        ]);
+
+        // Tìm dentail_facility theo name hoặc id
+        $dentail = dentail_facilities::where('name', $data['name'])->first(); 
+        // nếu dùng id: dentail_facilities::find($data['id']);
+
+        if (!$dentail) {
+            return response()->json(['error' => 'Dentail facility not found'], 404);
+        }
+
+        $dentail->increment('quantity', $data['quantity']);
+
+        return response()->json(['message' => 'Increment successful']);
+    }
+
+    public function decrement(Request $request)
+    {
+        $data = $request->validate([
+            'id' => 'required|integer', 
+            'quantity' => 'required|integer|min:1'
+        ]);
+
+        $dentail = dentail_facilities::find($data['id']);
+
+        if (!$dentail) {
+            return response()->json(['error' => 'Dentail facility not found'], 404);
+        }
+
+        if ($dentail->quantity < $data['quantity']) {
+            return response()->json(['error' => 'Not enough quantity to decrement'], 400);
+        }
+
+        $dentail->decrement('quantity', $data['quantity']);
+
+        return response()->json(['message' => 'Decrement successful']);
+    }
+
 }
 
 ?>

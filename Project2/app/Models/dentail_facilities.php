@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class dentail_fatilities extends Model
+class dentail_facilities extends Model
 {
     use HasFactory;
         protected $fillable = [
@@ -15,6 +15,6 @@ class dentail_fatilities extends Model
         'quantity'
     ];
     function Total(){
-        return $this->belongsTo(total_fatilities::class,'total_id');
+        return $this->belongsTo(total_facilities::class,'total_id');
     }
 }

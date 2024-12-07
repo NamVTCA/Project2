@@ -139,6 +139,9 @@ Route::prefix('admin')->group(function () {
     });
 });
 Route::get('/api/get-dentails/{total_id}', [FacilityManagementController::class, 'getDentailFacilities']);
+Route::post('/api/dentail_facilities/increment', [FacilityManagementController::class, 'increment']);
+Route::post('/api/dentail_facilities/decrement', [FacilityManagementController::class, 'decrement']);
+
 
     Route::middleware('role:1')->group(function () {
         Route::get('/teacher',[loginController::class,'showDashboard'])->name('showDashboard');
