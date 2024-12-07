@@ -18,6 +18,7 @@ use App\Http\Controllers\ChildClassController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
+Route::delete('/camera/{id}', [CameraController::class, 'destroy'])->name('camera.delete');
 
 Route::get('/cameras', [cameraController::class, 'index'])->name('cameras.index');
 Route::get('/cameras/create', [CameraController::class, 'create'])->name('cameras.create'); 
