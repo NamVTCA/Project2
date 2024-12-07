@@ -30,4 +30,13 @@ class cameraController extends Controller
 
         return redirect()->route('cameras.index')->with('success', 'Camera added successfully!');
     }
+    public function destroy($id)
+{
+    $camera = cam::find($id);
+    if ($camera) {
+        $camera->delete();
+    }
+    return redirect()->route('cameras.index');
+}
+
 }
