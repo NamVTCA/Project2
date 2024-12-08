@@ -150,7 +150,6 @@ Route::prefix('admin')->group(function () {
 Route::get('/api/get-dentails/{total_id}', [FacilityManagementController::class, 'getDentailFacilities']);
 
 
-
     Route::middleware('role:1')->group(function () {
         Route::get('/teacher',[loginController::class,'showDashboard'])->name('showDashboard');
         Route::post('/evaluate',[evaluateController::class,'evaluatecomment'])->name('evaluate');
