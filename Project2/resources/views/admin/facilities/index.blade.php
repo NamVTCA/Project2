@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-
+<link rel="stylesheet" href="{{ asset('css/FacilitiesIndex.css') }}">
 @section('content')
 <div class="facilities-index-page">
     <h2>Quản Lý Cơ Sở Vật Chất</h2>
@@ -10,9 +10,9 @@
             <h3>{{ $total->name }}</h3>
             <a href="{{ route('facility_management.edit', ['total' => $total->id]) }}" class="btn btn-warning">Chỉnh Sửa</a>
             <form action="{{ route('facility_management.destroy', ['total' => $total->id]) }}" method="POST" style="display:inline;">
-                @csrf
+                {{-- @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Xóa</button>
+                <button type="submit" class="btn btn-danger">Xóa</button> --}}
             </form>
             
             <h5>Chi Tiết Cơ Sở Vật Chất</h5>
