@@ -24,33 +24,49 @@
                         <th>Thứ 7</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @php
-                        $times = [
-                            '1' => '7:30 - 8:05',
-                            '2' => '8:15 - 8:50',
-                            '3' => '9:00 - 9:35',
-                            '4' => '9:45 - 10:15',
-                            '5' => '10:30 - 11:15',
-                            '6' => '13:30 - 14:05',
-                            '7' => '14:15 - 14:50',
-                            '8' => '15:00 - 15:35',
-                            '9' => '15:45 - 16:20',
-                            '10' => '16:30 - 17:05'
-                        ];
-                    @endphp
-                    @foreach($times as $period => $time)
-                        <tr>
-                            <th>Tiết {{ $period }}</th>
-                            <td>{{ $time }}</td>
-                            @for($day = 2; $day <= 7; $day++)
-                                <td>
-                                    <input type="text" class="t{{ $day }} p{{ $period }}" name="schedule[t{{ $day }}][p{{ $period }}]" placeholder="Label" required>
-                                </td>
-                            @endfor
-                        </tr>
-                    @endforeach
-                </tbody>
+              <tbody>
+    @php
+        $times = [
+            '1' => '7:30 - 8:05',
+            '2' => '8:15 - 8:50',
+            'break_1' => '9:00 - 9:35 Giờ ra chơi buổi sáng', // Giờ ra chơi buổi sáng
+            '3' => '9:45 - 10:15',
+            '4' => '10:30 - 11:15',
+            'break_2' => 'Nghỉ nửa buổi', // Nghỉ nửa buổi
+            '5' => '13:30 - 14:05',
+            '6' => '14:15 - 14:50',
+            'break_3' => '15:00 - 15:35 Giờ ra chơi buổi chiều', // Giờ ra chơi buổi chiều
+            '7' => '15:45 - 16:20',
+            '8' => '16:30 - 17:05'
+        ];
+    @endphp
+
+    @foreach($times as $period => $time)
+        @if(str_contains($period, 'break'))
+            <!-- Hàng dành cho giờ ra chơi hoặc nghỉ trưa -->
+            <tr class="break-row">
+                <td colspan="8" class="text-center">{{ $time }}</td>
+            </tr>
+        @else
+            <!-- Hàng dành cho các tiết học -->
+            <tr>
+                <th>Tiết {{ is_numeric($period) ? $period : '' }}</th>
+                <td>{{ $time }}</td>
+                @for($day = 2; $day <= 7; $day++)
+                    <td>
+                        <input 
+                            type="text" 
+                            class="t{{ $day }} p{{ $period }}" 
+                            name="schedule[t{{ $day }}][p{{ $period }}]" 
+                            placeholder="Nhập thông tin" 
+                            required>
+                    </td>
+                @endfor
+            </tr>
+        @endif
+    @endforeach
+</tbody>
+
             </table>
             <button type="submit" class="save-btn">Lưu Thời Khóa Biểu</button>
             <a href="{{ route('timetable.view') }}" class="btn btn-light btn-sm">Xem Lịch Học</a>
