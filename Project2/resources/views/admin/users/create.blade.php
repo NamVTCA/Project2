@@ -52,13 +52,16 @@
             @enderror
         </div>
 
-        <div class="form-group mb-3">
+        <div style="margin-bottom: 15px; position: relative;">
             <label for="password">Mật khẩu:</label>
-            <input type="text" id="password" name="password" class="form-control" required>
+            <input type="password" id="password" name="password" class="form-control" required>
+            <span id="toggle-password" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;">
+                👁️
+            </span>
             @error('password')
                 <span class="invalid-feedback">{{ $message }}</span>
             @enderror
-        </div>
+        </div>        
 
         <div class="form-group mb-3">
             <label for="id_number">Số căn cước công dân:</label>
@@ -180,6 +183,19 @@
                 phoneError.textContent = '';
                 this.classList.remove('is-invalid');
             }
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+        const togglePassword = document.getElementById('toggle-password');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function() {
+            // Kiểm tra trạng thái hiện tại của trường mật khẩu
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            // Đổi biểu tượng con mắt
+            this.textContent = type === 'password' ? '👁️' : '🙈';
         });
     });
 </script>   

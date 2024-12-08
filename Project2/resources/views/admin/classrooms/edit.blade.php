@@ -30,13 +30,6 @@
                         {{ $teacher->name }}
                     </option>
                 @endforeach
-                @foreach($allTeachers as $teacher)
-                    @if($teacher->classroom && $teacher->id != $classroom->user_id)
-                        <option value="{{ $teacher->id }}" disabled style="color: gray;">
-                            {{ $teacher->name }} (đã phân lớp)
-                        </option>
-                    @endif
-                @endforeach
             </select>
         </div>
 
@@ -54,10 +47,11 @@
                 <div class="facility-detail" id="facility-{{ $facility->id }}">
                     <div class="form-group">
                         <label for="facility_details[{{ $index }}][total_id]">Cơ sở vật chất chung</label>
-                        <select name="facility_details[{{ $index }}][total_id]" class="form-control total-select" data-index="{{ $index }}" disabled>
+                        <select name="facility_details[{{ $index }}][total_id]" class="form-control total-select" data-index="{{ $index }}">
                             <option value="">Chọn cơ sở vật chất</option>
                             @foreach($totalFacilities as $totalFacility)
-                                <option value="{{ $totalFacility->id }}" {{ old('facility_details.' . $index . '.total_id', $facility->total_id) == $totalFacility->id ? 'selected' : '' }}>
+                                <option value="{{ $totalFacility->id }}" 
+                                    {{ old('facility_details.' . $index . '.total_id', $facility->total_id) == $totalFacility->id ? 'selected' : '' }}>
                                     {{ $totalFacility->name }}
                                 </option>
                             @endforeach
@@ -65,10 +59,11 @@
                     </div>
                     <div class="form-group">
                         <label for="facility_details[{{ $index }}][dentail_id]">Chi tiết cơ sở vật chất</label>
-                        <select name="facility_details[{{ $index }}][dentail_id]" class="form-control dentail-select" id="dentail-select-{{ $index }}" disabled>
+                        <select name="facility_details[{{ $index }}][dentail_id]" class="form-control dentail-select" id="dentail-select-{{ $index }}" required>
                             <option value="">Chọn chi tiết cơ sở vật chất</option>
                             @foreach($totalFacility->dentail as $dentail)
-                                <option value="{{ $dentail->id }}" {{ old('facility_details.' . $index . '.dentail_id', $facility->dentail_id) == $dentail->id ? 'selected' : '' }}>
+                                <option value="{{ $dentail->id }}" 
+                                    {{ old('facility_details.' . $index . '.dentail_id', $facility->dentail_id) == $dentail->id ? 'selected' : '' }}>
                                     {{ $dentail->name }} (Còn lại: {{ $dentail->quantity }})
                                 </option>
                             @endforeach
@@ -76,12 +71,12 @@
                     </div>
                     <div class="form-group">
                         <label for="facility_details[{{ $index }}][quantity]">Số lượng</label>
-                        <input type="number" name="facility_details[{{ $index }}][quantity]" value="{{ old('facility_details.' . $index . '.quantity', $facility->quantity) }}" class="form-control" disabled>
+                        <input type="number" name="facility_details[{{ $index }}][quantity]" value="{{ old('facility_details.' . $index . '.quantity', $facility->quantity) }}" class="form-control">
                     </div>
                     <button type="button" class="btn btn-danger remove-facility" data-id="{{ $facility->id }}">Xóa</button>
                 </div>
             @endforeach
-        </div>
+        </div>        
 
         <input type="hidden" name="deleted_facilities" id="deleted-facilities">
 
@@ -125,21 +120,22 @@
     });
 
     document.addEventListener('change', function (e) {
-        if (e.target && e.target.classList.contains('total-select')) {
-            const index = e.target.getAttribute('data-index');
-            const totalId = e.target.value;
+    if (e.target && e.target.classList.contains('total-select')) {
+        const index = e.target.getAttribute('data-index');
+        const totalId = e.target.value;
 
-            fetch(`/api/get-dentails/${totalId}`)
-                .then(response => response.json())
-                .then(data => {
-                    let options = '<option value="">Chọn chi tiết cơ sở vật chất</option>';
-                    data.forEach(dentail => {
-                        options += `<option value="${dentail.id}">${dentail.name} (Còn lại: ${dentail.quantity})</option>`;
-                    });
-                    document.getElementById(`dentail-select-${index}`).innerHTML = options;
+        fetch(`/api/get-dentails/${totalId}`)
+            .then(response => response.json())
+            .then(data => {
+                let options = '<option value="">Chọn chi tiết cơ sở vật chất</option>';
+                data.forEach(dentail => {
+                    options += `<option value="${dentail.id}">${dentail.name} (Còn lại: ${dentail.quantity})</option>`;
                 });
-        }
-    });
+                document.getElementById(`dentail-select-${index}`).innerHTML = options;
+            });
+    }
+});
+
 
     document.addEventListener('click', function (e) {
         if (e.target && e.target.classList.contains('remove-facility')) {

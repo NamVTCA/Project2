@@ -64,7 +64,6 @@ class ClassController extends Controller
             ->with('success', 'Lớp học đã được tạo thành công.');
     }
 
-    // Giữ nguyên nếu bạn cần API này cho frontend load data
     public function getDentailFacilities($totalId)
     {
         $dentailFacilities = dentail_facilities::where('total_id', $totalId)->get();
@@ -78,6 +77,7 @@ class ClassController extends Controller
 
     public function edit(Classroom $classroom)
     {
+        // Lấy danh sách giáo viên
         $teachers = User::where('role', 1)
             ->whereDoesntHave('classroom', function ($query) use ($classroom) {
                 $query->where('id', '!=', $classroom->id);
@@ -85,12 +85,19 @@ class ClassController extends Controller
             ->orWhere('id', $classroom->user_id)
             ->get();
 
+        // Lấy tất cả giáo viên
         $allTeachers = User::where('role', 1)->get();
-        $facilities = $classroom->facilities;
-        $totalFacilities = total_facilities::with('dentail')->get();
 
+        // Lấy danh sách facilities của lớp học
+        $facilities = $classroom->facilities; 
+
+        // Lấy danh sách các total facilities cùng với các chi tiết của chúng
+        $totalFacilities = total_facilities::with('dentail')->get(); // Lấy total_facilities cùng với chi tiết dentail
+
+        // Trả về view cùng với tất cả các dữ liệu cần thiết
         return view('admin.classrooms.edit', compact('classroom', 'teachers', 'allTeachers', 'facilities', 'totalFacilities'));
     }
+
 
     public function update(ClassRequest $request, Classroom $classroom)
     {
@@ -208,3 +215,5 @@ class ClassController extends Controller
         }
     }
 }
+
+?>
