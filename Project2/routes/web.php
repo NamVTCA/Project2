@@ -41,6 +41,15 @@ Route::get('/accountcreation', function () {
     return view('accountcreation');
 })->name('accountcreation');
 
+Route::get('/cam', function () {
+    return view('camdemo.cam');
+})->name('cam');
+
+Route::get('/cam/create', function () {
+    return view('camdemo.create');
+})->name('camcreate');
+
+
 Route::get('/timetable', function () {
     return view('timetable');
 })->name('timetable');

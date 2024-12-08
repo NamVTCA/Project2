@@ -190,3 +190,45 @@
         }
     }
 }
+
+/* CSS chỉ áp dụng cho ảnh trong trang "Đánh Giá Theo Ngày" */
+.evaluate-page .col-md-6.mb-3.text-center {
+    position: relative; /* Đảm bảo các thành phần con có thể sử dụng vị trí tương đối */
+    padding: 10px; /* Tạo khoảng cách xung quanh */
+}
+
+/* Ảnh của trẻ */
+.evaluate-page #child_image {
+    max-width: 100px; /* Giới hạn kích thước ảnh */
+    display: none; /* Mặc định ẩn ảnh */
+    border: 2px solid #ff69b4; /* Viền hồng nhạt */
+    border-radius: 50%; /* Bo tròn ảnh */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng mượt */
+}
+
+.evaluate-page #child_image:hover {
+    transform: scale(1.1); /* Phóng to ảnh khi hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng khi hover */
+}
+
+/* Placeholder Avatar */
+.evaluate-page #default_avatar {
+    display: flex; /* Hiển thị flex để căn giữa */
+    justify-content: center;
+    align-items: center;
+    width: 100px; /* Kích thước tương tự ảnh */
+    height: 100px;
+    background-color: #ffe4e1; /* Màu nền hồng nhạt */
+    border-radius: 50%; /* Bo tròn placeholder */
+    font-size: 14px;
+    color: #d6336c; /* Màu chữ hồng đậm */
+    border: 2px dashed #ff69b4; /* Viền nét đứt */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hiệu ứng khi hover placeholder */
+.evaluate-page #default_avatar:hover {
+    background-color: #ff69b4; /* Đổi nền sang hồng đậm */
+    color: #fff; /* Chữ chuyển sang trắng */
+    transform: scale(1.05); /* Phóng to nhẹ */
+}

@@ -1,5 +1,10 @@
+@extends('layouts.dashboard')
 
-<div class="container">
+@section('title', 'CameraCreate')
+
+@section('content')
+<link rel="stylesheet" href="{{ asset('css/CameraCreate.css') }}">
+<div class="container-camera-create">
     <h1>Add New Camera</h1>
     <form action="{{ route('cameras.store') }}" method="POST">
         @csrf
@@ -16,4 +21,4 @@
         <button type="submit" class="btn btn-primary mt-3">Add Camera</button>
     </form>
 </div>
-
+@endsection

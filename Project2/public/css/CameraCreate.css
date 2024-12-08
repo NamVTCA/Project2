@@ -1,0 +1,92 @@
+/* Đảm bảo các style chỉ áp dụng trong container của trang CameraCreate */
+.container-camera-create {
+    max-width: 600px; /* Giới hạn chiều rộng */
+    margin: 20px auto; /* Căn giữa và thêm khoảng cách trên dưới */
+    padding: 20px;
+    background-color: #fff; /* Nền trắng */
+    border-radius: 10px; /* Bo góc */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+    font-family: 'Arial', sans-serif; /* Phông chữ chung */
+}
+
+/* Tiêu đề */
+.container-camera-create h1 {
+    text-align: center; /* Căn giữa chữ */
+    font-size: 24px; /* Kích thước chữ lớn */
+    color: #333; /* Màu chữ xám đậm */
+    margin-bottom: 20px;
+}
+
+/* Nhóm form */
+.container-camera-create .form-group {
+    margin-bottom: 15px; /* Khoảng cách giữa các nhóm */
+}
+
+.container-camera-create .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555; /* Màu chữ nhạt */
+}
+
+.container-camera-create .form-group input {
+    width: 100%; /* Chiếm toàn bộ chiều ngang */
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd; /* Viền xám nhạt */
+    border-radius: 5px; /* Bo góc nhẹ */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Hiệu ứng chìm */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng khi focus */
+}
+
+.container-camera-create .form-group input:focus {
+    border-color: #4a90e2; /* Viền xanh khi focus */
+    outline: none; /* Bỏ khung viền mặc định */
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.4); /* Ánh sáng xanh */
+}
+
+/* Nút bấm */
+.container-camera-create button {
+    display: block;
+    width: 100%; /* Chiếm toàn bộ chiều ngang */
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff; /* Màu chữ trắng */
+    background-color: #4a90e2; /* Nền xanh */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Hiệu ứng hover */
+}
+
+.container-camera-create button:hover {
+    background-color: #357ab8; /* Nền xanh đậm hơn khi hover */
+    transform: translateY(-2px); /* Hiệu ứng dịch lên */
+}
+
+.container-camera-create button:active {
+    background-color: #2a5c86; /* Nền tối hơn khi nhấn */
+    transform: translateY(0); /* Trả về vị trí cũ */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container-camera-create {
+        padding: 15px; /* Giảm padding cho màn hình nhỏ */
+    }
+
+    .container-camera-create h1 {
+        font-size: 20px; /* Thu nhỏ font chữ tiêu đề */
+    }
+
+    .container-camera-create .form-group input {
+        font-size: 14px;
+        padding: 8px; /* Giảm padding input */
+    }
+
+    .container-camera-create button {
+        padding: 10px; /* Tinh chỉnh nút bấm */
+        font-size: 14px;
+    }
+}
