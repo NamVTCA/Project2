@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Carbon;
 
 class ChildRequest extends FormRequest
 {
@@ -10,13 +11,14 @@ class ChildRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255|regex:/^[\p{L}\s]+$/u',
-            'birthDate' => 'required|date',
+            'birthDate' => 'required|date|before_or_equal:today',
             'gender' => 'required|in:1,2',
             'user_id' => 'required|exists:users,id',
             'img' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'status' => 'nullable|in:0,1',
         ];
     }
+
     public function messages()
     {
         return [
@@ -33,5 +35,18 @@ class ChildRequest extends FormRequest
             'status.required' => 'Vui lòng chọn trạng thái.',
             'status.boolean' => 'Trạng thái không hợp lệ.',
         ];
+    }
+
+    protected function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $birthDate = Carbon::parse($this->birthDate); // Lấy ngày sinh từ input
+            $currentDate = Carbon::now(); // Ngày hiện tại
+            $ageInMonths = $birthDate->diffInMonths($currentDate); // Tính tuổi theo tháng
+
+            if ($ageInMonths < 36 || $ageInMonths > 72) {
+                $validator->errors()->add('birthDate', 'Tuổi của trẻ phải từ 3 tháng đến 6 tuổi.');
+            }
+        });
     }
 }

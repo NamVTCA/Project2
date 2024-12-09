@@ -20,8 +20,16 @@
 
         <div>
             <label>Ngày sinh:</label>
-            <input type="date" name="birthDate" value="{{ old('birthDate') }}" max="{{ date('Y-m-d') }}" required>
-        </div>
+            <input 
+                type="date" 
+                name="birthDate" 
+                value="{{ old('birthDate', $child->birthDate ? (is_string($child->birthDate) ? $child->birthDate : $child->birthDate->format('Y-m-d')) : '') }}" 
+                max="{{ date('Y-m-d') }}" 
+                required>
+                @error('birthDate')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+        </div>        
 
         <div>
             <label>Giới tính:</label>

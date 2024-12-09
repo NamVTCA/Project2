@@ -26,13 +26,11 @@ class UserAccountController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('img')) {
-            // Lưu ảnh và lưu tên file vào cột img
             $data['img'] = $request->file('img')->store('users', 'public');
         } else {
             $data['img'] = null;
         }
 
-        // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
         $data['password'] = Hash::make($data['password']);
 
         User::create($data);

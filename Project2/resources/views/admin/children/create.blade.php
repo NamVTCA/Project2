@@ -26,7 +26,9 @@
         <div style="margin-bottom: 15px;">
             <label>Ngày sinh:</label>
             <input type="date" name="birthDate" value="{{ old('birthDate') }}" max="{{ date('Y-m-d') }}" required>
-            <span class="error-message"></span>
+            @error('birthDate')
+                <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
 
         <div style="margin-bottom: 15px;">
