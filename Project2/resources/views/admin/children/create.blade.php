@@ -5,16 +5,6 @@
     <link rel="stylesheet" href="{{ asset('css/ChildrenCreation.css') }}">
     <h2>Tạo học sinh mới</h2>
 
-    @if($errors->any())
-        <div style="color: red; margin: 10px 0;">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <form action="{{ route('children.store') }}" method="POST" enctype="multipart/form-data" id="childForm">
         @csrf
         <div style="margin-bottom: 15px;">
