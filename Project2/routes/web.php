@@ -23,6 +23,8 @@ Route::delete('/camera/{id}', [CameraController::class, 'destroy'])->name('camer
 Route::get('/cameras', [cameraController::class, 'index'])->name('cameras.index');
 Route::get('/cameras/create', [CameraController::class, 'create'])->name('cameras.create'); 
 Route::post('/cameras/store', [CameraController::class, 'store'])->name('cameras.store'); 
+Route::get('/timetable/export-pdf', [scheduleController::class, 'exportPDF'])->name('timetable.exportPDF');
+
 
 Route::get('/', function () {
     return view('index');

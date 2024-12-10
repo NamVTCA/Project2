@@ -7,6 +7,8 @@ use App\Models\schedule;
 use App\Models\schedule_info;
 use App\Models\subject;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 class scheduleController extends Controller
 {
 public function getScheduleDetails(Request $request)
@@ -151,6 +153,28 @@ public function deleteSemester(Request $request, $semester)
     session(['timetable' => $timetable]);
 
     return redirect()->route('timetable.manage')->with('success', "Đã xóa học kỳ '$semester'.");
+}
+
+public function exportPDF(Request $request)
+{
+    $selectedSemester = $request->get('semester');
+    $schedule = session("timetable.$selectedSemester", []);
+    $times = [
+        '1' => '7:30 - 8:05',
+        '2' => '8:15 - 8:50',
+        'break_1' => '9:00 - 9:35 Giờ ra chơi buổi sáng',
+        '3' => '9:45 - 10:15',
+        '4' => '10:30 - 11:15',
+        'break_2' => 'Nghỉ nửa buổi',
+        '5' => '13:30 - 14:05',
+        '6' => '14:15 - 14:50',
+        'break_3' => '15:00 - 15:35 Giờ ra chơi buổi chiều',
+        '7' => '15:45 - 16:20',
+        '8' => '16:30 - 17:05'
+    ];
+
+    $pdf = Pdf::loadView('schedule.pdf', compact('schedule', 'times', 'selectedSemester'));
+    return $pdf->download("ThoiKhoaBieu_HocKy_$selectedSemester.pdf");
 }
 
 
