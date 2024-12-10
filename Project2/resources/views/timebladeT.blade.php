@@ -80,6 +80,7 @@
         </tr>
     @endif
 @endforeach
+<a href="{{ route('timetable.exportPDF', ['semester' => $selectedSemester]) }}" class="btn btn-primary">Xuất PDF</a>
 
 </tbody>
 
