@@ -6,8 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Child;
 use App\Models\User;
 use App\Http\Requests\ChildRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use App\Imports\ChildrenImport;
+use App\Exports\ChildrenExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ChildController extends Controller
 {
@@ -69,5 +73,33 @@ class ChildController extends Controller
         
         return redirect()->route('admin.children.index')
             ->with('success', 'Cập nhật thông tin trẻ thành công.');
+    }
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
+        try {
+            Excel::import(new ChildrenImport, $request->file('file'));
+            session()->flash('success', 'Import danh sách học sinh thành công!');
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+            $errorMessages = [];
+            foreach ($failures as $failure) {
+                $rowNumber = $failure->row();
+                $attribute = $failure->attribute();
+                $errors = $failure->errors();
+                $errorMessages[] = "Dòng {$rowNumber}, cột {$attribute}: {$errors[0]}";
+            }
+            return redirect()->back()->with('import_errors', $errorMessages);
+        }
+
+        return redirect()->route('admin.children.index');
+    }
+
+    public function export()
+    {
+        return Excel::download(new ChildrenExport, 'children.xlsx');
     }
 }

@@ -136,6 +136,8 @@ Route::prefix('admin')->group(function () {
             Route::post('/children', [ChildController::class, 'store'])->name('children.store');
             Route::get('/children/{child}/edit', [ChildController::class, 'edit'])->name('children.edit');
             Route::put('/children/{child}', [ChildController::class, 'update'])->name('children.update');
+            Route::post('/children/import', [ChildController::class, 'import'])->name('children.import');
+            Route::get('/children/export', [ChildController::class, 'export'])->name('children.export');
             Route::get('/classes', [ClassController::class, 'index'])->name('admin.classrooms.index');
             Route::get('/classes/create', [ClassController::class, 'create'])->name('classrooms.create');
             Route::post('/classes', [ClassController::class, 'store'])->name('classrooms.store');

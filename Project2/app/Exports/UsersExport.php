@@ -21,6 +21,7 @@ class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithM
     public function headings(): array
     {
         return [
+            'ID',
             'Họ Tên',
             'Email',
             'Vai Trò',
@@ -33,6 +34,7 @@ class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithM
     public function map($user): array
     {
         return [
+            $user->id,
             $user->name,
             $user->email,
             $user->role == 1 ? 'Giáo viên' : 'Phụ huynh',

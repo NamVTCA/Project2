@@ -45,7 +45,7 @@ class ChildRequest extends FormRequest
             $ageInMonths = $birthDate->diffInMonths($currentDate); // Tính tuổi theo tháng
 
             if ($ageInMonths < 36 || $ageInMonths > 72) {
-                $validator->errors()->add('birthDate', 'Tuổi của trẻ phải từ 3 tháng đến 6 tuổi.');
+                $validator->errors()->add('birthDate', 'Tuổi của trẻ phải từ 3 đến 6 tuổi.');
             }
         });
     }
