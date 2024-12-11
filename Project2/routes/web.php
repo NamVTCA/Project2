@@ -15,6 +15,7 @@ use App\Http\Controllers\subjectController;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\FacilityManagementController;
 use App\Http\Controllers\ChildClassController;
+use App\Http\Controllers\messageController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,6 +26,13 @@ Route::get('/cameras/create', [CameraController::class, 'create'])->name('camera
 Route::post('/cameras/store', [CameraController::class, 'store'])->name('cameras.store'); 
 Route::get('/timetable/export-pdf', [scheduleController::class, 'exportPDF'])->name('timetable.exportPDF');
 
+
+Route::middleware('auth')->group(function () {
+    Route::get('/teacher/chat', [messageController::class, 'teacherChat'])->name('teacher.chat');
+    Route::get('/parent/chat', [messageController::class, 'parentChat'])->name('parent.chat');
+    Route::post('/send-message', [messageController::class, 'sendMessage'])->name('send.message');
+    Route::get('/chat-history/{receiverId}', [messageController::class, 'chatHistory'])->name('chat.history');
+});
 
 Route::get('/', function () {
     return view('index');
