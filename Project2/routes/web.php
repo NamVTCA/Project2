@@ -125,6 +125,8 @@ Route::prefix('admin')->group(function () {
                 Route::post('/users', [UserAccountController::class, 'store'])->name('admin.users.store');
                 Route::get('/users/{user}/edit', [UserAccountController::class, 'edit'])->name('admin.users.edit');
                 Route::put('/users/{user}', [UserAccountController::class, 'update'])->name('admin.users.update');
+                Route::post('/users/import', [UserAccountController::class, 'import'])->name('admin.users.import');
+                Route::get('/users/export', [UserAccountController::class, 'export'])->name('admin.users.export');
                 Route::delete('/users/{user}', [UserAccountController::class, 'destroy'])->name('admin.users.delete');
                 Route::get('/feedbackList', [FeedbackController::class, 'index'])->name('feedback.index');
                 Route::delete('/feedbackList/{id}', [FeedbackController::class, 'destroy'])->name('feedback.destroy');

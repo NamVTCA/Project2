@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Imports\UsersImport;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserAccountController extends Controller
 {
@@ -83,5 +86,32 @@ class UserAccountController extends Controller
 
         session()->flash('success', 'Tài khoản đã được xóa!');
         return redirect()->route('admin.users.index');
+    }
+    public function import(Request $request) 
+    {
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+
+        try {
+            Excel::import(new UsersImport, $request->file('file'));
+            session()->flash('success', 'Import users thành công!');
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+            $errorMessages = [];
+            foreach ($failures as $failure) {
+                $rowNumber = $failure->row(); 
+                $attribute = $failure->attribute(); 
+                $errors = $failure->errors(); 
+                $errorMessages[] = "Dòng {$rowNumber}: {$errors[0]}";
+            }
+            return redirect()->back()->with('import_errors', $errorMessages);
+        }
+
+        return redirect()->route('admin.users.index');
+    }
+    public function export() 
+    {
+        return Excel::download(new UsersExport, 'users.xlsx');
     }
 }

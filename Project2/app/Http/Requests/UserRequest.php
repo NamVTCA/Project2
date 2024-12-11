@@ -19,7 +19,7 @@ class UserRequest extends FormRequest
             'email' => ['required', 'email', 'max:255', 
                 Rule::unique('users')->ignore($this->user)],
             'password' => $this->isMethod('post') ? 'required|min:6' : 'nullable|min:6',
-            'id_number' => ['required', 'regex:/^[0-9\s]+$/', 'max:255'],
+            'id_number' => ['required', 'regex:/^[0-9\s]+$/', 'max:12, `min:9'],
             'address' => 'required|string|max:255',
             'role' => 'required|integer|in:0,1,2',
             'status' => 'required|integer|in:0,1',

@@ -8,8 +8,16 @@
     <h1>Quản Lý Tài Khoản</h1>
 
     <div class="actions mb-3">
-        <!-- Chỉnh lại route -->
-        <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Thêm Tài Khoản</a>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Thêm Tài Khoản
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ route('admin.users.create') }}">Tạo một User</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#importModal">Tạo nhiều User</a></li>
+            </ul>
+        </div>
+        <a href="{{ route('admin.users.export') }}" class="btn btn-success">Xuất Excel</a>
     </div>
 
     <table class="table table-bordered">
@@ -47,6 +55,36 @@
             @endforeach
         </tbody>
     </table>
+    <!-- Import Modal -->
+    <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importModalLabel">Import Users từ Excel</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('admin.users.import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Chọn file Excel</label>
+                            <input type="file" class="form-control" id="file" name="file" accept=".xlsx, .xls" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Import</button>
+                    </form>
+                    @if(session('import_errors'))
+                        <div class="alert alert-danger mt-3">
+                            <ul>
+                                @foreach(session('import_errors') as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @if(session('success'))
     <div class="alert alert-success mt-3">
