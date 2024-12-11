@@ -7,6 +7,7 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 class ChildrenImport implements ToModel, WithHeadingRow, WithValidation
 {
@@ -15,17 +16,18 @@ class ChildrenImport implements ToModel, WithHeadingRow, WithValidation
         $ngaySinh = $row['ngay_sinh'];
         $birthDate = null;
 
-        // Kiểm tra nếu giá trị ngày sinh là số
         if (is_numeric($ngaySinh)) {
-            // Chuyển đổi từ Excel timestamp
             $birthDate = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($ngaySinh);
         } else {
-            // Thử chuyển đổi từ chuỗi ngày tháng
+             // Thử chuyển đổi từ cả hai định dạng Y-m-d và d-m-Y
             try {
                 $birthDate = Carbon::createFromFormat('Y-m-d', $ngaySinh);
             } catch (\Exception $e) {
-                // Xử lý lỗi nếu chuyển đổi không thành công
-                return null;
+                try {
+                    $birthDate = Carbon::createFromFormat('d-m-Y', $ngaySinh);
+                } catch (\Exception $e) {
+                    return null;
+                }
             }
         }
 
@@ -35,11 +37,11 @@ class ChildrenImport implements ToModel, WithHeadingRow, WithValidation
         }
 
         return new Child([
-            'name' => $row['ten'],
-            'birthDate' => $birthDate->format('Y-m-d'),
-            'gender' => $row['gioi_tinh'] == 'Male' ? 1 : 2,
+            'name'     => $row['ten'],
+            'birthDate'    => $birthDate->format('Y-m-d'), // Luôn lưu ở định dạng Y-m-d
+            'gender'      => $this->transformGender($row['gioi_tinh']),
             'user_id' => $row['id_phu_huynh'],
-            'status' => $row['trang_thai'],
+            'status' => $this->transformStatus($row['trang_thai']),
         ]);
     }
 
@@ -48,9 +50,9 @@ class ChildrenImport implements ToModel, WithHeadingRow, WithValidation
         return [
             'ten' => 'required|string|max:255|regex:/^[\p{L}\s]+$/u',
             'ngay_sinh' => 'required',
-            'gioi_tinh' => 'required|in:Male,Female',
+            'gioi_tinh' => 'required',
             'id_phu_huynh' => 'required|exists:users,id',
-            'trang_thai' => 'nullable|in:0,1',
+            'trang_thai' => 'required',
         ];
     }
 
@@ -61,10 +63,9 @@ class ChildrenImport implements ToModel, WithHeadingRow, WithValidation
             'ten.regex' => 'Tên chỉ được chứa chữ cái và khoảng trắng.',
             'ngay_sinh.required' => 'Vui lòng nhập ngày sinh.',
             'gioi_tinh.required' => 'Vui lòng chọn giới tính.',
-            'gioi_tinh.in' => 'Giới tính phải là Male hoặc Female.',
             'id_phu_huynh.required' => 'Vui lòng chọn phụ huynh.',
             'id_phu_huynh.exists' => 'Phụ huynh không tồn tại.',
-            'trang_thai.in' => 'Trạng thái không hợp lệ.',
+            'trang_thai.required' => 'Vui lòng nhập trạng thái',
         ];
     }
 
@@ -78,20 +79,24 @@ class ChildrenImport implements ToModel, WithHeadingRow, WithValidation
                 if (is_numeric($ngaySinh)) {
                     $birthDate = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($ngaySinh);
                 } else {
+                    // Thử chuyển đổi từ cả hai định dạng Y-m-d và d-m-Y
                     try {
                         $birthDate = Carbon::createFromFormat('Y-m-d', $ngaySinh);
                     } catch (\Exception $e) {
-                        $validator->errors()->add("{$key}.ngay_sinh", 'Ngày sinh không đúng định dạng.');
-                        continue;
+                        try {
+                            $birthDate = Carbon::createFromFormat('d-m-Y', $ngaySinh);
+                        } catch (\Exception $e) {
+                            $validator->errors()->add("{$key}.ngay_sinh", 'Ngày sinh không đúng định dạng.');
+                            continue;
+                        }
                     }
                 }
     
                 if ($birthDate) {
-                    // Chuyển đổi $birthDate thành Carbon instance nếu nó chưa phải
                     if (!($birthDate instanceof Carbon)) {
                         $birthDate = Carbon::instance($birthDate);
                     }
-                    
+    
                     $currentDate = Carbon::now();
                     $ageInMonths = $birthDate->diffInMonths($currentDate);
     
@@ -110,5 +115,31 @@ class ChildrenImport implements ToModel, WithHeadingRow, WithValidation
     {
         list($year, $month, $day) = explode('-', $date);
         return checkdate($month, $day, $year);
+    }
+    // Hàm chuyển đổi giá trị giới tính
+    private function transformGender($value)
+    {
+        $cleanedValue = Str::lower(trim($value));
+
+        if ($cleanedValue == 'nam') {
+            return 1;
+        } elseif ($cleanedValue == 'nữ') {
+            return 2;
+        } else {
+            return null; // Giới tính không hợp lệ
+        }
+    }
+    // Hàm chuyển đổi giá trị trạng thái
+    private function transformStatus($value)
+    {
+        $cleanedValue = Str::lower(trim($value));
+
+        if ($cleanedValue == 'hoạt động') {
+            return 1;
+        } elseif ($cleanedValue == 'không hoạt động') {
+            return 0;
+        } else {
+            return null; // Trạng thái không hợp lệ
+        }
     }
 }
