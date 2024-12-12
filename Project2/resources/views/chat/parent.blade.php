@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="{{ asset('css/ChatParent.css') }}">
 <h2>Trò chuyện phụ huynh</h2>
 <ul>
     @foreach($teachers as $teacher)

@@ -1,4 +1,10 @@
-<div class="container">
+@extends('layouts.dashboard')
+
+@section('title', 'Danh sách Camera')
+<link rel="stylesheet" href="{{ asset('css/CamIndex.css') }}">
+
+@section('content')
+<div class="container camera-page">
     <h1>Danh sách camera</h1>
     <div class="row">
         @foreach($cameras as $camera)
@@ -16,3 +22,4 @@
         @endforeach
     </div>
 </div>
+@endsection

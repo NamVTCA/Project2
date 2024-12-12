@@ -1,0 +1,95 @@
+/* CSS cho trang danh sách camera */
+.camera-page {
+    /* Thiết lập style toàn trang */
+    background-color: #f9f9f9;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.camera-page h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.camera-page .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.camera-page .col-md-4 {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.camera-page .col-md-4:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.camera-page h3 {
+    font-size: 1.25rem;
+    color: #555;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.camera-page iframe {
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.camera-page form {
+    text-align: center;
+}
+
+.camera-page .btn-danger {
+    background-color: #e3342f;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.camera-page .btn-danger:hover {
+    background-color: #cc1f1a;
+    transform: scale(1.05);
+}
+
+.camera-page .btn-danger:active {
+    background-color: #a61b15;
+    transform: scale(0.95);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .camera-page .col-md-4 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .camera-page iframe {
+        height: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .camera-page h1 {
+        font-size: 1.5rem;
+    }
+
+    .camera-page iframe {
+        height: 250px;
+    }
+}
