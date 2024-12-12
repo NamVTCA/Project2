@@ -24,7 +24,7 @@
         <div class="container">
             <div class="row text-center">
                 <div class="col-md-6 mb-4">
-                    <a href="link-to-teachers" class="hover-teachers text-reset text-decoration-none">
+                    <a href="{{ route('linktoteacher') }}" class="hover-teachers text-reset text-decoration-none">
                         <div class="card border-0 shadow-sm">
                             <img src="{{ asset('img/family.png') }}" class="card-img-top mx-auto" alt="Teacher Icon" style="width: 50px;">
                             <div class="card-body">

@@ -1,0 +1,130 @@
+/* Cấu hình chung */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+    color: #007bff;
+    margin-top: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+ul li {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+ul li:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    display: block;
+}
+
+ul li a:hover {
+    color: #0056b3;
+}
+
+/* Hộp chat */
+#chat-box {
+    display: none;
+    max-width: 600px;
+    margin: 20px auto;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#chat-with {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+}
+
+#messages {
+    border: 1px solid #ccc;
+    height: 300px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+#messages p {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#messages p:nth-child(odd) {
+    background-color: #e6f7ff;
+    color: #0056b3;
+}
+
+#messages p:nth-child(even) {
+    background-color: #ffffff;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+#chat-form textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    resize: none;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+#chat-form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    float: right;
+}
+
+#chat-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Thông báo thành công */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #c3e6cb;
+    margin: 10px auto;
+    max-width: 600px;
+    text-align: center;
+}

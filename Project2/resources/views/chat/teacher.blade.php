@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{ asset('css/ChatTeacher.css') }}">
 
 <h2>Trò chuyện giáo viên</h2>
 <ul>

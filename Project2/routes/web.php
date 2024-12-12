@@ -82,6 +82,11 @@ Route::get('/event', function () {
 })->name('event');
 
 
+Route::get('/linktoteacher', function () {
+    return view('link-to-teachers');
+})->name('linktoteacher');
+
+
 Route::get('/profile', function(){
     return view('admin.users.profile');
 });
