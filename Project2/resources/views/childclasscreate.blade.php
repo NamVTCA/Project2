@@ -12,6 +12,13 @@
             </div>
         @endif
 
+        {{-- Thêm phần hiển thị lỗi --}}
+        @if(session('error'))
+            <div class="alert alert-danger mt-3">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <form action="{{ route('childclass.store') }}" method="POST">
             @csrf
             <div class="form-group">
@@ -22,7 +29,7 @@
                     @endforeach
                 </select>
             </div>
-        
+
             <div class="form-group mt-3">
                 <label for="classroom_id">Lớp Học</label>
                 <select name="classroom_id" id="classroom_id" class="form-control" required>
@@ -30,11 +37,11 @@
                         <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
                     @endforeach
                 </select>
-            </div>       
+            </div>
             <div class="button-group">
                 <button type="submit" class="btn-custom">Thêm vào lớp</button>
                 <a href="{{ route('childclass.index') }}" class="btn-custom">Xem Danh Sách</a>
-            </div>  
+            </div>
         </form>
     </div>
 @endsection

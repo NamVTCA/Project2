@@ -32,16 +32,32 @@ class ChildClassController extends Controller
             'child_id' => 'required|exists:children,id',
             'classroom_id' => 'required|exists:classrooms,id',
         ]);
-    
+
+        $child = Child::findOrFail($request->input('child_id'));
+        $classroom = Classroom::findOrFail($request->input('classroom_id'));
+
+        // Kiểm tra xem phụ huynh của học sinh có phải là giáo viên của lớp học hay không
+        if ($child->user_id == $classroom->user_id) {
+            return redirect()->back()->with('error', 'Không thể thêm học sinh vào lớp do phụ huynh của học sinh là giáo viên của lớp này.');
+        }
+
+        // Kiểm tra xem học sinh đã có trong lớp chưa
+        $existingChildClass = Childclass::where('child_id', $child->id)
+                                        ->where('classroom_id', $classroom->id)
+                                        ->first();
+
+        if ($existingChildClass) {
+            return redirect()->back()->with('error', 'Học sinh đã có trong lớp này.');
+        }
+
         // Tạo mới bản ghi trong bảng childclasses
-        \App\Models\Childclass::create([
+        Childclass::create([
             'child_id' => $request->input('child_id'),
             'classroom_id' => $request->input('classroom_id'),
         ]);
 
         return redirect()->route('childclass.create')->with('success', 'Thêm học sinh vào lớp thành công!');
     }
-    
 
     // Hiển thị danh sách học sinh đã được thêm vào lớp học
     public function index()
