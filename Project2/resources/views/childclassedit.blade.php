@@ -4,7 +4,7 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/ChildClass.css') }}">
-
+<a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
 <div class="container mt-4">
     <h2 class="text-center">Chỉnh Sửa Học Sinh trong Lớp</h2>
 

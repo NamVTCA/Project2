@@ -61,7 +61,7 @@
         </div>
     </div>
 
-    <div class="row mt-4">
+    {{-- <div class="row mt-4">
         <!-- Biểu đồ hoặc bảng -->
         <div class="col-md-12">
             <div class="card shadow-sm">
@@ -74,9 +74,9 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('dashboardChart').getContext('2d');
     const dashboardChart = new Chart(ctx, {
@@ -101,6 +101,6 @@
         }
     });
 </script>
-
+ --}}
 
 @endsection

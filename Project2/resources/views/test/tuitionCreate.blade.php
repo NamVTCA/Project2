@@ -3,6 +3,7 @@
 @section('content')
 <div class="tuition-create">
     <link rel="stylesheet" href="{{ asset('css/TuitionCreate.css') }}">
+    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
     <h1>Tạo Học phí</h1>
 
     @if(session('success'))

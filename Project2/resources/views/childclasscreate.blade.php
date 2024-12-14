@@ -3,6 +3,7 @@
 @section('title', 'Thêm Học Sinh vào Lớp')
 <link rel="stylesheet" href="{{ asset('css/ChildClass.css') }}">
 @section('content')
+<a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
     <div class="container mt-4">
         <h2 class="text-center">Thêm Học Sinh vào Lớp</h2>
 

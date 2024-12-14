@@ -3,6 +3,7 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/TuitionManagement.css') }}">
 <div class="hoc-phi-container">
+    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
     <h1>Quản Lý Học Phí</h1>
 
     <div class="actions">

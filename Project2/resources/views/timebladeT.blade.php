@@ -3,6 +3,7 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/TimetableT.css') }}">
 <main class="timetable-container">
+    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
     <h1 class="page-title">Xem Thời Khóa Biểu</h1>
     <div class="form-group">
         <label for="semester-select">Chọn học kỳ:</label>

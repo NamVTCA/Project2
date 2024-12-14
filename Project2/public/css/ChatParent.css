@@ -1,62 +1,83 @@
-/* Đặt trong file CSS hoặc trong thẻ <style> */
+/* Cấu hình chung */
 body {
     font-family: Arial, sans-serif;
-}
-
-h2 {
+    background-color: #f9f9f9;
     color: #333;
-    margin-bottom: 20px;
-}
-
-ul {
-    list-style-type: none;
+    margin: 0;
     padding: 0;
 }
 
+h2 {
+    text-align: center;
+    color: #007bff;
+    margin-top: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
 ul li {
-    margin: 10px 0;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+ul li:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 ul li a {
     text-decoration: none;
     color: #007bff;
     font-weight: bold;
-    transition: color 0.3s;
+    display: block;
 }
 
 ul li a:hover {
     color: #0056b3;
 }
 
+/* Hộp chat */
 #chat-box {
-    background: #f9f9f9;
+    display: none;
+    max-width: 600px;
+    margin: 20px auto;
+    background: #ff69b4;
     border: 1px solid #ddd;
-    padding: 20px;
     border-radius: 8px;
-    max-width: 500px;
-    margin-top: 20px;
+    padding: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 #chat-with {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-size: 18px;
-    color: #555;
+    font-weight: bold;
+    color:  #0056b3;
 }
 
 #messages {
     border: 1px solid #ccc;
     height: 300px;
     overflow-y: auto;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     padding: 10px;
-    background-color: #fff;
+    background-color: #f8f9fa;
     border-radius: 5px;
 }
 
 #messages p {
     margin: 5px 0;
-    padding: 8px 10px;
+    padding: 10px;
     border-radius: 5px;
 }
 
@@ -66,8 +87,9 @@ ul li a:hover {
 }
 
 #messages p:nth-child(even) {
-    background-color: #f8f9fa;
+    background-color: #ffffff;
     color: #333;
+    border: 1px solid #ddd;
 }
 
 #chat-form textarea {
@@ -77,19 +99,32 @@ ul li a:hover {
     padding: 10px;
     resize: none;
     box-sizing: border-box;
+    margin-bottom: 10px;
 }
 
 #chat-form button {
-    display: block;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 10px 15px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
+    float: right;
 }
 
 #chat-form button:hover {
-    background-color: #0056b3;
+    background-color: #ed1cd5;
+}
+
+/* Thông báo thành công */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #c3e6cb;
+    margin: 10px auto;
+    max-width: 600px;
+    text-align: center;
 }
