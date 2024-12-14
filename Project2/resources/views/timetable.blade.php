@@ -2,14 +2,15 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/Timetable.css') }}">
-<main class="timetable-container">
+<a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
+<main class="timetable-container">  
     <h1 class="page-title">Chỉnh Sửa Thời Khóa Biểu</h1>
     <div class="timetable">
         <form id="timetable-form" action="{{ route('timetable.save') }}" method="POST" onsubmit="return validateForm()">
             @csrf
             <div class="form-group">
                 <label for="semester">Học kỳ:</label>
-                <input type="text" id="semester" name="semester" placeholder="Nhập học kỳ" required>
+                <input type="text" id="semester" name="semester" placeholder="Nhập học kỳ (Ngày bắt đầu - Ngày kết thúc) Ví Dụ: Học kỳ 1(13/12/2024 - 13/4/2025)" required>
             </div>
             <table>
                 <thead>
@@ -58,7 +59,7 @@
                             type="text" 
                             class="t{{ $day }} p{{ $period }}" 
                             name="schedule[t{{ $day }}][p{{ $period }}]" 
-                            placeholder="Nhập thông tin" 
+                            placeholder="Nhập Môn" 
                             required>
                     </td>
                 @endfor

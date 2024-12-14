@@ -9,6 +9,7 @@
     </a>
 </li>
 
+
     @endforeach
 </ul>
   @if(session('success'))
@@ -16,11 +17,11 @@
     @endif
 <div id="chat-box" style="display:none;">
     <h3 id="chat-with"></h3>
-    <div id="messages" style="border: 1px solid #ccc; height: 300px; overflow-y: auto;"></div>
+    <div id="messages" style="border: 1px solid #cccccc; height: 300px; overflow-y: auto;"></div>
     <form id="chat-form">
         <input type="hidden" name="receiver_id" id="receiver_id">
         <textarea name="message" id="message" rows="3" placeholder="Nhập tin nhắn..." style="width: 100%;"></textarea>
-        <button type="submit" style="margin-top: 10px;">Gửi</button>
+        <button type="submit">Gửi</button>
     </form>
 </div>
 

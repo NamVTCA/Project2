@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="container mt-4">
+    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
     <link rel="stylesheet" href="{{ asset('css/FeedbackList.css') }}">
     <h2 class="text-center page-title">Danh sách phản hồi</h2>
 

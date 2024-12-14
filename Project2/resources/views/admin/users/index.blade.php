@@ -19,7 +19,7 @@
         </div>
         <a href="{{ route('admin.users.export') }}" class="btn btn-success">Xuất Excel</a>
     </div>
-
+    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
     <table class="table table-bordered">
         <thead class="thead-dark">
             <tr>

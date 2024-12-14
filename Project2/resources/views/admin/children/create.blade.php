@@ -3,6 +3,7 @@
 @section('content')
 <div>
     <link rel="stylesheet" href="{{ asset('css/ChildrenCreation.css') }}">
+    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
     <h2>Tạo học sinh mới</h2>
 
     <form action="{{ route('children.store') }}" method="POST" enctype="multipart/form-data" id="childForm">

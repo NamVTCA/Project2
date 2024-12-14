@@ -39,11 +39,11 @@
                     </div>
                     <div>
                         <a href="{{ route('timetable.view') }}" class="btn btn-light btn-sm">Xem Lịch Học</a>
+                        <a href="{{ route('parent.chat') }}" class="btn btn-light btn-sm">Trò Chuyện</a>
                     </div>
                 </div>
             </div>
         </div>
-
         <!-- Phần chọn học sinh và chi tiết học sinh (bên phải) -->
         <div class="col-md-6">
             <!-- Chọn học sinh -->

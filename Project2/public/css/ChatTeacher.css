@@ -51,7 +51,7 @@ ul li a:hover {
     display: none;
     max-width: 600px;
     margin: 20px auto;
-    background: #ffffff;
+    background: #ff69b4;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
@@ -62,7 +62,7 @@ ul li a:hover {
     margin-bottom: 15px;
     font-size: 18px;
     font-weight: bold;
-    color: #555;
+    color:  #0056b3;
 }
 
 #messages {
@@ -114,7 +114,7 @@ ul li a:hover {
 }
 
 #chat-form button:hover {
-    background-color: #0056b3;
+    background-color: #ed1cd5;
 }
 
 /* Thông báo thành công */

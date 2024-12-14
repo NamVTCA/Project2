@@ -54,3 +54,52 @@ h2 {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Form-inline container */
+.form-inline {
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: space-between; /* Phân bố đều các phần tử */
+    flex-wrap: wrap; /* Đảm bảo hiển thị tốt trên các màn hình nhỏ */
+    gap: 15px; /* Tăng khoảng cách giữa các phần tử */
+    margin-bottom: 20px;
+}
+
+/* Form group */
+.form-inline .form-group {
+    margin: 0; /* Loại bỏ khoảng cách mặc định */
+}
+
+/* Nút trong form */
+.form-inline .btn-primary {
+    align-self: center; /* Đảm bảo nút luôn căn giữa theo chiều dọc */
+}
+
+/* Đảm bảo nút không bị lệch */
+.button-group {
+    display: flex;
+    justify-content: center; /* Căn giữa nút trong container */
+    gap: 15px; /* Khoảng cách giữa các nút nếu có */
+    margin-top: 20px;
+}
+
+/* Nút chính */
+.btn-primary {
+    background-color: #007bff; /* Màu xanh tiêu chuẩn */
+    border-color: #0056b3; /* Màu viền đậm hơn */
+    color: #fff; /* Màu chữ trắng */
+    font-size: 14px; /* Kích thước chữ phù hợp */
+    font-weight: bold; /* In đậm chữ */
+    padding: 8px 15px; /* Đệm trong nút */
+    border-radius: 5px; /* Bo góc nút */
+    text-align: center; /* Căn giữa chữ trong nút */
+    transition: all 0.3s ease-in-out; /* Hiệu ứng khi hover */
+}
+
+/* Hiệu ứng hover cho nút */
+.btn-primary:hover {
+    background-color: #0056b3; /* Màu xanh đậm hơn khi hover */
+    border-color: #003f7f; /* Viền đậm hơn */
+    transform: scale(1.05); /* Hiệu ứng phóng to nhẹ */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thêm hiệu ứng đổ bóng */
+}
+

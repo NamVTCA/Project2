@@ -3,6 +3,7 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/ClassroomsCreation.css') }}">
 <div class="classroom-create-page">
+    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
     <h2>Tạo lớp học mới</h2>
     @if($errors->any())
         <div class="error-list">
