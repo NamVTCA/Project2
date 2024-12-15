@@ -17,7 +17,7 @@
     <form id="chat-form">
         <input type="hidden" name="receiver_id" id="receiver_id">
         <textarea name="message" id="message" rows="3" placeholder="Nhập tin nhắn của bạn..." style="width: 100%;"></textarea>
-        <button type="submit" style="margin-top: 10px;">Gửi</button>
+        <button type="submit">Gửi</button>
     </form>
 </div>
 

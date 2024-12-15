@@ -19,7 +19,7 @@
         </div>
     </div>
 </div>
-
+<a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
     <div class="children-grid">
         @foreach($children as $child)
             <div class="child-card">

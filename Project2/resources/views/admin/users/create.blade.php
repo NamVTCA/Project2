@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{{ asset('css/AccountCreation.css') }}">
 <div class="user-creation-section">
     <h2>Tạo người dùng mới và cấp tài khoản</h2>
-
+    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
     @if($errors->any())
         <div class="alert alert-danger">
             <ul>

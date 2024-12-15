@@ -2,6 +2,7 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/Timetable.css') }}">
+<a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
 <main class="timetable-container">
     <h1 class="page-title">Quản Lý Học Kỳ</h1>
     @if(session('success'))

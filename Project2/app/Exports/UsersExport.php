@@ -8,6 +8,8 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
+
+
 class UsersExport implements FromCollection, WithHeadings, ShouldAutoSize, WithMapping
 {
     /**
