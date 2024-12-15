@@ -3,13 +3,19 @@
 @section('title', 'Thêm Học Sinh vào Lớp')
 <link rel="stylesheet" href="{{ asset('css/ChildClass.css') }}">
 @section('content')
-<a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
     <div class="container mt-4">
         <h2 class="text-center">Thêm Học Sinh vào Lớp</h2>
 
         @if(session('success'))
             <div class="alert alert-success mt-3">
                 {{ session('success') }}
+            </div>
+        @endif
+
+        {{-- Thêm phần hiển thị lỗi --}}
+        @if(session('error'))
+            <div class="alert alert-danger mt-3">
+                {{ session('error') }}
             </div>
         @endif
 
@@ -23,7 +29,7 @@
                     @endforeach
                 </select>
             </div>
-        
+
             <div class="form-group mt-3">
                 <label for="classroom_id">Lớp Học</label>
                 <select name="classroom_id" id="classroom_id" class="form-control" required>
@@ -31,11 +37,11 @@
                         <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
                     @endforeach
                 </select>
-            </div>       
+            </div>
             <div class="button-group">
                 <button type="submit" class="btn-custom">Thêm vào lớp</button>
                 <a href="{{ route('childclass.index') }}" class="btn-custom">Xem Danh Sách</a>
-            </div>  
+            </div>
         </form>
     </div>
 @endsection
