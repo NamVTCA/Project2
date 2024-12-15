@@ -54,9 +54,8 @@
                     
                     <!-- Quản Lý Lịch Học -->
                     <div class="form-group">
-                        <label for="scheduleManagement">Quản Lý Lịch Học:</label>
+                        <label for="scheduleManagement">Trò Truyện:</label>
                         <div>
-                            <a href="{{ route('timetable') }}" class="btn btn-light btn-sm">Tạo Lịch Học</a>
                             <a href="{{ route('teacher.chat') }}" class="btn btn-light btn-sm">Trò Chuyện</a>
                         </div>
                     </div>

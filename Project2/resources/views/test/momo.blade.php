@@ -5,8 +5,10 @@
      <form action="{{ route('momo_payment') }}" method="POST">  
             @csrf
         <link rel="stylesheet" href="{{ asset('css/Payment.css') }}">
-        
-
+        <div class="back-to-dashboard">
+            <!-- Nút quay về Dashboard -->
+            <button id="back-button" class="btn btn-secondary">← Quay về</button>
+        </div>
             <label for="child_id" class="form-label text-pink">Chọn Trẻ</label>
             <select class="form-select" id="child_id" name="child_id" required>
                 <option value="">-- Chọn Trẻ --</option>
@@ -87,6 +89,11 @@
         }
     });
 });
+
+    // Gắn sự kiện click vào nút quay về
+    document.getElementById('back-button').addEventListener('click', function () {
+        window.history.back();
+    });
     </script>
 </body>
 </html>
