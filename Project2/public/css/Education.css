@@ -1,48 +1,141 @@
-/* Education Section */
 .education-section {
-    background-color: #ffe4e1;
-    padding: 50px 0;
-  }
-  
-  .education-section h2 {
-    color: #ff69b4;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .education-section p,
-  .education-section li {
-    color: #333;
-  }
-  
-  .education-section .btn-primary {
-    background-color: #007bff; /* Thay đổi màu nền nút thành xanh */
-    border-color: #007bff;
-    color: #fff; /* Thay đổi màu chữ nút thành trắng */
-  }
-  
-  /* Facilities Section */
-  .facilities-section {
-    background-color: #f8f9fa;
-    padding: 50px 0;
-  }
-  
-  .facilities-section h2 {
-    color: #ff69b4;
-    font-weight: bold;
-    margin-bottom: 40px;
-  }
-  
-  .facilities-section .card {
-    border: none;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-  }
-  
-  .facilities-section .card-title {
-    color: #d6336c;
-    font-weight: bold;
-  }
-  
-  .facilities-section .card-text {
-    color: #333;
-  }
+  background-color: #ffe4e1;
+  padding: 50px 0;
+}
+
+.education-section h2 {
+  color: #ff69b4;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.education-section p,
+.education-section li {
+  color: #333;
+}
+
+.education-section .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+/* New styles for expandable content */
+#additional-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+#additional-details.expanded {
+  max-height: 2000px; /* Adjust this value based on content */
+}
+
+.school-details {
+  padding: 20px;
+}
+
+.info-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.info-card h5 {
+  color: #ff69b4;
+  margin-bottom: 15px;
+}
+
+.info-card ul {
+  padding-left: 20px;
+}
+
+.info-card li {
+  margin-bottom: 8px;
+}
+
+.schedule-info {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.detail-section h4 {
+  color: #d6336c;
+  margin-bottom: 20px;
+}
+
+/* Facilities Section styles remain the same */
+.facilities-section {
+  background-color: #f8f9fa;
+  padding: 50px 0;
+}
+
+.program-content h6 {
+  color: #ff69b4;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.daily-schedule {
+  display: grid;
+  gap: 10px;
+}
+
+.daily-schedule p {
+  margin: 0;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #fff5f7;
+}
+
+.daily-schedule strong {
+  color: #d6336c;
+  margin-right: 10px;
+}
+
+.info-card {
+  height: 100%;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+}
+
+.info-card h5 {
+  color: #ff69b4;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ffe4e1;
+}
+
+.info-card ul {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.info-card li {
+  margin-bottom: 8px;
+  color: #4a4a4a;
+}
+
+.schedule-info {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
