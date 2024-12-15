@@ -134,3 +134,19 @@ tbody td:hover {
         padding: 5px;
     }
 }
+/* Nút Back */
+#back-button {
+    background-color: #6c757d;
+    border: none;
+    font-size: 14px;
+    padding: 8px 15px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+}
+
+#back-button:hover {
+    background-color: #5a6268;
+    transform: scale(1.05);
+}

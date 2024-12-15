@@ -3,7 +3,10 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/TimetableT.css') }}">
 <main class="timetable-container">
-    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
+    <div class="back-to-dashboard">
+        <!-- Nút quay về Dashboard -->
+        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    </div>
     <h1 class="page-title">Xem Thời Khóa Biểu</h1>
     <div class="form-group">
         <label for="semester-select">Chọn học kỳ:</label>
@@ -91,4 +94,12 @@
         <p>Không có dữ liệu thời khóa biểu cho học kỳ này.</p>
     @endif
 </main>
+
+
+<script>
+    // Gắn sự kiện click vào nút quay về
+    document.getElementById('back-button').addEventListener('click', function () {
+        window.history.back();
+    });
+</script>
 @endsection
