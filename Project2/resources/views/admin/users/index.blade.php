@@ -72,21 +72,12 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Import</button>
                     </form>
-                    @if(session('import_errors'))
+                    {{-- Hiển thị lỗi validation --}}
+                    @if ($errors->any())
                         <div class="alert alert-danger mt-3">
                             <ul>
-                                @foreach(session('import_errors') as $errorRow)
-                                    @if(isset($errorRow['errors']['vai_tro']) || isset($errorRow['errors']['trang_thai']))
-                                        <li>
-                                            <strong>Dòng {{ $errorRow['row']['#'] }}:</strong>
-                                            @if(isset($errorRow['errors']['vai_tro']))
-                                                {{ $errorRow['errors']['vai_tro'][0] }}
-                                            @endif
-                                            @if(isset($errorRow['errors']['trang_thai']))
-                                                {{ $errorRow['errors']['trang_thai'][0] }}
-                                            @endif
-                                        </li>
-                                    @endif
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
                         </div>

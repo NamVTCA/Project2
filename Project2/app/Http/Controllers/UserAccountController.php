@@ -28,11 +28,11 @@ class UserAccountController extends Controller
     {
         $data = $request->validated();
 
-        if ($request->hasFile('img')) {
+        if ($request->hasFile('img')) 
+        {
             $data['img'] = $request->file('img')->store('users', 'public');
-        } else {
-            $data['img'] = null;
-        }
+        } 
+        else { $data['img'] = null; }
 
         $data['password'] = Hash::make($data['password']);
 
@@ -43,7 +43,6 @@ class UserAccountController extends Controller
         return redirect()->route('admin.users.index');
     }
 
-
     public function edit(User $user)
     {
         return view('admin.users.edit', compact('user'));
@@ -53,23 +52,18 @@ class UserAccountController extends Controller
     {
         $data = $request->validated();
 
-        if ($request->hasFile('img')) {
-            if ($user->img) {
-                // Xóa ảnh cũ nếu có
-                Storage::disk('public')->delete($user->img);
-            }
-            // Lưu ảnh mới và lưu tên file vào cột img
+        if ($request->hasFile('img')) 
+        {
+            if ($user->img) { Storage::disk('public')->delete($user->img); }
             $data['img'] = $request->file('img')->store('users', 'public');
         }
 
-        // Kiểm tra và mã hóa mật khẩu mới nếu có
-        if (!empty($data['password'])) {
+        if (!empty($data['password'])) 
+        {
             $data['password'] = Hash::make($data['password']);
-        } else {
-            unset($data['password']);
-        }
+        } 
+        else {  unset($data['password']); }
 
-        // Cập nhật user
         $user->update($data);
 
         session()->flash('success', 'Tài khoản đã được cập nhật!');
@@ -78,38 +72,45 @@ class UserAccountController extends Controller
 
     public function destroy(User $user)
     {
-        if ($user->img) {
-            Storage::disk('public')->delete($user->img);
-        }
+        if ($user->img) { Storage::disk('public')->delete($user->img); }
 
         $user->delete();
 
         session()->flash('success', 'Tài khoản đã được xóa!');
         return redirect()->route('admin.users.index');
     }
-    public function import(Request $request) 
+
+    public function import(Request $request)
     {
         $request->validate([
             'file' => 'required|mimes:xls,xlsx'
         ]);
 
-        try {
+        try 
+        {
             Excel::import(new UsersImport, $request->file('file'));
-            session()->flash('success', 'Import users thành công!');
-        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            return redirect()->route('admin.users.index')->with('success', 'Import users thành công!');
+        } catch (\Maatwebsite\Excel\Validators\ValidationException $e) 
+        {
             $failures = $e->failures();
             $errorMessages = [];
-            foreach ($failures as $failure) {
-                $rowNumber = $failure->row(); 
-                $attribute = $failure->attribute(); 
-                $errors = $failure->errors(); 
-                $errorMessages[] = "Dòng {$rowNumber}: {$errors[0]}";
-            }
-            return redirect()->back()->with('import_errors', $errorMessages);
-        }
 
-        return redirect()->route('admin.users.index');
+            foreach ($failures as $failure) 
+            {
+                $rowNumber = $failure->row();
+                $attribute = $failure->attribute();
+                $errors = $failure->errors();
+                
+                foreach ($errors as $error) 
+                {
+                    $errorMessages[] = "Dòng {$rowNumber}: {$error}";
+                }
+            }
+
+            return redirect()->back()->withErrors($errorMessages);
+        }
     }
+
     public function export() 
     {
         return Excel::download(new UsersExport, 'users.xlsx');

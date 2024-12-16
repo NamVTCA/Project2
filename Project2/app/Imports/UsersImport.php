@@ -13,7 +13,6 @@ class UsersImport implements ToModel, WithHeadingRow, WithValidation
 {
     public function model(array $row)
     {
-        // Không kiểm tra null ở đây, model() luôn tạo User
         return new User([
             'name'     => $row['ho_ten'],
             'email'    => $row['email'],
@@ -86,7 +85,7 @@ class UsersImport implements ToModel, WithHeadingRow, WithValidation
         } elseif ($cleanedValue == 'phụ huynh') {
             return 2;
         } else {
-            return null; // Không hợp lệ, sẽ bị rules() bắt lỗi
+            return null;
         }
     }
 
@@ -100,7 +99,7 @@ class UsersImport implements ToModel, WithHeadingRow, WithValidation
         } elseif ($cleanedValue == 'không hoạt động') {
             return 0;
         } else {
-            return null; // Không hợp lệ, sẽ bị rules() bắt lỗi
+            return null;
         }
     }
 }

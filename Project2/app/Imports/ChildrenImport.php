@@ -19,7 +19,6 @@ class ChildrenImport implements ToModel, WithHeadingRow, WithValidation
         if (is_numeric($ngaySinh)) {
             $birthDate = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($ngaySinh);
         } else {
-             // Thử chuyển đổi từ cả hai định dạng Y-m-d và d-m-Y
             try {
                 $birthDate = Carbon::createFromFormat('Y-m-d', $ngaySinh);
             } catch (\Exception $e) {
@@ -31,14 +30,13 @@ class ChildrenImport implements ToModel, WithHeadingRow, WithValidation
             }
         }
 
-        // Kiểm tra tính hợp lệ của ngày tháng
         if (!$birthDate || !$this->isValidDate($birthDate->format('Y-m-d'))) {
             return null;
         }
 
         return new Child([
             'name'     => $row['ten'],
-            'birthDate'    => $birthDate->format('Y-m-d'), // Luôn lưu ở định dạng Y-m-d
+            'birthDate'    => $birthDate->format('Y-m-d'), 
             'gender'      => $this->transformGender($row['gioi_tinh']),
             'user_id' => $row['id_phu_huynh'],
             'status' => $this->transformStatus($row['trang_thai']),
@@ -79,7 +77,6 @@ class ChildrenImport implements ToModel, WithHeadingRow, WithValidation
                 if (is_numeric($ngaySinh)) {
                     $birthDate = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($ngaySinh);
                 } else {
-                    // Thử chuyển đổi từ cả hai định dạng Y-m-d và d-m-Y
                     try {
                         $birthDate = Carbon::createFromFormat('Y-m-d', $ngaySinh);
                     } catch (\Exception $e) {
@@ -110,13 +107,11 @@ class ChildrenImport implements ToModel, WithHeadingRow, WithValidation
         });
     }
 
-    // Hàm kiểm tra tính hợp lệ của ngày tháng
     private function isValidDate($date)
     {
         list($year, $month, $day) = explode('-', $date);
         return checkdate($month, $day, $year);
     }
-    // Hàm chuyển đổi giá trị giới tính
     private function transformGender($value)
     {
         $cleanedValue = Str::lower(trim($value));
@@ -126,10 +121,10 @@ class ChildrenImport implements ToModel, WithHeadingRow, WithValidation
         } elseif ($cleanedValue == 'nữ') {
             return 2;
         } else {
-            return null; // Giới tính không hợp lệ
+            return null; 
         }
     }
-    // Hàm chuyển đổi giá trị trạng thái
+
     private function transformStatus($value)
     {
         $cleanedValue = Str::lower(trim($value));
@@ -139,7 +134,7 @@ class ChildrenImport implements ToModel, WithHeadingRow, WithValidation
         } elseif ($cleanedValue == 'không hoạt động') {
             return 0;
         } else {
-            return null; // Trạng thái không hợp lệ
+            return null;
         }
     }
 }
