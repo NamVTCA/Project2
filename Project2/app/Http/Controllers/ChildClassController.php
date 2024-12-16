@@ -60,10 +60,19 @@ class ChildClassController extends Controller
     }
 
     // Hiển thị danh sách học sinh đã được thêm vào lớp học
-    public function index()
+    public function index(Request $request)
     {
-        $childclasses = Childclass::with(['child', 'classroom'])->get();
-        return view('childclassindex', compact('childclasses'));
+        $classroomId = $request->get('classroom_id'); // Lấy giá trị classroom_id từ request
+        $classrooms = Classroom::all(); // Lấy danh sách tất cả lớp học
+    
+        // Truy vấn danh sách học sinh và lọc theo lớp (nếu có)
+        $childclasses = Childclass::with(['child', 'classroom'])
+            ->when($classroomId, function ($query, $classroomId) {
+                return $query->where('classroom_id', $classroomId);
+            })
+            ->get();
+    
+        return view('childclassindex', compact('childclasses', 'classrooms'));
     }
 
     // Hiển thị form chỉnh sửa
