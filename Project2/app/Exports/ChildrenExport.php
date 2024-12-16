@@ -12,16 +12,16 @@ class ChildrenExport implements FromCollection, WithHeadings, ShouldAutoSize, Wi
 {
     public function collection()
     {
-        return Child::with('user')->get(); // Eager load relationship với user
+        return Child::with('user')->get();
     }
 
     public function headings(): array
     {
         return [
-            'Tên', // Bỏ cột ID
+            'Tên', 
             'Ngày Sinh',
             'Giới Tính',
-            'Phụ Huynh', // Thay đổi thành tên phụ huynh
+            'Phụ Huynh',
             'Trạng Thái',
         ];
     }
@@ -32,7 +32,7 @@ class ChildrenExport implements FromCollection, WithHeadings, ShouldAutoSize, Wi
             $child->name,
             $child->birthDate,
             $child->gender == 1 ? 'Nam' : 'Nữ',
-            $child->user->name, // Lấy tên phụ huynh từ relationship
+            $child->user->name, 
             $child->status == 1 ? 'Hoạt động' : 'Không hoạt động',
         ];
     }
