@@ -147,14 +147,14 @@
                                 <h4>Thời Gian Biểu Hàng Ngày</h4>
                                 <div class="schedule-info">
                                     <div class="daily-schedule">
-                                        <p><strong>07:30 - 08:30</strong> Đón trẻ và điểm tâm sáng</p>
-                                        <p><strong>08:30 - 09:30</strong> Hoạt động học tập theo chủ đề</p>
-                                        <p><strong>09:30 - 10:00</strong> Giờ ăn nhẹ và nghỉ ngơi</p>
-                                        <p><strong>10:00 - 11:00</strong> Hoạt động ngoài trời</p>
-                                        <p><strong>11:00 - 11:45</strong> Ăn trưa</p>
-                                        <p><strong>11:45 - 14:00</strong> Ngủ trưa</p>
-                                        <p><strong>14:00 - 15:00</strong> Hoạt động chiều</p>
-                                        <p><strong>15:00 - 15:30</strong> Ăn xế</p>
+                                        <p><strong>07:30 - 08:05</strong> Đón trẻ và điểm tâm sáng</p>
+                                        <p><strong>08:15 - 08:50</strong> Hoạt động học tập theo chủ đề</p>
+                                        <p><strong>09:00 - 09:35</strong> Giờ ăn nhẹ và ra chơi</p>
+                                        <p><strong>09:45 - 10:15</strong> Hoạt động ngoài trời</p>
+                                        <p><strong>10:30 - 11:15</strong> Ăn trưa</p>
+                                        <p><strong>11:45 - 13:00</strong> Ngủ trưa</p>
+                                        <p><strong>13:30 - 14:05</strong> Hoạt động chiều</p>
+                                        <p><strong>14:15 - 14:50</strong> Ăn xế</p>
                                         <p><strong>15:30 - 16:30</strong> Hoạt động tự do và trả trẻ</p>
                                     </div>
                                 </div>
