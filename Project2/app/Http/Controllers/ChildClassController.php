@@ -73,8 +73,6 @@ class ChildClassController extends Controller
             ->get();
     
         return view('childclassindex', compact('childclasses', 'classrooms'));
-        $childclasses = Childclass::with(['child', 'classroom'])->get();
-        return view('childclassindex', compact('childclasses'));
     }
 
     // Hiển thị form chỉnh sửa
