@@ -183,7 +183,13 @@ Route::get('/api/get-dentails/{total_id}', [FacilityManagementController::class,
         Route::get('/tuitions/{childId}', [paymentController::class, 'getTuitionsByChild']);
         Route::get('/tuition-details/{tuitionId}', [paymentController::class, 'getTuitionDetails']);
         Route::get('/momo',[paymentController::class,'index'])->name('momo');
-        Route::post('/momo_payment',[paymentController::class,'momo_payment'])->name('momo_payment');
+        Route::post('/momo_payment', [PaymentController::class, 'momo_payment'])->name('momo_payment');
+Route::post('/stripe_payment', [PaymentController::class, 'stripe_payment'])->name('stripe_payment');
+Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('process_payment');
+
+
+
+
 // Route::middleware('auth')->group(function () {
 //     Route::get('/dashboard/admin', [LoginController::class, 'admin'])->name('admin');
 //     Route::get('/dashboard/teacher', [LoginController::class, 'teacher'])->name('teacher');

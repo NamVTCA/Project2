@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
+use Carbon\Carbon;
+
 
 class paymentController extends Controller
 {
@@ -105,27 +109,23 @@ class paymentController extends Controller
         if (isset($jsonResult['resultCode']) && $jsonResult['resultCode'] == 0) {
             $tuition->update(['status' => 1]);
             session(['momo_payment_order_id' => $orderId]);
-            $user = Auth::user();
-            $userEmail = $user->email;
-            $detailsString = "";
-     foreach ($details as $key) {
-                $detailsString .= "Mục: " . $key->name . "\n" .
-                                  "Giá: " . number_format($key->price, 0, ',', '.') . " VNĐ\n\n";
-            }
+             $details = tuition_info::where('tuition_id', $request->tuition_id)->get();
+        $user = Auth::user();
+        $userEmail = $user->email;
+        $orderId ;
+        $transactionTime = Carbon::now()->format('d-m-Y H:i:s');
+        $semester = $tuition->semester;
 
-  $emailContent = "Hóa đơn thanh toán học phí:\n\n" .
-                "Mã giao dịch: " . $orderId . "\n" .
-                "Tổng số tiền: " . number_format($amount, 0, ',', '.') . " VNĐ\n" .
-                "Học kỳ: " . $tuition->semester . "\n" .
-                "Chi tiết các mục thanh toán:\n" .
-                $detailsString . "\n" .
-                "Thời gian giao dịch: " . now()->format('d-m-Y H:i:s') . "\n" .
-                "Trạng thái: " . ($jsonResult['resultCode'] == 0 ? "Thành công" : "Thất bại") . "\n";
-
-Mail::raw($emailContent, function ($message) use ($userEmail) {
-    $message->to($userEmail);
-    $message->subject('Hóa đơn thanh toán học phí từ MoMo');
-});
+        Mail::send('test.respone_email', [
+            'orderId' => $orderId,
+            'amount' => $amount,
+            'semester' => $semester,
+            'details' => $details,
+            'transactionTime' => $transactionTime
+        ], function ($message) use ($userEmail) {
+            $message->to($userEmail);
+            $message->subject('Hóa đơn thanh toán học phí từ momo');
+        });
             return redirect($jsonResult['payUrl']);
         }
         
@@ -141,6 +141,83 @@ Mail::raw($emailContent, function ($message) use ($userEmail) {
     }
     
 }
+public function stripe_payment(Request $request)
+{
+    try {
+        // Kiểm tra API key
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        // Lấy thông tin học phí
+        $tuition = Tuition::with('tuition_info')->find($request->tuition_id);
+
+        if (!$tuition) {
+            Log::error('Không tìm thấy học phí cho tuition_id: ' . $request->tuition_id);
+            return response()->json(['error' => 'Không tìm thấy thông tin học phí'], 404);
+        }
+
+        // Kiểm tra tổng số tiền học phí
+        $amount = $tuition->tuition_info->sum('price');
+        if (!$amount || $amount <= 0) {
+            Log::error('Số tiền học phí không hợp lệ: ' . $amount);
+            return response()->json(['error' => 'Số tiền học phí không hợp lệ'], 400);
+        }
+
+        // Tạo checkout session
+        $session = Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => 'vnd',
+                        'product_data' => [
+                            'name' => 'Thanh toán học phí kỳ ' . $tuition->semester,
+                        ],
+                        'unit_amount' => $amount , // Đơn vị tiền tệ là cents
+                    ],
+                    'quantity' => 1,
+                ],
+            ],
+            'mode' => 'payment',
+             'success_url' => route('momo'),
+            'cancel_url' => route('momo'),
+        ]);
+         $tuition->update(['status' => 1]);
+            $details = tuition_info::where('tuition_id', $request->tuition_id)->get();
+        $user = Auth::user();
+        $userEmail = $user->email;
+        $orderId = $session->id;
+        $transactionTime = Carbon::now()->format('d-m-Y H:i:s');
+        $semester = $tuition->semester;
+
+        Mail::send('test.respone_email', [
+            'orderId' => $orderId,
+            'amount' => $amount,
+            'semester' => $semester,
+            'details' => $details,
+            'transactionTime' => $transactionTime
+        ], function ($message) use ($userEmail) {
+            $message->to($userEmail);
+            $message->subject('Hóa đơn thanh toán học phí từ Stripe');
+        });
+
+        return redirect($session->url);
+    } catch (\Exception $e) {
+        Log::error('Lỗi khi tạo Stripe Checkout Session: ' . $e->getMessage());
+        return response()->json(['error' => 'Đã xảy ra lỗi trong quá trình tạo session thanh toán'], 500);
+    }
+}
+public function processPayment(Request $request)
+{
+    $paymentMethod = $request->input('payment_method');
+
+    if ($paymentMethod === 'momo') {
+        return $this->momo_payment($request);
+    } elseif ($paymentMethod === 'stripe') {
+        return $this->stripe_payment($request);
+    } else {
+        return response()->json(['error' => 'Phương thức thanh toán không hợp lệ'], 400);
+    }
+}
 
 public function getTuitionsByChild($childId)
 {
@@ -152,5 +229,8 @@ public function getTuitionDetails($tuitionId)
     $details = tuition_info::where('tuition_id', $tuitionId)->get();
     return response()->json($details);
 }
+
+
+
 
 }
