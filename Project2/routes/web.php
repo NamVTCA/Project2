@@ -81,11 +81,7 @@ Route::get('/event', function () {
     return view('event');
 })->name('event');
 
-
-Route::get('/linktoteacher', function () {
-    return view('link-to-teachers');
-})->name('linktoteacher');
-
+Route::get('/teachers', [UserAccountController::class, 'teachers'])->name('teachers');
 
 Route::get('/profile', function(){
     return view('admin.users.profile');

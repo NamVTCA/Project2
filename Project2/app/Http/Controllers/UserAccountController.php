@@ -115,4 +115,10 @@ class UserAccountController extends Controller
     {
         return Excel::download(new UsersExport, 'users.xlsx');
     }
+
+    public function teachers()
+    {
+        $teachers = User::where('role', 1)->get()->shuffle()->take(4);
+        return view('link-to-teachers', compact('teachers')); // Sửa tên view ở đây
+    }
 }
