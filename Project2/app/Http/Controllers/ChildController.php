@@ -17,7 +17,7 @@ class ChildController extends Controller
 {
     public function index()
     {
-        $children = Child::with('user')->get();
+        $children = Child::with('user')->paginate(10); // Phân trang với 10 children mỗi trang
         return view('admin.children.index', compact('children'));
     }
 

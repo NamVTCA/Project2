@@ -36,7 +36,7 @@
             @foreach ($accounts as $account)
                 @if ($account->role != 0)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ ($accounts->currentPage() - 1) * $accounts->perPage() + $loop->iteration }}</td>
                         <td>{{ $account->name }}</td>
                         <td>{{ $account->email }}</td>
                         <td>{{ ($account->role)== 1?"Giáo Viên": "Phụ Huynh" }}</td>
@@ -55,6 +55,10 @@
             @endforeach
         </tbody>
     </table>
+    {{-- Thêm phân trang --}}
+    <div class="d-flex justify-content-center">
+        {{ $accounts->links() }}
+    </div>
     <!-- Import Modal -->
     <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
         <div class="modal-dialog">

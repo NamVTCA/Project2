@@ -44,6 +44,10 @@
             </div>
         @endforeach
     </div>
+    {{-- Thêm phân trang --}}
+    <div class="d-flex justify-content-center">
+        {{ $children->links() }}
+    </div>
     <!-- Import Child Modal -->
     <div class="modal fade" id="importChildModal" tabindex="-1" aria-labelledby="importChildModalLabel" aria-hidden="true">
         <div class="modal-dialog">
