@@ -15,7 +15,7 @@ class UserAccountController extends Controller
 {
     public function index()
     {
-        $accounts = User::where('role', '!=', 0)->simplePaginate(10); // Phân trang với 10 users mỗi trang
+        $accounts = User::where('role', '!=', 0)->Paginate(10); // Phân trang với 10 users mỗi trang
         return view('admin.users.index', compact('accounts'));
     }
     

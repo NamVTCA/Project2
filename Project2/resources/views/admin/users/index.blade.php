@@ -57,7 +57,7 @@
     </table>
     {{-- Thêm phân trang --}}
     <div class="d-flex justify-content-center">
-        {{ $accounts->links() }}
+        {{ $accounts->links('vendor.pagination.default') }}
     </div>
     <!-- Import Modal -->
     <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
