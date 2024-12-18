@@ -12,7 +12,13 @@
                    class="teacher-name" 
                    onclick="openChat({{ $parent->id }}, '{{ $parent->name }}', 'parent')">
                     {{ $parent->name }}
+                     <img src="{{ url('storage/' .  $parent->img) }}" 
+                                 alt="Ảnh Đại Diện" 
+                                 class="rounded-circle mb-3" 
+                                 style="width: 120px; height: 120px; object-fit: cover;">
                 </a>
+                           
+                       
             </li>
         @endforeach
     </ul>
