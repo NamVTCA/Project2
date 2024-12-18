@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{{ asset('css/ChildClass.css') }}">
 @section('content')
     <div class="container mt-4">
+        <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
         <h2 class="text-center">Thêm Học Sinh vào Lớp</h2>
 
         @if(session('success'))

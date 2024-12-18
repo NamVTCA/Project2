@@ -18,6 +18,12 @@
             </ul>
         </div>
         <a href="{{ route('admin.users.export') }}" class="btn btn-success">Xuất Excel</a>
+            <!-- Nút Delete All -->
+    <form action="{{ route('admin.users.deleteAll') }}" method="POST" class="d-inline" id="delete-all-form">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa tất cả tài khoản?')">Xóa Tất Cả</button>
+    </form>
     </div>
     <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
     <table class="table table-bordered">

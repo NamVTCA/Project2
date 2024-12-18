@@ -1,130 +1,241 @@
-/* Cấu hình chung */
-body {
+.chat-parent-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
+    background-color: #f8b0f5; /* Màu nền xám nhạt */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
 }
 
-h2 {
+.chat-title {
     text-align: center;
-    color: #007bff;
-    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0056b3; /* Xanh dương đậm */
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-ul {
+.teacher-list {
     list-style: none;
     padding: 0;
-    margin: 20px auto;
-    max-width: 600px;
+    margin: 0 0 20px 0;
 }
 
-ul li {
-    background: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    padding: 10px 15px;
+.teacher-item {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #e150c6; /* Nền trắng */
+    border-radius: 5px;
+    border: 1px solid #ccc;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
 }
 
-ul li:hover {
+.teacher-item:hover {
     transform: scale(1.02);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    background-color: #e9f7fe; /* Màu xanh nhạt */
 }
 
-ul li a {
-    text-decoration: none;
-    color: #007bff;
+.teacher-name {
+    font-size: 16px;
     font-weight: bold;
-    display: block;
+    color: #333;
+    text-decoration: none;
 }
 
-ul li a:hover {
-    color: #0056b3;
+.teacher-name:hover {
+    color: #f33bd7; /* Màu xanh dương đậm */
 }
 
-/* Hộp chat */
-#chat-box {
-    display: none;
-    max-width: 600px;
-    margin: 20px auto;
-    background: #ff69b4;
+.chat-box {
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f99aef; /* Nền trắng */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-#chat-with {
-    margin-bottom: 15px;
+.chat-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.chat-header .btn {
+    margin-right: 10px;
+}
+
+.chat-with {
     font-size: 18px;
     font-weight: bold;
-    color:  #0056b3;
+    color: #0056b3; /* Xanh dương đậm */
 }
 
-#messages {
-    border: 1px solid #ccc;
+.messages {
+    border: 1px solid #ddd;
+    border-radius: 5px;
     height: 300px;
     overflow-y: auto;
-    margin-bottom: 15px;
     padding: 10px;
-    background-color: #f8f9fa;
-    border-radius: 5px;
-}
-
-#messages p {
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-#messages p:nth-child(odd) {
-    background-color: #e6f7ff;
-    color: #0056b3;
-}
-
-#messages p:nth-child(even) {
-    background-color: #ffffff;
-    color: #333;
-    border: 1px solid #ddd;
-}
-
-#chat-form textarea {
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    resize: none;
-    box-sizing: border-box;
+    background-color: #f9f9f9; /* Xám rất nhạt */
     margin-bottom: 10px;
 }
 
-#chat-form button {
-    background-color: #007bff;
-    color: #fff;
+.messages p {
+    margin: 5px 0;
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+
+.messages p:nth-child(odd) {
+    background-color: #d9f7d9; /* Xanh lá nhạt */
+    text-align: right;
+    color: #004d00; /* Xanh lá đậm */
+}
+
+.messages p:nth-child(even) {
+    background-color: #f1f1f1; /* Xám nhạt */
+    text-align: left;
+    color: #333;
+}
+
+.message-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #fdfdfd; /* Gần trắng */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.send-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007bff; /* Xanh dương */
     border: none;
     border-radius: 5px;
-    padding: 10px 15px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    float: right;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-#chat-form button:hover {
-    background-color: #ed1cd5;
+.send-button:hover {
+    background-color: #0056b3; /* Xanh dương đậm */
+    transform: scale(1.02);
 }
 
-/* Thông báo thành công */
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #c3e6cb;
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .chat-parent-container {
+        padding: 15px;
+    }
+
+    .chat-title {
+        font-size: 20px;
+    }
+
+    .teacher-item {
+        padding: 8px;
+    }
+
+    .teacher-name {
+        font-size: 14px;
+    }
+
+    .chat-box {
+        padding: 15px;
+    }
+
+    .chat-with {
+        font-size: 16px;
+    }
+
+    .messages {
+        height: 250px;
+    }
+
+    .message-input {
+        font-size: 14px;
+    }
+
+    .send-button {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-parent-container {
+        padding: 10px;
+    }
+
+    .chat-title {
+        font-size: 18px;
+    }
+
+    .teacher-item {
+        padding: 5px;
+    }
+
+    .teacher-name {
+        font-size: 12px;
+    }
+
+    .chat-box {
+        padding: 10px;
+    }
+
+    .chat-with {
+        font-size: 14px;
+    }
+
+    .messages {
+        height: 200px;
+    }
+
+    .message-input {
+        font-size: 12px;
+    }
+
+    .send-button {
+        font-size: 12px;
+    }
+}
+
+#back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff; /* Màu chữ trắng */
+    background-color: #007bff; /* Xanh dương */
+    border: none;
+    border-radius: 5px; /* Bo tròn góc */
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng mờ */
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+#back-button:hover {
+    background-color: #0056b3; /* Xanh dương đậm hơn khi hover */
+    transform: translateY(-2px); /* Nhấn nổi lên */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Bóng mờ tăng khi hover */
+}
+
+#back-button:active {
+    transform: translateY(2px); /* Nhấn xuống khi click */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Giảm bóng khi click */
+}
+
+.back-to-dashboard {
+    text-align: left; /* Căn trái */
+    margin-bottom: 20px; /* Khoảng cách với các phần khác */
 }

@@ -59,8 +59,8 @@ table {
 }
 
 thead th {
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    color: #fff;
+    background: linear-gradient(135deg, #f38eea, #fa05f6);
+    color: #ffffff;
     font-weight: bold;
     text-transform: uppercase;
     padding: 10px;
@@ -69,7 +69,7 @@ thead th {
 }
 
 tbody th {
-    background: #f0f8ff;
+    background: #f17ef3;
     color: #333;
     font-weight: bold;
     padding: 8px;
