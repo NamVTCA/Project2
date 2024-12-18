@@ -8,6 +8,10 @@
             <li class="teacher-item">
                 <a href="javascript:void(0)" onclick="openChat({{ $teacher->id }}, '{{ $teacher->name }}')">
                     <span class="teacher-name">{{ $teacher->name }}</span>
+                     <img src="{{ url('storage/' .  $teacher->img) }}" 
+                                 alt="Ảnh Đại Diện" 
+                                 class="rounded-circle mb-3" 
+                                 style="width: 120px; height: 120px; object-fit: cover;">
                 </a>
             </li>
         @endforeach
