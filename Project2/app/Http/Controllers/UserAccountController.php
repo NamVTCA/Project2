@@ -121,4 +121,17 @@ class UserAccountController extends Controller
         $teachers = User::where('role', 1)->get()->shuffle()->take(4);
         return view('link-to-teachers', compact('teachers')); // Sửa tên view ở đây
     }
+
+    public function deleteAll()
+{
+    try {
+        // Lọc và xóa tài khoản ngoại trừ role = 0 (Admin hoặc tài khoản đặc biệt)
+        User::where('role', '!=', 0)->delete();
+
+        return redirect()->route('admin.users.index')->with('success', 'Xóa tất cả tài khoản thành công.');
+    } catch (\Exception $e) {
+        return redirect()->route('admin.users.index')->with('error', 'Xóa tất cả tài khoản thất bại. Vui lòng thử lại.');
+    }
+}
+
 }

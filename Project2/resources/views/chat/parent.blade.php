@@ -1,24 +1,30 @@
 <link rel="stylesheet" href="{{ asset('css/ChatParent.css') }}">
-<h2>Trò chuyện phụ huynh</h2>
-<ul>
-    @foreach($teachers as $teacher)
-        <li>
-            <a href="javascript:void(0)" onclick="openChat({{ $teacher->id }}, '{{ $teacher->name }}')">
-                {{ $teacher->name }}
-            </a>
-        </li>
-    @endforeach
-</ul>
 
-<div id="chat-box" style="display:none;">
-    <h3 id="chat-with"></h3>
-    <div id="messages" style="border: 1px solid #ccc; height: 300px; overflow-y: auto; margin-bottom: 10px; padding: 10px;">
+<div class="chat-parent-container">
+    <h2 class="chat-title">Trò Chuyện Phụ Huynh</h2>
+    <ul class="teacher-list">
+        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+        @foreach($teachers as $teacher)
+            <li class="teacher-item">
+                <a href="javascript:void(0)" onclick="openChat({{ $teacher->id }}, '{{ $teacher->name }}')">
+                    <span class="teacher-name">{{ $teacher->name }}</span>
+                </a>
+            </li>
+        @endforeach
+    </ul>
+
+    <div id="chat-box" class="chat-box" style="display: none;">
+        <div class="chat-header">
+
+            <h3 id="chat-with" class="chat-with"></h3>
+        </div>
+        <div id="messages" class="messages"></div>
+        <form id="chat-form" class="chat-form">
+            <input type="hidden" name="receiver_id" id="receiver_id">
+            <textarea name="message" id="message" rows="3" placeholder="Nhập tin nhắn của bạn..." class="message-input"></textarea>
+            <button type="submit" class="btn btn-primary send-button">Gửi</button>
+        </form>
     </div>
-    <form id="chat-form">
-        <input type="hidden" name="receiver_id" id="receiver_id">
-        <textarea name="message" id="message" rows="3" placeholder="Nhập tin nhắn của bạn..." style="width: 100%;"></textarea>
-        <button type="submit">Gửi</button>
-    </form>
 </div>
 
 <script>
@@ -74,5 +80,11 @@ document.getElementById('chat-form').addEventListener('submit', function (e) {
 .catch(error => alert(error.message));
 
 });
+
+
+        // Nút quay về
+        document.getElementById('back-button').addEventListener('click', function () {
+            window.history.back();
+        });
 </script>
 

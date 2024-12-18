@@ -1,7 +1,9 @@
 @extends('layouts.dashboard')
 <link rel="stylesheet" href="{{ asset('css/FacilitiesIndex.css') }}">
+
 @section('content')
 <div class="facilities-index-page">
+    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
     <h2>Quản Lý Cơ Sở Vật Chất</h2>
     <a href="{{ route('facility_management.create') }}" class="btn btn-primary">Thêm Cơ Sở Vật Chất Mới</a>
 

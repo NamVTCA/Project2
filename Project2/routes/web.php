@@ -222,3 +222,6 @@ Route::prefix('childclass')->group(function () {
 });
 
 
+
+
+Route::delete('/admin/users/delete-all', [UserAccountController::class, 'deleteAll'])->name('admin.users.deleteAll');
