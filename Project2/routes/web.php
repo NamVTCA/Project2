@@ -59,6 +59,10 @@ Route::get('/cam/create', function () {
     return view('camdemo.create');
 })->name('camcreate');
 
+Route::get('/link-to-goals', function () {
+    return view('link-to-goals');
+})->name('link-to-goals');
+
 
 Route::get('/timetable', function () {
     return view('timetable');

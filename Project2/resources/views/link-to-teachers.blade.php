@@ -8,6 +8,9 @@
 </head>
 <body>
     <div class="container teachers-page">
+        <div class="back-to-dashboard">
+            <button id="back-button" class="btn btn-secondary">← Quay về</button>
+        </div>
         <h1 class="page-title">Đội Ngũ Giảng Dạy</h1>
         <div class="row">
             @foreach ($teachers as $teacher)
@@ -28,4 +31,10 @@
         </div>
     </div>
 </body>
+<script>
+// Nút quay về
+document.getElementById('back-button').addEventListener('click', function () {
+    window.history.back();
+});
+</script>
 </html>

@@ -128,3 +128,32 @@ ul li a:hover {
     max-width: 600px;
     text-align: center;
 }
+
+.teacher-item {
+    display: flex;
+    flex-direction: column; /* Xếp dọc: ảnh phía trên, chữ phía dưới */
+    align-items: center; /* Căn giữa theo chiều ngang */
+    text-align: center; /* Căn chữ vào giữa */
+    padding: 10px;
+    background-color: #e150c6; /* Nền màu giữ nguyên */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.teacher-item img {
+    width: 60px; /* Kích thước ảnh */
+    height: 60px;
+    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+    border-radius: 50%; /* Làm tròn ảnh đại diện */
+    margin-bottom: 5px; /* Tạo khoảng cách giữa ảnh và tên */
+    display: block; /* Đảm bảo ảnh không gây lệch */
+}
+
+.teacher-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 0; /* Loại bỏ khoảng cách thừa */
+    line-height: 1.2; /* Đảm bảo khoảng cách chữ gọn gàng */
+}
