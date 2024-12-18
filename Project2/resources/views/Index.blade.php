@@ -13,7 +13,32 @@
                 <div class="col-md-6">
                     <h2 class="text-primary fw-bold">Giới Thiệu Về Trường</h2>
                     <p>Ngôi trường được xây dựng như ngôi nhà thứ hai của học sinh, mang lại môi trường học tập an toàn và phát triển toàn diện.</p>
-                    <a href="#" class="btn btn-primary">Thông tin trường</a>
+                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#schoolInfoModal">Thông tin trường</a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="schoolInfoModal" tabindex="-1" aria-labelledby="schoolInfoModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="schoolInfoModalLabel">Thông tin trường</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h3 class="fw-bold">Thông Tin Chi Tiết</h3>
+                                    <p>Trường được thành lập với mục tiêu tạo ra một môi trường giáo dục toàn diện, nơi học sinh được phát triển cả về kiến thức và kỹ năng sống.</p>
+                                    <ul>
+                                        <li><strong>Địa chỉ:</strong> 123 Đường ABC, Thành phố XYZ</li>
+                                        <li><strong>Năm thành lập:</strong> 2001</li>
+                                        <li><strong>Chương trình đào tạo:</strong> Hệ thống giáo dục chuẩn quốc tế.</li>
+                                        <li><strong>Cơ sở vật chất:</strong> Hiện đại, khang trang, đáp ứng đầy đủ nhu cầu học tập.</li>
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,7 +60,7 @@
                     </a>
                 </div>
                 <div class="col-md-6 mb-4">
-                    <a href="link-to-goals" class="hover-goals text-reset text-decoration-none">
+                    <a href="{{ route('link-to-goals') }}" class="hover-goals text-reset text-decoration-none">
                         <div class="card border-0 shadow-sm">
                             <img src="{{ asset('img/tam.png') }}" class="card-img-top mx-auto" alt="Goal Icon" style="width: 50px;">
                             <div class="card-body">
