@@ -94,5 +94,21 @@ foreach ($children as $child) {
 
     return response()->json($messages);
 }
+public function getNewMessages(Request $request)
+{
+    $user = Auth::user();
+    $receiverId = $request->receiver_id;
+
+    $lastMessageId = $request->last_message_id;
+
+    $messages = Message::where(function ($query) use ($user, $receiverId) {
+        $query->where('sender_id', $receiverId)
+              ->where('receiver_id', $user->id);
+    })->where('id', '>', $lastMessageId)
+      ->orderBy('created_at', 'asc')
+      ->get();
+
+    return response()->json($messages);
+}
 
 }

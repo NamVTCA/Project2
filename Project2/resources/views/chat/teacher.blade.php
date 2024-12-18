@@ -36,33 +36,70 @@
 
 
 <script>
-function openChat(receiverId, receiverName, type) {
-    const chatBox = document.getElementById('chat-box'); 
-    chatBox.style.display = 'block';
-    chatBox.querySelector('#chat-with').innerText = 'Trò chuyện với ' + receiverName;
-    chatBox.querySelector('#receiver_id').value = receiverId;
-    fetchChatHistory(receiverId, type);
+let lastMessageId = 0;
+
+function startPolling(receiverId) {
+    setInterval(() => {
+        fetch(`/get-new-messages`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ receiver_id: receiverId, last_message_id: lastMessageId })
+        })
+        .then(response => {
+            if (!response.ok) throw new Error('Không thể tải tin nhắn mới');
+            return response.json();
+        })
+        .then(messages => {
+            if (messages.length > 0) {
+                const messagesDiv = document.querySelector('#chat-box #messages');
+                messages.forEach(msg => {
+                    const p = document.createElement('p');
+                    p.textContent = msg.sender_id === {{ auth()->id() }} ? `Bạn: ${msg.message}` : `Phụ Huynh: ${msg.message}`;
+                    messagesDiv.appendChild(p);
+                    lastMessageId = msg.id; // Cập nhật ID tin nhắn cuối cùng
+                });
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }
+        })
+        .catch(error => console.error(error.message));
+    }, 2000); // 2 giây
+}
+
+function openChat(receiverId, receiverName) {
+    document.getElementById('chat-box').style.display = 'block';
+    document.getElementById('chat-with').innerText = 'Trò chuyện với ' + receiverName;
+    document.getElementById('receiver_id').value = receiverId;
+    fetchChatHistory(receiverId);
+
+    // Bắt đầu polling
+    startPolling(receiverId);
 }
 
 
-function fetchChatHistory(receiverId, type) {
+
+function fetchChatHistory(receiverId) {
     fetch(`/chat-history/${receiverId}`)
         .then(response => {
             if (!response.ok) throw new Error('Không thể tải lịch sử trò chuyện');
             return response.json();
         })
         .then(messages => {
-            const messagesDiv = document.querySelector(type === 'teacher' ? '#teacher-chat-box #messages' : '#chat-box #messages');
+            const messagesDiv = document.querySelector('#chat-box #messages');
             messagesDiv.innerHTML = '';
             messages.forEach(msg => {
                 const p = document.createElement('p');
-                p.textContent = msg.sender_id === {{ auth()->id() }} ? `Bạn: ${msg.message}` : `Phụ Huynh: ${msg.message}`;
+                p.textContent = msg.sender_id === {{ auth()->id() }} ? `Bạn: ${msg.message}` : `Người gửi: ${msg.message}`;
                 messagesDiv.appendChild(p);
+                lastMessageId = msg.id; // Ghi nhận tin nhắn cuối cùng
             });
             messagesDiv.scrollTop = messagesDiv.scrollHeight;
         })
         .catch(error => alert(error.message));
 }
+
 
 
 document.getElementById('chat-form').addEventListener('submit', function (e) {

@@ -26,6 +26,7 @@ Route::get('/cameras/create', [CameraController::class, 'create'])->name('camera
 Route::post('/cameras/store', [CameraController::class, 'store'])->name('cameras.store'); 
 Route::get('/timetable/export-pdf', [scheduleController::class, 'exportPDF'])->name('timetable.exportPDF');
 
+Route::post('/get-new-messages', [messageController::class, 'getNewMessages'])->name('chat.getNewMessages');
 
 Route::middleware('auth')->group(function () {
     Route::get('/teacher/chat', [messageController::class, 'teacherChat'])->name('teacher.chat');
