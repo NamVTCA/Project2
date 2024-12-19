@@ -101,6 +101,8 @@ Route::get('/childget/{id}',[evaluateController::class,'index'] );
 
 Route::get('/timetable/manage', [scheduleController::class, 'manageSemesters'])->name('timetable.manage');
 Route::delete('/timetable/manage/{semester}', [scheduleController::class, 'deleteSemester'])->name('timetable.deleteSemester');
+Route::get('/monthly-statistics', [loginController::class, 'getMonthlyStatistics']);
+
 
 Route::get('/tuitionmanagement',[tuitionContoller::class,'index'] )->name('tuitionmanagement');
 
@@ -131,8 +133,11 @@ Route::middleware(['auth'])->group(function () {
 Route::prefix('admin')->group(function () {
     Route::middleware('auth.check')->group(function () {
         Route::middleware('role:0')->group(function () {
-            Route::get('/schedule/show',[scheduleController::class,'index'])->name('schedule.show');
+
             Route::get('/dashboard/admin', [LoginController::class, 'admin'])->name('admin');
+            Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('admin.dashboard');
+
+            Route::get('/schedule/show',[scheduleController::class,'index'])->name('schedule.show');
             Route::prefix('admin')->middleware('auth')->group(function () {
                 Route::get('/users', [UserAccountController::class, 'index'])->name('admin.users.index');
                 Route::get('/users/create', [UserAccountController::class, 'create'])->name('admin.users.create');

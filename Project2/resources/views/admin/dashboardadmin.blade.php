@@ -102,5 +102,85 @@
     });
 </script>
  --}}
+ <form method="GET" action="{{ route('admin.dashboard') }}" class="mb-4">
+    <label for="month">Chọn tháng:</label>
+    <select name="month" id="month" class="form-control d-inline-block w-auto">
+        <option value="">Tất cả</option>
+        @for ($i = 1; $i <= 12; $i++)
+            <option value="{{ $i }}" {{ request('month') == $i ? 'selected' : '' }}>
+                Tháng {{ $i }}
+            </option>
+        @endfor
+    </select>
+    <button type="submit" class="btn btn-primary">Lọc</button>
+</form>
 
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-pink text-black">
+                <h5>Thống kê tổng quan</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="dashboardChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('dashboardChart').getContext('2d');
+    const dashboardChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: @json(array_column($statistics->toArray(), 'month')),
+            datasets: [
+                {
+                    label: 'Tổng số học sinh',
+                    data: @json(array_column($statistics->toArray(), 'total_students')),
+                    backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Học sinh mới',
+                    data: @json(array_column($newStudents->toArray(), 'new_students')),
+                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Giáo viên mới',
+                    data: @json(array_column($newTeachers->toArray(), 'new_teachers')),
+                    backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Phụ huynh mới',
+                    data: @json(array_column($newParents->toArray(), 'new_parents')),
+                    backgroundColor: 'rgba(153, 102, 255, 0.7)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Phản hồi nhận được',
+                    data: @json(array_column($feedbacks->toArray(), 'total_feedbacks')),
+                    backgroundColor: 'rgba(255, 159, 64, 0.7)',
+                    borderColor: 'rgba(255, 159, 64, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 @endsection
