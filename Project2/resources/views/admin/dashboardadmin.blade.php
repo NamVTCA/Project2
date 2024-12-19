@@ -3,6 +3,7 @@
 @section('title', 'Admin Dashboard')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/Admin.css') }}">
 <div class="container-fluid py-4">
     <div class="row">
         <!-- Thông tin chính -->

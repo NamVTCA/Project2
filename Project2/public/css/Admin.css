@@ -1,0 +1,109 @@
+/* Bảng Thống Kê - General Styles */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation khi hover */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Nhẹ nhàng nhấc lên */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    background-color: #f06595;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    animation: fadeIn 1s ease; /* Animation xuất hiện */
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Animation xuất hiện từ từ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Canvas (Chart.js) */
+canvas {
+    max-width: 100%;
+    height: auto;
+    animation: growChart 1.5s ease-out; /* Animation khi biểu đồ hiển thị */
+}
+
+@keyframes growChart {
+    from {
+        transform: scaleY(0);
+        opacity: 0;
+    }
+    to {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+/* Dropdown Filter */
+form label {
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+form select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+form select:focus {
+    border-color: #f06595;
+    outline: none;
+    box-shadow: 0 0 5px rgba(240, 101, 149, 0.5);
+}
+
+form button {
+    padding: 8px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Animation khi hover */
+}
+
+form button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1); /* Phóng to nhẹ khi hover */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    form select, form button {
+        width: 100%;
+    }
+}
