@@ -8,12 +8,13 @@ use App\Models\classroom;
 use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\weekevaluate;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
-use Symfony\Component\Console\Input\Input;
+use Illuminate\Support\Facades\DB;
 
 class loginController extends Controller
 {
@@ -89,9 +90,10 @@ class loginController extends Controller
     }
     $id = $user->id;
     $children = Child::where('user_id', $id)->get();
-    switch ($role) {
-        case 0:
-            return view('admin/dashboardadmin');
+  switch ($role) {
+    case 0:
+        $statisticsData = $this->getMonthlyStatistics();
+        return view('admin.dashboardadmin', $statisticsData);
         case 1:
              return view('teacher.dashboardteacher', [
         'classrooms' => $classrooms,
@@ -165,6 +167,61 @@ return view('forgotpassword')->with('success', 'Đổi mật khẩu thành công
 }
 
 
+public function getMonthlyStatistics($month = null)
+{
+    $queryCondition = $month ? [['MONTH(created_at)', '=', $month]] : [];
+
+    $statistics = DB::table('children')
+        ->selectRaw('MONTH(created_at) as month, COUNT(*) as total_students')
+        ->when($month, function($query) use ($month) {
+            return $query->whereMonth('created_at', $month);
+        })
+        ->groupBy('month')
+        ->get();
+
+    $newStudents = DB::table('children')
+        ->selectRaw('MONTH(created_at) as month, COUNT(*) as new_students')
+        ->when($month, function($query) use ($month) {
+            return $query->whereMonth('created_at', $month);
+        })
+        ->groupBy('month')
+        ->get();
+
+    $newTeachers = DB::table('users')
+        ->where('role', 1)
+        ->selectRaw('MONTH(created_at) as month, COUNT(*) as new_teachers')
+        ->when($month, function($query) use ($month) {
+            return $query->whereMonth('created_at', $month);
+        })
+        ->groupBy('month')
+        ->get();
+
+    $newParents = DB::table('users')
+        ->where('role', 2)
+        ->selectRaw('MONTH(created_at) as month, COUNT(*) as new_parents')
+        ->when($month, function($query) use ($month) {
+            return $query->whereMonth('created_at', $month);
+        })
+        ->groupBy('month')
+        ->get();
+
+    $feedbacks = DB::table('feedback')
+        ->selectRaw('MONTH(created_at) as month, COUNT(*) as total_feedbacks')
+        ->when($month, function($query) use ($month) {
+            return $query->whereMonth('created_at', $month);
+        })
+        ->groupBy('month')
+        ->get();
+
+    return compact('statistics', 'newStudents', 'newTeachers', 'newParents', 'feedbacks');
+}
+
+public function dashboard(Request $request)
+{
+    $month = $request->query('month');
+    $statisticsData = $this->getMonthlyStatistics($month);
+    return view('admin.dashboardadmin', $statisticsData);
+}
 
 }
 
