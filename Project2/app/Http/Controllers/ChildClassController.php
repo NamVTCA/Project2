@@ -113,7 +113,4 @@ class ChildClassController extends Controller
         // Chuyển hướng về danh sách với thông báo thành công
         return redirect()->route('childclass.index')->with('success', 'Cập nhật lớp học thành công!');
     }
-    
-    
-
 }

@@ -13,11 +13,11 @@
                 Thêm Tài Khoản
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ route('admin.users.create') }}">Tạo một User</a></li>
-                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#importModal">Tạo nhiều User</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.users.create') }}">Tạo một tài khoản</a></li>
+                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#importModal">Tạo nhiều tài khoản</a></li>
             </ul>
         </div>
-        <a href="{{ route('admin.users.export') }}" class="btn btn-success">Xuất Excel</a>
+        <a href="{{ route('admin.users.export') }}" class="btn btn-success">Xuất tệp Excel</a>
             <!-- Nút Delete All -->
     <form action="{{ route('admin.users.deleteAll') }}" method="POST" class="d-inline" id="delete-all-form">
         @csrf
@@ -49,7 +49,7 @@
                         <td>{{ $account->id_number ?? '-' }}</td>
                         <td>{{$account->phone}}</td>
                         <td>
-                            <a href="{{ route('admin.users.edit', $account->id) }}" class="btn btn-sm btn-info">Chi Tiết</a>
+                            <a href="{{ route('admin.users.edit', $account->id) }}" class="btn btn-sm btn-info">Sửa thông tin</a>
                             <form action="{{ route('admin.users.delete', $account->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('DELETE')
@@ -70,17 +70,17 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importModalLabel">Import Users từ Excel</h5>
+                    <h5 class="modal-title" id="importModalLabel">Tạo nhiều tài khoản bằng tệp ExcelExcel</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('admin.users.import') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="file" class="form-label">Chọn file Excel</label>
+                            <label for="file" class="form-label">Chọn tệp Excel</label>
                             <input type="file" class="form-control" id="file" name="file" accept=".xlsx, .xls" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Import</button>
+                        <button type="submit" class="btn btn-primary">Nhập</button>
                     </form>
                     {{-- Hiển thị lỗi validation --}}
                     @if ($errors->any())

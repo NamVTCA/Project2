@@ -15,7 +15,7 @@ class UserAccountController extends Controller
 {
     public function index()
     {
-        $accounts = User::where('role', '!=', 0)->Paginate(10); // Phân trang với 10 users mỗi trang
+        $accounts = User::where('role', '!=', 0)->Paginate(10); 
         return view('admin.users.index', compact('accounts'));
     }
     
@@ -89,7 +89,7 @@ class UserAccountController extends Controller
         try 
         {
             Excel::import(new UsersImport, $request->file('file'));
-            return redirect()->route('admin.users.index')->with('success', 'Import users thành công!');
+            return redirect()->route('admin.users.index')->with('success', 'Thêm người dùngdùng thành công!');
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) 
         {
             $failures = $e->failures();
@@ -119,7 +119,7 @@ class UserAccountController extends Controller
     public function teachers()
     {
         $teachers = User::where('role', 1)->get()->shuffle()->take(4);
-        return view('link-to-teachers', compact('teachers')); // Sửa tên view ở đây
+        return view('link-to-teachers', compact('teachers')); 
     }
 
     public function deleteAll()

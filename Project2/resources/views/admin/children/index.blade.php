@@ -15,7 +15,7 @@
                 </ul>
             </div>
             <a href="{{ route('childclass.create') }}" class="btn-add">Thêm học sinh vào lớp</a>
-            <a href="{{ route('children.export') }}" class="btn-add">Xuất Excel</a>
+            <a href="{{ route('children.export') }}" class="btn-add">Xuất tệp Excel</a>
         </div>
     </div>
 </div>
@@ -53,17 +53,17 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importChildModalLabel">Import Học Sinh từ Excel</h5>
+                    <h5 class="modal-title" id="importChildModalLabel">Thêm Học Sinh từ tệp Excel</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('children.import') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="file" class="form-label">Chọn file Excel</label>
+                            <label for="file" class="form-label">Chọn tệp Excel</label>
                             <input type="file" class="form-control" id="file" name="file" accept=".xlsx, .xls" required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Import</button>
+                        <button type="submit" class="btn btn-primary">Nhập</button>
                     </form>
                     @if(session('import_errors'))
                         <div class="alert alert-danger mt-3">

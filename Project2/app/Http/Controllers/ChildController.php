@@ -17,7 +17,7 @@ class ChildController extends Controller
 {
     public function index()
     {
-        $children = Child::with('user')->Paginate(10); // Phân trang với 10 children mỗi trang
+        $children = Child::with('user')->Paginate(10); 
         return view('admin.children.index', compact('children'));
     }
 
@@ -82,7 +82,7 @@ class ChildController extends Controller
 
         try {
             Excel::import(new ChildrenImport, $request->file('file'));
-            session()->flash('success', 'Import danh sách học sinh thành công!');
+            session()->flash('success', 'Thêm danh sách học sinh thành công!');
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
             $failures = $e->failures();
             $errorMessages = [];
