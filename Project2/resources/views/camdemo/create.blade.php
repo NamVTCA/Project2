@@ -21,7 +21,7 @@
             <input type="url" name="stream_url" id="stream_url" class="form-control" required>
         </div>
 
-        <button type="submit" class="btn btn-primary mt-3">Add Camera</button>
+        <button type="submit" class="btn btn-primary mt-3">Thêm Camera</button>
     </form>
 </div>
 

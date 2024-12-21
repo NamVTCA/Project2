@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/ChatParent.css') }}">
 
 <div class="chat-parent-container">
-    <h2 class="chat-title">Trò Chuyện Phụ Huynh</h2>
+    <h2 class="chat-title">Trò chuyện phụ huynh</h2>
     <ul class="teacher-list">
         <button id="back-button" class="btn btn-secondary">← Quay về</button>
         @foreach($teachers as $teacher)

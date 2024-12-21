@@ -99,7 +99,7 @@ class UserAccountController extends Controller
         try 
         {
             Excel::import(new UsersImport, $request->file('file'));
-            return redirect()->route('admin.users.index')->with('success', 'Thêm người dùngdùng thành công!');
+            return redirect()->route('admin.users.index')->with('success', 'Thêm người dùng thành công!');
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) 
         {
             $failures = $e->failures();
@@ -133,15 +133,14 @@ class UserAccountController extends Controller
     }
 
     public function deleteAll()
-{
-    try {
-        // Lọc và xóa tài khoản ngoại trừ role = 0 (Admin hoặc tài khoản đặc biệt)
-        User::where('role', '!=', 0)->delete();
+    {
+        try {
+            // Lọc và xóa tài khoản ngoại trừ role = 0 (Admin hoặc tài khoản đặc biệt)
+            User::where('role', '!=', 0)->delete();
 
-        return redirect()->route('admin.users.index')->with('success', 'Xóa tất cả tài khoản thành công.');
-    } catch (\Exception $e) {
-        return redirect()->route('admin.users.index')->with('error', 'Xóa tất cả tài khoản thất bại. Vui lòng thử lại.');
+            return redirect()->route('admin.users.index')->with('success', 'Xóa tất cả tài khoản thành công.');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.users.index')->with('error', 'Xóa tất cả tài khoản thất bại. Vui lòng thử lại.');
+        }
     }
-}
-
 }
