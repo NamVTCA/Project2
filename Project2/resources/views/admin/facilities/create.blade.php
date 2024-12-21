@@ -3,23 +3,23 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/FacilitiesCreation.css') }}">
 <div class="facility-create-page">
-    <h2>Thêm Cơ Sở Vật Chất Mới</h2>
+    <h2>Thêm cơ sở vật chất mới</h2>
     <div class="back-to-dashboard">
         <button id="back-button" class="btn btn-secondary">← Quay về</button>
     </div>
     <form action="{{ route('facility_management.store') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="name">Tên Cơ Sở Vật Chất:</label>
+            <label for="name">Tên cơ sở vật chất:</label>
             <input type="text" id="name" name="name" class="form-control" required>
         </div>
 
         <div id="dentail-details">
-            <h5>Chi Tiết Cơ Sở Vật Chất</h5>
-            <button type="button" id="add-dentail" class="btn btn-secondary">Thêm Chi Tiết</button>
+            <h5>Chi tiết cơ sở vật chất</h5>
+            <button type="button" id="add-dentail" class="btn btn-secondary">Thêm chi tiết</button>
         </div>
 
-        <button type="submit" class="btn btn-primary">Tạo Mới</button>
+        <button type="submit" class="btn btn-primary">Tạo mới</button>
     </form>
 </div>
 

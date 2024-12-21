@@ -6,7 +6,7 @@
     <div class="back-to-dashboard">
         <button id="back-button" class="btn btn-secondary">← Quay về</button>
     </div>
-    <h2>Quản Lý Cơ Sở Vật Chất</h2>
+    <h2>Quản lý cơ sở vật chất</h2>
     <a href="{{ route('facility_management.create') }}" class="btn btn-primary">Thêm Cơ Sở Vật Chất Mới</a>
 
     @foreach($totals as $total)

@@ -5,12 +5,12 @@
 @section('content')
 <div class="container account-management">
     <link rel="stylesheet" href="{{ asset('css/AccountManagement.css') }}">
-    <h1>Quản Lý Tài Khoản</h1>
+    <h1>Quản lý tài khoản</h1>
 
     <div class="actions mb-3">
         <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Thêm Tài Khoản
+                Thêm tài khoản
             </button>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{{ route('admin.users.create') }}">Tạo một tài khoản</a></li>
@@ -29,7 +29,7 @@
     </div>
     <!-- Thêm bộ lọc -->
     <form action="{{ route('admin.users.index') }}" method="GET" class="mb-3 d-flex align-items-center gap-3">
-        <label for="role-filter" class="form-label mb-0"><strong>Lọc Vai Trò:</strong></label>
+        <label for="role-filter" class="form-label mb-0"><strong>Lọc vai trò:</strong></label>
         <select name="role" id="role-filter" class="form-select" onchange="this.form.submit()">
             <option value="" {{ request('role') === null ? 'selected' : '' }}>Tất cả</option>
             <option value="1" {{ request('role') == '1' ? 'selected' : '' }}>Giáo viên</option>
@@ -41,12 +41,12 @@
         <thead class="thead-dark">
             <tr>
                 <th>STT</th>
-                <th>Tên Đầy Đủ</th>
+                <th>Tên đầy đủ</th>
                 <th>Email</th>
-                <th>Chức Vụ</th>
+                <th>Chức vụ</th>
                 <th>CCCD</th>
                 <th>Số điện thoại</th>
-                <th>Hành Động</th>
+                <th>Hành đđộng</th>
             </tr>
         </thead>
         <tbody>
