@@ -22,6 +22,7 @@
                         <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Trang Chủ</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('event')}}">Sự Kiện</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('education')}}">Giáo Dục</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('rules')}}">Nội Quy</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('feedback')}}">Phản Hồi</a></li>
                         <li class="nav-item">
                             @if(Auth::check())

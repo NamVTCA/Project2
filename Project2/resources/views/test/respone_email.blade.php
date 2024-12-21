@@ -22,7 +22,7 @@
         }
         .header {
             text-align: center;
-            background-color: #4CAF50;
+            background-color: #ff08ee;
             color: #fff;
             padding: 10px;
             border-radius: 8px 8px 0 0;

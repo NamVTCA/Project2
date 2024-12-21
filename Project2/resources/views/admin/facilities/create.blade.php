@@ -4,7 +4,9 @@
 <link rel="stylesheet" href="{{ asset('css/FacilitiesCreation.css') }}">
 <div class="facility-create-page">
     <h2>Thêm Cơ Sở Vật Chất Mới</h2>
-
+    <div class="back-to-dashboard">
+        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    </div>
     <form action="{{ route('facility_management.store') }}" method="POST">
         @csrf
         <div class="form-group">
@@ -43,5 +45,9 @@
         `;
         dentailDetails.insertAdjacentHTML('beforeend', newDetail);
     });
+            // Nút quay về
+            document.getElementById('back-button').addEventListener('click', function () {
+            window.history.back();
+        });
 </script>
 @endsection

@@ -69,6 +69,10 @@ Route::get('/timetable', function () {
     return view('timetable');
 })->name('timetable');
 
+Route::get('/rules', function () {
+    return view('rules');
+})->name('rules');
+
 
 Route::post('/timetable/save', [scheduleController::class, 'saveTimetable'])->name('timetable.save');
 Route::get('/timetable/view', [scheduleController::class, 'viewTimetable'])->name('timetable.view');

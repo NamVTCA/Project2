@@ -3,7 +3,9 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/ClassroomsCreation.css') }}">
 <div class="classroom-create-page">
-    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
+    <div class="back-to-dashboard">
+        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    </div>
     <h2>Tạo lớp học mới</h2>
     @if($errors->any())
         <div class="error-list">
@@ -111,5 +113,10 @@
             e.target.parentElement.remove();
         }
     });
+
+            // Nút quay về
+            document.getElementById('back-button').addEventListener('click', function () {
+            window.history.back();
+        });
 </script>
 @endsection

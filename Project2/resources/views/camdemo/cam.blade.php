@@ -5,6 +5,9 @@
 
 @section('content')
 <div class="container camera-page">
+    <div class="back-to-dashboard">
+        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    </div>
     <h1>Danh sách camera</h1>
     <div class="row">
         @foreach($cameras as $camera)
@@ -22,4 +25,10 @@
         @endforeach
     </div>
 </div>
+<script>
+            // Nút quay về
+            document.getElementById('back-button').addEventListener('click', function () {
+            window.history.back();
+        });
+</script>
 @endsection

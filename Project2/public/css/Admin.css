@@ -1,13 +1,13 @@
-/* Bảng Thống Kê - General Styles */
+/* Card Styles */
 .card {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation khi hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover Animation */
 }
 
 .card:hover {
-    transform: translateY(-5px); /* Nhẹ nhàng nhấc lên */
+    transform: translateY(-5px); /* Nhấc nhẹ */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -19,11 +19,13 @@
     padding: 15px;
     border-radius: 10px 10px 0 0;
     text-align: center;
-    animation: fadeIn 1s ease; /* Animation xuất hiện */
+    animation: fadeIn 1s ease; /* Fade-in Animation */
 }
 
 .card-body {
     padding: 20px;
+    text-align: center;
+    font-size: 14px;
 }
 
 /* Animation xuất hiện từ từ */
@@ -42,7 +44,7 @@
 canvas {
     max-width: 100%;
     height: auto;
-    animation: growChart 1.5s ease-out; /* Animation khi biểu đồ hiển thị */
+    animation: growChart 1.5s ease-out; /* Biểu đồ hiển thị mượt */
 }
 
 @keyframes growChart {
@@ -56,7 +58,15 @@ canvas {
     }
 }
 
-/* Dropdown Filter */
+/* Dropdown Filter Styles */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
 form label {
     font-weight: bold;
     margin-right: 10px;
@@ -69,7 +79,7 @@ form select {
     border-radius: 5px;
     margin-right: 10px;
     background-color: #fff;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Tương tác khi focus */
 }
 
 form select:focus {
@@ -87,20 +97,25 @@ form button {
     color: #fff;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Animation khi hover */
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 form button:hover {
     background-color: #0056b3;
-    transform: scale(1.1); /* Phóng to nhẹ khi hover */
+    transform: scale(1.05); /* Phóng to nhẹ */
 }
 
 /* Responsive Adjustments */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 20px;
+    }
+}
+
 @media (max-width: 576px) {
     form {
-        display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
     }
 
     form select, form button {

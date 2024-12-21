@@ -4,12 +4,15 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/CameraCreate.css') }}">
+<div class="back-to-dashboard">
+    <button id="back-button" class="btn btn-secondary">← Quay về</button>
+</div>
 <div class="container-camera-create">
-    <h1>Add New Camera</h1>
+    <h1>Thêm Camera</h1>
     <form action="{{ route('cameras.store') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="name">Camera Name:</label>
+            <label for="name">Tên Camera:</label>
             <input type="text" name="name" id="name" class="form-control" required>
         </div>
 
@@ -21,4 +24,11 @@
         <button type="submit" class="btn btn-primary mt-3">Add Camera</button>
     </form>
 </div>
+
+<script>
+            // Nút quay về
+            document.getElementById('back-button').addEventListener('click', function () {
+            window.history.back();
+        });
+</script>
 @endsection

@@ -2,7 +2,9 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/ChildrenEdit.css') }}">
-
+<div class="back-to-dashboard">
+    <button id="back-button" class="btn btn-secondary">← Quay về</button>
+</div>
 <div class="edit-student-wrapper">
     <form action="{{ route('children.update', $child->id) }}" method="POST" enctype="multipart/form-data" id="childForm">
         <h2>Chỉnh sửa thông tin học sinh</h2>
@@ -85,5 +87,11 @@
             }
         });
     })
+
+            // Nút quay về
+            document.getElementById('back-button').addEventListener('click', function () {
+            window.history.back();
+        });
+    </script>
 </script>
 @endsection

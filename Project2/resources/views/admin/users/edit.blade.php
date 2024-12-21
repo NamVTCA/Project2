@@ -4,7 +4,9 @@
 <div>
     <link rel="stylesheet" href="{{ asset('css/AccountEdit.css') }}">
     <h2>Chỉnh sửa thông tin người dùng</h2>
-
+    <div class="back-to-dashboard">
+        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    </div>
     @if($errors->any())
         <div style="color: red; margin: 10px 0;">
             <ul>
@@ -199,5 +201,10 @@
             this.textContent = type === 'password' ? '👁️' : '🙈';
         });
     });
+
+            // Nút quay về
+            document.getElementById('back-button').addEventListener('click', function () {
+            window.history.back();
+        });
 </script>   
 @endsection

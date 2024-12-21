@@ -3,7 +3,9 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/TuitionManagement.css') }}">
 <div class="hoc-phi-container">
-    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
+    <div class="back-to-dashboard">
+        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    </div>
     <h1>Quản Lý Học Phí</h1>
 
     <div class="actions">
@@ -69,4 +71,10 @@
         </div>
     @endif
 </div>
+<script>
+            // Nút quay về
+            document.getElementById('back-button').addEventListener('click', function () {
+            window.history.back();
+        });
+</script>
 @endsection

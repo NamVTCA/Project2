@@ -18,14 +18,25 @@
             </ul>
         </div>
         <a href="{{ route('admin.users.export') }}" class="btn btn-success">Xuất tệp Excel</a>
-            <!-- Nút Delete All -->
-    <form action="{{ route('admin.users.deleteAll') }}" method="POST" class="d-inline" id="delete-all-form">
-        @csrf
-        @method('DELETE')
-        <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa tất cả tài khoản?')">Xóa Tất Cả</button>
-    </form>
+        <form action="{{ route('admin.users.deleteAll') }}" method="POST" class="d-inline" id="delete-all-form">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa tất cả tài khoản?')">Xóa Tất Cả</button>
+        </form>
     </div>
-    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
+    <div class="back-to-dashboard">
+        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    </div>
+    <!-- Thêm bộ lọc -->
+    <form action="{{ route('admin.users.index') }}" method="GET" class="mb-3 d-flex align-items-center gap-3">
+        <label for="role-filter" class="form-label mb-0"><strong>Lọc Vai Trò:</strong></label>
+        <select name="role" id="role-filter" class="form-select" onchange="this.form.submit()">
+            <option value="" {{ request('role') === null ? 'selected' : '' }}>Tất cả</option>
+            <option value="1" {{ request('role') == '1' ? 'selected' : '' }}>Giáo viên</option>
+            <option value="2" {{ request('role') == '2' ? 'selected' : '' }}>Phụ huynh</option>
+        </select>
+    </form>
+
     <table class="table table-bordered">
         <thead class="thead-dark">
             <tr>
@@ -45,9 +56,9 @@
                         <td>{{ ($accounts->currentPage() - 1) * $accounts->perPage() + $loop->iteration }}</td>
                         <td>{{ $account->name }}</td>
                         <td>{{ $account->email }}</td>
-                        <td>{{ ($account->role)== 1?"Giáo Viên": "Phụ Huynh" }}</td>
+                        <td>{{ $account->role == 1 ? 'Giáo viên' : 'Phụ huynh' }}</td>
                         <td>{{ $account->id_number ?? '-' }}</td>
-                        <td>{{$account->phone}}</td>
+                        <td>{{ $account->phone }}</td>
                         <td>
                             <a href="{{ route('admin.users.edit', $account->id) }}" class="btn btn-sm btn-info">Sửa thông tin</a>
                             <form action="{{ route('admin.users.delete', $account->id) }}" method="POST" class="d-inline">
@@ -61,16 +72,17 @@
             @endforeach
         </tbody>
     </table>
-    {{-- Thêm phân trang --}}
+
     <div class="d-flex justify-content-center">
         {{ $accounts->links('vendor.pagination.default') }}
     </div>
+
     <!-- Import Modal -->
     <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importModalLabel">Tạo nhiều tài khoản bằng tệp ExcelExcel</h5>
+                    <h5 class="modal-title" id="importModalLabel">Tạo nhiều tài khoản bằng tệp Excel</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -82,7 +94,6 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Nhập</button>
                     </form>
-                    {{-- Hiển thị lỗi validation --}}
                     @if ($errors->any())
                         <div class="alert alert-danger mt-3">
                             <ul>
@@ -97,9 +108,16 @@
         </div>
     </div>
 </div>
+
 @if(session('success'))
     <div class="alert alert-success mt-3">
         {{ session('success') }}
     </div>
 @endif
+<script>
+// Nút quay về
+document.getElementById('back-button').addEventListener('click', function () {
+    window.history.back();
+});
+</script>
 @endsection

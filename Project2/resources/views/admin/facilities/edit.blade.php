@@ -4,7 +4,9 @@
 <link rel="stylesheet" href="{{ asset('css/FacilitiesCreation.css') }}">
 <div class="facility-edit-page">
     <h2>Chỉnh Sửa Cơ Sở Vật Chất</h2>
-
+    <div class="back-to-dashboard">
+        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    </div>
     @if($errors->any())
         <div class="error-list">
             <ul>
@@ -90,5 +92,10 @@
             e.target.parentElement.remove();
         }
     });
+
+            // Nút quay về
+            document.getElementById('back-button').addEventListener('click', function () {
+            window.history.back();
+        });
 </script>
 @endsection

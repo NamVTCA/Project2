@@ -3,7 +3,9 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/ClassroomsIndex.css') }}">
 <div class="classes-container">
-    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
+    <div class="back-to-dashboard">
+        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    </div>
     <div class="header">
         <h1>Quản lý lớp học</h1>
         <a href="{{ route('classrooms.create') }}" class="btn-add">Thêm lớp học mới</a>
@@ -40,4 +42,10 @@
         </div>
     </div>
 </div>
+<script>
+// Nút quay về
+document.getElementById('back-button').addEventListener('click', function () {
+    window.history.back();
+});
+</script>
 @endsection

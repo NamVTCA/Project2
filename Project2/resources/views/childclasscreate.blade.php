@@ -4,7 +4,9 @@
 <link rel="stylesheet" href="{{ asset('css/ChildClass.css') }}">
 @section('content')
     <div class="container mt-4">
-        <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
+        <div class="back-to-dashboard">
+            <button id="back-button" class="btn btn-secondary">← Quay về</button>
+        </div>
         <h2 class="text-center">Thêm Học Sinh vào Lớp</h2>
 
         @if(session('success'))
@@ -45,4 +47,10 @@
             </div>
         </form>
     </div>
+    <script>
+                // Nút quay về
+                document.getElementById('back-button').addEventListener('click', function () {
+            window.history.back();
+        });
+    </script>
 @endsection

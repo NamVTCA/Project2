@@ -3,7 +3,9 @@
 @section('content')
 <div class="tuition-create">
     <link rel="stylesheet" href="{{ asset('css/TuitionCreate.css') }}">
-    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
+    <div class="back-to-dashboard">
+        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    </div>
     <h1>Tạo Học phí</h1>
 
     @if(session('success'))
@@ -67,5 +69,10 @@
         `;
         tuitionDetails.insertAdjacentHTML('beforeend', newDetail);
     });
+
+            // Nút quay về
+            document.getElementById('back-button').addEventListener('click', function () {
+            window.history.back();
+        });
 </script>
 @endsection
