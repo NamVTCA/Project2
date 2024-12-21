@@ -4,7 +4,9 @@
 
 @section('content')
 <div class="container mt-4">
-    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
+    <div class="back-to-dashboard">
+        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    </div>
     <link rel="stylesheet" href="{{ asset('css/FeedbackList.css') }}">
     <h2 class="text-center page-title">Danh sách phản hồi</h2>
 
@@ -49,4 +51,11 @@
         </div>
     @endif
 </div>
+
+
+<script>
+document.getElementById('back-button').addEventListener('click', function () {
+    window.history.back();
+});
+</script>
 @endsection

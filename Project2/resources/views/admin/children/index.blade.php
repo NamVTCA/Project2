@@ -19,7 +19,9 @@
         </div>
     </div>
 </div>
-<a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
+<div class="back-to-dashboard">
+    <button id="back-button" class="btn btn-secondary">← Quay về</button>
+</div>
     <div class="children-grid">
         @foreach($children as $child)
             <div class="child-card">
@@ -84,4 +86,11 @@
         {{ session('success') }}
     </div>
 @endif
+
+<script>
+// Nút quay về
+document.getElementById('back-button').addEventListener('click', function () {
+    window.history.back();
+});
+</script>
 @endsection

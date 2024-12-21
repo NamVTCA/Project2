@@ -4,7 +4,9 @@
 <link rel="stylesheet" href="{{ asset('css/ChildClass.css') }}">
 
 @section('content')
-<a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
+<div class="back-to-dashboard">
+    <button id="back-button" class="btn btn-secondary">← Quay về</button>
+</div>
 <div class="container mt-4">
     <h2 class="text-center">Danh Sách Học Sinh trong Lớp</h2>
 
@@ -55,4 +57,11 @@
         </table>
     </div>
 </div>
+
+<script>
+            // Nút quay về
+            document.getElementById('back-button').addEventListener('click', function () {
+            window.history.back();
+        });
+</script>
 @endsection

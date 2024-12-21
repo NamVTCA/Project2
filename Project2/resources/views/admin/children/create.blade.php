@@ -3,7 +3,9 @@
 @section('content')
 <div>
     <link rel="stylesheet" href="{{ asset('css/ChildrenCreation.css') }}">
-    <a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
+    <div class="back-to-dashboard">
+        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    </div>
     <h2>Tạo học sinh mới</h2>
 
     <form action="{{ route('children.store') }}" method="POST" enctype="multipart/form-data" id="childForm">
@@ -73,5 +75,10 @@
             input.setCustomValidity(''); 
         }
     }
+            // Nút quay về
+            document.getElementById('back-button').addEventListener('click', function () {
+            window.history.back();
+        });
+    </script>
 </script>
 @endsection

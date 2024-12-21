@@ -2,7 +2,9 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/Timetable.css') }}">
-<a href="{{ route('admin') }}" class="btn btn-secondary mb-3">← Quay về</a>
+<div class="back-to-dashboard">
+    <button id="back-button" class="btn btn-secondary">← Quay về</button>
+</div>
 <main class="timetable-container">  
     <h1 class="page-title">Chỉnh Sửa Thời Khóa Biểu</h1>
     <div class="timetable">
@@ -88,5 +90,10 @@
         }
         return true;
     }
+
+            // Nút quay về
+            document.getElementById('back-button').addEventListener('click', function () {
+            window.history.back();
+        });
 </script>
 @endsection

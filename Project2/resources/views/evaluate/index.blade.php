@@ -12,6 +12,9 @@
 @extends('layouts.dashboard') 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/EvaluateIndex.css') }}">
+<div class="back-to-dashboard">
+    <button id="back-button" class="btn btn-secondary">← Quay về</button>
+</div>
 <main class="schedule-section py-5">
     <div class="evaluate-page">
         <h2 class="text-pink">Đánh Giá Theo Ngày</h2>
@@ -99,6 +102,11 @@
             }
         });
     });
+
+            // Nút quay về
+            document.getElementById('back-button').addEventListener('click', function () {
+            window.history.back();
+        });
 </script>
 
 @endsection

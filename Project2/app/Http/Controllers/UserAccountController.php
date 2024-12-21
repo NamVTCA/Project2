@@ -13,9 +13,19 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class UserAccountController extends Controller
 {
-    public function index()
+    public function index(Request $request) // Thêm Request $request để lấy dữ liệu từ form lọc
     {
-        $accounts = User::where('role', '!=', 0)->Paginate(10); 
+        $query = User::where('role', '!=', 0); // Bắt đầu truy vấn với điều kiện role != 0
+    
+        // Lọc theo vai trò nếu có
+        if ($request->has('role') && $request->role !== null) {
+            $query->where('role', $request->role);
+        }
+    
+        // Phân trang
+        $accounts = $query->paginate(10);
+    
+        // Trả về view với dữ liệu
         return view('admin.users.index', compact('accounts'));
     }
     
