@@ -29,7 +29,7 @@
         </div>
 
         <div class="form-group">
-            <label for="semester">Học kỳ</label>
+            <label for="semester">Học phí theo tháng</label>
             <input type="text" name="semester" id="semester" class="form-control" required>
         </div>
 
