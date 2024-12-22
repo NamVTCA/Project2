@@ -114,6 +114,8 @@
         @endfor
     </select>
     <button type="submit" class="btn btn-primary">Lọc</button>
+    <a href="{{ route('camcreate') }}" class="btn btn-light btn-sm">Thêm Camera</a>
+    <a href="{{ route('cameras.index') }}" class="btn btn-light btn-sm">Xem Camera</a>
 </form>
 
 <div class="row mt-4">
