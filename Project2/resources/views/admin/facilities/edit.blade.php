@@ -4,8 +4,10 @@
 <link rel="stylesheet" href="{{ asset('css/FacilitiesCreation.css') }}">
 <div class="facility-edit-page">
     <h2>Chỉnh sửa cơ sở vật chất</h2>
-    <div class="back-to-dashboard">
-        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    <div class="back-button">
+        <a href="{{ route('admin.dashboard')}}" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Quay về
+        </a>
     </div>
     @if($errors->any())
         <div class="error-list">

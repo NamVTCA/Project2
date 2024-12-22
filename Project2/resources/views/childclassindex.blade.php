@@ -4,8 +4,10 @@
 <link rel="stylesheet" href="{{ asset('css/ChildClass.css') }}">
 
 @section('content')
-<div class="back-to-dashboard">
-    <button id="back-button" class="btn btn-secondary">← Quay về</button>
+<div class="back-button">
+    <a href="{{ route('admin.dashboard')}}" class="btn btn-primary">
+        <i class="fas fa-arrow-left"></i> Quay về
+    </a>
 </div>
 <div class="container mt-4">
     <h2 class="text-center">Danh sách học sinh trong lớp</h2>

@@ -6,8 +6,10 @@
 <link rel="stylesheet" href="{{ asset('css/AccountCreation.css') }}">
 <div class="user-creation-section">
     <h2>Tạo người dùng mới và cấp tài khoản</h2>
-    <div class="back-to-dashboard">
-        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    <div class="back-button">
+        <a href="{{ route('admin.dashboard')}}" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Quay về
+        </a>
     </div>
     @if($errors->any())
         <div class="alert alert-danger">

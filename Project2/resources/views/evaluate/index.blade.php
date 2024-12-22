@@ -68,18 +68,49 @@
         {{ $errors->first() }}
     </div>
 @endif
-        {{-- </form>
-        @if(session('success'))
-            <div class="alert alert-success mt-3">{{ session('success') }}</div>
-        @endif
-
-        @if($errors->any())
-            <div class="alert alert-danger mt-3">
-                {{ $errors->first() }}
+<!-- Modal Quy Định -->
+<div class="modal fade" id="rulesModal" tabindex="-1" aria-labelledby="rulesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="rulesModalLabel">Quy Định Khi Tạo Tài Khoản</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        @endif
+            <div class="modal-body">
+                <h6 class="text-primary">Quy định Khi Đánh Giá:</h6>
+                <ul>
+                    <li>Lưu ý chỉ được nhận sét trong vòng <b>24h</b> cùng ngày.</li>
+                    <li>Qua <b>24h</b> sẽ tự động để trống.</li>
+                    <li>Đánh giá một cách <b>Trung Thực</b> không gian dối.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
     </div>
-</main> trùng thông báo --}}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Hiển thị modal ngay khi trang tải
+        const rulesModal = new bootstrap.Modal(document.getElementById('rulesModal'));
+        rulesModal.show();
+    });
+</script>
+
+<style>
+    .modal.fade .modal-dialog {
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    .modal.show .modal-dialog {
+        transform: translateY(0);
+        opacity: 1;
+    }
+</style>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const childSelect = document.getElementById('child_id');
