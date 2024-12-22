@@ -38,3 +38,4 @@ class FeedbackController extends Controller
         return redirect()->route('feedback')->with('success', 'Cảm ơn bạn đã gửi phản hồi');
     }
 }
+?>

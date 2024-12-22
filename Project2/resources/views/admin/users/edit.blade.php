@@ -4,8 +4,10 @@
 <div>
     <link rel="stylesheet" href="{{ asset('css/AccountEdit.css') }}">
     <h2>Chỉnh sửa thông tin người dùng</h2>
-    <div class="back-to-dashboard">
-        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    <div class="back-button">
+        <a href="{{ route('admin.dashboard')}}" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Quay về
+        </a>
     </div>
     @if($errors->any())
         <div style="color: red; margin: 10px 0;">
@@ -83,8 +85,8 @@
         <div style="margin-bottom: 15px;">
             <label for="role">Vai trò:</label>
             <select id="role" name="role" class="form-control" required>
-                <option value="1" {{ old('role', $user->role) == 1 ? 'selected' : '' }}>Giáo Viên</option>
-                <option value="2" {{ old('role', $user->role) == 2 ? 'selected' : '' }}>Phụ Huynh</option>
+                <option value="1" {{ old('role', $user->role) == 1 ? 'selected' : '' }}>Giáo viên</option>
+                <option value="2" {{ old('role', $user->role) == 2 ? 'selected' : '' }}>Phụ huynh</option>
             </select>
         </div>
 

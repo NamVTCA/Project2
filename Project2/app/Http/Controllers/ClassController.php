@@ -98,7 +98,6 @@ class ClassController extends Controller
         return view('admin.classrooms.edit', compact('classroom', 'teachers', 'allTeachers', 'facilities', 'totalFacilities'));
     }
 
-
     public function update(ClassRequest $request, Classroom $classroom)
     {
         $data = $request->validated();
@@ -120,7 +119,7 @@ class ClassController extends Controller
                     $dentail = dentail_facilities::where('name', $facilityName)->first();
                     if (!$dentail) {
                         DB::rollBack();
-                        return redirect()->back()->withErrors(['error' => 'Dentail facility not found']);
+                        return redirect()->back()->withErrors(['error' => 'Không tìm thấy cơ sở vật chất']);
                     }
 
                     // Cộng lại số lượng
@@ -215,5 +214,4 @@ class ClassController extends Controller
         }
     }
 }
-
 ?>

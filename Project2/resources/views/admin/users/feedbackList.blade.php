@@ -4,8 +4,10 @@
 
 @section('content')
 <div class="container mt-4">
-    <div class="back-to-dashboard">
-        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    <div class="back-button">
+        <a href="{{ route('admin.dashboard')}}" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Quay về
+        </a>
     </div>
     <link rel="stylesheet" href="{{ asset('css/FeedbackList.css') }}">
     <h2 class="text-center page-title">Danh sách phản hồi</h2>
@@ -21,7 +23,7 @@
             <table class="table table-bordered table-hover">
                 <thead class="table-dark">
                     <tr>
-                        <th>Số Thứ Tự</th>
+                        <th>Số thứ tự</th>
                         <th>Tên người gửi</th>
                         <th>Email</th>
                         <th>Nội dung</th>

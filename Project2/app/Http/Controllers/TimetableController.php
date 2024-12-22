@@ -27,6 +27,6 @@ class TimetableController extends Controller
             );
         }
 
-        return response()->json(['message' => 'Timetable saved successfully']);
+        return response()->json(['message' => 'Lưu lịch học thành công']);
     }
 }

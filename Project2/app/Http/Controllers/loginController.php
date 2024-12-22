@@ -72,7 +72,7 @@ class loginController extends Controller
         }
     
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return redirect()->route('showlogin')->with('message','invalid phone or email');
+            return redirect()->route('showlogin')->with('message','Sai tài khoản hoặc mật khẩu');
         }
     Auth::login($user);
     $user = Auth::user(); 
@@ -162,8 +162,7 @@ public function resetPassword(Request $request)
 
     $user->password = Hash::make($request->input('new_password'));
     $user->save();
-
-return view('forgotpassword')->with('success', 'Đổi mật khẩu thành công');
+return redirect()->route('showlogin')->with('message', 'Đổi mật khẩu thành công');
 }
 
 

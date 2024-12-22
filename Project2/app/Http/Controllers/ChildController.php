@@ -103,3 +103,4 @@ class ChildController extends Controller
         return Excel::download(new ChildrenExport, 'children.xlsx');
     }
 }
+?>

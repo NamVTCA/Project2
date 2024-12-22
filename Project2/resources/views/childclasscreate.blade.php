@@ -4,10 +4,12 @@
 <link rel="stylesheet" href="{{ asset('css/ChildClass.css') }}">
 @section('content')
     <div class="container mt-4">
-        <div class="back-to-dashboard">
-            <button id="back-button" class="btn btn-secondary">← Quay về</button>
+        <div class="back-button">
+            <a href="{{ route('admin.dashboard')}}" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> Quay về
+            </a>
         </div>
-        <h2 class="text-center">Thêm Học Sinh vào Lớp</h2>
+        <h2 class="text-center">Thêm học sinh vào lớp</h2>
 
         @if(session('success'))
             <div class="alert alert-success mt-3">
@@ -25,7 +27,7 @@
         <form action="{{ route('childclass.store') }}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="child_id">Học Sinh</label>
+                <label for="child_id">Học sinh</label>
                 <select name="child_id" id="child_id" class="form-control" required>
                     @foreach($children as $child)
                         <option value="{{ $child->id }}">{{ $child->name }}</option>
@@ -34,7 +36,7 @@
             </div>
 
             <div class="form-group mt-3">
-                <label for="classroom_id">Lớp Học</label>
+                <label for="classroom_id">Lớp học</label>
                 <select name="classroom_id" id="classroom_id" class="form-control" required>
                     @foreach($classrooms as $classroom)
                         <option value="{{ $classroom->id }}">{{ $classroom->name }}</option>
@@ -43,7 +45,7 @@
             </div>
             <div class="button-group">
                 <button type="submit" class="btn-custom">Thêm vào lớp</button>
-                <a href="{{ route('childclass.index') }}" class="btn-custom">Xem Danh Sách</a>
+                <a href="{{ route('childclass.index') }}" class="btn-custom">Xem danh sách</a>
             </div>
         </form>
     </div>

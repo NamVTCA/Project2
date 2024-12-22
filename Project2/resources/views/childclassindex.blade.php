@@ -4,11 +4,13 @@
 <link rel="stylesheet" href="{{ asset('css/ChildClass.css') }}">
 
 @section('content')
-<div class="back-to-dashboard">
-    <button id="back-button" class="btn btn-secondary">← Quay về</button>
+<div class="back-button">
+    <a href="{{ route('admin.dashboard')}}" class="btn btn-primary">
+        <i class="fas fa-arrow-left"></i> Quay về
+    </a>
 </div>
 <div class="container mt-4">
-    <h2 class="text-center">Danh Sách Học Sinh trong Lớp</h2>
+    <h2 class="text-center">Danh sách học sinh trong lớp</h2>
 
     <!-- Bộ lọc -->
     <form action="{{ route('childclass.index') }}" method="GET" class="form-inline mb-4">
@@ -32,10 +34,10 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Học Sinh</th>
-                    <th>Lớp Học</th>
-                    <th>Ngày Thêm</th>
-                    <th>Hành Động</th>
+                    <th>Học sinh</th>
+                    <th>Lớp học</th>
+                    <th>Ngày thêm</th>
+                    <th>Hành động</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +47,7 @@
                         <td>{{ $childclass->classroom->name }}</td>
                         <td>{{ $childclass->created_at->format('d/m/Y') }}</td>
                         <td>
-                            <a href="{{ route('childclass.edit', ['child_id' => $childclass->child_id, 'classroom_id' => $childclass->classroom_id]) }}" class="btn btn-warning btn-sm">Chỉnh Sửa</a>
+                            <a href="{{ route('childclass.edit', ['child_id' => $childclass->child_id, 'classroom_id' => $childclass->classroom_id]) }}" class="btn btn-warning btn-sm">Chỉnh sửa</a>
                         </td>
                     </tr>
                 @empty

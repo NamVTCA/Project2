@@ -5,12 +5,12 @@
 @section('content')
 <div class="container account-management">
     <link rel="stylesheet" href="{{ asset('css/AccountManagement.css') }}">
-    <h1>Quản Lý Tài Khoản</h1>
+    <h1>Quản lý tài khoản</h1>
 
     <div class="actions mb-3">
         <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Thêm Tài Khoản
+                Thêm tài khoản
             </button>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{{ route('admin.users.create') }}">Tạo một tài khoản</a></li>
@@ -24,12 +24,14 @@
             <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa tất cả tài khoản?')">Xóa Tất Cả</button>
         </form>
     </div>
-    <div class="back-to-dashboard">
-        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    <div class="back-button">
+        <a href="{{ route('admin.dashboard')}}" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Quay về
+        </a>
     </div>
     <!-- Thêm bộ lọc -->
     <form action="{{ route('admin.users.index') }}" method="GET" class="mb-3 d-flex align-items-center gap-3">
-        <label for="role-filter" class="form-label mb-0"><strong>Lọc Vai Trò:</strong></label>
+        <label for="role-filter" class="form-label mb-0"><strong>Lọc vai trò:</strong></label>
         <select name="role" id="role-filter" class="form-select" onchange="this.form.submit()">
             <option value="" {{ request('role') === null ? 'selected' : '' }}>Tất cả</option>
             <option value="1" {{ request('role') == '1' ? 'selected' : '' }}>Giáo viên</option>
@@ -41,12 +43,12 @@
         <thead class="thead-dark">
             <tr>
                 <th>STT</th>
-                <th>Tên Đầy Đủ</th>
+                <th>Tên đầy đủ</th>
                 <th>Email</th>
-                <th>Chức Vụ</th>
+                <th>Chức vụ</th>
                 <th>CCCD</th>
                 <th>Số điện thoại</th>
-                <th>Hành Động</th>
+                <th>Hành động</th>
             </tr>
         </thead>
         <tbody>
@@ -109,15 +111,64 @@
     </div>
 </div>
 
+<!-- Modal Quy Định -->
+<div class="modal fade" id="rulesModal" tabindex="-1" aria-labelledby="rulesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="rulesModalLabel">Quy Định Khi Tạo Tài Khoản</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6 class="text-primary">1. Quy định về ảnh đại diện:</h6>
+                <ul>
+                    <li>Tài khoản cần có <b>ảnh 3x4</b> khi tạo thủ công.</li>
+                    <li>Ảnh phải có <b>nền trắng</b>, rõ mặt và đạt tiêu chuẩn.</li>
+                </ul>
+
+                <h6 class="text-primary">2. Quy định khi nhập qua Excel:</h6>
+                <ul>
+                    <li>Khi nhập tài khoản số lượng lớn qua file Excel, <b>không bắt buộc</b> phải có ảnh.</li>
+                    <li>Sau khi tài khoản được tạo, quản trị viên có thể chỉnh sửa để bổ sung ảnh sau.</li>
+                </ul>
+
+                <h6 class="text-primary">3. Hướng dẫn bổ sung thông tin:</h6>
+                <ul>
+                    <li>Ảnh có thể được thêm vào sau tại trang <b>chỉnh sửa tài khoản</b>.</li>
+                    <li>Đảm bảo mọi thông tin đầy đủ và chính xác để tránh lỗi trong quá trình sử dụng.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Hiển thị modal ngay khi trang tải
+        const rulesModal = new bootstrap.Modal(document.getElementById('rulesModal'));
+        rulesModal.show();
+    });
+</script>
+
+<style>
+    .modal.fade .modal-dialog {
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    .modal.show .modal-dialog {
+        transform: translateY(0);
+        opacity: 1;
+    }
+</style>
+
 @if(session('success'))
     <div class="alert alert-success mt-3">
         {{ session('success') }}
     </div>
 @endif
-<script>
-// Nút quay về
-document.getElementById('back-button').addEventListener('click', function () {
-    window.history.back();
-});
-</script>
 @endsection

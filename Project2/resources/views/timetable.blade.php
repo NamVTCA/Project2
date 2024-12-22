@@ -2,8 +2,10 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/Timetable.css') }}">
-<div class="back-to-dashboard">
-    <button id="back-button" class="btn btn-secondary">← Quay về</button>
+<div class="back-button">
+    <a href="{{ route('admin.dashboard')}}" class="btn btn-primary">
+        <i class="fas fa-arrow-left"></i> Quay về
+    </a>
 </div>
 <main class="timetable-container">  
     <h1 class="page-title">Chỉnh Sửa Thời Khóa Biểu</h1>

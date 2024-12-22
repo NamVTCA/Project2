@@ -10,6 +10,19 @@
             <h2 class="text-primary fw-bold animate__animated animate__fadeInDown">Nội Quy Trường</h2>
             <p class="text-muted animate__animated animate__fadeIn">Hướng dẫn và quy định dành cho học sinh, phụ huynh và giáo viên.</p>
         </div>
+        
+        <div class="container py-5">
+            <div class="section-header text-center mb-4">
+                <h2 class="text-primary fw-bold animate__animated animate__fadeInDown">5 Điều Bác Hồ Dạy</h2>
+                <ol class="list-group list-group-numbered">
+                    <li class="list-group-item">Yêu Tổ quốc, yêu đồng bào.</li>
+                    <li class="list-group-item">Học tập tốt, lao động tốt.</li>
+                    <li class="list-group-item">Đoàn kết tốt, kỷ luật tốt.</li>
+                    <li class="list-group-item">Giữ gìn vệ sinh thật tốt.</li>
+                    <li class="list-group-item">Khiêm tốn, thật thà, dũng cảm.</li>
+                </ol>
+            </div>
+        </div>
 
         <div class="rules-list">
             <!-- Rule 1 -->

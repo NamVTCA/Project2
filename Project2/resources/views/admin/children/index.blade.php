@@ -19,8 +19,10 @@
         </div>
     </div>
 </div>
-<div class="back-to-dashboard">
-    <button id="back-button" class="btn btn-secondary">← Quay về</button>
+<div class="back-button">
+    <a href="{{ route('admin.dashboard')}}" class="btn btn-primary">
+        <i class="fas fa-arrow-left"></i> Quay về
+    </a>
 </div>
     <div class="children-grid">
         @foreach($children as $child)
@@ -55,7 +57,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importChildModalLabel">Thêm Học Sinh từ tệp Excel</h5>
+                    <h5 class="modal-title" id="importChildModalLabel">Thêm học sinh từ tệp Excel</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -81,16 +83,66 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal Quy Định -->
+<div class="modal fade" id="rulesModal" tabindex="-1" aria-labelledby="rulesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="rulesModalLabel">Quy Định Khi Tạo Tài Khoản</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h6 class="text-primary">1. Quy định về ảnh đại diện:</h6>
+                <ul>
+                    <li>Tài khoản cần có <b>ảnh 3x4</b> khi tạo thủ công.</li>
+                    <li>Ảnh phải có <b>nền trắng</b>, rõ mặt và đạt tiêu chuẩn.</li>
+                </ul>
+
+                <h6 class="text-primary">2. Quy định khi nhập qua Excel:</h6>
+                <ul>
+                    <li>Khi nhập tài khoản số lượng lớn qua file Excel, <b>không bắt buộc</b> phải có ảnh.</li>
+                    <li>Sau khi tài khoản được tạo, quản trị viên có thể chỉnh sửa để bổ sung ảnh sau.</li>
+                </ul>
+
+                <h6 class="text-primary">3. Hướng dẫn bổ sung thông tin:</h6>
+                <ul>
+                    <li>Ảnh có thể được thêm vào sau tại trang <b>chỉnh sửa tài khoản</b>.</li>
+                    <li>Đảm bảo mọi thông tin đầy đủ và chính xác để tránh lỗi trong quá trình sử dụng.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Hiển thị modal ngay khi trang tải
+        const rulesModal = new bootstrap.Modal(document.getElementById('rulesModal'));
+        rulesModal.show();
+    });
+</script>
+
+<style>
+    .modal.fade .modal-dialog {
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    .modal.show .modal-dialog {
+        transform: translateY(0);
+        opacity: 1;
+    }
+</style>
 @if(session('success'))
     <div class="alert alert-success mt-3">
         {{ session('success') }}
     </div>
 @endif
 
-<script>
-// Nút quay về
-document.getElementById('back-button').addEventListener('click', function () {
-    window.history.back();
-});
-</script>
 @endsection

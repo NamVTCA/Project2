@@ -3,13 +3,15 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/ClassroomsIndex.css') }}">
 <div class="classes-container">
-    <div class="back-to-dashboard">
-        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    <div class="back-button">
+        <a href="{{ route('admin.dashboard')}}" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Quay về
+        </a>
     </div>
     <div class="header">
         <h1>Quản lý lớp học</h1>
         <a href="{{ route('classrooms.create') }}" class="btn-add">Thêm lớp học mới</a>
-        <a href="{{ route('facility_management.index') }}" class="btn btn-primary">Quản Lý Cơ Sở Vật Chất</a>
+        <a href="{{ route('facility_management.index') }}" class="btn btn-primary">Quản lý cơ sở vật chất</a>
     </div>
     <div class="class-card highlight">
         <div class="classes-grid">
@@ -35,7 +37,7 @@
                         @endif
                     </div>
                     <div class="class-actions">
-                        <a href="{{ route('classrooms.edit', $class->id) }}" class="btn-edit">Chỉnh Sửa</a>
+                        <a href="{{ route('classrooms.edit', $class->id) }}" class="btn-edit">Chỉnh sửa</a>
                     </div>
                 </div>
             @endforeach

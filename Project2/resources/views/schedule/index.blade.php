@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <link rel="stylesheet" href="{{ asset('css/ScheduleIndex.css') }}">
-    <h1>Tạo Lịch học</h1>
+    <h1>Tạo lịch học</h1>
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
@@ -51,9 +51,9 @@
                     <option value="Tiết 10 (16h30 - 17h05)">Tiết 10 (16h30 - 17h05)</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Tạo Lịch học</button>
-        <a href="{{ route('subjects.index') }}" class="btn btn-glow">Thêm Môn Học</a>
-        <a href="{{ route('schedule.show') }}" class="btn btn-glow">Xem Lịch Học</a>    
+        <button type="submit" class="btn btn-primary">Tạo lịch học</button>
+        <a href="{{ route('subjects.index') }}" class="btn btn-glow">Thêm môn Học</a>
+        <a href="{{ route('schedule.show') }}" class="btn btn-glow">Xem lịch Học</a>    
     </form>
    @if($errors->any())
     <div class="alert alert-danger">

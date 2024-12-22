@@ -3,8 +3,10 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/ClassroomsCreation.css') }}">
 <div class="classroom-create-page">
-    <div class="back-to-dashboard">
-        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    <div class="back-button">
+        <a href="{{ route('admin.dashboard')}}" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Quay về
+        </a>
     </div>
     <h2>Tạo lớp học mới</h2>
     @if($errors->any())

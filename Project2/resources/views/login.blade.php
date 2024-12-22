@@ -10,7 +10,7 @@
     </div>
     <form class="login-form" action="{{ route('login') }}" method="post">
         @csrf
-        <label for="phone">Số điện thoại</label>
+        <label for="phone">Tài khoản (Email hoặc SĐT)</label>
         <input type="text" id="phone" name="phone" placeholder="*****">
         
         <label for="password">Mật khẩu</label>
