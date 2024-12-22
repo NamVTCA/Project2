@@ -23,7 +23,6 @@ class FacilityManagementController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'dentail.*.name' => 'required|string|max:255',
-            'dentail.*.status' => 'required|integer',
             'dentail.*.quantity' => 'required|integer',
         ]);
 
@@ -50,7 +49,6 @@ class FacilityManagementController extends Controller
             'name' => 'required|string|max:255',
             'dentail.*.id' => 'nullable|integer|exists:dentail_fatilities,id',
             'dentail.*.name' => 'required|string|max:255',
-            'dentail.*.status' => 'required|integer',
             'dentail.*.quantity' => 'required|integer',
         ]);
 

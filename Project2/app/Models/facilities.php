@@ -10,7 +10,6 @@ class facilities extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'status',
         'classroom_id',
         'quantity'
     ];

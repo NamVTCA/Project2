@@ -10,7 +10,7 @@
 
 <main class="schedule-section py-5">
     <div class="container">
-        <h2 class="text-center mb-4" style="color:#d6336c;">Lịch học Nhà trẻ</h2>
+        <h2 class="text-center mb-4" style="color:#d6336c;">Lịch học nhà trẻ</h2>
         <form class="row mb-4">
             <div class="col-md-6">
                 <label for="classroom_id" class="form-label">Lớp học</label>
@@ -27,14 +27,14 @@
             </div>
         </form>
         <div class="schedule-details mt-4">
-            <h3 class="text-center mb-3 text-secondary">Chi Tiết Lịch Học</h3>
+            <h3 class="text-center mb-3 text-secondary">Chi tiết lịch học</h3>
             <div class="table-responsive">
                 <table class="table table-hover align-middle">
                     <thead class="table-light">
                     <tr>
-                        <th>Tiết Học</th>
-                        <th>Môn Học</th>
-                         <th class="text-center">Hành Động</th>
+                        <th>Tiết học</th>
+                        <th>Môn học</th>
+                         <th class="text-center">Hành động</th>
                     </tr>
                     </thead>
                     <tbody id="schedule-details-body">

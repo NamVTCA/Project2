@@ -28,8 +28,7 @@
                             <ul>
                                 @foreach($class->facilities as $facility)
                                     <li>
-                                        Cơ sở vật chất: {{ $facility->name ?? 'N/A' }} - 
-                                        Trạng thái: {{ $facility->status }} - 
+                                        Cơ sở vật chất: {{ $facility->name ?? 'N/A' }} -  
                                         Số lượng: {{ $facility->quantity }}
                                     </li>
                                 @endforeach
