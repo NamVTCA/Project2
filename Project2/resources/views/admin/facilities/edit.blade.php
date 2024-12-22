@@ -36,10 +36,6 @@
                         <input type="text" name="dentail[{{ $index }}][name]" class="form-control" value="{{ old('dentail.' . $index . '.name', $dentail->name) }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="dentail[{{ $index }}][status]">Trạng thái</label>
-                        <input type="text" name="dentail[{{ $index }}][status]" class="form-control" value="{{ old('dentail.' . $index . '.status', $dentail->status) }}" required>
-                    </div>
-                    <div class="form-group">
                         <label for="dentail[{{ $index }}][quantity]">Số lượng</label>
                         <input type="number" name="dentail[{{ $index }}][quantity]" class="form-control" value="{{ old('dentail.' . $index . '.quantity', $dentail->quantity) }}" required>
                     </div>
@@ -66,10 +62,6 @@
                 <div class="form-group">
                     <label for="dentail[${dentailIndex}][name]">Tên Chi Tiết</label>
                     <input type="text" name="dentail[${dentailIndex}][name]" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="dentail[${dentailIndex}][status]">Trạng Thái</label>
-                    <input type="text" name="dentail[${dentailIndex}][status]" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="dentail[${dentailIndex}][quantity]">Số Lượng</label>

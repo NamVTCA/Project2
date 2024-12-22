@@ -36,10 +36,6 @@
                     <input type="text" name="dentail[${index}][name]" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="dentail[${index}][status]">Trạng Thái</label>
-                    <input type="text" name="dentail[${index}][status]" class="form-control" required>
-                </div>
-                <div class="form-group">
                     <label for="dentail[${index}][quantity]">Số Lượng</label>
                     <input type="number" name="dentail[${index}][quantity]" class="form-control" required>
                 </div>

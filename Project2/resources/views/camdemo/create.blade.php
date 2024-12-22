@@ -8,11 +8,11 @@
     <button id="back-button" class="btn btn-secondary">← Quay về</button>
 </div>
 <div class="container-camera-create">
-    <h1>Thêm Camera</h1>
+    <h1>Thêm camera</h1>
     <form action="{{ route('cameras.store') }}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="name">Tên Camera:</label>
+            <label for="name">Tên camera:</label>
             <input type="text" name="name" id="name" class="form-control" required>
         </div>
 
@@ -21,7 +21,7 @@
             <input type="url" name="stream_url" id="stream_url" class="form-control" required>
         </div>
 
-        <button type="submit" class="btn btn-primary mt-3">Thêm Camera</button>
+        <button type="submit" class="btn btn-primary mt-3">Thêm camera</button>
     </form>
 </div>
 

@@ -28,7 +28,7 @@
         <div class="col-md-4">
             <div class="card shadow-sm bg-gradient-pink text-white text-center">
                 <div class="card-body">
-                    <h5 class="card-title">Phản Hồi</h5>
+                    <h5 class="card-title">Phản hồi</h5>
                     <p class="card-text">Xem chi tiết các phản hồi.</p>
                     <a href="{{ route('feedback.index') }}" class="btn btn-light btn-sm">Đi tới</a>
                 </div>
@@ -55,7 +55,7 @@
     <div class="col-md-4">
         <div class="card shadow-sm bg-gradient-pink text-white text-center">
             <div class="card-body">
-                <h5 class="card-title"> Quản lý Lớp Học</h5>
+                <h5 class="card-title"> Quản lý lớp học</h5>
                 <p class="card-text">Xem và chỉnh sửa lớp học.</p>
                 <a href="{{ route('admin.classrooms.index') }}" class="btn btn-light btn-sm">Đi tới</a>
             </div>

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('dentail_facilities', function (Blueprint $table) {
                   $table->id();
             $table->string('name');
-            $table->integer('status');
             $table->integer('quantity');
             $table->foreignId('total_id')->constrained('total_facilities')->onDelete('cascade');
             $table->timestamps();

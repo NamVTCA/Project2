@@ -18,11 +18,11 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="#">Trang Chủ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Lịch Trình</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Giáo Dục</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Liên Hệ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Đăng Nhập</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Lịch trình</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Giáo dục</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Liên hệ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Đăng nhập</a></li>
                     </ul>
                 </div>
             </nav>
@@ -74,7 +74,7 @@
             
             <!-- Add Schedule Button -->
             <div class="text-center mt-4">
-                <button class="btn btn-pink">Thêm Lịch Trình</button>
+                <button class="btn btn-pink">Thêm lịch trình</button>
             </div>
         </div>
     </main>

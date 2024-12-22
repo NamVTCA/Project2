@@ -10,7 +10,6 @@ class dentail_facilities extends Model
     use HasFactory;
         protected $fillable = [
         'name',
-        'status',
         'total_id',
         'quantity'
     ];

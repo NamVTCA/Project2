@@ -24,7 +24,7 @@
             <h5>Chi Tiết Cơ Sở Vật Chất</h5>
             <ul>
                 @foreach($total->dentail as $dentail)
-                    <li>{{ $dentail->name }} - Số lượng: {{ $dentail->quantity }} - Trạng thái: {{ $dentail->status }}</li>
+                    <li>{{ $dentail->name }} - Số lượng: {{ $dentail->quantity }}</li>
                 @endforeach
             </ul>
         </div>
