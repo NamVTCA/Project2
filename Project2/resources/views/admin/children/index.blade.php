@@ -66,6 +66,7 @@
                         <div class="mb-3">
                             <label for="file" class="form-label">Chọn tệp Excel</label>
                             <input type="file" class="form-control" id="file" name="file" accept=".xlsx, .xls" required>
+                            
                         </div>
                         <button type="submit" class="btn btn-primary">Nhập</button>
                     </form>

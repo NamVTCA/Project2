@@ -4,9 +4,9 @@
 <link rel="stylesheet" href="{{ asset('css/TimetableT.css') }}">
 <main class="timetable-container">
     <div class="back-button">
-        <a href="{{ route('admin.dashboard')}}" class="btn btn-primary">
-            <i class="fas fa-arrow-left"></i> Quay về
-        </a>
+        <div class="back-to-dashboard">
+            <button id="back-button" class="btn btn-secondary">← Quay về</button>
+        </div>
     </div>
     <h1 class="page-title">Xem Thời Khóa Biểu</h1>
     <div class="form-group">
