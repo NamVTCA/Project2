@@ -157,7 +157,7 @@ public function resetPassword(Request $request)
     }
 
     if ($codeInput != Session::get('reset_code')) {
-        return response()->json(['success' => false, 'message' => 'Mã xác nhận không hợp lệ.']);
+        return redirect()->route('showlogin')->with('message', 'Mã không tồn tại hoặt sai');
     }
 
     $user->password = Hash::make($request->input('new_password'));
