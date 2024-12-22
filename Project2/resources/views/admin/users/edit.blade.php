@@ -83,8 +83,8 @@
         <div style="margin-bottom: 15px;">
             <label for="role">Vai trò:</label>
             <select id="role" name="role" class="form-control" required>
-                <option value="1" {{ old('role', $user->role) == 1 ? 'selected' : '' }}>Giáo Viên</option>
-                <option value="2" {{ old('role', $user->role) == 2 ? 'selected' : '' }}>Phụ Huynh</option>
+                <option value="1" {{ old('role', $user->role) == 1 ? 'selected' : '' }}>Giáo viên</option>
+                <option value="2" {{ old('role', $user->role) == 2 ? 'selected' : '' }}>Phụ huynh</option>
             </select>
         </div>
 

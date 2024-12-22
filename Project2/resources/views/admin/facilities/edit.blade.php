@@ -3,7 +3,7 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/FacilitiesCreation.css') }}">
 <div class="facility-edit-page">
-    <h2>Chỉnh Sửa Cơ Sở Vật Chất</h2>
+    <h2>Chỉnh sửa cơ sở vật chất</h2>
     <div class="back-to-dashboard">
         <button id="back-button" class="btn btn-secondary">← Quay về</button>
     </div>
@@ -21,24 +21,24 @@
         @csrf
         @method('PUT')
         <div class="form-group">
-            <label for="name">Tên Cơ Sở Vật Chất:</label>
+            <label for="name">Tên cơ sở vật chất:</label>
             <input type="text" id="name" name="name" class="form-control" value="{{ old('name', $total->name) }}" required>
         </div>
 
         <div id="dentail-details">
-            <h5>Chi Tiết Cơ Sở Vật Chất</h5>
+            <h5>Chi tiết cơ sở vật chất</h5>
             @foreach($total->dentail as $index => $dentail)
                 <div class="dentail-detail" id="dentail-{{ $dentail->id }}">
                     <div class="form-group">
-                        <label for="dentail[{{ $index }}][name]">Tên Chi Tiết</label>
+                        <label for="dentail[{{ $index }}][name]">Tên chi tiết</label>
                         <input type="text" name="dentail[{{ $index }}][name]" class="form-control" value="{{ old('dentail.' . $index . '.name', $dentail->name) }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="dentail[{{ $index }}][status]">Trạng Thái</label>
+                        <label for="dentail[{{ $index }}][status]">Trạng thái</label>
                         <input type="text" name="dentail[{{ $index }}][status]" class="form-control" value="{{ old('dentail.' . $index . '.status', $dentail->status) }}" required>
                     </div>
                     <div class="form-group">
-                        <label for="dentail[{{ $index }}][quantity]">Số Lượng</label>
+                        <label for="dentail[{{ $index }}][quantity]">Số lượng</label>
                         <input type="number" name="dentail[{{ $index }}][quantity]" class="form-control" value="{{ old('dentail.' . $index . '.quantity', $dentail->quantity) }}" required>
                     </div>
                     <button type="button" class="btn btn-danger remove-dentail" data-id="{{ $dentail->id }}">Xóa</button>
@@ -48,8 +48,8 @@
 
         <input type="hidden" name="deleted_dentails" id="deleted-dentails">
 
-        <button type="button" id="add-dentail" class="btn btn-secondary">Thêm Chi Tiết</button>
-        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+        <button type="button" id="add-dentail" class="btn btn-secondary">Thêm chi tiết</button>
+        <button type="submit" class="btn btn-primary">Cập nhật</button>
     </form>
 </div>
 

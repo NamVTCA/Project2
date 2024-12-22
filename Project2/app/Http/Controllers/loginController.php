@@ -72,7 +72,7 @@ class loginController extends Controller
         }
     
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return redirect()->route('showlogin')->with('message','invalid phone or email');
+            return redirect()->route('showlogin')->with('message','Sai tài khoản hoặc mật khẩu');
         }
     Auth::login($user);
     $user = Auth::user(); 

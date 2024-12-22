@@ -19,24 +19,24 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Trang Chủ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('event')}}">Sự Kiện</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('education')}}">Giáo Dục</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('rules')}}">Nội Quy</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('feedback')}}">Phản Hồi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('event')}}">Sự kiện</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('education')}}">Giáo dục</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('rules')}}">Nội quy</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('feedback')}}">Phản hồi</a></li>
                         <li class="nav-item">
                             @if(Auth::check())
                                 <!-- Hiển thị "Đăng Xuất" nếu người dùng đã đăng nhập -->
                                 <a class="nav-link" href="{{ route('logout') }}" 
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Đăng Xuất
+                                    Đăng xuất
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                             @else
                                 <!-- Hiển thị "Đăng Nhập" nếu người dùng chưa đăng nhập -->
-                                <a class="nav-link" href="{{ route('login') }}">Đăng Nhập</a>
+                                <a class="nav-link" href="{{ route('login') }}">Đăng nhập</a>
                             @endif
                         </li>
                     </ul>
