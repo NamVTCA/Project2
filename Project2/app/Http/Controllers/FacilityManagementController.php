@@ -30,7 +30,10 @@ class FacilityManagementController extends Controller
         
         if (isset($data['dentail'])) {
             foreach ($data['dentail'] as $dentail) {
-                $total->dentail()->create($dentail);
+                $total->dentail()->create([
+                    'name' => $dentail['name'],
+                    'quantity' => $dentail['quantity'],
+                ]);
             }
         }
 
@@ -62,12 +65,18 @@ class FacilityManagementController extends Controller
                     $existingDentail = dentail_facilities::find($dentail['id']);
                     if ($existingDentail) {
                         // Cập nhật thông tin của dentail
-                        $existingDentail->update($dentail);
+                        $existingDentail->update([
+                            'name' => $dentail['name'],
+                           'quantity' => $dentail['quantity'],
+                        ]);
                         $existingDentailIds[] = $existingDentail->id;
                     }
                 } else {
                     // Thêm mới dentail facility
-                    $newDentail = $total->dentail()->create($dentail);
+                    $newDentail = $total->dentail()->create([
+                        'name' => $dentail['name'],
+                         'quantity' => $dentail['quantity'],
+                    ]);
                     $existingDentailIds[] = $newDentail->id;
                 }
             }
