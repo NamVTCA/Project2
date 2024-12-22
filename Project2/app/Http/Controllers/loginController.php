@@ -162,8 +162,7 @@ public function resetPassword(Request $request)
 
     $user->password = Hash::make($request->input('new_password'));
     $user->save();
-
-return view('forgotpassword')->with('success', 'Đổi mật khẩu thành công');
+return redirect()->route('showlogin')->with('message', 'Đổi mật khẩu thành công');
 }
 
 
