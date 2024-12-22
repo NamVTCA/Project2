@@ -3,8 +3,10 @@
 @section('content')
 <div class="tuition-create">
     <link rel="stylesheet" href="{{ asset('css/TuitionCreate.css') }}">
-    <div class="back-to-dashboard">
-        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    <div class="back-button">
+        <a href="{{ route('admin.dashboard')}}" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Quay về
+        </a>
     </div>
     <h1>Tạo Học phí</h1>
 

@@ -3,8 +3,10 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/TuitionManagement.css') }}">
 <div class="hoc-phi-container">
-    <div class="back-to-dashboard">
-        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    <div class="back-button">
+        <a href="{{ route('admin.dashboard')}}" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Quay về
+        </a>
     </div>
     <h1>Quản Lý Học Phí</h1>
 

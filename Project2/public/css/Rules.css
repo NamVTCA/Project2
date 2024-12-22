@@ -60,6 +60,60 @@ body {
     animation: fadeInUp 0.8s ease;
 }
 
+/* Tổng thể phần container */
+.container.py-5 {
+    background-color: #fea3f3; /* Màu nền nhạt */
+    border: 1px solid #ddd; /* Viền mỏng */
+    border-radius: 10px; /* Bo tròn góc */
+    padding: 30px; /* Khoảng cách nội dung */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+}
+
+/* Tiêu đề chính */
+.section-header h2 {
+    font-size: 2rem; /* Kích thước chữ lớn */
+    color: #007bff; /* Màu xanh primary */
+    margin-bottom: 20px; /* Khoảng cách dưới */
+    text-transform: uppercase; /* Chữ in hoa */
+    letter-spacing: 1px; /* Khoảng cách chữ */
+}
+
+/* Danh sách 5 điều */
+.list-group-numbered {
+    margin-top: 20px; /* Khoảng cách trên */
+    padding: 0; /* Loại bỏ padding mặc định */
+}
+
+/* Mục trong danh sách */
+.list-group-numbered .list-group-item {
+    font-size: 1.2rem; /* Kích thước chữ lớn hơn */
+    font-weight: 600; /* Đậm hơn */
+    background-color: #ffffff; /* Màu nền trắng */
+    border: 1px solid #007bff; /* Viền xanh */
+    color: #f80b0b; /* Màu chữ xám đậm */
+    margin-bottom: 10px; /* Khoảng cách giữa các mục */
+    border-radius: 5px; /* Bo góc nhẹ */
+    padding: 15px 20px; /* Khoảng cách nội dung */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Hiệu ứng hover */
+}
+
+/* Hiệu ứng khi hover */
+.list-group-numbered .list-group-item:hover {
+    background-color: #fb10db; /* Nền xanh đậm */
+    color: #fff; /* Chữ trắng */
+    transform: translateY(-3px); /* Nổi lên nhẹ */
+}
+
+/* Bo góc và căn giữa phần chính */
+.container.py-5 .list-group-numbered {
+    display: inline-block;
+    border-radius: 10px;
+    padding: 15px;
+    max-width: 600px;
+    margin: 0 auto; /* Căn giữa */
+}
+
+
 /* Hiệu ứng */
 @keyframes fadeIn {
     from {

@@ -3,8 +3,10 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/ClassroomsIndex.css') }}">
 <div class="classes-container">
-    <div class="back-to-dashboard">
-        <button id="back-button" class="btn btn-secondary">← Quay về</button>
+    <div class="back-button">
+        <a href="{{ route('admin.dashboard')}}" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Quay về
+        </a>
     </div>
     <div class="header">
         <h1>Quản lý lớp học</h1>

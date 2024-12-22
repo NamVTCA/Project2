@@ -30,12 +30,15 @@
                         <p><strong>Số Điện Thoại:</strong> {{ Auth::user()->phone }}</p>
                         <p><strong>Địa Chỉ:</strong> {{ Auth::user()->address }}</p>
                         <p><strong>Căn Cước Công Dân:</strong> {{ Auth::user()->id_number }}</p>
-                        <p><strong>Giới Tính:</strong> {{ Auth::user()->gender }}</p>
+                        <p><strong>Giới Tính:</strong> 
+                            {{ Auth::user()->gender == 'male' ? 'Nam' : (Auth::user()->gender == 'female' ? 'Nữ' : 'Không xác định') }}
+                        </p>                        
                     @else
                         <p>Không có thông tin người dùng.</p>
                     @endif
                     <div>
                         <a href="{{ route('momo') }}" class="btn btn-light btn-sm">Thanh Toán Học Phí</a>
+                        <a href="{{ route('reset.password.form') }}" class="btn btn-light btn-sm">Đổi Mật Khẩu</a>
                     </div>
                     <div>
                         <a href="{{ route('timetable.view') }}" class="btn btn-light btn-sm">Xem Lịch Học</a>

@@ -20,7 +20,9 @@
                         <p><strong>Số Điện Thoại:</strong> {{ Auth::user()->phone }}</p>
                         <p><strong>Địa Chỉ:</strong> {{ Auth::user()->address }}</p>
                         <p><strong>Căn Cước Công Dân:</strong> {{ Auth::user()->id_number }}</p>
-                        <p><strong>Giới Tính:</strong> {{ Auth::user()->gender }}</p>
+                        <p><strong>Giới Tính:</strong> 
+                            {{ Auth::user()->gender == 'male' ? 'Nam' : (Auth::user()->gender == 'female' ? 'Nữ' : 'Không xác định') }}
+                        </p>                        
                         <p><strong>Lớp Dạy:</strong> {{ Auth::user()->classroom->name }}</p>
                     @else
                         <p>Không có thông tin người dùng.</p>
@@ -38,25 +40,28 @@
                 <div class="card-body">
                     <!-- Thanh Toán Và Quản Lý Học Phí -->
                     <div class="form-group">
-                        <label for="tuitionManagement">Thanh Toán Học Phí:</label>
+                        <label for="tuitionManagement">Thanh Toán Và Đánh Giá</label>
                         <div>
                             <a href="{{ route('momo') }}" class="btn btn-light btn-sm">Thanh Toán</a>
-                        </div>
-                    </div>
-
-                    <!-- Đánh Giá -->
-                    <div class="form-group">
-                        <label for="evaluation">Đánh Giá:</label>
-                        <div>
                             <a href="{{ route('evaluate') }}" class="btn btn-light btn-sm">Đánh Giá</a>
                         </div>
                     </div>
-                    
+
                     <!-- Quản Lý Lịch Học -->
                     <div class="form-group">
-                        <label for="scheduleManagement">Trò Truyện:</label>
+                        <label for="scheduleManagement">Trò Truyện Và Đổi Mật Khẩu</label>
                         <div>
                             <a href="{{ route('teacher.chat') }}" class="btn btn-light btn-sm">Trò Chuyện</a>
+                            <a href="{{ route('reset.password.form') }}" class="btn btn-light btn-sm">Đổi Mật Khẩu</a>
+                        </div>
+                    </div>
+
+                    <!-- Quản Lý Lịch Học -->
+                    <div class="form-group">
+                        <label for="scheduleManagement">Camera</label>
+                        <div>
+                            <a href="{{ route('camcreate') }}" class="btn btn-light btn-sm">Thêm Camera</a>
+                            <a href="{{ route('cameras.index') }}" class="btn btn-light btn-sm">Xem Camera</a>
                         </div>
                     </div>
                 </div>

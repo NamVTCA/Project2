@@ -34,9 +34,9 @@
         <button type="submit" class="btn">Gửi Phản Hồi</button>
     </form>
 </div>
-@endsection
 
-{{-- @section('footer')
+
+
 <footer>
     <div class="container">
         <div class="row">
@@ -52,10 +52,16 @@
                 <p><strong>Email:</strong> <a href="mailto:truongtruongbvn@gmail.com">truongtruongbvn@gmail.com</a></p>
                 <p><strong>Phone:</strong> <a href="tel:+84123456789">+84 123 456 789</a></p>
             </div>
+            <div class="col-md-4">
+                <h6>Liên Hệ</h6>
+                <p><strong>Facebook: </strong><a href="https://www.facebook.com/vtcacademyhcm">VTCAcademy</a></p>
+                <p><strong>TikTok: </strong> <a href="https://www.tiktok.com/@vtcacademy">VTCAcademy</a></p>
+                <p><strong>Zalo:</strong> <a href="tel:+84123456789">+84 123 456 789</a></p>
+            </div>
         </div>
         <div class="text-center">
             <p>© 2024 Nursery PreSchool. All rights reserved.</p>
         </div>
     </div>
 </footer>
-@endsection --}}
+@endsection
