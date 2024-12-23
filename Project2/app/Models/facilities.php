@@ -11,9 +11,14 @@ class facilities extends Model
     protected $fillable = [
         'name',
         'classroom_id',
-        'quantity'
+        'quantity',
+        'dentail_id'
     ];
     function classrooms(){
         return $this->belongsTo(classroom::class,'classroom_id');
+    }
+    function dentail()
+    {
+        return $this->belongsTo(dentail_facilities::class, 'dentail_id');
     }
 }

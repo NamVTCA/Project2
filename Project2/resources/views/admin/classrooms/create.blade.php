@@ -54,68 +54,99 @@
 
         <div id="facility-details">
             <h5>Cơ sở vật chất</h5>
-            <button type="button" id="add-facility" class="btn btn-secondary">Thêm cơ sở vật chất</button>
+            <ul id="facility-list">
+           </ul>
         </div>
 
+       <div class="form-group">
+            <label for="add-facility-select">Thêm cơ sở vật chất:</label>
+            <div class="d-flex align-items-center">
+             <select id="add-facility-select" class="form-control" style="margin-right:10px" >
+                 <option value="">Chọn cơ sở vật chất</option>
+                   @foreach($totalFacilities as $totalFacility)
+                        <optgroup label="{{$totalFacility->name}}">
+                           @foreach($totalFacility->dentail as $dentail)
+                               <option value="{{$dentail->id}}" data-quantity="{{$dentail->quantity}}">
+                                   {{$dentail->name}} (Còn lại: {{$dentail->quantity}})
+                                </option>
+                           @endforeach
+                       </optgroup>
+                   @endforeach
+                </select>
+               <input type="number" name="quantity_add" id ="quantity-add"  class="form-control" value = "1" min = "1" style="max-width: 100px; margin-right: 10px;">
+              <button type="button" id="add-facility" class="btn btn-secondary">Thêm</button>
+           </div>
+        </div>
         <button type="submit" class="btn btn-primary">Tạo lớp</button>
     </form>
 </div>
 
-<script>
-    document.getElementById('add-facility').addEventListener('click', function () {
-        const facilityDetails = document.getElementById('facility-details');
-        const index = facilityDetails.getElementsByClassName('facility-detail').length;
-        const newDetail = `
-            <div class="facility-detail">
-                <div class="form-group">
-                    <label for="facility_details[${index}][total_id]">Cơ sở vật chất chung</label>
-                    <select name="facility_details[${index}][total_id]" class="form-control total-select" data-index="${index}" required>
-                        <option value="">Chọn cơ sở vật chất</option>
-                        @foreach($totalFacilities as $total)
-                            <option value="{{ $total->id }}">{{ $total->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="facility_details[${index}][dentail_id]">Chi tiết cơ sở vật chất</label>
-                    <select name="facility_details[${index}][dentail_id]" class="form-control dentail-select" id="dentail-select-${index}" required>
-                        <option value="">Chọn chi tiết cơ sở vật chất</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="facility_details[${index}][quantity]">Số lượng</label>
-                    <input type="number" name="facility_details[${index}][quantity]" class="form-control" required>
-                </div>
-                <button type="button" class="btn btn-danger remove-facility">Xóa</button>
-            </div>
-        `;
-        facilityDetails.insertAdjacentHTML('beforeend', newDetail);
-    });
+ <script>
+    let facilities = @json($totalFacilities);
 
-    document.addEventListener('change', function (e) {
-        if (e.target && e.target.classList.contains('total-select')) {
-            const index = e.target.getAttribute('data-index');
-            const totalId = e.target.value;
+      document.addEventListener('click', function (e) {
+          if (e.target && e.target.classList.contains('remove-facility')) {
+               const facilityName = e.target.getAttribute('data-name');
+               const facilityQuantity = e.target.getAttribute('data-quantity');
+                const dentail_id = e.target.getAttribute('data-dentail_id');
+              document.querySelectorAll('#add-facility-select option').forEach(option => {
+                       if (option.value == dentail_id)
+                         option.dataset.quantity = parseInt(option.dataset.quantity) + parseInt(facilityQuantity)
+                       option.text = `${option.text.split(' (')[0]} (Còn lại: ${option.dataset.quantity})`;
+                   })
+                  e.target.parentElement.remove();
+           }
+      });
 
-            // Fetch the related dentail_facilities
-            fetch(`/api/get-dentails/${totalId}`)
-                .then(response => response.json())
-                .then(data => {
-                    let options = '<option value="">Chọn chi tiết cơ sở vật chất</option>';
-                    data.forEach(dentail => {
-                        options += `<option value="${dentail.id}">${dentail.name} (Còn lại: ${dentail.quantity})</option>`;
-                    });
-                    document.getElementById(`dentail-select-${index}`).innerHTML = options;
+  document.getElementById('add-facility').addEventListener('click', function() {
+      const dentailId = document.getElementById('add-facility-select').value;
+        const quantity = parseInt(document.getElementById('quantity-add').value);
+         const dentailSelect = document.getElementById('add-facility-select')
+        const dentailOption = dentailSelect.selectedOptions[0];
+
+          if (dentailId && quantity > 0)
+                {
+                     let availableQuantity = parseInt(dentailOption.dataset.quantity);
+                     const facilityDetails = document.getElementById('facility-details');
+                       let existingFacility = facilityDetails.querySelector(`li[data-dentail-id="${dentailId}"]`);
+
+                        if (existingFacility) {
+                            let currentQuantity = parseInt(existingFacility.querySelector('.quantity').textContent);
+                            let newQuantity = currentQuantity + quantity;
+
+                              if (newQuantity > availableQuantity + currentQuantity) {
+                                  alert('Số lượng vượt quá số lượng cho phép!');
+                                  return;
+                               }
+                             existingFacility.querySelector('.quantity').textContent = newQuantity;
+                           existingFacility.querySelector('input[name^="facility_details"]').value = newQuantity;
+                             existingFacility.querySelector('button').dataset.quantity = newQuantity;
+                             existingFacility.querySelectorAll('input[type="hidden"]').forEach(input => {
+                                if (input.name.endsWith('[quantity]')) {
+                                     input.value = newQuantity;
+                                  }
+                           });
+                       }
+
+                         else {
+                            if (quantity > availableQuantity) {
+                                 alert('Số lượng vượt quá số lượng cho phép!');
+                                return;
+                           }
+                           const newDetail = `
+                                <li data-dentail-id="${dentailId}">
+                                     Cơ sở vật chất: ${dentailOption.text.split(' (')[0]} - Số lượng: <span class="quantity">${quantity}</span>
+                                   <button type="button" class="btn btn-danger remove-facility" data-name="${dentailOption.text.split(' (')[0]}" data-dentail_id ="${dentailId}" data-quantity="${quantity}">Xóa</button>
+                                   <input type="hidden" name="facility_details[${dentailId}][dentail_id]" value = "${dentailId}">
+                                   <input type="hidden" name="facility_details[${dentailId}][quantity]" value = "${quantity}">
+                                 </li>
+                             `;
+                            facilityDetails.querySelector('ul').insertAdjacentHTML('beforeend', newDetail);
+                        }
+                             dentailOption.dataset.quantity = availableQuantity - quantity;
+                           dentailOption.text = `${dentailOption.text.split(' (')[0]} (Còn lại: ${dentailOption.dataset.quantity})`;
+                    }
                 });
-        }
-    });
-
-    document.addEventListener('click', function (e) {
-        if (e.target && e.target.classList.contains('remove-facility')) {
-            e.target.parentElement.remove();
-        }
-    });
-
             // Nút quay về
             document.getElementById('back-button').addEventListener('click', function () {
             window.history.back();
