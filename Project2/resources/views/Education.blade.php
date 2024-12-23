@@ -214,6 +214,9 @@ function toggleDetails() {
         details.classList.remove('expanded');
         button.innerHTML = 'Tìm Hiểu Thêm';
     }
+
+    // Smooth scroll animation
+    details.scrollIntoView({ behavior: 'smooth' });
 }
 </script>
 @endsection
