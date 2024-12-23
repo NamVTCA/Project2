@@ -61,6 +61,15 @@
             </div>
         </div>
     </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm bg-gradient-pink text-white text-center">
+            <div class="card-body">
+                <h5 class="card-title"> Camera</h5>
+                <p class="card-text">Thêm và xem camera.</p>
+                <a href="{{ route('camcreate') }}" class="btn btn-light btn-sm">Đi tới</a>
+            </div>
+        </div>
+    </div>
 
     {{-- <div class="row mt-4">
         <!-- Biểu đồ hoặc bảng -->
@@ -114,8 +123,6 @@
         @endfor
     </select>
     <button type="submit" class="btn btn-primary">Lọc</button>
-    <a href="{{ route('camcreate') }}" class="btn btn-light btn-sm">Thêm Camera</a>
-    <a href="{{ route('cameras.index') }}" class="btn btn-light btn-sm">Xem Camera</a>
 </form>
 
 <div class="row mt-4">

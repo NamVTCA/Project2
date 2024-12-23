@@ -1,3 +1,4 @@
+/* Base styles */
 .account-management body {
     font-family: Arial, sans-serif;
     background-color: #fff5f7;
@@ -144,8 +145,9 @@
     }
 
     .account-management .account-table {
-        font-size: 12px;
+        display: block;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .account-management .account-table th, 
@@ -166,52 +168,6 @@
 }
 
 /* Pagination styling */
-.pagination {
-    display: inline-flex;
-    padding-left: 0;
-    list-style: none;
-    border-radius: 0; /* Loại bỏ border-radius mặc định */
-}
-
-.pagination li {
-    margin: 0; /* Loại bỏ margin mặc định */
-    border: 1px solid #dee2e6; /* Thêm border cho tất cả các nút */
-}
-
-.pagination li a,
-.pagination li span {
-    position: relative;
-    display: block;
-    padding: 0.5rem 0.75rem;
-    color: #007bff; /* Màu chữ */
-    background-color: #fff; /* Màu nền */
-    text-decoration: none;
-    border: none; /* Loại bỏ border mặc định */
-}
-
-.pagination li.active span {
-    z-index: 3;
-    color: #fff; /* Màu chữ trang hiện tại */
-    background-color: #007bff; /* Màu nền trang hiện tại */
-    border-color: transparent; /* Loại bỏ border khi active */
-    cursor: default;
-}
-
-.pagination li.disabled span {
-    color: #6c757d;
-    pointer-events: none;
-    cursor: auto;
-    background-color: #fff;
-    border-color: transparent; /* Loại bỏ border khi disabled */
-}
-
-.pagination li a:hover {
-    z-index: 2;
-    color: #0056b3;
-    text-decoration: none;
-    background-color: #e9ecef; /* Màu nền khi hover */
-    border-color: transparent; /* Loại bỏ border khi hover */
-}
 .pagination {
     display: flex;
     justify-content: center;
@@ -252,4 +208,84 @@
     color: #ccc;
     border-color: #ddd;
     pointer-events: none;
+}
+
+@media (max-width: 480px) {
+    .pagination {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .pagination li {
+        margin: 0;
+        flex: 1 1 auto;
+    }
+}
+
+.account-management .search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.account-management .search-form .input-group {
+    max-width: 500px;
+    width: 100%;
+}
+
+.account-management .search-form input[type="text"] {
+    height: 40px;
+    font-size: 14px;
+    padding: 5px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+}
+
+.account-management .search-form button {
+    height: 40px;
+    font-size: 14px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    background-color: #ff5c8d;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.account-management .search-form button:hover {
+    background-color: #d94472;
+}
+
+@media (max-width: 768px) {
+    .account-management .search-form .input-group {
+        max-width: 100%;
+    }
+
+    .account-management .search-form input[type="text"] {
+        font-size: 12px;
+    }
+
+    .account-management .search-form button {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .account-management .search-form {
+        flex-direction: column;
+    }
+
+    .account-management .search-form input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+        border-radius: 20px;
+    }
+
+    .account-management .search-form button {
+        width: 100%;
+        border-radius: 20px;
+    }
 }

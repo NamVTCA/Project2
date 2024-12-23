@@ -11,15 +11,6 @@
             <i class="fas fa-arrow-left"></i> Quay về
         </a>
     </div>
-    @if($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
     <form action="{{ route('admin.users.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -59,8 +50,7 @@
         <div style="margin-bottom: 15px; position: relative;">
             <label for="password">Mật khẩu:</label>
             <input type="password" id="password" name="password" class="form-control" required>
-            <span id="toggle-password" style="position: absolute; top: 50%; right: 10px; transform: translateY(-50%); cursor: pointer;">
-                👁️
+            <span id="toggle-password" class="toggle-password">👁️</span>
             </span>
             @error('password')
                 <span class="invalid-feedback">{{ $message }}</span>

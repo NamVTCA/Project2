@@ -39,6 +39,14 @@
         </select>
     </form>
 
+    <form action="{{ route('admin.users.index') }}" method="GET" class="search-form">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Tìm kiếm..." value="{{ request('search') }}">
+            <button type="submit" class="btn">Tìm kiếm</button>
+        </div>
+    </form>
+    
+
     <table class="table table-bordered">
         <thead class="thead-dark">
             <tr>

@@ -10,14 +10,7 @@
         {{ $errors->first() }}
     </div>
 @endif
-@if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif 
-    @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+
     <div class="logo">
         <img src="{{ asset('img/Login.png') }}" alt="Nursery PreSchool">
         <h1>NURSERY PRESCHOOL</h1>
@@ -41,16 +34,11 @@
 
         <label for="new-password">Mật khẩu mới</label>
         <input type="password" id="new_password" name="new_password" placeholder="Nhập mật khẩu mới" required>
-        @error('new_password')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror
+       
 
         <label for="confirm-password">Nhập lại Mật khẩu mới</label>
         <input type="password" id="confirm_password" name="confirm_password" placeholder="Nhập lại mật khẩu mới" required>
-        @error('confirm_password')
-            <span class="text-danger">{{ $message }}</span>
-        @enderror
-
+      
         <button type="submit" class="reset-password-btn">Đặt lại mật khẩu</button>
         
         <div id="resetMessage"></div>

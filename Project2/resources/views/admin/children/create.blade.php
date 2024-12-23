@@ -15,7 +15,7 @@
         <div style="margin-bottom: 15px;">
             <label>Tên:</label>
             <input type="text" name="name" value="{{ old('name') }}" required pattern="^[\p{L}\s]+$" title="Tên chỉ được chứa chữ cái và khoảng trắng" oninput="validateName(this)">
-            <span class="error-message" style="color: red; display: none;">Vui lòng nhập tên hợp lệ (chỉ chứa chữ cái và khoảng trắng).</span>
+            <span class="error-message" style="color: rgb(255, 255, 255); display: none;">Vui lòng nhập tên hợp lệ (chỉ chứa chữ cái và khoảng trắng).</span>
         </div>
 
         <div style="margin-bottom: 15px;">
