@@ -8,14 +8,6 @@
     <h1>Quản lý tài khoản</h1>
 
     <div class="actions mb-3">
-        <form action="{{ route('admin.users.index') }}" method="GET" class="form-inline">
-            <div class="input-group">
-                <input type="text" name="search" class="form-control" placeholder="Tìm kiếm..." value="{{ request('search') }}">
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-                </div>
-            </div>
-        </form>
         <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 Thêm tài khoản
@@ -46,6 +38,14 @@
             <option value="2" {{ request('role') == '2' ? 'selected' : '' }}>Phụ huynh</option>
         </select>
     </form>
+
+    <form action="{{ route('admin.users.index') }}" method="GET" class="search-form">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" placeholder="Tìm kiếm..." value="{{ request('search') }}">
+            <button type="submit" class="btn">Tìm kiếm</button>
+        </div>
+    </form>
+    
 
     <table class="table table-bordered">
         <thead class="thead-dark">

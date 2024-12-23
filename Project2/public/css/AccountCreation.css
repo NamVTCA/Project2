@@ -1,4 +1,4 @@
-/* Reset CSS cho phần Tạo người dùng mới */
+/* Reset CSS */
 .user-creation-section * {
     margin: 0;
     padding: 0;
@@ -7,13 +7,13 @@
 }
 
 /* Container chính */
-.user-creation-section .container {
-    max-width: auto;
+.user-creation-section {
+    max-width: 800px;
     margin: 50px auto;
     padding: 30px;
-    background: #f1d1e1;
+    background: #ffbaf2;
     border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -29,7 +29,7 @@
 
 .user-creation-section h2::after {
     content: '';
-    width: 50px;
+    width: 60px;
     height: 3px;
     background-color: #efade9;
     display: block;
@@ -37,94 +37,127 @@
     border-radius: 5px;
 }
 
-/* Phần tải ảnh */
-.user-creation-section .upload-area {
-    width: 140px;
-    height: 186.67px; /* Chiều cao để giữ tỷ lệ 3:4 */
-    border: 2px dashed #d6336c;
-    border-radius: 10px;
-    display: flex;
+/* Nút quay về */
+.user-creation-section .back-button a {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    color: #d6336c;
-    font-size: 16px;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
-.user-creation-section .upload-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.user-creation-section .upload-buttons .confirm-btn {
+    padding: 10px 20px;
     background-color: #ff69b4;
-    color: white;
-    padding: 8px;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-bottom: 20px;
+}
+
+.user-creation-section .back-button a:hover {
+    background-color: #d6336c;
+    transform: scale(1.05);
+}
+
+/* Phần thông báo lỗi */
+.user-creation-section .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Phần tải ảnh đại diện */
+.user-creation-section .form-group img {
+    max-width: 200px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.user-creation-section .form-group input[type="file"] {
+    padding: 5px;
     font-size: 14px;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
 }
 
-.user-creation-section .upload-buttons .cancel-btn {
-    background-color: #ced4da;
-    color: black;
-    padding: 8px;
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* Phần nhập liệu */
-.user-creation-section .form-fields label {
-    font-size: 20px;
-    color: #6c757d;
+/* Các trường nhập liệu */
+.user-creation-section .form-group label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
     margin-bottom: 8px;
     display: block;
 }
 
-.user-creation-section .form-fields input {
+.user-creation-section .form-group input,
+.user-creation-section .form-group select {
     width: 100%;
     padding: 12px;
-    margin-bottom: 20px;
     border: 1px solid #ced4da;
-    border-radius: 6px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-/* Button tạo tài khoản */
-.user-creation-section .account-creation-btn {
+.user-creation-section .form-group input:focus,
+.user-creation-section .form-group select:focus {
+    border-color: #ff69b4;
+    box-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+}
+
+/* Hiển thị lỗi nhập liệu */
+.user-creation-section .invalid-feedback {
+    color: #e63946;
+    font-size: 13px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+/* Nút tạo tài khoản */
+.user-creation-section button[type="submit"] {
     width: 100%;
-    padding: 12px;
-    background-color: #ff69b4;
-    color: #fff;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 10px;
-}
-
-.user-creation-section .account-creation-btn:hover {
-    background-color: #d6336c;
-}
-
-.user-creation-section .btn-primary {
-    width: 100%; /* Đảm bảo nút đầy chiều ngang nếu cần */
     padding: 12px;
     font-size: 16px;
     font-weight: bold;
     background-color: #ff69b4;
+    color: #fff;
     border: none;
-    border-radius: 6px; /* Tăng độ bo góc */
+    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s ease;
 }
 
-.user-creation-section .btn-primary:hover {
-    background-color: #d6336c; /* Màu hover */
-    transform: scale(1.05); /* Hiệu ứng hover mở rộng */
+.user-creation-section button[type="submit"]:hover {
+    background-color: #d6336c;
+    transform: scale(1.05);
 }
+
+/* Hiệu ứng fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Toggle mật khẩu */
+.toggle-password {
+    position: absolute;
+    top: 75%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px; /* Điều chỉnh kích thước nếu cần */
+    color: #6c757d; /* Màu mặc định */
+    transition: color 0.3s ease-in-out;
+}
+
+.toggle-password:hover {
+    color: #ff69b4; /* Đổi màu khi hover */
+}
+

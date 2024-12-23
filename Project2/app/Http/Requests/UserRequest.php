@@ -14,12 +14,19 @@ class UserRequest extends FormRequest
 
     public function rules()
     {
+        $userId = $this->route('user');
+
         return [
-            'name' => [ 'string', 'max:255', 'regex:/^[\pL\s]+$/u'],
-            'email' => ['required', 'email', 'max:255', 
-                Rule::unique('users')->ignore($this->user)],
+            'name' => ['string', 'max:255', 'regex:/^[\pL\s]+$/u'],
+            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($userId)],
             'password' => $this->isMethod('post') ? 'required|min:6' : 'nullable|min:6',
-            'id_number' => ['required', 'regex:/^[0-9\s]+$/', 'max:12, `min:9'],
+            'id_number' => [
+                'required',
+                'regex:/^[0-9\s]+$/',
+                'max:12',
+                'min:9',
+                Rule::unique('users')->ignore($userId)
+            ],
             'address' => 'required|string|max:255',
             'role' => 'required|integer|in:0,1,2',
             'status' => 'required|integer|in:0,1',
@@ -41,6 +48,7 @@ class UserRequest extends FormRequest
             'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự',
             'id_number.required' => 'Vui lòng nhập số CMND/CCCD',
             'id_number.regex' => 'CMND/CCCD chỉ được chứa số và khoảng trắng',
+            'id_number.unique' => 'Số CMND/CCCD đã tồn tại.',
             'address.required' => 'Vui lòng nhập địa chỉ',
             'role.required' => 'Vui lòng chọn vai trò',
             'role.in' => 'Vai trò không hợp lệ',
