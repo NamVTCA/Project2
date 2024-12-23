@@ -100,10 +100,13 @@ body {
 }
 
 .card-img-top {
-    width: 100%;
-    height: 250px;
-    object-fit: cover; /* Cắt hình vừa khung */
+    width: 100%; /* Ảnh chiếm toàn bộ chiều rộng khung */
+    height: 500px; /* Chiều cao cố định */
+    object-fit: cover; /* Cắt ảnh để vừa khít khung */
+    background-color: #f0f0f0; /* Màu nền xám nhạt nếu ảnh không lấp đầy khung */
+    border-bottom: 2px solid #ff69b4; /* Đường viền trang trí */
 }
+
 
 .card-body {
     text-align: center;
@@ -148,8 +151,6 @@ body {
         font-size: 2rem;
     }
 }
-
-
 
 /* Nút "Quay về" */
 #back-button {

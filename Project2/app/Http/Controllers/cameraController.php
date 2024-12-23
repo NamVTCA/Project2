@@ -11,6 +11,12 @@ class cameraController extends Controller
     $cameras = cam::all();
     return view('camdemo.cam', compact('cameras'));
 }
+
+public function indexUser() {
+    $cameras = cam::all();
+    return view('camdemo.camuser', compact('cameras'));
+}
+
  public function create()
     {
         return view('camdemo.create');
