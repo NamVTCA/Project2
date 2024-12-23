@@ -13,19 +13,29 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class UserAccountController extends Controller
 {
-    public function index(Request $request) // Thêm Request $request để lấy dữ liệu từ form lọc
+    public function index(Request $request)
     {
-        $query = User::where('role', '!=', 0); // Bắt đầu truy vấn với điều kiện role != 0
-    
-        // Lọc theo vai trò nếu có
-        if ($request->has('role') && $request->role !== null) {
-            $query->where('role', $request->role);
+        $query = User::where('role', '!=', 0); // Mặc định lấy user có role != 0
+
+        // Tìm kiếm (nếu có)
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orWhere('id_number', 'like', '%' . $search . '%')
+                    ->orWhere('phone', 'like', '%' . $search . '%');
+            });
         }
-    
-        // Phân trang
-        $accounts = $query->paginate(10);
-    
-        // Trả về view với dữ liệu
+
+        // Lọc theo role (nếu có)
+        if ($request->filled('role')) {
+            $query->where('role', $request->input('role'));
+        }
+
+        // Phân trang và giữ lại tham số search và role trên URL
+        $accounts = $query->paginate(10)->appends($request->query());
+
         return view('admin.users.index', compact('accounts'));
     }
     

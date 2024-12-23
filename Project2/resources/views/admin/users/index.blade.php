@@ -8,6 +8,14 @@
     <h1>Quản lý tài khoản</h1>
 
     <div class="actions mb-3">
+        <form action="{{ route('admin.users.index') }}" method="GET" class="form-inline">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Tìm kiếm..." value="{{ request('search') }}">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                </div>
+            </div>
+        </form>
         <div class="btn-group">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 Thêm tài khoản
