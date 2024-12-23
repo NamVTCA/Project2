@@ -77,6 +77,11 @@
             <a href="{{ route('timetable.view') }}" class="btn btn-light btn-sm">Xem Lịch Học</a>
             <a href="{{ route('timetable.manage') }}" class="btn btn-light btn-sm">Xem Học Kỳ</a>
         </form>
+        @if (session('message'))
+            <div class="alert alert-success mt-2">
+                {{ session('message') }}
+            </div>
+        @endif
     </div>
 </main>
 
