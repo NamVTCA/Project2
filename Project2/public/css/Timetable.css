@@ -188,7 +188,7 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-    border-color: #2575fc;
+    border-color: #f530db;
     box-shadow: 0 0 5px rgba(37, 117, 252, 0.4);
 }
 
@@ -200,7 +200,7 @@ table {
 }
 
 thead th {
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background: linear-gradient(135deg, #fe80de, #fc25bf);
     color: #fff;
     font-weight: bold;
     text-transform: uppercase;
@@ -245,8 +245,8 @@ tbody td input {
 }
 
 tbody td input:focus {
-    border-color: #2575fc;
-    box-shadow: 0 0 5px rgba(37, 117, 252, 0.4);
+    border-color: #fb7af9;
+    box-shadow: 0 0 5px rgba(244, 128, 219, 0.4);
 }
 
 /* Nút Lưu */
@@ -265,7 +265,7 @@ tbody td input:focus {
 }
 
 .save-btn:hover {
-    background-color: #1d5ec2;
+    background-color: #ee14ca;
 }
 
 /* Nút Xem Lịch Học */

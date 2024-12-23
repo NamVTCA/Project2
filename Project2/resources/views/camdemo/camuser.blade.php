@@ -24,16 +24,8 @@
             <!-- Hiển thị video -->
             <div class="camera-stream">
                 <iframe src="{{ $camera->stream_url }}" frameborder="0" allowfullscreen></iframe>
-            </div>
-        
-            <!-- Nút hành động -->
-            <div class="camera-actions">
-                <form action="{{ route('camera.delete', $camera->id) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa camera này không?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Xóa</button>
-                    <a href="{{ $camera->stream_url }}" target="_blank" class="btn btn-primary">Xem Toàn Bộ</a>
-                </form>
+            </div>     
+                <a href="{{ $camera->stream_url }}" target="_blank" class="btn btn-primary">Xem Toàn Bộ</a>
             </div>
         </div>
         @endforeach

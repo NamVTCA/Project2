@@ -43,7 +43,7 @@
                     <div>
                         <a href="{{ route('timetable.view') }}" class="btn btn-light btn-sm">Xem Lịch Học</a>
                         <a href="{{ route('parent.chat') }}" class="btn btn-light btn-sm">Trò Chuyện</a>
-                        <a href="{{ route('cameras.index') }}" class="btn btn-light btn-sm">Xem Camera</a>
+                        <a href="{{ route('cameras.indexUser') }}" class="btn btn-light btn-sm">Xem Camera</a>
                     </div>
                 </div>
             </div>
