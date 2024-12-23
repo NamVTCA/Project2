@@ -31,6 +31,30 @@
     </div>
 </div>
 
+<style>
+.message {
+    display: flex;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.message-right {
+    background-color: #d1f0ff; /* Màu xanh */
+    align-self: flex-end;
+    margin-left: auto;
+    text-align: right;
+}
+
+.message-left {
+    background-color: #f0f0f0; /* Màu xám */
+    align-self: flex-start;
+    text-align: left;
+}
+</style>
+
 <script>
 let lastMessageId = 0;
 
@@ -52,8 +76,15 @@ function startPolling(receiverId) {
             if (messages.length > 0) {
                 const messagesDiv = document.querySelector('#chat-box #messages');
                 messages.forEach(msg => {
-                    const p = document.createElement('p');
-                    p.textContent = msg.sender_id === {{ auth()->id() }} ? `Bạn: ${msg.message}` : `Giáo Viên: ${msg.message}`;
+                    const p = document.createElement('div');
+                    p.classList.add('message');
+                    if (msg.sender_id === {{ auth()->id() }}) {
+                        p.classList.add('message-right'); // Tin nhắn của bạn
+                        p.textContent = `Bạn: ${msg.message}`;
+                    } else {
+                        p.classList.add('message-left'); // Tin nhắn của người khác
+                        p.textContent = `Người gửi: ${msg.message}`;
+                    }
                     messagesDiv.appendChild(p);
                     lastMessageId = msg.id; // Cập nhật ID tin nhắn cuối cùng
                 });
@@ -74,7 +105,6 @@ function openChat(receiverId, receiverName) {
     startPolling(receiverId);
 }
 
-
 function fetchChatHistory(receiverId) {
     fetch(`/chat-history/${receiverId}`)
         .then(response => {
@@ -85,8 +115,15 @@ function fetchChatHistory(receiverId) {
             const messagesDiv = document.querySelector('#chat-box #messages');
             messagesDiv.innerHTML = '';
             messages.forEach(msg => {
-                const p = document.createElement('p');
-                p.textContent = msg.sender_id === {{ auth()->id() }} ? `Bạn: ${msg.message}` : `Người gửi: ${msg.message}`;
+                const p = document.createElement('div');
+                p.classList.add('message');
+                if (msg.sender_id === {{ auth()->id() }}) {
+                    p.classList.add('message-right'); // Tin nhắn của bạn
+                    p.textContent = `Bạn: ${msg.message}`;
+                } else {
+                    p.classList.add('message-left'); // Tin nhắn của người khác
+                    p.textContent = `Người gửi: ${msg.message}`;
+                }
                 messagesDiv.appendChild(p);
                 lastMessageId = msg.id; // Ghi nhận tin nhắn cuối cùng
             });
@@ -95,36 +132,34 @@ function fetchChatHistory(receiverId) {
         .catch(error => alert(error.message));
 }
 
-
 document.getElementById('chat-form').addEventListener('submit', function (e) {
     e.preventDefault();
     const receiverId = document.getElementById('receiver_id').value;
     const message = document.getElementById('message').value;
 
-   fetch('/send-message', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-        'X-CSRF-TOKEN': '{{ csrf_token() }}'
-    },
-    body: JSON.stringify({ receiver_id: receiverId, message })
-})
-.then(response => {
-    if (!response.ok) throw new Error('Không thể gửi tin nhắn');
-    return response.json();
-})
-.then(() => {
-    fetchChatHistory(receiverId);
-    document.getElementById('message').value = '';
-})
-.catch(error => alert(error.message));
-
+    fetch('/send-message', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({ receiver_id: receiverId, message })
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Không thể gửi tin nhắn');
+        return response.json();
+    })
+    .then(() => {
+        fetchChatHistory(receiverId);
+        document.getElementById('message').value = '';
+    })
+    .catch(error => alert(error.message));
 });
 
-
-        // Nút quay về
-        document.getElementById('back-button').addEventListener('click', function () {
-            window.history.back();
-        });
+// Nút quay về
+document.getElementById('back-button').addEventListener('click', function () {
+    window.history.back();
+});
 </script>
+
 
