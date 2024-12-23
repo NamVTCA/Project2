@@ -16,10 +16,16 @@
                 <!-- Event Card 1: Teacher's Day -->
                 <div class="event-card animate__animated animate__fadeInUp">
                     <div class="event-header">
-                        <div class="swiper mySwiper">
+                        <div class="swiper swiper1">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <img src="{{ asset('img/womenday1.jpg') }}" alt="Teacher's Day">
+                                    <img src="{{ asset('img/event11.jpg') }}" alt="Teacher's Day">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('img/event12.jpg') }}" alt="Teacher's Day 2">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('img/event13.jpg') }}" alt="Teacher's Day 3">
                                 </div>
                             </div>
                             <div class="swiper-pagination"></div>
@@ -39,10 +45,16 @@
                 <!-- Event Card 2: Vietnamese Women's Day -->
                 <div class="event-card animate__animated animate__fadeInUp" data-wow-delay="0.2s">
                     <div class="event-header">
-                        <div class="swiper mySwiper">
+                        <div class="swiper swiper2">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <img src="{{ asset('img/womenday2.jpg') }}" alt="Vietnamese Women's Day">
+                                    <img src="{{ asset('img/event21.jpg') }}" alt="Vietnamese Women's Day">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('img/event22.jpg') }}" alt="Vietnamese Women's Day 2">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('img/event23.jpg') }}" alt="Vietnamese Women's Day 3">
                                 </div>
                             </div>
                             <div class="swiper-pagination"></div>
@@ -62,10 +74,16 @@
                 <!-- Event Card 3: New Year -->
                 <div class="event-card animate__animated animate__fadeInUp" data-wow-delay="0.4s">
                     <div class="event-header">
-                        <div class="swiper mySwiper">
+                        <div class="swiper swiper3">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <img src="{{ asset('img/newyear.jpg') }}" alt="New Year Celebration">
+                                    <img src="{{ asset('img/event31.jpg') }}" alt="New Year Celebration">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('img/event32.jpg') }}" alt="New Year Celebration 2">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('img/event33.jpg') }}" alt="New Year Celebration 3">
                                 </div>
                             </div>
                             <div class="swiper-pagination"></div>
@@ -78,7 +96,7 @@
                         <h3>Tết Dương Lịch</h3>
                         <p class="event-description">
                             Tết Dương Lịch, hay còn gọi là Ngày đầu năm mới (1/1), là dịp để mọi người trên khắp thế giới cùng nhau chào đón một năm mới với nhiều hy vọng và ước mơ. Đây là thời điểm để mọi người sum vầy bên gia đình, bạn bè, và gửi đến nhau những lời chúc tốt đẹp
-Trong không khí Tết, món ăn không thể thiếu chính là bánh chưng. Để giáo dục trẻ về truyền thống văn hóa, cô giáo sẽ tổ chức hoạt động dạy các bé gói bánh chưng
+                            Trong không khí Tết, món ăn không thể thiếu chính là bánh chưng. Để giáo dục trẻ về truyền thống văn hóa, cô giáo sẽ tổ chức hoạt động dạy các bé gói bánh chưng
                         </p>
                     </div>
                 </div>
@@ -86,10 +104,16 @@ Trong không khí Tết, món ăn không thể thiếu chính là bánh chưng. 
                 <!-- Event Card 4: Mid-Autumn Festival -->
                 <div class="event-card animate__animated animate__fadeInUp" data-wow-delay="0.6s">
                     <div class="event-header">
-                        <div class="swiper mySwiper">
+                        <div class="swiper swiper4">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <img src="{{ asset('img/trungthu.jpg') }}" alt="Mid-Autumn Festival">
+                                    <img src="{{ asset('img/event41.jpg') }}" alt="Mid-Autumn Festival">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('img/event42.jpg') }}" alt="Mid-Autumn Festival 2">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('img/event43.jpg') }}" alt="Mid-Autumn Festival 3">
                                 </div>
                             </div>
                             <div class="swiper-pagination"></div>
@@ -109,10 +133,16 @@ Trong không khí Tết, món ăn không thể thiếu chính là bánh chưng. 
                 <!-- Event Card 5: Children's Day -->
                 <div class="event-card animate__animated animate__fadeInUp" data-wow-delay="0.8s">
                     <div class="event-header">
-                        <div class="swiper mySwiper">
+                        <div class="swiper swiper5">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <img src="{{ asset('img/sport.jpg') }}" alt="Children's Day">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('img/sport2.jpg') }}" alt="Children's Day 2">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('img/sport3.jpg') }}" alt="Children's Day 3">
                                 </div>
                             </div>
                             <div class="swiper-pagination"></div>
@@ -124,30 +154,9 @@ Trong không khí Tết, món ăn không thể thiếu chính là bánh chưng. 
                         <div class="event-date">27/03 hằng năm</div>
                         <h3>Ngày Thể Thao Việt Nam</h3>
                         <p class="event-description">
-                            Ngày Thể Thao Việt Nam được tổ chức nhằm khuyến khích phong trào thể dục thể thao trong cộng đồng. Đây là dịp để mọi người, đặc biệt là trẻ em và phụ huynh, cùng nhau tham gia các hoạt động thể thao bổ ích và vui vẻ
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Event Card 6: National Day -->
-                <div class="event-card animate__animated animate__fadeInUp" data-wow-delay="1s">
-                    <div class="event-header">
-                        <div class="swiper mySwiper">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="{{ asset('img/nationalday.jpg') }}" alt="National Day">
-                                </div>
-                            </div>
-                            <div class="swiper-pagination"></div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"></div>
-                        </div>
-                    </div>
-                    <div class="event-content">
-                        <div class="event-date">14/0202 hằng năm</div>
-                        <h3>Ngày Hội Văn Hóa</h3>
-                        <p class="event-description">
-                            Ngày hội văn hóa dân tộc là một sự kiện đặc biệt nhằm giới thiệu và tôn vinh các giá trị văn hóa phong phú của các dân tộc trong nước. Sự kiện này không chỉ mang đến cho trẻ em những trải nghiệm thú vị mà còn giúp các em hiểu rõ hơn về bản sắc văn hóa dân tộc của quê hương
+                            Ngày hội thể thao là dịp để các bé cùng gia đình tham gia các hoạt động vận động, rèn luyện sức khỏe. 
+                            Các trò chơi được thiết kế phù hợp với lứa tuổi, tạo không khí vui tươi, sôi động và gắn kết tình cảm 
+                            gia đình. Qua đó, các bé được phát triển kỹ năng vận động và tinh thần đồng đội.
                         </p>
                     </div>
                 </div>
@@ -156,53 +165,78 @@ Trong không khí Tết, món ăn không thể thiếu chính là bánh chưng. 
     </section>
 </div>
 
-@endsection
-
-@section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const swipers = document.querySelectorAll('.mySwiper');
-        swipers.forEach(swiperElement => {
-            new Swiper(swiperElement, {
-                slidesPerView: 1,
-                spaceBetween: 30,
-                loop: true,
-                autoplay: {
-                    delay: 3000,
-                    disableOnInteraction: false,
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                effect: 'fade',
-                fadeEffect: {
-                    crossFade: true
-                }
-            });
-        });
+    // Khởi tạo Swiper cho từng phần swiper riêng biệt
+    var swiper1 = new Swiper('.swiper1', {
+        autoplay: {
+            delay: 3000, // Tự động chuyển ảnh sau 3 giây
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true, // Cho phép nhấn vào phân trang
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
 
-        // Add animation on scroll
-        const eventCards = document.querySelectorAll('.event-card');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate__fadeInUp');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
+    var swiper2 = new Swiper('.swiper2', {
+        autoplay: {
+            delay: 3000,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
 
-        eventCards.forEach(card => {
-            observer.observe(card);
-        });
+    var swiper3 = new Swiper('.swiper3', {
+        autoplay: {
+            delay: 3000,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+
+    var swiper4 = new Swiper('.swiper4', {
+        autoplay: {
+            delay: 3000,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+
+    var swiper5 = new Swiper('.swiper5', {
+        autoplay: {
+            delay: 3000,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
     });
 </script>
 @endsection
