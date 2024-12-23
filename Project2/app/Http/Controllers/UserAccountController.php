@@ -128,15 +128,9 @@ class UserAccountController extends Controller
 
     public function teachers()
     {
-        $teachers = User::where('role', 1)->get();
-        $maleTeachers = $teachers->filter(function ($teacher) {
-            return $teacher->gender == 'male';
-        });
-        $femaleTeachers = $teachers->filter(function ($teacher) {
-            return $teacher->gender == 'female';
-        });
+        $maleTeachers = User::where('role', 1)->where('gender', 'male')->get()->shuffle()->take(6);
+        $femaleTeachers = User::where('role', 1)->where('gender', 'female')->get()->shuffle()->take(6);
 
-        // Sửa tên view thành 'link-to-teachers'
         return view('link-to-teachers', compact('maleTeachers', 'femaleTeachers'));
     }
 
