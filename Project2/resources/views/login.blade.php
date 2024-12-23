@@ -26,7 +26,7 @@
         <p class="note">Lưu ý: <span>Hãy sử dụng tài khoản nhà trường cung cấp</span></p>
         
         @if (session('message'))
-            <div class="alert alert-danger mt-2">
+            <div class="alert alert-success mt-2">
                 {{ session('message') }}
             </div>
         @endif
