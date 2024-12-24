@@ -95,12 +95,17 @@ class loginController extends Controller
         $statisticsData = $this->getMonthlyStatistics();
         return view('admin.dashboardadmin', $statisticsData);
         case 1:
-             return view('teacher.dashboardteacher', [
+            if (!$classrooms) {
+               return view('login')->with('errors','giáo viên chưa có lớp');
+            }
+            else {
+                 return view('teacher.dashboardteacher', [
         'classrooms' => $classrooms,
         'students' => $students,
         'parents' => $parents, 
         'children'=> $children,
     ]);
+            }
         case 2:
             return view('users.dashboarduser',compact('children'));
         default:

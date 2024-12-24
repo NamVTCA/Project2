@@ -8,8 +8,13 @@
         <img src="{{ asset('img/Login.png') }}" alt="Nursery PreSchool">
         <h1>Nursery PreSchool</h1>
     </div>
+    
     <form class="login-form" action="{{ route('login') }}" method="post">
         @csrf
+        @if($errors->any())
+    <div class="alert alert-danger">
+        {{ $errors->first() }}
+    </div>
         <label for="phone">Tài khoản (Email hoặc SĐT)</label>
         <input type="text" id="phone" name="phone" placeholder="*****">
         
