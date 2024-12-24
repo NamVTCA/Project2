@@ -51,7 +51,7 @@ class ClassController extends Controller
                         'name' => $dentailFacility->name,
                         'quantity' => $facilityDetail['quantity'],
                         'classroom_id' => $classroom->id,
-                        'dentail_id' => $dentailId, // Lưu dentail_id
+                        'dentail_id' => $dentailId, 
                         'status' => $dentailFacility->status,
                     ]);
                 } else {
@@ -77,7 +77,6 @@ class ClassController extends Controller
 
     public function edit(Classroom $classroom)
     {
-        // Lấy danh sách giáo viên
         $teachers = User::where('role', 1)
             ->whereDoesntHave('classroom', function ($query) use ($classroom) {
                 $query->where('id', '!=', $classroom->id);
@@ -85,16 +84,12 @@ class ClassController extends Controller
             ->orWhere('id', $classroom->user_id)
             ->get();
 
-        // Lấy tất cả giáo viên
         $allTeachers = User::where('role', 1)->get();
 
-        // Lấy danh sách facilities của lớp học
         $facilities = $classroom->facilities()->with('dentail')->get(); 
 
-        // Lấy danh sách các total facilities cùng với các chi tiết của chúng
-        $totalFacilities = total_facilities::with('dentail')->get(); // Lấy total_facilities cùng với chi tiết dentail
+        $totalFacilities = total_facilities::with('dentail')->get(); 
 
-        // Trả về view cùng với tất cả các dữ liệu cần thiết
         return view('admin.classrooms.edit', compact('classroom', 'teachers', 'allTeachers', 'facilities', 'totalFacilities'));
     }
 

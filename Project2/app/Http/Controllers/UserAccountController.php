@@ -15,7 +15,7 @@ class UserAccountController extends Controller
 {
     public function index(Request $request)
     {
-        $query = User::where('role', '!=', 0); // Mặc định lấy user có role != 0
+        $query = User::where('role', '!=', 0);
 
         // Tìm kiếm (nếu có)
         if ($request->filled('search')) {

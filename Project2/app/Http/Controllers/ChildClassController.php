@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 
 class ChildClassController extends Controller
 {
-    // Hiển thị form để chọn lớp và thêm học sinh vào lớp
     public function create()
     {
         // Lấy tất cả ID của các child đã tồn tại trong bảng childclass
@@ -25,7 +24,6 @@ class ChildClassController extends Controller
         return view('childclasscreate', compact('children', 'classrooms'));
     }
 
-    // Xử lý thêm học sinh vào lớp học
     public function store(Request $request)
     {
         $request->validate([
@@ -110,7 +108,6 @@ class ChildClassController extends Controller
             'classroom_id' => $request->input('classroom_id'),
         ]);
     
-        // Chuyển hướng về danh sách với thông báo thành công
         return redirect()->route('childclass.index')->with('success', 'Cập nhật lớp học thành công!');
     }
 }
