@@ -49,9 +49,10 @@
 
                     <!-- Quản Lý Lịch Học -->
                     <div class="form-group">
-                        <label for="scheduleManagement">Trò Truyện Và Đổi Mật Khẩu</label>
+                        <label for="scheduleManagement">Trò Truyện, Xem Lịch Học, Đổi Mật Khẩu</label>
                         <div>
                             <a href="{{ route('teacher.chat') }}" class="btn btn-light btn-sm">Trò Chuyện</a>
+                            <a href="{{ route('timetable.view') }}" class="btn btn-light btn-sm">Xem Lịch Học</a>
                             <a href="{{ route('reset.password.form') }}" class="btn btn-light btn-sm">Đổi Mật Khẩu</a>
                         </div>
                     </div>
