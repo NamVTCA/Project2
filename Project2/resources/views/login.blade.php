@@ -1,20 +1,22 @@
 @extends('layouts.dashboard')
 
 @section('content')
-
+ 
 <main class="login-section">
     <link rel="stylesheet" href="{{ asset('css/Login.css') }}">
     <div class="logo">
         <img src="{{ asset('img/Login.png') }}" alt="Nursery PreSchool">
         <h1>Nursery PreSchool</h1>
     </div>
-    
+  @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
     <form class="login-form" action="{{ route('login') }}" method="post">
         @csrf
-        @if($errors->any())
-    <div class="alert alert-danger">
-        {{ $errors->first() }}
-    </div>
+       
         <label for="phone">Tài khoản (Email hoặc SĐT)</label>
         <input type="text" id="phone" name="phone" placeholder="*****">
         

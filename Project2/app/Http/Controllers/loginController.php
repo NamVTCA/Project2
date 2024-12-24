@@ -72,7 +72,7 @@ class loginController extends Controller
         }
     
         if (!$user || !Hash::check($request->password, $user->password)) {
-            return redirect()->route('showlogin')->with('message','Sai tài khoản hoặc mật khẩu');
+            return redirect()->route('showlogin')->with('error','Sai tài khoản hoặc mật khẩu');
         }
     Auth::login($user);
     $user = Auth::user(); 
@@ -95,9 +95,9 @@ class loginController extends Controller
         $statisticsData = $this->getMonthlyStatistics();
         return view('admin.dashboardadmin', $statisticsData);
         case 1:
-            if (!$classrooms) {
-               return view('login')->with('errors','giáo viên chưa có lớp');
-            }
+            if (!$classrooms || $classrooms->isEmpty()) {
+                return redirect()->route('showlogin')->with('error','Giáo viên chưa có lớp');
+}
             else {
                  return view('teacher.dashboardteacher', [
         'classrooms' => $classrooms,
