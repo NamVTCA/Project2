@@ -180,56 +180,68 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const studentSelect = document.getElementById('child_id');
-        const dateInput = document.getElementById('date');
-        const pointInput = document.getElementById('point');
-        const studentName = document.getElementById('student-name');
-        const studentBirth = document.getElementById('student-birth');
-        const studentGender = document.getElementById('student-gender');
-        const studentClass = document.getElementById('student-class');
-        const hocLuc = document.getElementById('hocLuc');
-        studentSelect.addEventListener('change', fetchStudentDetails);
-        dateInput.addEventListener('change', fetchStudentDetails);
+    const studentSelect = document.getElementById('child_id');
+    const dateInput = document.getElementById('date');
+    const pointInput = document.getElementById('point');
+    const studentName = document.getElementById('student-name');
+    const studentBirth = document.getElementById('student-birth');
+    const studentGender = document.getElementById('student-gender');
+    const studentClass = document.getElementById('student-class');
+    const hocLuc = document.getElementById('hocLuc');
     
-        function fetchStudentDetails() {
-            const childId = studentSelect.value;
-            const date = dateInput.value;
-    
-            if (childId && date) {
-               fetch(`/api/student/details?child_id=${childId}&date=${date}`)
-    
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            studentName.textContent = data.student.name;
-                            studentBirth.textContent = data.student.birthDate;
-                            studentGender.textContent = data.student.gender === 1 ? 'Nam' : 'Nữ';
-                            studentClass.textContent = data.student.className || 'Chưa xác định';
+    studentSelect.addEventListener('change', fetchStudentDetails);
+    dateInput.addEventListener('change', fetchStudentDetails);
+
+    function fetchStudentDetails() {
+        const childId = studentSelect.value;
+        const date = dateInput.value;
+
+        if (childId && date) {
+           fetch(`/api/student/details?child_id=${childId}&date=${date}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        studentName.textContent = data.student.name;
+                        studentBirth.textContent = data.student.birthDate;
+                        studentGender.textContent = data.student.gender === 1 ? 'Nam' : 'Nữ';
+                        studentClass.textContent = data.student.className || 'Chưa xác định';
+                        
+                        // Cập nhật comment và point
+                        if (data.evaluation) {
                             hocLuc.value = data.evaluation.comment || 'Chưa có dữ liệu học lực';
                             const point = data.evaluation.point;
-    let rate;
-    
-    if (point == 10) {
-        rate = 'Xuất Sắc';
-    } else if (point == 8) {
-        rate = 'Giỏi';
-    } else if (point == 6) {
-        rate = 'Khá';
-    } else if (point == 4) {
-        rate = 'Trung Bình';
-    } else if (point == 2) {
-        rate = 'Yếu';
-    } else {
-        rate = 'Chưa có dữ liệu điểm';
-    }
+                            let rate;
+                            if (point == 10) {
+                                rate = 'Xuất Sắc';
+                            } else if (point == 8) {
+                                rate = 'Giỏi';
+                            } else if (point == 6) {
+                                rate = 'Khá';
+                            } else if (point == 4) {
+                                rate = 'Trung Bình';
+                            } else if (point == 2) {
+                                rate = 'Yếu';
+                            } else {
+                                rate = 'Chưa có dữ liệu điểm';
+                            }
                             pointInput.value = rate;
                         } else {
-                            alert(data.message);
+                            // Nếu không có dữ liệu đánh giá, gán giá trị mặc định
+                            hocLuc.value = 'Chưa có dữ liệu học lực';
+                            pointInput.value = 'Chưa có dữ liệu điểm';
                         }
-                    })
-                    .catch(error => console.error('Error:', error));
-            }
+                    } else {
+                        alert(data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        } else {
+            // Nếu không có childId hoặc date, gán giá trị mặc định
+            hocLuc.value = 'Chưa có dữ liệu học lực';
+            pointInput.value = 'Chưa có dữ liệu điểm';
         }
-    });
+    }
+});
+
     </script>
 @endsection

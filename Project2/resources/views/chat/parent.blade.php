@@ -56,109 +56,82 @@
 </style>
 
 <script>
-let lastMessageId = 0;
+document.addEventListener('DOMContentLoaded', () => {
+    let lastMessageId = 0;
 
-function startPolling(receiverId) {
-    setInterval(() => {
-        fetch(`/get-new-messages`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({ receiver_id: receiverId, last_message_id: lastMessageId })
-        })
-        .then(response => {
-            if (!response.ok) throw new Error('Không thể tải tin nhắn mới');
-            return response.json();
-        })
-        .then(messages => {
-            if (messages.length > 0) {
-                const messagesDiv = document.querySelector('#chat-box #messages');
+    const fetchChatHistory = (receiverId) => {
+        fetch(`/chat-history/${receiverId}`)
+            .then(res => res.json())
+            .then(messages => {
+                const messagesDiv = document.querySelector('#messages');
+                messagesDiv.innerHTML = '';
                 messages.forEach(msg => {
-                    const p = document.createElement('div');
-                    p.classList.add('message');
-                    if (msg.sender_id === {{ auth()->id() }}) {
-                        p.classList.add('message-right'); // Tin nhắn của bạn
-                        p.textContent = `Bạn: ${msg.message}`;
-                    } else {
-                        p.classList.add('message-left'); // Tin nhắn của người khác
-                        p.textContent = `Người gửi: ${msg.message}`;
-                    }
-                    messagesDiv.appendChild(p);
-                    lastMessageId = msg.id; // Cập nhật ID tin nhắn cuối cùng
+                    const div = document.createElement('div');
+                    div.classList.add('message', msg.sender_id === {{ auth()->id() }} ? 'message-right' : 'message-left');
+                    div.textContent = msg.sender_id === {{ auth()->id() }} ? `Bạn: ${msg.message}` : `Người gửi: ${msg.message}`;
+                    messagesDiv.appendChild(div);
+                    lastMessageId = msg.id;
                 });
                 messagesDiv.scrollTop = messagesDiv.scrollHeight;
-            }
+            })
+            .catch(console.error);
+    };
+
+    const startPolling = (receiverId) => {
+        setInterval(() => {
+            fetch(`/get-new-messages`, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' 
+                },
+                body: JSON.stringify({ receiver_id: receiverId, last_message_id: lastMessageId })
+            })
+                .then(res => res.json())
+                .then(messages => {
+                    const messagesDiv = document.querySelector('#messages');
+                    messages.forEach(msg => {
+                        const div = document.createElement('div');
+                        div.classList.add('message', msg.sender_id === {{ auth()->id() }} ? 'message-right' : 'message-left');
+                        div.textContent = msg.sender_id === {{ auth()->id() }} ? `Bạn: ${msg.message}` : `Người gửi: ${msg.message}`;
+                        messagesDiv.appendChild(div);
+                        lastMessageId = msg.id;
+                    });
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                })
+                .catch(console.error);
+        }, 2000);
+    };
+
+    document.querySelector('#chat-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const receiverId = document.querySelector('#receiver_id').value;
+        const message = document.querySelector('#message').value;
+
+        fetch('/send-message', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json', 
+                'X-CSRF-TOKEN': '{{ csrf_token() }}' 
+            },
+            body: JSON.stringify({ receiver_id: receiverId, message })
         })
-        .catch(error => console.error(error.message));
-    }, 2000); // 2 giây
-}
+            .then(() => {
+                fetchChatHistory(receiverId);
+                document.querySelector('#message').value = '';
+            })
+            .catch(console.error);
+    });
 
-function openChat(receiverId, receiverName) {
-    document.getElementById('chat-box').style.display = 'block';
-    document.getElementById('chat-with').innerText = 'Trò chuyện với ' + receiverName;
-    document.getElementById('receiver_id').value = receiverId;
-    fetchChatHistory(receiverId);
+    document.querySelector('#back-button').addEventListener('click', () => window.history.back());
 
-    // Bắt đầu polling
-    startPolling(receiverId);
-}
-
-function fetchChatHistory(receiverId) {
-    fetch(`/chat-history/${receiverId}`)
-        .then(response => {
-            if (!response.ok) throw new Error('Không thể tải lịch sử trò chuyện');
-            return response.json();
-        })
-        .then(messages => {
-            const messagesDiv = document.querySelector('#chat-box #messages');
-            messagesDiv.innerHTML = '';
-            messages.forEach(msg => {
-                const p = document.createElement('div');
-                p.classList.add('message');
-                if (msg.sender_id === {{ auth()->id() }}) {
-                    p.classList.add('message-right'); // Tin nhắn của bạn
-                    p.textContent = `Bạn: ${msg.message}`;
-                } else {
-                    p.classList.add('message-left'); // Tin nhắn của người khác
-                    p.textContent = `Người gửi: ${msg.message}`;
-                }
-                messagesDiv.appendChild(p);
-                lastMessageId = msg.id; // Ghi nhận tin nhắn cuối cùng
-            });
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
-        })
-        .catch(error => alert(error.message));
-}
-
-document.getElementById('chat-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const receiverId = document.getElementById('receiver_id').value;
-    const message = document.getElementById('message').value;
-
-    fetch('/send-message', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        },
-        body: JSON.stringify({ receiver_id: receiverId, message })
-    })
-    .then(response => {
-        if (!response.ok) throw new Error('Không thể gửi tin nhắn');
-        return response.json();
-    })
-    .then(() => {
+    window.openChat = (receiverId, receiverName) => {
+        document.querySelector('#chat-box').style.display = 'block';
+        document.querySelector('#chat-with').innerText = `Trò chuyện với ${receiverName}`;
+        document.querySelector('#receiver_id').value = receiverId;
         fetchChatHistory(receiverId);
-        document.getElementById('message').value = '';
-    })
-    .catch(error => alert(error.message));
-});
-
-// Nút quay về
-document.getElementById('back-button').addEventListener('click', function () {
-    window.history.back();
+        startPolling(receiverId);
+    };
 });
 </script>
 

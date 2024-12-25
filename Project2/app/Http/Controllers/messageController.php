@@ -54,7 +54,12 @@ foreach ($children as $child) {
     }
 }$teachersArray = collect($teachersArray)->unique('id')->values()->all();
 
+       if (!$teachersArray || $teachers->isEmpty()) {
+            return back()->with('error',' chưa có giáo viên ');
+       } else {
         return view('chat.parent', compact('teachers'));
+       }
+       
     }
 
   public function sendMessage(Request $request)

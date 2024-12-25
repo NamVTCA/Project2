@@ -95,7 +95,7 @@ class loginController extends Controller
         $statisticsData = $this->getMonthlyStatistics();
         return view('admin.dashboardadmin', $statisticsData);
         case 1:
-            if (!$classrooms || $classrooms->isEmpty()) {
+            if (!$classrooms ) {
                 return redirect()->route('showlogin')->with('error','Giáo viên chưa có lớp');
 }
             else {
