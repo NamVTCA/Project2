@@ -33,8 +33,7 @@ class UserFactory extends Factory
             'status' => fake()->numberBetween(0, 1), 
             'gender' => fake()->randomElement(['male', 'female']), 
             'phone' => fake()->phoneNumber(),
-            // Bỏ trường 'remember_token'
-            // 'remember_token' => Str::random(10),
+
         ];
     }
 
