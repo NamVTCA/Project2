@@ -67,7 +67,7 @@ class FacilityManagementController extends Controller
                         // Cập nhật thông tin của dentail
                         $existingDentail->update([
                             'name' => $dentail['name'],
-                           'quantity' => $dentail['quantity'],
+                            'quantity' => $dentail['quantity'],
                         ]);
                         $existingDentailIds[] = $existingDentail->id;
                     }
@@ -75,7 +75,7 @@ class FacilityManagementController extends Controller
                     // Thêm mới dentail facility
                     $newDentail = $total->dentail()->create([
                         'name' => $dentail['name'],
-                         'quantity' => $dentail['quantity'],
+                        'quantity' => $dentail['quantity'],
                     ]);
                     $existingDentailIds[] = $newDentail->id;
                 }
@@ -106,13 +106,11 @@ class FacilityManagementController extends Controller
     public function increment(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|string', // Hoặc 'id' tùy theo cách bạn xác định dentail_facility
+            'name' => 'required|string', 
             'quantity' => 'required|integer|min:1'
         ]);
 
-        // Tìm dentail_facility theo name hoặc id
         $dentail = dentail_facilities::where('name', $data['name'])->first(); 
-        // nếu dùng id: dentail_facilities::find($data['id']);
 
         if (!$dentail) {
             return response()->json(['error' => 'Dentail facility not found'], 404);

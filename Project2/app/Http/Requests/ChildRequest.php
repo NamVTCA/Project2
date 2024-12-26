@@ -40,9 +40,9 @@ class ChildRequest extends FormRequest
     protected function withValidator($validator)
     {
         $validator->after(function ($validator) {
-            $birthDate = Carbon::parse($this->birthDate); // Lấy ngày sinh từ input
-            $currentDate = Carbon::now(); // Ngày hiện tại
-            $ageInMonths = $birthDate->diffInMonths($currentDate); // Tính tuổi theo tháng
+            $birthDate = Carbon::parse($this->birthDate); 
+            $currentDate = Carbon::now(); 
+            $ageInMonths = $birthDate->diffInMonths($currentDate);
 
             if ($ageInMonths < 36 || $ageInMonths > 72) {
                 $validator->errors()->add('birthDate', 'Tuổi của trẻ phải từ 3 đến 6 tuổi.');

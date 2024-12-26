@@ -8,7 +8,7 @@
     </a>
 </div>
 <div class="edit-student-wrapper">
-    <form action="{{ route('children.update', $child->id) }}" method="POST" enctype="multipart/form-data" id="childForm">
+    <form action="{{ route('admin.children.update', $child->id) }}" method="POST" enctype="multipart/form-data" id="childForm">
         <h2>Chỉnh sửa thông tin học sinh</h2>
         @csrf
         @method('PUT')

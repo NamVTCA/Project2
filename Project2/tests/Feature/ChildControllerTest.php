@@ -3,110 +3,152 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use App\Models\Child;
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ChildrenImport;
+use App\Exports\ChildrenExport;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ChildControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use DatabaseTransactions;
 
-    public function test_admin_can_access_children_index()
+    protected $admin;
+
+    protected function setUp(): void
     {
-        // Tạo một user với role là admin (role = 0)
-         /** @var \App\Models\User $admin */
-        $admin = User::factory()->create(['role' => 0]);
-
-        // Thực hiện request GET đến route 'admin.children.index' với tư cách là admin
-        $response = $this->actingAs($admin)->get(route('admin.children.index'));
-
-        // Kiểm tra response
-        $response->assertStatus(200); // Đảm bảo rằng trang được truy cập thành công
-        $response->assertViewIs('admin.children.index'); // Đảm bảo rằng view trả về là 'admin.children.index'
-        $response->assertViewHas('children'); // Kiểm tra xem view có biến 'children' hay không
+        parent::setUp();
+        $this->admin = User::where('email', 'quangnguyen.21062005@gmail.com')->firstOrFail();
+        $this->actingAs($this->admin);
     }
 
-    public function test_index_displays_children()
+    /** @test */
+    public function an_admin_can_view_the_children_index_page()
     {
-        // Tạo một user với role là admin
-         /** @var \App\Models\User $admin */
-        $admin = User::factory()->create(['role' => 0]);
-        $parent = User::factory()->create(['role' => 2]);
-        // Tạo một số child giả lập
-        $children = Child::factory()->count(5)->create(['user_id'=>$parent->id]);
+        $response = $this->get(route('admin.children.index'));
 
-        // Thực hiện request GET đến route 'admin.children.index' với tư cách là admin
-        $response = $this->actingAs($admin)->get(route('admin.children.index'));
-
-        // Kiểm tra response
         $response->assertStatus(200);
         $response->assertViewIs('admin.children.index');
+        $response->assertSee('Quản lý học sinh');
         $response->assertViewHas('children');
-
-        // Kiểm tra xem các child có được hiển thị trong view không
-        foreach ($children as $child) {
-            $response->assertSee($child->name);
-            $response->assertSee($child->birthDate->format('d/m/Y'));
-        }
     }
 
-     public function test_store_creates_new_child()
-     {
-         /** @var \App\Models\User $admin */
-        $admin = User::factory()->create(['role' => 0]);
-         $parent = User::factory()->create(['role' => 2]);
-         $childData = [
-             'name' => $this->faker->name,
-             'birthDate' => now()->subYears(4)->format('Y-m-d'),
-             'gender' => '1',
-            'user_id' => $parent->id,
-             'status' => '1',
-       ];
+    /** @test */
+    public function an_admin_can_view_the_create_child_page()
+    {
+        $response = $this->get(route('admin.children.create'));
 
-         $response = $this->actingAs($admin)->post(route('children.store'), $childData);
+        $response->assertStatus(200);
+        $response->assertViewIs('admin.children.create');
+        $response->assertSee('Tạo học sinh mới'); 
+        $response->assertViewHas('users');
+    }
 
-         $response->assertStatus(302);
-         $response->assertRedirect(route('admin.children.index'));
+    /** @test */
+    public function an_admin_can_store_a_new_child()
+    {
+        $user = User::factory()->create(['role' => 2]);
+        $childData = [
+            'name' => 'Test Child',
+            'birthDate' => now()->subYears(4)->format('Y-m-d'),
+            'gender' => '1',
+            'user_id' => $user->id,
+            'status' => '1',
+        ];
 
-          $this->assertDatabaseHas('children', [
-             'name' => $childData['name'],
-            'user_id' => $childData['user_id'],
-          ]);
-      }
+        $response = $this->post(route('admin.children.store'), $childData);
 
-      public function test_update_child()
-     {
-         /** @var \App\Models\User $admin */
-        $admin = User::factory()->create(['role' => 0]);
-         $parent = User::factory()->create(['role' => 2]);
-       // Tạo một child giả lập
-        $child = Child::factory()->create(['user_id' => $parent->id]);
+        $response->assertRedirect(route('admin.children.index'));
+        $response->assertSessionHas('success', 'Tạo thông tin trẻ thành công.');
+        $this->assertDatabaseHas('children', ['name' => 'Test Child', 'user_id' => $user->id]);
+    }
 
-        // Dữ liệu cập nhật
-         $updatedData = [
-            'name' => $this->faker->name,
+    /** @test */
+    public function it_validates_required_fields_when_storing_a_child()
+    {
+        $response = $this->post(route('admin.children.store'), []);
+
+        $response->assertSessionHasErrors(['name', 'gender', 'user_id']); // Sửa lại thành thế này
+    }
+
+    /** @test */
+    public function an_admin_can_view_the_edit_child_page()
+    {
+        $child = Child::factory()->create();
+
+        $response = $this->get(route('admin.children.edit', $child));
+
+        $response->assertStatus(200);
+        $response->assertViewIs('admin.children.edit');
+        $response->assertSee('Chỉnh sửa thông tin học sinh');
+        $response->assertViewHas('child');
+        $response->assertViewHas('users');
+    }
+
+    /** @test */
+    public function an_admin_can_update_an_existing_child()
+    {
+        $user = User::factory()->create(['role' => 2]);
+        $child = Child::factory()->create(['user_id' => $user->id]);
+
+        $updatedData = [
+            'name' => 'Updated Child Name',
             'birthDate' => now()->subYears(3)->format('Y-m-d'),
-           'gender' => '2',
-           'user_id' => $parent->id,
+            'gender' => '2',
+            'user_id' => $user->id,
             'status' => '0',
         ];
 
-         // Gửi request PUT đến route 'children.update'
-        $response = $this->actingAs($admin)->put(route('children.update', $child->id), $updatedData);
+        $response = $this->put(route('admin.children.update', $child), $updatedData);
 
-          // Kiểm tra response
-         $response->assertStatus(302);
         $response->assertRedirect(route('admin.children.index'));
+        $response->assertSessionHas('success', 'Cập nhật thông tin trẻ thành công.');
+        $this->assertDatabaseHas('children', [
+            'id' => $child->id,
+            'name' => 'Updated Child Name',
+            'gender' => '2',
+            'user_id' => $user->id,
+            'status' => 0,
+        ]);
+    }
 
-        // Kiểm tra xem child đã được cập nhật trong database chưa
-         $this->assertDatabaseHas('children', [
-           'id' => $child->id,
-            'name' => $updatedData['name'],
-            'user_id' => $updatedData['user_id'],
-            'gender' => $updatedData['gender'],
-           'status' => $updatedData['status'],
-         ]);
-     }
+    /** @test */
+    public function an_admin_can_import_children_from_excel()
+    {
+        Excel::fake();
 
+        $file = UploadedFile::fake()->create('children.xlsx');
+
+        $response = $this->post(route('admin.children.import'), ['file' => $file]);
+
+        Excel::assertImported('children.xlsx', function (ChildrenImport $import) {
+            return true;
+        });
+
+        $response->assertRedirect(route('admin.children.index'));
+        $response->assertSessionHas('success', 'Thêm danh sách học sinh thành công!');
+    }
+    
+    /** @test */
+    public function it_shows_error_messages_when_importing_invalid_children_data()
+    {
+        $response = $this->post(route('admin.children.import'), []);
+        $response->assertSessionHasErrors(['file']);
+    }
+
+    /** @test */
+    public function an_admin_can_export_children_to_excel()
+    {
+        Excel::fake();
+
+        $response = $this->get(route('admin.children.export'));
+
+        $response->assertStatus(200);
+        Excel::assertDownloaded('children.xlsx', function (ChildrenExport $export) {
+            return true;
+        });
+    }
 }

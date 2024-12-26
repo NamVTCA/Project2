@@ -135,15 +135,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/change-password', [ResetPasswordController::class, 'showChangepasswordForm'])->name('reset.password.form');
     Route::post('/change-password', [ResetPasswordController::class, 'changePassword'])->name('reset.password');
 });
-Route::prefix('admin')->group(function () {
-    Route::middleware('auth.check')->group(function () {
-        Route::middleware('role:0')->group(function () {
-
+Route::prefix('admin')->group(function () 
+{
+    Route::middleware('auth.check')->group(function () 
+    {
+        Route::middleware('role:0')->group(function () 
+        {
             Route::get('/dashboard/admin', [LoginController::class, 'admin'])->name('admin');
             Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('admin.dashboard');
 
             Route::get('/schedule/show',[scheduleController::class,'index'])->name('schedule.show');
-            Route::prefix('admin')->middleware('auth')->group(function () {
+            Route::prefix('admin')->middleware('auth')->group(function () 
+            {
+                // Các route cho user account
                 Route::get('/users', [UserAccountController::class, 'index'])->name('admin.users.index');
                 Route::get('/users/create', [UserAccountController::class, 'create'])->name('admin.users.create');
                 Route::post('/users', [UserAccountController::class, 'store'])->name('admin.users.store');
@@ -154,26 +158,31 @@ Route::prefix('admin')->group(function () {
                 Route::delete('/users/{user}', [UserAccountController::class, 'destroy'])->name('admin.users.delete');
                 Route::get('/feedbackList', [FeedbackController::class, 'index'])->name('feedback.index');
                 Route::delete('/feedbackList/{id}', [FeedbackController::class, 'destroy'])->name('feedback.destroy');
+                // Các route cho children
+                Route::get('/children', [ChildController::class, 'index'])->name('admin.children.index');
+                Route::get('/children/create', [ChildController::class, 'create'])->name('admin.children.create');
+                Route::post('/children', [ChildController::class, 'store'])->name('admin.children.store');
+                Route::get('/children/{child}/edit', [ChildController::class, 'edit'])->name('admin.children.edit');
+                Route::put('/children/{child}', [ChildController::class, 'update'])->name('admin.children.update');
+                Route::post('/children/import', [ChildController::class, 'import'])->name('admin.children.import');
+                Route::get('/children/export', [ChildController::class, 'export'])->name('admin.children.export');
+
+                // Các route cho classes
+                Route::get('/classes', [ClassController::class, 'index'])->name('admin.classrooms.index');
+                Route::get('/classes/create', [ClassController::class, 'create'])->name('classrooms.create');
+                Route::post('/classes', [ClassController::class, 'store'])->name('classrooms.store');
+                Route::get('/classes/{class}', [ClassController::class, 'show'])->name('classrooms.show');
+                Route::get('/classes/{classroom}/edit', [ClassController::class, 'edit'])->name('classrooms.edit');
+                Route::put('/classes/{classroom}', [ClassController::class, 'update'])->name('classrooms.update');
+
+                // Các route cho facilities
+                Route::get('/facilities', [FacilityManagementController::class, 'index'])->name('facility_management.index');
+                Route::get('/facilities/create', [FacilityManagementController::class, 'create'])->name('facility_management.create');
+                Route::post('/facilities', [FacilityManagementController::class, 'store'])->name('facility_management.store');
+                Route::get('/facilities/{total}/edit', [FacilityManagementController::class, 'edit'])->name('facility_management.edit');
+                Route::put('/facilities/{total}', [FacilityManagementController::class, 'update'])->name('facility_management.update');
+                Route::delete('/facilities/{total}', [FacilityManagementController::class, 'destroy'])->name('facility_management.destroy');
             });
-            Route::get('/children', [ChildController::class, 'index'])->name('admin.children.index');
-            Route::get('/children/create', [ChildController::class, 'create'])->name('children.create');
-            Route::post('/children', [ChildController::class, 'store'])->name('children.store');
-            Route::get('/children/{child}/edit', [ChildController::class, 'edit'])->name('children.edit');
-            Route::put('/children/{child}', [ChildController::class, 'update'])->name('children.update');
-            Route::post('/children/import', [ChildController::class, 'import'])->name('children.import');
-            Route::get('/children/export', [ChildController::class, 'export'])->name('children.export');
-            Route::get('/classes', [ClassController::class, 'index'])->name('admin.classrooms.index');
-            Route::get('/classes/create', [ClassController::class, 'create'])->name('classrooms.create');
-            Route::post('/classes', [ClassController::class, 'store'])->name('classrooms.store');
-            Route::get('/classes/{class}', [ClassController::class, 'show'])->name('classrooms.show');
-            Route::get('/classes/{classroom}/edit', [ClassController::class, 'edit'])->name('classrooms.edit');
-            Route::put('/classes/{classroom}', [ClassController::class, 'update'])->name('classrooms.update');
-            Route::get('/facilities', [FacilityManagementController::class, 'index'])->name('facility_management.index');
-            Route::get('/facilities/create', [FacilityManagementController::class, 'create'])->name('facility_management.create');
-            Route::post('/facilities', [FacilityManagementController::class, 'store'])->name('facility_management.store');
-            Route::get('/facilities/{total}/edit', [FacilityManagementController::class, 'edit'])->name('facility_management.edit');
-            Route::put('/facilities/{total}', [FacilityManagementController::class, 'update'])->name('facility_management.update');
-            Route::delete('/facilities/{total}', [FacilityManagementController::class, 'destroy'])->name('facility_management.destroy');
         });
     });
 });

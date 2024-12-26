@@ -10,12 +10,12 @@
                     Thêm học sinh
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ route('children.create') }}">Thêm một học sinh</a></li>
+                    <li><a class="dropdown-item" href="{{ route('admin.children.create') }}">Thêm một học sinh</a></li>
                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#importChildModal">Thêm nhiều học sinh</a></li>
                 </ul>
             </div>
             <a href="{{ route('childclass.create') }}" class="btn-add">Thêm học sinh vào lớp</a>
-            <a href="{{ route('children.export') }}" class="btn-add">Xuất tệp Excel</a>
+            <a href="{{ route('admin.children.export') }}" class="btn-add">Xuất tệp Excel</a>
         </div>
     </div>
 </div>
@@ -43,7 +43,7 @@
                     <p>Phụ huynh: {{ $child->user ? $child->user->name : 'N/A' }}</p>
                 </div>
                 <div class="child-actions">
-                    <a href="{{ route('children.edit', $child->id) }}" class="btn-edit">Sửa</a>
+                    <a href="{{ route('admin.children.edit', $child->id) }}" class="btn-edit">Sửa</a>
                 </div>
             </div>
         @endforeach
@@ -61,7 +61,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('children.import') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.children.import') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="file" class="form-label">Chọn tệp Excel</label>

@@ -10,7 +10,7 @@
     </div>
     <h2>Tạo học sinh mới</h2>
 
-    <form action="{{ route('children.store') }}" method="POST" enctype="multipart/form-data" id="childForm">
+    <form action="{{ route('admin.children.store') }}" method="POST" enctype="multipart/form-data" id="childForm">
         @csrf
         <div style="margin-bottom: 15px;">
             <label>Tên:</label>
