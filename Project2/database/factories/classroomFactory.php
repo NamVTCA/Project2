@@ -2,14 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Classroom;
+use App\Models\User;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\classroom>
- */
-class classroomFactory extends Factory
+class ClassroomFactory extends Factory
 {
+    protected $model = Classroom::class;
     /**
      * Define the model's default state.
      *
@@ -17,10 +16,10 @@ class classroomFactory extends Factory
      */
     public function definition(): array
     {
-       return [
-            'name'=>$this->faker->name,
-            'user_id'=>User::factory()->create()->id,
-            'status'=>0,
+        return [
+            'name' => $this->faker->word,
+            'user_id' => User::factory()->create(['role' => 1])->id, // Tạo user với role = 1 (giáo viên)
+            'status' => $this->faker->numberBetween(0, 1),
         ];
     }
 }
