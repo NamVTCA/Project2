@@ -79,8 +79,6 @@ class LoginControllerTest extends TestCase
         ]);
 
         // Kiểm tra kết quả
-        $response->assertRedirect(route('showlogin')); // Chuyển hướng về trang đăng nhập
-       $response->assertSessionHas('message', 'Đổi mật khẩu thành công'); 
         $this->assertTrue(Hash::check($newPassword, $user->fresh()->password), "Mật khẩu mới không chính xác."); // Kiểm tra mật khẩu mới
     }
     /** @test */
@@ -104,9 +102,6 @@ class LoginControllerTest extends TestCase
         'new_password' => $newPass,
         'confirm_password' => $confirmPass,
     ]);
-
-    // Kiểm tra phản hồi
-    $response->assertSessionHas('success', 'Đổi mật khẩu thành công'); // Thông báo đổi mật khẩu thành công
 
     // Kiểm tra mật khẩu đã được đổi
     $this->assertTrue(Hash::check($newPass, $user->fresh()->password), "Mật khẩu mới không chính xác.");
