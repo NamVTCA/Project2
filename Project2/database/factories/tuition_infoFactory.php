@@ -7,11 +7,16 @@ use App\Models\tuition_info;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TuitionInfo>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\tuition_info>
  */
-class TuitionInfoFactory extends Factory
+class tuition_infoFactory extends Factory
 {
-   protected $model = tuition_info::class;
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    protected $model = tuition_info::class;
 
     public function definition()
     {
