@@ -51,14 +51,10 @@ class paymentController extends Controller
 
       public function momo_payment(Request $request)
 {
-    try {
         $tuition = tuition::with('tuition_info')->find($request->tuition_id);
-
         if (!$tuition) {
             return response()->json(['error' => 'Không tìm thấy thông tin học phí'], 404);
         }
-        $details = tuition_info::where('tuition_id', $request->tuition_id)->get();
-
         $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
         $partnerCode = 'MOMOBKUN20180529';
         $accessKey = 'klm05TvNBzhg7h7j';
@@ -66,24 +62,18 @@ class paymentController extends Controller
         $amount = (string) intval($tuition->tuition_info->sum('price'));
         $orderId = time() . "";
         $orderInfo = "Thanh toán học phí kỳ " . $tuition->semester;
-        $redirectUrl = route('momo');
+       $redirectUrl = route('momo.callback', ['tuition_id' => $tuition->id]);
+
         $ipnUrl = "http://localhost:8000/atm/ipn_momo.php";
         $requestId = $orderId;
         $requestType = "payWithATM";
         $extraData = "";
-        $rawHash = "accessKey=" . $accessKey . 
-                  "&amount=" . $amount . 
-                  "&extraData=" . $extraData . 
-                  "&ipnUrl=" . $ipnUrl . 
-                  "&orderId=" . $orderId . 
-                  "&orderInfo=" . $orderInfo . 
-                  "&partnerCode=" . $partnerCode . 
-                  "&redirectUrl=" . $redirectUrl . 
-                  "&requestId=" . $requestId . 
-                  "&requestType=" . $requestType;
+        
+        // Tạo chữ ký
+        $rawHash = "accessKey={$accessKey}&amount={$amount}&extraData={$extraData}&ipnUrl={$ipnUrl}&orderId={$orderId}&orderInfo={$orderInfo}&partnerCode={$partnerCode}&redirectUrl={$redirectUrl}&requestId={$requestId}&requestType={$requestType}";
         $signature = hash_hmac("sha256", $rawHash, $secretKey);
-
-        $data = array(
+        $data = [
+            'tuition'=>$tuition,
             'partnerCode' => $partnerCode,
             'partnerName' => "Test",
             'storeId' => "MomoTestStore",
@@ -96,51 +86,93 @@ class paymentController extends Controller
             'lang' => 'vi',
             'extraData' => $extraData,
             'requestType' => $requestType,
-            'signature' => $signature
-        );
-
+            'signature' => $signature,
+        ];
         Log::info('Yêu cầu thanh toán MoMo:', $data);
-
+        // Gửi yêu cầu thanh toán
         $result = $this->execPostRequest($endpoint, json_encode($data));
         Log::info('Phản hồi thanh toán MoMo:', ['response' => $result]);
         $jsonResult = json_decode($result, true);
-       isset($jsonResult['payUrl']);
-         
-        if (isset($jsonResult['resultCode']) && $jsonResult['resultCode'] == 0) {
+        if (isset($jsonResult['payUrl'])) {
+            return redirect($jsonResult['payUrl']);
+        }        
+        // Xử lý lỗi
+        return back()->withErrors(['error' => $jsonResult['message'] ?? 'Lỗi không xác định']);
+
+  
+}
+public function handleMoMoPaymentCallback(Request $request,$tuition_id)
+{
+     Log::info('MoMo Callback Data:', $request->all());
+        $orderId = $request->orderId;
+
+        $resultCode = $request->resultCode;
+        $tuition = tuition::with('tuition_info')->find($tuition_id);
+        // Thanh toán thành công
+        if ($resultCode == '0') {
             $tuition->update(['status' => 1]);
-            session(['momo_payment_order_id' => $orderId]);
-             $details = tuition_info::where('tuition_id', $request->tuition_id)->get();
+            $this->sendPaymentSuccessEmail($tuition, $orderId);
+            return redirect()->route('momo');
+        }   
+        else{
+             return redirect()->route('momo');
+        }
+
+}
+private function sendPaymentSuccessEmail($tuition, $orderId)
+{
+        $details = $tuition->tuition_info;
         $user = Auth::user();
         $userEmail = $user->email;
-        $orderId ;
         $transactionTime = Carbon::now()->format('d-m-Y H:i:s');
         $semester = $tuition->semester;
+        $amount = $tuition->tuition_info->sum('price');
 
         Mail::send('test.respone_email', [
             'orderId' => $orderId,
             'amount' => $amount,
             'semester' => $semester,
             'details' => $details,
-            'transactionTime' => $transactionTime
+            'transactionTime' => $transactionTime,
         ], function ($message) use ($userEmail) {
             $message->to($userEmail);
-            $message->subject('Hóa đơn thanh toán học phí từ momo');
+            $message->subject('Hóa đơn thanh toán học phí từ MoMo');
         });
-            return redirect($jsonResult['payUrl']);
-        }
-        
-        Log::error('Lỗi thanh toán MoMo:', $jsonResult);
-        return response()->json([
-            'error' => $jsonResult['message'] ?? 'Lỗi không xác định',
-            'details' => $jsonResult
-        ], 400);
 
-    } catch (\Exception $e) {
-        Log::error('Ngoại lệ thanh toán MoMo:', ['error' => $e->getMessage()]);
-        return response()->json(['error' => 'Đã xảy ra lỗi trong quá trình xử lý thanh toán'], 500);
-    }
-    
 }
+
+
+// public function handleMoMoPaymentCallback(Request $request,$tuition, $orderId, $amount)
+//     {
+       
+//             // thanh toán thành công
+//             if ($request->resultCode == '0'){
+//                      $tuition->update(['status' => 1]);
+//             session(['momo_payment_order_id' => $orderId]);
+//              $details = tuition_info::where('tuition_id', $request->tuition_id)->get();
+//         $user = Auth::user();
+//         $userEmail = $user->email;
+//         $orderId ;
+//         $transactionTime = Carbon::now()->format('d-m-Y H:i:s');
+//         $semester = $tuition->semester;
+
+//         Mail::send('test.respone_email', [
+//             'orderId' => $orderId,
+//             'amount' => $amount,
+//             'semester' => $semester,
+//             'details' => $details,
+//             'transactionTime' => $transactionTime
+//         ], function ($message) use ($userEmail) {
+//             $message->to($userEmail);
+//             $message->subject('Hóa đơn thanh toán học phí từ momo');
+//         });
+            
+//             }
+//             //thất bại
+           
+        
+
+//         }
 public function stripe_payment(Request $request)
 {
     try {
@@ -172,7 +204,7 @@ public function stripe_payment(Request $request)
                         'product_data' => [
                             'name' => 'Thanh toán học phí kỳ ' . $tuition->semester,
                         ],
-                        'unit_amount' => $amount , // Đơn vị tiền tệ là cents
+                        'unit_amount' => $amount , 
                     ],
                     'quantity' => 1,
                 ],
