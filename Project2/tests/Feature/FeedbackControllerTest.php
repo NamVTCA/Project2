@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class FeedbackControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    
 
     /** @test */
   public function it_can_display_feedback_list()
