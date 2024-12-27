@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\total_facilities>
  */
-class total_facilitiesFactory extends Factory
+class Total_facilitiesFactory extends Factory
 {
     protected $model = total_facilities::class;
     /**

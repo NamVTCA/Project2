@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\dentail_facilities>
  */
-class dentail_facilitiesFactory extends Factory
+class Dentail_facilitiesFactory extends Factory
 {
     protected $model = dentail_facilities::class;
     /**
