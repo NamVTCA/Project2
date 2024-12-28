@@ -19,7 +19,6 @@ class FacilityManagementControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        Artisan::call('migrate:fresh');
         // Tạo một user admin
         $this->admin = User::factory()->create(['role' => 0]);
     }
@@ -101,6 +100,7 @@ class FacilityManagementControllerTest extends TestCase
             ]);
         }
     }
+
     public function it_validates_required_fields_when_storing_a_facility()
     {
         // Tạo một user admin
@@ -113,10 +113,6 @@ class FacilityManagementControllerTest extends TestCase
 
     public function test_update_facility()
     {
-        // Tạo một user admin
-         /** @var \App\Models\User $admin */
-        $admin = User::factory()->create(['role' => 0]);
-
         // Tạo một total_facility và dentail_facilities để test
         $total = total_facilities::factory()->create();
         $dentail = dentail_facilities::factory()->create(['total_id' => $total->id]);
@@ -134,7 +130,7 @@ class FacilityManagementControllerTest extends TestCase
         ];
 
         // Thực hiện request PUT đến route 'facility_management.update' với tư cách là admin
-        $response = $this->actingAs($admin)->put(route('facility_management.update', $total->id), $updatedData);
+        $response = $this->actingAs($this->admin)->put(route('facility_management.update', $total->id), $updatedData);
 
         // Kiểm tra response
         $response->assertStatus(302);
