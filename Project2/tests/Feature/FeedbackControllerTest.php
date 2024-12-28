@@ -56,7 +56,7 @@ class FeedbackControllerTest extends TestCase
             'name' => 'Test User',
             'email' => 'test@example.com',
             'content' => 'This is a test feedback.',
-            'user_id' => $user->id,
+            'user_id' =>1,
         ]);
     }
     /** @test */
