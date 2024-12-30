@@ -17,7 +17,7 @@ class TuitionInfoFactory extends Factory
     {
         return [
             'name' => $this->faker->word(),
-            'price' => $this->faker->numberBetween(100000, 1000000),
+            'price' => $this->faker->numberBetween(100000, 2000000),
             'tuition_id' => tuition::factory(), // Tạo tuition_id từ factory của Tuition
         ];
     }

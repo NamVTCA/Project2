@@ -18,10 +18,12 @@ class ChildControllerTest extends TestCase
 
     protected $admin;
 
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
-        $this->admin = User::where('email', 'quangnguyen.21062005@gmail.com')->firstOrFail();
+        // Tạo một user admin
+         /** @var \App\Models\User $admin */
+        $this->admin = User::factory()->create(['role' => 0, 'email' => 'quangnguyen.21062005@gmail.com', 'password' => bcrypt('12345678')]);
         $this->actingAs($this->admin);
     }
 

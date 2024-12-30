@@ -86,8 +86,8 @@
         <div class="form-group mb-3">
             <label for="role">Vai trò:</label>
             <select id="role" name="role" class="form-control" required>
-                <option value="1">Giáo Viên</option>
-                <option value="2">Phụ Huynh</option>
+                <option value="1">Giáo viên</option>
+                <option value="2">Phụ huynh</option>
             </select>
         </div>
 

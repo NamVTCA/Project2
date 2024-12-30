@@ -9,7 +9,7 @@ use Tests\TestCase;
 
 class FeedbackControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    
 
     /** @test */
   public function it_can_display_feedback_list()
@@ -56,7 +56,7 @@ class FeedbackControllerTest extends TestCase
             'name' => 'Test User',
             'email' => 'test@example.com',
             'content' => 'This is a test feedback.',
-            'user_id' => $user->id,
+            'user_id' =>1,
         ]);
     }
     /** @test */

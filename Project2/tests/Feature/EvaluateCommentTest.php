@@ -11,7 +11,7 @@ use Carbon\Carbon;
 class EvaluateCommentTest extends TestCase
 {
 
-       use RefreshDatabase;
+      
 
     /** @test */
     public function it_creates_new_evaluation()

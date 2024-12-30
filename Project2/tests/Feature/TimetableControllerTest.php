@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class TimetableControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    
 
     /** @test */
     /** @test */

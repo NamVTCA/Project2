@@ -206,6 +206,8 @@ Route::get('/api/get-dentails/{total_id}', [FacilityManagementController::class,
         Route::post('/momo_payment', [PaymentController::class, 'momo_payment'])->name('momo_payment');
 Route::post('/stripe_payment', [PaymentController::class, 'stripe_payment'])->name('stripe_payment');
 Route::post('/process-payment', [PaymentController::class, 'processPayment'])->name('process_payment');
+Route::get('/momo/callback/{tuition_id}', [PaymentController::class, 'handleMoMoPaymentCallback'])->name('momo.callback');
+
 
 
 
