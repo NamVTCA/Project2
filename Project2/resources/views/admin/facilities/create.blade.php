@@ -32,11 +32,11 @@
         const newDetail = `
             <div class="dentail-detail">
                 <div class="form-group">
-                    <label for="dentail[${index}][name]">Tên Chi Tiết</label>
+                    <label for="dentail[${index}][name]">Tên chi tiết</label>
                     <input type="text" name="dentail[${index}][name]" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="dentail[${index}][quantity]">Số Lượng</label>
+                    <label for="dentail[${index}][quantity]">Số lượng</label>
                     <input type="number" name="dentail[${index}][quantity]" class="form-control" required>
                 </div>
             </div>

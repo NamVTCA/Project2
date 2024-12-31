@@ -24,23 +24,23 @@
                                 <i class="bi bi-arrow-left"></i> Quay Về
                             </a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Trang Chủ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Sự Kiện</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Giáo Dục</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('feedback')}}">Phản Hồi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Sự kiện</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Giáo ddục</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('feedback')}}">Phản hồi</a></li>
                         <li class="nav-item">
                             @if(Auth::check())
                                 <!-- Hiển thị "Đăng Xuất" nếu người dùng đã đăng nhập -->
                                 <a class="nav-link" href="{{ route('logout') }}" 
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Đăng Xuất
+                                    Đăng xuất
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                             @else
                                 <!-- Hiển thị "Đăng Nhập" nếu người dùng chưa đăng nhập -->
-                                <a class="nav-link" href="{{ route('login') }}">Đăng Nhập</a>
+                                <a class="nav-link" href="{{ route('login') }}">Đăng nhập</a>
                             @endif
                         </li>
                     </ul>

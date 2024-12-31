@@ -8,7 +8,7 @@
             <i class="fas fa-arrow-left"></i> Quay về
         </a>
     </div>
-    <h1>Tạo Học phí</h1>
+    <h1>Tạo học phí</h1>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>

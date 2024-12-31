@@ -18,7 +18,7 @@
                         <li>Kỹ năng vận động và thể chất</li>
                         <li>Sự hiểu biết về thế giới xung quanh</li>
                     </ul>
-                    <button class="btn btn-primary" onclick="toggleDetails()">Tìm Hiểu Thêm</button>
+                    <button class="btn btn-primary" onclick="toggleDetails()">Tìm hiểu thêm</button>
                 </div>
             </div>
 

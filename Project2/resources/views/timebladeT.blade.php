@@ -8,7 +8,7 @@
             <button id="back-button" class="btn btn-secondary">← Quay về</button>
         </div>
     </div>
-    <h1 class="page-title">Xem Thời Khóa Biểu</h1>
+    <h1 class="page-title">Xem thời khóa biểu</h1>
     <div class="form-group">
         <label for="semester-select">Chọn học kỳ:</label>
         <form method="GET" action="{{ route('timetable.view') }}">

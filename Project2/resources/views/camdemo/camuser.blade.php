@@ -25,7 +25,7 @@
             <div class="camera-stream">
                 <iframe src="{{ $camera->stream_url }}" frameborder="0" allowfullscreen></iframe>
             </div>     
-                <a href="{{ $camera->stream_url }}" target="_blank" class="btn btn-primary">Xem Toàn Bộ</a>
+                <a href="{{ $camera->stream_url }}" target="_blank" class="btn btn-primary">Xem toàn bộ</a>
             </div>
         </div>
         @endforeach

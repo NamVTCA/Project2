@@ -13,9 +13,9 @@
 
             <!-- Chọn Trẻ -->
             <div class="mb-3">
-                <label for="child_id" class="form-label text-pink">Chọn Trẻ</label>
+                <label for="child_id" class="form-label text-pink">Chọn trẻ</label>
                 <select class="form-select" id="child_id" name="child_id" required>
-                    <option value="">-- Chọn Trẻ --</option>
+                    <option value="">-- Chọn trẻ --</option>
                     @foreach ($children as $child)
                         <option value="{{ $child->id }}">{{ $child->name }}</option>
                     @endforeach
@@ -23,14 +23,14 @@
             </div>
 
             <div class="mb-3">
-                <label for="tuition_id" class="form-label text-pink">Chọn Kỳ Học Phí</label>
+                <label for="tuition_id" class="form-label text-pink">Chọn kỳ học phí</label>
                 <select class="form-select" id="tuition_id" name="tuition_id" disabled>
-                    <option value="">-- Chọn Kỳ Học Phí --</option>
+                    <option value="">-- Chọn kỳ học phí --</option>
                 </select>
             </div>
 
             <div class="mb-3" id="tuition_details" style="display: none;">
-                <h5>Chi Tiết Học Phí</h5>
+                <h5>Chi tiết học phí</h5>
                 <ul id="tuition_detail_list" class="list-group"></ul>
             </div>
 
@@ -53,7 +53,7 @@
 
             <!-- Nút thanh toán -->
             <input type="hidden" name="tuition_id" id="selected_tuition_id">
-            <button type="submit" class="btn btn-pink w-100" disabled id="payment_button">Thanh Toán</button>
+            <button type="submit" class="btn btn-pink w-100" disabled id="payment_button">Thanh toán</button>
         </form>
     </div>
 
@@ -72,7 +72,7 @@
                 const childId = childSelect.value;
                 if (childId) {
                     const filteredTuitions = tuitions.filter(tuition => tuition.child_id == childId);
-                    tuitionSelect.innerHTML = `<option value="">-- Chọn Kỳ Học Phí --</option>`;
+                    tuitionSelect.innerHTML = `<option value="">-- Chọn kỳ học phí --</option>`;
                     filteredTuitions.forEach(tuition => {
                         const option = document.createElement("option");
                         option.value = tuition.id;
@@ -87,7 +87,7 @@
                     tuitionDetails.style.display = "none";
                     paymentButton.disabled = true;
                 } else {
-                    tuitionSelect.innerHTML = `<option value="">-- Chọn Kỳ Học Phí --</option>`;
+                    tuitionSelect.innerHTML = `<option value="">-- Chọn kỳ học phí --</option>`;
                     tuitionSelect.disabled = true;
                     tuitionDetails.style.display = "none";
                     paymentButton.disabled = true;

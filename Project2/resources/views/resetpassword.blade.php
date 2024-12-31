@@ -12,7 +12,7 @@
     @endif
     <form class="reset-password-form" method="POST" action="{{ route('reset.password') }}">
         @csrf
-        <label for="current_password">Mật Khẩu Cũ</label>
+        <label for="current_password">Mật khẩu cũ</label>
         <div class="password-container">
             <input type="password" id="current_password" name="current_password" placeholder="Nhập mật khẩu cũ">
             <span class="toggle-password" onclick="togglePasswordVisibility('current_password')">👁️</span>
@@ -30,7 +30,7 @@
             <p class="text-danger">{{ $message }}</p>
         @enderror
 
-        <label for="confirm_password">Nhập lại Mật khẩu mới</label>
+        <label for="confirm_password">Nhập lại mật khẩu mới</label>
         <div class="password-container">
             <input type="password" id="confirm_password" name="confirm_password" placeholder="Nhập lại mật khẩu mới">
             <span class="toggle-password" onclick="togglePasswordVisibility('confirm_password')">👁️</span>
@@ -39,7 +39,7 @@
             <p class="text-danger">{{ $message }}</p>
         @enderror
 
-        <button type="submit" class="reset-password-btn">Xác Nhận</button>
+        <button type="submit" class="reset-password-btn">Xác nhận</button>
     </form>    
 </main>
 

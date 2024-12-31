@@ -21,7 +21,7 @@
         <form action="{{ route('admin.users.deleteAll') }}" method="POST" class="d-inline" id="delete-all-form">
             @csrf
             @method('DELETE')
-            <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa tất cả tài khoản?')">Xóa Tất Cả</button>
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa tất cả tài khoản?')">Xóa tất cả</button>
         </form>
     </div>
     <div class="back-button">
@@ -124,7 +124,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fw-bold" id="rulesModalLabel">Quy Định Khi Tạo Tài Khoản</h5>
+                <h5 class="modal-title fw-bold" id="rulesModalLabel">Quy định khi tạo tài khoản</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

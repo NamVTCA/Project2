@@ -8,10 +8,10 @@
             <i class="fas fa-arrow-left"></i> Quay về
         </a>
     </div>
-    <h1>Quản Lý Học Phí</h1>
+    <h1>Quản lý học phí</h1>
 
     <div class="actions">
-        <a href="{{ route('tuition.create') }}" class="btn">Tạo Học Phí</a>
+        <a href="{{ route('tuition.create') }}" class="btn">Tạo học phí</a>
     </div>
 
     <form method="GET" action="{{ route('tuition.index') }}">
@@ -28,7 +28,7 @@
         </div>
 
         <div class="form-group">
-            <label for="children_id">Chọn Học Sinh</label>
+            <label for="children_id">Chọn học sinh</label>
             <select name="children_id" id="children_id" class="form-control" onchange="this.form.submit()">
                 <option value="">-- Chọn học sinh --</option>
                 @foreach($children as $child)
@@ -42,24 +42,24 @@
 
     @if($selectedChild)
         <div class="child-info">
-            <h3>Thông Tin Trẻ</h3>
-            <p><strong>Tên Phụ Huynh:</strong> {{ $selectedChild->user->name }}</p>
-            <p><strong>Ngày Sinh:</strong> {{ $selectedChild->birthDate }}</p>
-            <p><strong>Giới Tính:</strong> {{ $selectedChild->gender == 1 ? 'Nam' : 'Nữ' }}</p>
+            <h3>Thông tin trẻ</h3>
+            <p><strong>Tên phụ huynh:</strong> {{ $selectedChild->user->name }}</p>
+            <p><strong>Ngày sinh:</strong> {{ $selectedChild->birthDate }}</p>
+            <p><strong>Giới tính:</strong> {{ $selectedChild->gender == 1 ? 'Nam' : 'Nữ' }}</p>
         </div>
 
         <table class="tuition-table">
             <thead>
                 <tr>
-                    <th>Kỳ Học</th>
-                    <th>Trạng Thái</th>
+                    <th>Kỳ học</th>
+                    <th>Trạng thái</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($selectedChild->tuition as $tuition)
                     <tr>
                         <td>{{ $tuition->semester }}</td>
-                        <td>{{ $tuition->status ? 'Đã Đóng' : 'Chưa Đóng' }}</td>
+                        <td>{{ $tuition->status ? 'Đã đóng' : 'Chưa đóng' }}</td>
                        
                     </tr>
                 @endforeach

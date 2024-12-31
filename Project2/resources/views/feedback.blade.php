@@ -8,7 +8,7 @@
     <div class="logo">
         <img src="{{ asset('img/Login.png') }}" alt="Nursery PreSchool" class="logo-image">
     </div>        
-    <h1>Gửi Phản Hồi</h1>
+    <h1>Gửi phản hồi</h1>
       @if($errors->any())
     <div class="alert alert-danger">
         {{ $errors->first() }}
@@ -31,7 +31,7 @@
             <label for="message">Phản hồi</label>
             <textarea id="message" name="message" rows="5" placeholder="Nhập phản hồi của bạn" required></textarea>
         </div>
-        <button type="submit" class="btn">Gửi Phản Hồi</button>
+        <button type="submit" class="btn">Gửi phản hồi</button>
     </form>
 </div>
 
@@ -47,13 +47,13 @@
             </div>
             <!-- Phần Liên Hệ -->
             <div class="col-md-4">
-                <h6>Liên Hệ</h6>
+                <h6>Liên hệ</h6>
                 <p><strong>Địa chỉ:</strong> The Emporium Tower, 184 Đ. Lê Đại Hành, Phường 15, Quận 11, Hồ Chí Minh</p>
                 <p><strong>Email:</strong> <a href="mailto:truongtruongbvn@gmail.com">truongtruongbvn@gmail.com</a></p>
                 <p><strong>Phone:</strong> <a href="tel:+84123456789">+84 123 456 789</a></p>
             </div>
             <div class="col-md-4">
-                <h6>Liên Hệ</h6>
+                <h6>Liên hệ</h6>
                 <p><strong>Facebook: </strong><a href="https://www.facebook.com/vtcacademyhcm">VTCAcademy</a></p>
                 <p><strong>TikTok: </strong> <a href="https://www.tiktok.com/@vtcacademy">VTCAcademy</a></p>
                 <p><strong>Zalo:</strong> <a href="tel:+84123456789">+84 123 456 789</a></p>

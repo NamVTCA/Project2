@@ -15,7 +15,7 @@
             <div class="section-header text-center mb-4">
                 <h2 class="text-primary fw-bold animate__animated animate__fadeInDown">5 Điều Bác Hồ Dạy</h2>
                 <ol class="list-group list-group-numbered">
-                    <li class="list-group-item">Yêu Tổ quốc, yêu đồng bào.</li>
+                    <li class="list-group-item">Yêu tổ quốc, yêu đồng bào.</li>
                     <li class="list-group-item">Học tập tốt, lao động tốt.</li>
                     <li class="list-group-item">Đoàn kết tốt, kỷ luật tốt.</li>
                     <li class="list-group-item">Giữ gìn vệ sinh thật tốt.</li>

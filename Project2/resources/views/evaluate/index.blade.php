@@ -73,15 +73,14 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fw-bold" id="rulesModalLabel">Quy Định Khi Tạo Tài Khoản</h5>
+                <h5 class="modal-title fw-bold" id="rulesModalLabel">Quy định khi đánh giá</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <h6 class="text-primary">Quy định Khi Đánh Giá:</h6>
                 <ul>
-                    <li>Lưu ý chỉ được nhận sét trong vòng <b>24h</b> cùng ngày.</li>
+                    <li>Lưu ý chỉ được nhận xét trong vòng <b>24h</b> cùng ngày.</li>
                     <li>Qua <b>24h</b> sẽ tự động để trống.</li>
-                    <li>Đánh giá một cách <b>Trung Thực</b> không gian dối.</li>
+                    <li>Đánh giá một cách <b>trung thực</b> không gian dối.</li>
                 </ul>
             </div>
             <div class="modal-footer">

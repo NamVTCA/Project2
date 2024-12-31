@@ -22,7 +22,7 @@ class ChildControllerTest extends TestCase
     {
         parent::setUp();
         // Tạo một user admin
-         /** @var \App\Models\User $admin */
+        /** @var \App\Models\User $admin */
         $this->admin = User::factory()->create(['role' => 0, 'email' => 'quangnguyen.21062005@gmail.com', 'password' => bcrypt('12345678')]);
         $this->actingAs($this->admin);
     }

@@ -10,7 +10,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header bg-info text-white">
-                    Thông Tin Cá Nhân
+                    Thông tin cá nhân
                 </div>
                 <div class="card-body">
                     @if(Auth::check())
@@ -27,22 +27,22 @@
                         @endif
                         <p><strong>Tên:</strong> {{ Auth::user()->name }}</p>
                         <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
-                        <p><strong>Số Điện Thoại:</strong> {{ Auth::user()->phone }}</p>
-                        <p><strong>Địa Chỉ:</strong> {{ Auth::user()->address }}</p>
-                        <p><strong>Căn Cước Công Dân:</strong> {{ Auth::user()->id_number }}</p>
-                        <p><strong>Giới Tính:</strong> 
+                        <p><strong>Số điện thoại:</strong> {{ Auth::user()->phone }}</p>
+                        <p><strong>Địa chỉ:</strong> {{ Auth::user()->address }}</p>
+                        <p><strong>Căn cước công dân:</strong> {{ Auth::user()->id_number }}</p>
+                        <p><strong>Giới tính:</strong> 
                             {{ Auth::user()->gender == 'male' ? 'Nam' : (Auth::user()->gender == 'female' ? 'Nữ' : 'Không xác định') }}
                         </p>                        
                     @else
                         <p>Không có thông tin người dùng.</p>
                     @endif
                     <div>
-                        <a href="{{ route('momo') }}" class="btn btn-light btn-sm">Thanh Toán Học Phí</a>
-                        <a href="{{ route('reset.password.form') }}" class="btn btn-light btn-sm">Đổi Mật Khẩu</a>
+                        <a href="{{ route('momo') }}" class="btn btn-light btn-sm">Thanh toán học phí</a>
+                        <a href="{{ route('reset.password.form') }}" class="btn btn-light btn-sm">Đổi mật khẩu</a>
                     </div>
                     <div>
-                        <a href="{{ route('timetable.view') }}" class="btn btn-light btn-sm">Xem Lịch Học</a>
-                        <a href="{{ route('parent.chat') }}" class="btn btn-light btn-sm">Trò Chuyện</a>
+                        <a href="{{ route('timetable.view') }}" class="btn btn-light btn-sm">Xem lịch học</a>
+                        <a href="{{ route('parent.chat') }}" class="btn btn-light btn-sm">Trò chuyện</a>
                         <a href="{{ route('cameras.indexUser') }}" class="btn btn-light btn-sm">Xem Camera</a>
                     </div>
                 </div>
@@ -53,11 +53,11 @@
             <!-- Chọn học sinh -->
             <div class="card mb-3">
                 <div class="card-header bg-primary text-white">
-                    Chọn Học Sinh
+                    Chọn học sinh
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="child_id">Học Sinh:</label>
+                        <label for="child_id">Học sinh:</label>
                         <select name="child_id" id="child_id" class="form-select" required>
                             <option value="" disabled selected>-- Chọn học sinh --</option>
                             @foreach($children as $child)
@@ -70,12 +70,12 @@
             <!-- Chi tiết học sinh -->
             <div class="card">
                 <div class="card-header bg-info text-white">
-                    Chi Tiết Học Sinh
+                    Chi tiết học sinh
                 </div>
                 <div class="card-body">
                     <p><strong>Tên:</strong> <span id="student-name"></span></p>
-                    <p><strong>Ngày Sinh:</strong> <span id="student-birth"></span></p>
-                    <p><strong>Giới Tính:</strong> <span id="student-gender"></span></p>
+                    <p><strong>Ngày sinh:</strong> <span id="student-birth"></span></p>
+                    <p><strong>Giới tính:</strong> <span id="student-gender"></span></p>
                     <p><strong>Lớp:</strong> <span id="student-class"></span></p>
                 </div>
             </div>
@@ -87,7 +87,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header bg-warning text-dark">
-                    Chọn Ngày và Học Lực
+                    Chọn ngày và học lực
                 </div>
                 <div class="card-body">
                     <form id="evaluation-form">
@@ -96,11 +96,11 @@
                             <input type="date" id="date" name="date" class="form-control" required>
                         </div>
                              <div class="form-group">
-                            <label for="point">Học Lực:</label>
+                            <label for="point">Học lực:</label>
                             <input type="text" id="point" name="point" class="form-control" disabled>
                         </div>
                         <div class="form-group mt-3">
-                            <label for="hocLuc">Đánh Giá</label>
+                            <label for="hocLuc">Đánh giá</label>
                             <textarea disabled id="hocLuc" class="form-control" rows="3" placeholder="Nhận xét học lực"></textarea>
                         </div>
                     </form>
@@ -142,13 +142,13 @@ document.addEventListener('DOMContentLoaded', () => {
                             const point = data.evaluation.point;
                             let rate;
                             if (point == 10) {
-                                rate = 'Xuất Sắc';
+                                rate = 'Xuất sắc';
                             } else if (point == 8) {
                                 rate = 'Giỏi';
                             } else if (point == 6) {
                                 rate = 'Khá';
                             } else if (point == 4) {
-                                rate = 'Trung Bình';
+                                rate = 'Trung bình';
                             } else if (point == 2) {
                                 rate = 'Yếu';
                             } else {

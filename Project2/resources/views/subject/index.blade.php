@@ -3,7 +3,7 @@
 @section('content')
 <div class="subjects-page">
     <link rel="stylesheet" href="{{ asset('css/Subjects.css') }}">
-    <h1>Danh sách Môn học</h1>
+    <h1>Danh sách môn học</h1>
 
     <!-- Hiển thị thông báo -->
     @if (session('success'))

@@ -9,7 +9,7 @@
         </a>
     </div>
     <h2>Quản lý cơ sở vật chất</h2>
-    <a href="{{ route('facility_management.create') }}" class="btn btn-primary">Thêm Cơ Sở Vật Chất Mới</a>
+    <a href="{{ route('facility_management.create') }}" class="btn btn-primary">Thêm cơ sở vật chất mới</a>
 
     @foreach($totals as $total)
         <div class="total-facility">
@@ -21,7 +21,7 @@
                 <button type="submit" class="btn btn-danger">Xóa</button> --}}
             </form>
             
-            <h5>Chi Tiết Cơ Sở Vật Chất</h5>
+            <h5>Chi tiết cơ sở vật chất</h5>
             <ul>
                 @foreach($total->dentail as $dentail)
                     <li>{{ $dentail->name }} - Số lượng: {{ $dentail->quantity }}</li>

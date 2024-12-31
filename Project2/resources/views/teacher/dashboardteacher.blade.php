@@ -14,16 +14,16 @@
                 </div>
                 <div class="card-body text-center">
                     @if(Auth::check())
-                        <img src="{{ Auth::user()->img ? asset('storage/' . Auth::user()->img) : asset('img/default_avatar.png') }}" alt="Ảnh Đại Diện" class="rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover;">
+                        <img src="{{ Auth::user()->img ? asset('storage/' . Auth::user()->img) : asset('img/default_avatar.png') }}" alt="Ảnh đại diện" class="rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover;">
                         <p><strong>Tên:</strong> {{ Auth::user()->name }}</p>
                         <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
-                        <p><strong>Số Điện Thoại:</strong> {{ Auth::user()->phone }}</p>
-                        <p><strong>Địa Chỉ:</strong> {{ Auth::user()->address }}</p>
-                        <p><strong>Căn Cước Công Dân:</strong> {{ Auth::user()->id_number }}</p>
-                        <p><strong>Giới Tính:</strong> 
+                        <p><strong>Số điện thoại:</strong> {{ Auth::user()->phone }}</p>
+                        <p><strong>Địa chỉ:</strong> {{ Auth::user()->address }}</p>
+                        <p><strong>Căn cước công dân:</strong> {{ Auth::user()->id_number }}</p>
+                        <p><strong>Giới tính:</strong> 
                             {{ Auth::user()->gender == 'male' ? 'Nam' : (Auth::user()->gender == 'female' ? 'Nữ' : 'Không xác định') }}
                         </p>                        
-                        <p><strong>Lớp Dạy:</strong> {{ Auth::user()->classroom->name }}</p>
+                        <p><strong>Lớp dạy:</strong> {{ Auth::user()->classroom->name }}</p>
                     @else
                         <p>Không có thông tin người dùng.</p>
                     @endif
@@ -40,20 +40,20 @@
                 <div class="card-body">
                     <!-- Thanh Toán Và Quản Lý Học Phí -->
                     <div class="form-group">
-                        <label for="tuitionManagement">Thanh Toán Và Đánh Giá</label>
+                        <label for="tuitionManagement">Thanh toán và đánh Giá</label>
                         <div>
-                            <a href="{{ route('momo') }}" class="btn btn-light btn-sm">Thanh Toán</a>
-                            <a href="{{ route('evaluate') }}" class="btn btn-light btn-sm">Đánh Giá</a>
+                            <a href="{{ route('momo') }}" class="btn btn-light btn-sm">Thanh toán</a>
+                            <a href="{{ route('evaluate') }}" class="btn btn-light btn-sm">Đánh giá</a>
                         </div>
                     </div>
 
                     <!-- Quản Lý Lịch Học -->
                     <div class="form-group">
-                        <label for="scheduleManagement">Trò Truyện, Xem Lịch Học, Đổi Mật Khẩu</label>
+                        <label for="scheduleManagement">Trò chuyện, xem lịch học, đổi mật khẩu</label>
                         <div>
-                            <a href="{{ route('teacher.chat') }}" class="btn btn-light btn-sm">Trò Chuyện</a>
-                            <a href="{{ route('timetable.view') }}" class="btn btn-light btn-sm">Xem Lịch Học</a>
-                            <a href="{{ route('reset.password.form') }}" class="btn btn-light btn-sm">Đổi Mật Khẩu</a>
+                            <a href="{{ route('teacher.chat') }}" class="btn btn-light btn-sm">Trò chuyện</a>
+                            <a href="{{ route('timetable.view') }}" class="btn btn-light btn-sm">Xem lịch học</a>
+                            <a href="{{ route('reset.password.form') }}" class="btn btn-light btn-sm">Đổi mật khẩu</a>
                         </div>
                     </div>
 
@@ -61,8 +61,8 @@
                     <div class="form-group">
                         <label for="scheduleManagement">Camera</label>
                         <div>
-                            <a href="{{ route('camcreate') }}" class="btn btn-light btn-sm">Thêm Camera</a>
-                            <a href="{{ route('cameras.index') }}" class="btn btn-light btn-sm">Xem Camera</a>
+                            <a href="{{ route('camcreate') }}" class="btn btn-light btn-sm">Thêm camera</a>
+                            <a href="{{ route('cameras.index') }}" class="btn btn-light btn-sm">Xem camera</a>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
         <div class="col-md-12">
             <div class="card shadow-sm">
                 <div class="card-header bg-warning text-dark">
-                    <h5>Danh sách Lớp Học</h5>
+                    <h5>Danh sách lớp học</h5>
                 </div>
                 <div class="card-body">
                     @if($students->isEmpty())
@@ -87,9 +87,9 @@
                             <thead class="bg-light">
                                 <tr>
                                     <th>Tên</th>
-                                    <th>Ngày Sinh</th>
-                                    <th>Giới Tính</th>
-                                    <th>Phụ Huynh</th>
+                                    <th>Ngày sinh</th>
+                                    <th>Giới tính</th>
+                                    <th>Phụ huynh</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -116,7 +116,7 @@
         <div class="col-md-6">
             <div class="card mb-3">
                 <div class="card-header bg-warning text-dark">
-                    Chọn Ngày và Học Lực
+                    Chọn ngày và học lực
                 </div>
                 <div class="card-body">
                     <form id="evaluation-form">
@@ -125,11 +125,11 @@
                             <input type="date" id="date" name="date" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="point">Học Lực:</label>
+                            <label for="point">Học lực:</label>
                             <input type="text" id="point" name="point" class="form-control" disabled>
                         </div>
                         <div class="form-group mt-3">
-                            <label for="hocLuc">Đánh Giá</label>
+                            <label for="hocLuc">Đánh giá</label>
                             <textarea disabled id="hocLuc" class="form-control" rows="3" placeholder="Nhận xét học lực"></textarea>
                         </div>
                     </form>
@@ -142,11 +142,11 @@
             <!-- Chọn học sinh -->
             <div class="card mb-3">
                 <div class="card-header bg-primary text-white">
-                    Chọn Học Sinh
+                    Chọn học sinh
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="child_id">Học Sinh:</label>
+                        <label for="child_id">Học sinh:</label>
                         <select name="child_id" id="child_id" class="form-select" required>
                             <option value="" disabled selected>-- Chọn học sinh --</option>
                             @foreach($students as $student)
@@ -159,12 +159,12 @@
             <!-- Chi tiết học sinh -->
             <div class="card">
                 <div class="card-header bg-info text-white">
-                    Chi Tiết Học Sinh
+                    Chi tiết học sinh
                 </div>
                 <div class="card-body">
                     <p><strong>Tên:</strong> <span id="student-name"></span></p>
-                    <p><strong>Ngày Sinh:</strong> <span id="student-birth"></span></p>
-                    <p><strong>Giới Tính:</strong> <span id="student-gender"></span></p>
+                    <p><strong>Ngày sinh:</strong> <span id="student-birth"></span></p>
+                    <p><strong>Giới tính:</strong> <span id="student-gender"></span></p>
                     <p><strong>Lớp:</strong> <span id="student-class"></span></p>
                 </div>
             </div>

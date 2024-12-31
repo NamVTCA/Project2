@@ -32,7 +32,7 @@
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Xóa</button>
-                    <a href="{{ $camera->stream_url }}" target="_blank" class="btn btn-primary">Xem Toàn Bộ</a>
+                    <a href="{{ $camera->stream_url }}" target="_blank" class="btn btn-primary">Xem toàn bộ</a>
                 </form>
             </div>
         </div>
