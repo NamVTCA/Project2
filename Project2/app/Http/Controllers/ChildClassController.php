@@ -81,7 +81,7 @@ class ChildClassController extends Controller
                                 ->with(['child', 'classroom'])
                                 ->firstOrFail();
     
-        $children = Child::all();
+        $children = Child::where('id',$child_id)->get();
         $classrooms = Classroom::all();
     
         return view('childclassedit', compact('childclass', 'children', 'classrooms'));
