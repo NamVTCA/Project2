@@ -28,7 +28,7 @@
 
     <form action="{{ route('childclass.update', ['child_id' => $childclass->child_id, 'classroom_id' => $childclass->classroom_id]) }}" method="POST">
         @csrf
-        {{-- <div class="form-group">
+        <div class="form-group">
             <label for="child_id">Học sinh</label>
             <select name="child_id" id="child_id" class="form-control" required>
                 @foreach($children as $child)
@@ -37,7 +37,7 @@
                     </option>
                 @endforeach
             </select>
-        </div> --}}
+        </div>
         <div class="form-group mt-3">
             <label for="classroom_id">Lớp học</label>
             <select name="classroom_id" id="classroom_id" class="form-control" required>
